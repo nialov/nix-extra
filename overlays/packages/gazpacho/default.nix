@@ -1,0 +1,29 @@
+{ inputs, lib, buildPythonPackage, pytestCheckHook, pytest }:
+
+buildPythonPackage {
+  pname = "gazpacho";
+  version = "1.1";
+
+  src = inputs.gazpacho-src;
+  # src = fetchFromGitHub {
+  #   owner = "maxhumber";
+  #   repo = pname;
+  #   rev = "v${version}";
+  #   sha256 = "sha256-UXOpTTiny5drJoD9cICcYD0SggEFfnyXWymiinS+IWE=";
+  # };
+
+  checkInputs = [ pytestCheckHook pytest ];
+
+  disabledTests = [ "test_get" "test_soup" ];
+
+  # buildInputs = [ sphinx ];
+  # propagatedBuildInputs = [ gazpacho rich ];
+
+  meta = with lib; {
+    description = "";
+    homepage = "https://github.com/maxhumber/gazpacho";
+    maintainers = with maintainers; [ nialov ];
+    license = licenses.mit;
+  };
+
+}

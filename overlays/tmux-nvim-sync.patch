@@ -1,0 +1,15 @@
+diff --git a/lua/tmux/copy.lua b/lua/tmux/copy.lua
+index fcb29a7..5d2dc27 100644
+--- a/lua/tmux/copy.lua
++++ b/lua/tmux/copy.lua
+@@ -81,8 +81,8 @@ function M.setup()
+                 let PostYank = luaeval('require("tmux").post_yank')
+                 let SyncRegisters = luaeval('require("tmux").sync_registers')
+                 autocmd TextYankPost * call PostYank(v:event)
+-                autocmd CmdlineEnter * call SyncRegisters()
+-                autocmd CmdwinEnter : call SyncRegisters()
++                " autocmd CmdlineEnter * call SyncRegisters()
++                " autocmd CmdwinEnter : call SyncRegisters()
+                 autocmd VimEnter * call SyncRegisters()
+             endif
+         ]])
