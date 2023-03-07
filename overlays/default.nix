@@ -12,21 +12,13 @@ inputs: final: prev: {
   pretty-task = prev.callPackage ././packages/pretty-task { };
   proton-ge-custom = prev.callPackage ././packages/proton-ge-custom { };
   # TODO: move to pythonPackagesOverlays and then reference result from there
-  kibitzr = prev.callPackage ././packages/kibitzr {
-    inherit inputs;
-    inherit (prev.python3Packages)
-      pytestCheckHook jinja2 beautifulsoup4 buildPythonPackage click
-      cachecontrol defusedxml entrypoints lazy-object-proxy lxml
-      python-telegram-bot pytimeparse pyyaml requests schedule selenium six
-      psutil sh pytest pylint mock pytest-mock freezegun;
-  };
-  inherit (final.python3Packages) synonym-cli;
+  inherit (final.python3Packages) synonym-cli kibitzr;
   ytdl-sub = prev.callPackage ././packages/ytdl-sub { inherit inputs; };
   # python3.pkgs.sphinx-design =
   #sphinx-design = prev.callPackage ././packages/sphinx-design { };
   # Overlay structure from: https://discourse.nixos.org/t/add-python-package-via-overlay/19783/3
   bootstrapSecretsScript = prev.writers.writeFishBin "bootstrap-secrets"
-    ../scripts/bootstrap-secrets.fish;
+    ./packages/bootstrap-secrets.fish;
   pythonPackagesOverlays = (prev.pythonPackagesOverlays or [ ]) ++ [
     (python-final: _: {
       # cviz = python-final.callPackage cvizPkg { };
@@ -43,6 +35,8 @@ inputs: final: prev: {
         python-final.callPackage ././packages/synonym-cli { inherit inputs; };
       gazpacho =
         python-final.callPackage ././packages/gazpacho { inherit inputs; };
+      kibitzr =
+        python-final.callPackage ././packages/kibitzr { inherit inputs; };
     })
   ];
   python3 = let

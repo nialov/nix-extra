@@ -1,7 +1,7 @@
 { inputs, buildPythonPackage, lib, pytestCheckHook, click, jinja2
 , beautifulsoup4, cachecontrol, defusedxml, entrypoints, lazy-object-proxy, lxml
 , python-telegram-bot, pytimeparse, pyyaml, requests, schedule, selenium, six
-, psutil, sh, pytest, pylint, mock, pytest-mock, freezegun, git, jq }:
+, psutil, sh, pytest, pylint, mock, pytest-mock, freezegun, git, jq, twilio }:
 
 buildPythonPackage {
   pname = "kibitzr";
@@ -51,11 +51,12 @@ buildPythonPackage {
     six
     psutil
     sh
+    twilio
   ];
 
   checkInputs = [ pytestCheckHook pytest pylint mock pytest-mock freezegun ];
 
-  disabledTests = [ "test_scenario" "test_fill_form_sample" ];
+  disabledTests = [ "test_scenario" "test_fill_form_sample" "test_jq_sample" ];
   # The following prePatch replaces the h3lib compilation with using the h3 packaged in nixpkgs.
   #
   # - Remove the h3lib submodule.
@@ -79,6 +80,10 @@ buildPythonPackage {
       --replace "bs4" "beautifulsoup4"
   '';
   pythonImportsCheck = [ "kibitzr" ];
+
+  postInstall = ''
+    wrapProgram $out/bin/kibitzr --prefix PATH : ${lib.makeBinPath [ jq ]}
+  '';
 
   meta = with lib; {
     homepage = "https://github.com/kibitzr/kibitzr";

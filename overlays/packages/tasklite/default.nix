@@ -115,6 +115,7 @@ in mkDerivation {
 
     fullSrc = inputs.tasklite-src;
     patchedFullSrc = applyPatches {
+      name = "tasklite-core-src-patched";
       src = fullSrc;
       patches = [ (writeText "versionSlugPatch.patch" versionSlugPatch) ];
     };

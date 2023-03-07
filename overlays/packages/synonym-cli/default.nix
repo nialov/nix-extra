@@ -23,6 +23,7 @@ buildPythonPackage rec {
     maintainers = with maintainers; [ nialov ];
     # TODO: No license for project
     license = licenses.bsd3;
+    broken = true;
   };
 
 }

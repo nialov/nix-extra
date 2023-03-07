@@ -124,26 +124,36 @@
           # Get deploy-rs form its repository flake
           inherit (inputs.deploy-rs-input.packages."${system}") deploy-rs;
 
-          # Use stable collection of nvim-treesitter grammars
-          # Unstable versions bug out often
+          nickel = inputs.nickel-src.packages."${system}".build;
+          # Use stable version of tmuxp
+
+          inherit (inputs.nixpkgs-pre-commit-hook-ensure-sops.legacyPackages."${system}".python3Packages)
+            pre-commit-hook-ensure-sops;
+        };
+      stableOverlay = final: prev:
+        let
+          inherit (prev) system;
+          # pkgsStable has the local overlay added
+          pkgsStable = import inputs.nixpkgs-stable {
+            inherit system;
+            overlays = [ localOverlay inputOverlay ];
+          };
+        in {
+
           vimPlugins =
             # Update the unstable set with stable nvim-treesitter plugins using recursiveUpdate
             lib.recursiveUpdate
             # Unstable vimPlugins
             prev.vimPlugins
             # Stable nvim-treesitter from stable nixpkgs
-            {
-              inherit (inputs.nixpkgs-stable.legacyPackages."${system}".vimPlugins)
-                nvim-treesitter;
-            };
-          nickel = inputs.nickel-src.packages."${system}".build;
+            { inherit (pkgsStable.vimPlugins) nvim-treesitter; };
           # Use stable version of tmuxp
-          inherit (inputs.nixpkgs-stable.legacyPackages."${system}") tmuxp;
+          inherit (pkgsStable) tmuxp;
 
-          inherit (inputs.nixpkgs-pre-commit-hook-ensure-sops.legacyPackages."${system}".python3Packages)
-            pre-commit-hook-ensure-sops;
+          final.kibitzr = pkgsStable.kibitzr;
         };
-      fullOverlay = lib.composeManyExtensions [ localOverlay inputOverlay ];
+      fullOverlay =
+        lib.composeManyExtensions [ localOverlay inputOverlay stableOverlay ];
 
       perSystem = inputs.flake-utils.lib.eachSystem [ "x86_64-linux" ] (system:
 
@@ -169,9 +179,22 @@
             inherit (self.checks."${system}".preCommitCheck) shellHook;
           };
 
-          checks.preCommitCheck = inputs.pre-commit-hooks.lib.${system}.run
-            (import ././pre-commit.nix { inherit pkgs; });
+          # Filter out packages which have meta.broken == true
+          checks = lib.filterAttrs (_: value: !value.meta.broken)
+            (lib.recursiveUpdate {
+              preCommitCheck = inputs.pre-commit-hooks.lib.${system}.run
+                (import ././pre-commit.nix { inherit pkgs; });
+            } self.packages."${system}"
 
+            );
+
+          packages = {
+            inherit (pkgs)
+              homer taskfzf pathnames backupper wiki-builder wsl-open-dynamic
+              pretty-task kibitzr ytdl-sub bootstrapSecretsScript tasklite-core
+              comma-update-flag rstcheck copier tmuxp
+              pre-commit-hook-ensure-sops synonym-cli;
+          };
         });
 
     in lib.recursiveUpdate {
