@@ -35,6 +35,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     copier-src = { url = "github:nialov/nialov-py-template"; };
+    deploy-rs-input = { url = "github:serokell/deploy-rs"; };
 
     # Custom non-flake sources
     tmux-nvim-src = {
@@ -201,7 +202,7 @@
               homer taskfzf pathnames backupper wiki-builder wsl-open-dynamic
               pretty-task kibitzr ytdl-sub bootstrapSecretsScript tasklite-core
               comma-update-flag rstcheck copier tmuxp
-              pre-commit-hook-ensure-sops;
+              pre-commit-hook-ensure-sops deploy-rs;
           };
         });
 
