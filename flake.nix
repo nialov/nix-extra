@@ -180,20 +180,28 @@
           };
 
           # Filter out packages which have meta.broken == true
-          checks = lib.filterAttrs (_: value: !value.meta.broken)
-            (lib.recursiveUpdate {
+          checks =
+            # let
+            #   isValid = d:
+            #     let
+            #       r = builtins.tryEval (lib.isDerivation d && builtins.seq d.name
+            #         (!(lib.attrByPath [ "meta" "broken" ] false d)));
+            #     in r.success && r.value;
+
+            # in lib.filterAttrs (_: isValid)
+            lib.recursiveUpdate {
               preCommitCheck = inputs.pre-commit-hooks.lib.${system}.run
                 (import ././pre-commit.nix { inherit pkgs; });
             } self.packages."${system}"
 
-            );
+          ;
 
           packages = {
             inherit (pkgs)
               homer taskfzf pathnames backupper wiki-builder wsl-open-dynamic
               pretty-task kibitzr ytdl-sub bootstrapSecretsScript tasklite-core
               comma-update-flag rstcheck copier tmuxp
-              pre-commit-hook-ensure-sops synonym-cli;
+              pre-commit-hook-ensure-sops;
           };
         });
 
