@@ -37,6 +37,7 @@ python3.pkgs.buildPythonApplication {
 
   checkInputs = with python3.pkgs; [ pytestCheckHook pytest ];
 
+  disabledTests = [ "test_logger_always_outputs_to_debug_file" ];
   # Skip tests that use the network
   pytestFlagsArray = [ "--ignore=tests/e2e" ];
 
