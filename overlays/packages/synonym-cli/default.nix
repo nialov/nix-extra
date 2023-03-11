@@ -2,7 +2,7 @@
 
 buildPythonPackage rec {
   pname = "synonym-cli";
-  version = "0.0.5";
+  version = inputs.synonym-cli-src.shortRev;
 
   src = inputs.synonym-cli-src;
   # src = fetchFromGitHub {

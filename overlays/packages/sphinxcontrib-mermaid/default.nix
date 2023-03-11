@@ -3,7 +3,7 @@
 
 buildPythonPackage {
   pname = "sphinxcontrib-mermaid";
-  version = "0.7.1";
+  version = inputs.sphinxcontrib-mermaid-src.shortRev;
 
   src = inputs.sphinxcontrib-mermaid-src;
   # src = fetchFromGitHub {

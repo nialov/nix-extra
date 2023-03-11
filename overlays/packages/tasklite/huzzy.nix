@@ -8,7 +8,7 @@ mkDerivation {
   # isExecutable = true;
   # license = lib.licenses.agpl3Only;
   pname = "huzzy";
-  version = "0.1.0.0";
+  version = inputs.tasklite-src.shortRev;
   # sha256 = "0i8h380nszd7hk7x6l7qx0ri6k12551li2m77gspzakcf47l6ldp";
   libraryHaskellDepends = [ base easyplot monoid-subclasses protolude HUnit ];
   # base

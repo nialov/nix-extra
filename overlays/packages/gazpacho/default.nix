@@ -2,7 +2,7 @@
 
 buildPythonPackage {
   pname = "gazpacho";
-  version = "1.1";
+  version = inputs.gazpacho-src.shortRev;
 
   src = inputs.gazpacho-src;
   # src = fetchFromGitHub {

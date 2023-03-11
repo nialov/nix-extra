@@ -2,7 +2,7 @@
 
 python3.pkgs.buildPythonApplication {
   pname = "ytdl-sub";
-  version = "2023.03.02.post3";
+  version = inputs.ytdl-sub-src.shortRev;
   format = "setuptools";
 
   src = inputs.ytdl-sub-src;

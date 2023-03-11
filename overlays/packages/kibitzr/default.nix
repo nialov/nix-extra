@@ -5,7 +5,7 @@
 
 buildPythonPackage {
   pname = "kibitzr";
-  version = "7.0.0";
+  version = inputs.kibitzr-src.shortRev;
 
   # pypi version does not include tests
   src = inputs.kibitzr-src;

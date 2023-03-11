@@ -2,7 +2,7 @@
 
 stdenv.mkDerivation {
   pname = "taskfzf";
-  version = "1.0.0";
+  version = inputs.taskfzf-src.shortRev;
 
   src = inputs.taskfzf-src;
   # src = fetchFromGitLab {

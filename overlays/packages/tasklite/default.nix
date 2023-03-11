@@ -40,7 +40,7 @@ let
 
 in mkDerivation {
   pname = "tasklite-core";
-  version = "0.3.0.0+develop";
+  version = inputs.tasklite-src.shortRev;
   isLibrary = false;
   isExecutable = true;
   license = lib.licenses.agpl3Only;
