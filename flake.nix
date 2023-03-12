@@ -211,7 +211,7 @@
       nixosModules = {
         ytdl-sub = import ./nixos/modules/ytdl-sub;
         homer = import ./nixos/modules/homer;
-        flipperzero = import ./nixos/flipperzero.nix;
+        flipperzero = import ./nixos/modules/flipperzero.nix;
       };
     } perSystem;
 }
