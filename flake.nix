@@ -100,6 +100,7 @@
 
     let
       inherit (inputs.nixpkgs) lib;
+      nixos-lib = import (inputs.nixpkgs + "/nixos/lib") { };
       # lib = inputs.nixpkgs.lib;
 
       localOverlay = import ./overlays inputs;
@@ -181,19 +182,21 @@
           };
 
           # Filter out packages which have meta.broken == true
-          checks =
-            # let
-            #   isValid = d:
-            #     let
-            #       r = builtins.tryEval (lib.isDerivation d && builtins.seq d.name
-            #         (!(lib.attrByPath [ "meta" "broken" ] false d)));
-            #     in r.success && r.value;
+          checks = let
 
-            # in lib.filterAttrs (_: isValid)
-            lib.recursiveUpdate {
-              preCommitCheck = inputs.pre-commit-hooks.lib.${system}.run
-                (import ././pre-commit.nix { inherit pkgs; });
-            } self.packages."${system}"
+            moduleTest = { imports, defaults ? {
+              imports = builtins.attrValues self.nixosModules;
+              nixpkgs.pkgs = pkgs;
+            }, hostPkgs ? pkgs }:
+              nixos-lib.runTest { inherit imports defaults hostPkgs; };
+
+          in lib.recursiveUpdate {
+            preCommitCheck = inputs.pre-commit-hooks.lib.${system}.run
+              (import ././pre-commit.nix { inherit pkgs; });
+            homerModule = moduleTest { imports = [ ./nixos/tests/homer.nix ]; };
+            flipperzeroModule =
+              moduleTest { imports = [ ./nixos/tests/flipperzero.nix ]; };
+          } self.packages."${system}"
 
           ;
 
