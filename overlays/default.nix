@@ -19,6 +19,13 @@ inputs: final: prev: {
   # Overlay structure from: https://discourse.nixos.org/t/add-python-package-via-overlay/19783/3
   bootstrapSecretsScript = prev.writers.writeFishBin "bootstrap-secrets"
     ./packages/bootstrap-secrets.fish;
+  clean-git-branches-script = prev.writers.writeFishBin "clean-git-branches"
+    (let b = prev.lib.getExe;
+    in with prev; ''
+      ${b git} branch --merged | string trim | ${
+        b ripgrep
+      } --invert-match 'master' | ${b parallel} '${b git} branch -d {}'
+    '');
   pythonPackagesOverlays = (prev.pythonPackagesOverlays or [ ]) ++ [
     (python-final: _: {
       # cviz = python-final.callPackage cvizPkg { };

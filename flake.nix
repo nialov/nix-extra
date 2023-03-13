@@ -205,7 +205,7 @@
               homer taskfzf pathnames backupper wiki-builder wsl-open-dynamic
               pretty-task kibitzr ytdl-sub bootstrapSecretsScript tasklite-core
               comma-update-flag rstcheck copier tmuxp
-              pre-commit-hook-ensure-sops deploy-rs;
+              pre-commit-hook-ensure-sops deploy-rs clean-git-branches-script;
           };
         });
 
