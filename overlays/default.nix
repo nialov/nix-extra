@@ -1,6 +1,11 @@
 # final is the final product, prev is before applying this overlay
 # final: prev: {
 inputs: final: prev: {
+
+  library = {
+    nginx = import ./lib/nginx.nix { inherit (prev) lib; };
+    systemd = import ./lib/systemd.nix { inherit (prev) lib; };
+  };
   # Added to nixpkgs
   # gitmux = prev.callPackage ././packages/gitmux { };
   homer = prev.callPackage ././packages/homer { inherit inputs; };

@@ -196,16 +196,17 @@
             homerModule = moduleTest { imports = [ ./nixos/tests/homer.nix ]; };
             flipperzeroModule =
               moduleTest { imports = [ ./nixos/tests/flipperzero.nix ]; };
-          } self.packages."${system}"
-
-          ;
+            libraryModule =
+              moduleTest { imports = [ ./nixos/tests/library.nix ]; };
+          } self.packages."${system}";
 
           packages = {
             inherit (pkgs)
               homer taskfzf pathnames backupper wiki-builder wsl-open-dynamic
               pretty-task kibitzr ytdl-sub bootstrapSecretsScript tasklite-core
               comma-update-flag rstcheck copier tmuxp
-              pre-commit-hook-ensure-sops deploy-rs clean-git-branches-script;
+              pre-commit-hook-ensure-sops deploy-rs clean-git-branches-script
+              library;
           };
         });
 
