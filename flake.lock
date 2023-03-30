@@ -694,6 +694,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-kibitzr": {
+      "locked": {
+        "lastModified": 1673800717,
+        "narHash": "sha256-SFHraUqLSu5cC6IxTprex/nTsI81ZQAtDvlBvGDWfnA=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "2f9fd351ec37f5d479556cd48be4ca340da59b8f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "2f9fd351ec37f5d479556cd48be4ca340da59b8f",
+        "type": "github"
+      }
+    },
     "nixpkgs-pre-commit-hook-ensure-sops": {
       "locked": {
         "lastModified": 1677138122,
@@ -950,6 +966,7 @@
         "kibitzr-src": "kibitzr-src",
         "nickel-src": "nickel-src",
         "nixpkgs": "nixpkgs_6",
+        "nixpkgs-kibitzr": "nixpkgs-kibitzr",
         "nixpkgs-pre-commit-hook-ensure-sops": "nixpkgs-pre-commit-hook-ensure-sops",
         "nixpkgs-stable": "nixpkgs-stable_2",
         "oil-nvim-src": "oil-nvim-src",

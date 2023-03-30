@@ -11,6 +11,8 @@
     # Use unstable nixpkgs channel
     nixpkgs.url = "nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "nixpkgs/nixos-22.11";
+    nixpkgs-kibitzr.url =
+      "github:nixos/nixpkgs/2f9fd351ec37f5d479556cd48be4ca340da59b8f";
     # TODO: Remove when pr is merged.
     nixpkgs-pre-commit-hook-ensure-sops.url =
       "github:nialov/nixpkgs/6a3811938f0bb0ac439ffe44ffe6c40f374a96d6";
@@ -132,7 +134,7 @@
           inherit (inputs.nixpkgs-pre-commit-hook-ensure-sops.legacyPackages."${system}".python3Packages)
             pre-commit-hook-ensure-sops;
         };
-      stableOverlay = final: prev:
+      stableOverlay = _: prev:
         let
           inherit (prev) system;
           # pkgsStable has the local overlay added
@@ -152,10 +154,22 @@
           # Use stable version of tmuxp
           inherit (pkgsStable) tmuxp;
 
-          final.kibitzr = pkgsStable.kibitzr;
         };
-      fullOverlay =
-        lib.composeManyExtensions [ localOverlay inputOverlay stableOverlay ];
+      kibitzrOverlay = _: prev:
+        let
+          inherit (prev) system;
+          # pkgsStable has the local overlay added
+          pkgsKibitzr = import inputs.nixpkgs-kibitzr {
+            inherit system;
+            overlays = [ localOverlay inputOverlay ];
+          };
+        in { inherit (pkgsKibitzr) kibitzr; };
+      fullOverlay = lib.composeManyExtensions [
+        localOverlay
+        inputOverlay
+        stableOverlay
+        kibitzrOverlay
+      ];
 
       perSystem = inputs.flake-utils.lib.eachSystem [ "x86_64-linux" ] (system:
 
