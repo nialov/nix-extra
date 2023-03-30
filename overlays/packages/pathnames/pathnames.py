@@ -13,7 +13,6 @@ APP = typer.Typer()
 
 @unique
 class Option(Enum):
-
     STEM = "stem"
     NAME = "name"
     ABSOLUTE = "absolute"
