@@ -1,4 +1,4 @@
-{ inputs, lib, python3, ffmpeg }:
+{ inputs, lib, python3, ffmpeg, writeText }:
 
 python3.pkgs.buildPythonApplication {
   pname = "ytdl-sub";
@@ -13,15 +13,34 @@ python3.pkgs.buildPythonApplication {
   #   hash = "sha256-E6FrlB+MDGWh5yi+ZYoi5Jk6KrQ0XIxU8LgySViLx6Y=";
   # };
   # Add dummy setup.py, remove argparse and strict dependency versions
-  patches = [ ./setup.patch ];
 
   # Add ffmpeg from nix to default path
-  postPatch = ''
-    substituteInPlace src/ytdl_sub/config/config_validator.py \
-        --replace '_DEFAULT_FFMPEG_PATH = "/usr/bin/ffmpeg' \
-        '_DEFAULT_FFMPEG_PATH = "${ffmpeg}/bin/ffmpeg' \
-        --replace '_DEFAULT_FFPROBE_PATH = "/usr/bin/ffprobe"' \
-        '_DEFAULT_FFPROBE_PATH = "${ffmpeg}/bin/ffprobe"'
+
+  postPatch = let
+    setupPyText = ''
+      from setuptools import setup
+
+      setup()
+    '';
+    setupPy = writeText "setup.py" setupPyText;
+  in ''
+    substituteInPlace src/ytdl_sub/config/defaults.py \
+        --replace 'DEFAULT_FFMPEG_PATH = "/usr/bin/ffmpeg' \
+        'DEFAULT_FFMPEG_PATH = "${ffmpeg}/bin/ffmpeg' \
+        --replace 'DEFAULT_FFPROBE_PATH = "/usr/bin/ffprobe"' \
+        'DEFAULT_FFPROBE_PATH = "${ffmpeg}/bin/ffprobe"'
+    substituteInPlace setup.cfg \
+        --replace 'argparse==1.4.0' \
+        "" \
+        --replace 'mergedeep==1.3.4' \
+        'mergedeep' \
+        --replace 'mediafile==0.10.1' \
+        'mediafile' \
+        --replace 'PyYAML==6.0' \
+        'PyYAML' \
+        --replace 'colorama==0.4.6,' \
+        'colorama'
+    cp ${setupPy} setup.py
   '';
 
   propagatedBuildInputs = with python3.pkgs; [
@@ -29,6 +48,7 @@ python3.pkgs.buildPythonApplication {
     mergedeep
     pyyaml
     yt-dlp
+    colorama
   ];
 
   buildInputs = [ ffmpeg ];
@@ -39,7 +59,10 @@ python3.pkgs.buildPythonApplication {
 
   disabledTests = [ "test_logger_always_outputs_to_debug_file" ];
   # Skip tests that use the network
-  pytestFlagsArray = [ "--ignore=tests/e2e" ];
+  pytestFlagsArray = [
+    "--ignore=tests/e2e"
+    "--ignore=tests/unit/prebuilt_presets/test_prebuilt_presets.py"
+  ];
 
   meta = with lib; {
     description = "Automate downloading and metadata generation with YoutubeDL";
