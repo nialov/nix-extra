@@ -14,6 +14,8 @@ inputs: final: prev: {
   # TODO: move to pythonPackagesOverlays and then reference result from there
   inherit (final.python3Packages) synonym-cli kibitzr;
   ytdl-sub = prev.callPackage ././packages/ytdl-sub { inherit inputs; };
+  allas-cli-utils =
+    prev.callPackage ././packages/allas-cli-utils { inherit inputs; };
   # python3.pkgs.sphinx-design =
   #sphinx-design = prev.callPackage ././packages/sphinx-design { };
   # Overlay structure from: https://discourse.nixos.org/t/add-python-package-via-overlay/19783/3

@@ -16,6 +16,22 @@
         "type": "github"
       }
     },
+    "allas-cli-utils-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1679657635,
+        "narHash": "sha256-8q3CQw2+nfvBUnJ1rmKE1i9XXcLMNqQDH9jkWq/8qF0=",
+        "owner": "CSCfi",
+        "repo": "allas-cli-utils",
+        "rev": "db752b5536cf7664add0fd02baec41d4874d72e4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "CSCfi",
+        "repo": "allas-cli-utils",
+        "type": "github"
+      }
+    },
     "chatgpt-nvim-src": {
       "flake": false,
       "locked": {
@@ -954,6 +970,7 @@
     },
     "root": {
       "inputs": {
+        "allas-cli-utils-src": "allas-cli-utils-src",
         "chatgpt-nvim-src": "chatgpt-nvim-src",
         "cmp-tmux": "cmp-tmux",
         "comma-update-flag": "comma-update-flag",

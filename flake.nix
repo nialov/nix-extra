@@ -96,6 +96,10 @@
       url = "github:bastienwirtz/homer";
       flake = false;
     };
+    allas-cli-utils-src = {
+      url = "github:CSCfi/allas-cli-utils";
+      flake = false;
+    };
   };
 
   outputs = { self, ... }@inputs:
@@ -219,7 +223,8 @@
               homer taskfzf pathnames backupper wiki-builder wsl-open-dynamic
               pretty-task kibitzr ytdl-sub bootstrapSecretsScript tasklite-core
               comma-update-flag rstcheck copier tmuxp
-              pre-commit-hook-ensure-sops deploy-rs clean-git-branches-script;
+              pre-commit-hook-ensure-sops deploy-rs clean-git-branches-script
+              allas-cli-utils;
           };
         });
 
