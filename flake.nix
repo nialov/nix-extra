@@ -152,13 +152,13 @@
           };
         in {
 
-          vimPlugins =
-            # Update the unstable set with stable nvim-treesitter plugins using recursiveUpdate
-            lib.recursiveUpdate
-            # Unstable vimPlugins
-            prev.vimPlugins
-            # Stable nvim-treesitter from stable nixpkgs
-            { inherit (pkgsStable.vimPlugins) nvim-treesitter; };
+          # vimPlugins =
+          # Update the unstable set with stable nvim-treesitter plugins using recursiveUpdate
+          # lib.recursiveUpdate
+          # Unstable vimPlugins
+          # prev.vimPlugins
+          # Stable nvim-treesitter from stable nixpkgs
+          # { inherit (pkgsStable.vimPlugins) nvim-treesitter; };
           # Use stable version of tmuxp
           inherit (pkgsStable) tmuxp;
 
