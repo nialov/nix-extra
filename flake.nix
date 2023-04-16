@@ -100,6 +100,10 @@
       url = "github:CSCfi/allas-cli-utils";
       flake = false;
     };
+    neoai-nvim-src = {
+      url = "github:Bryley/neoai.nvim";
+      flake = false;
+    };
   };
 
   outputs = { self, ... }@inputs:

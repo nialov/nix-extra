@@ -111,6 +111,10 @@ inputs: final: prev: {
       name = "oil.nvim";
       src = inputs.oil-nvim-src;
     };
+    neoai-nvim = prev.vimUtils.buildVimPlugin {
+      name = "neoai.nvim";
+      src = inputs.neoai-nvim-src;
+    };
   };
 
 }

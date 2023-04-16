@@ -647,6 +647,22 @@
         "type": "github"
       }
     },
+    "neoai-nvim-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1681622048,
+        "narHash": "sha256-yXrNWKbKOWlde1vYCCpAN1Ge5h9zoV+b1dSwOQKwSyM=",
+        "owner": "Bryley",
+        "repo": "neoai.nvim",
+        "rev": "e67f3eb089b5bb78ab5d42c57d3e8a6cbd986266",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Bryley",
+        "repo": "neoai.nvim",
+        "type": "github"
+      }
+    },
     "nickel-src": {
       "inputs": {
         "crane": "crane",
@@ -990,6 +1006,7 @@
         "gotta-scrape-em-all": "gotta-scrape-em-all",
         "homer-src": "homer-src",
         "kibitzr-src": "kibitzr-src",
+        "neoai-nvim-src": "neoai-nvim-src",
         "nickel-src": "nickel-src",
         "nixpkgs": "nixpkgs_6",
         "nixpkgs-kibitzr": "nixpkgs-kibitzr",
