@@ -115,6 +115,10 @@ inputs: final: prev: {
       name = "neoai.nvim";
       src = inputs.neoai-nvim-src;
     };
+    cmp-ai = prev.vimUtils.buildVimPlugin {
+      name = "cmp-ai";
+      src = inputs.cmp-ai-src;
+    };
   };
 
 }

@@ -48,6 +48,22 @@
         "type": "github"
       }
     },
+    "cmp-ai-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1683354413,
+        "narHash": "sha256-r+2vkkcYuUgYrb60Gyasoy9jXgUhYuDB7XjhEOuiFLQ=",
+        "owner": "tzachar",
+        "repo": "cmp-ai",
+        "rev": "927b24bdf8347b203c9130f6c39892fa00c39fe2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "tzachar",
+        "repo": "cmp-ai",
+        "type": "github"
+      }
+    },
     "cmp-tmux": {
       "flake": false,
       "locked": {
@@ -997,6 +1013,7 @@
       "inputs": {
         "allas-cli-utils-src": "allas-cli-utils-src",
         "chatgpt-nvim-src": "chatgpt-nvim-src",
+        "cmp-ai-src": "cmp-ai-src",
         "cmp-tmux": "cmp-tmux",
         "comma-update-flag": "comma-update-flag",
         "copier-src": "copier-src",

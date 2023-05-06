@@ -104,6 +104,10 @@
       url = "github:Bryley/neoai.nvim";
       flake = false;
     };
+    cmp-ai-src = {
+      url = "github:tzachar/cmp-ai";
+      flake = false;
+    };
   };
 
   outputs = { self, ... }@inputs:
@@ -229,6 +233,7 @@
               comma-update-flag rstcheck copier tmuxp
               pre-commit-hook-ensure-sops deploy-rs clean-git-branches-script
               allas-cli-utils;
+            inherit (pkgs.vimPlugins) chatgpt-nvim oil-nvim neoai-nvim cmp-ai;
           };
         });
 
