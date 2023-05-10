@@ -1,6 +1,7 @@
 ---
-on: # yamllint disable-line rule:truthy
-  push:
+on:
+  push: {}
+  pull_request: {}
 
 jobs:
   check:
