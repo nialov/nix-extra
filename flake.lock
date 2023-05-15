@@ -609,6 +609,22 @@
         "type": "github"
       }
     },
+    "grokker-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1684095201,
+        "narHash": "sha256-Z1I9pFygzgEF39p6H34vWMBNcIEyT7wUM66ObtYYDvM=",
+        "owner": "stevegt",
+        "repo": "grokker",
+        "rev": "a5bf805c23212bc40906d5b440d4642b2066f2ee",
+        "type": "github"
+      },
+      "original": {
+        "owner": "stevegt",
+        "repo": "grokker",
+        "type": "github"
+      }
+    },
     "homer-src": {
       "flake": false,
       "locked": {
@@ -1021,6 +1037,7 @@
         "flake-utils": "flake-utils_5",
         "gazpacho-src": "gazpacho-src",
         "gotta-scrape-em-all": "gotta-scrape-em-all",
+        "grokker-src": "grokker-src",
         "homer-src": "homer-src",
         "kibitzr-src": "kibitzr-src",
         "neoai-nvim-src": "neoai-nvim-src",

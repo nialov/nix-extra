@@ -108,6 +108,10 @@
       url = "github:tzachar/cmp-ai";
       flake = false;
     };
+    grokker-src = {
+      url = "github:stevegt/grokker";
+      flake = false;
+    };
   };
 
   outputs = { self, ... }@inputs:
@@ -232,7 +236,7 @@
               pretty-task kibitzr ytdl-sub bootstrapSecretsScript tasklite-core
               comma-update-flag rstcheck copier tmuxp
               pre-commit-hook-ensure-sops deploy-rs clean-git-branches-script
-              allas-cli-utils;
+              allas-cli-utils grokker;
             inherit (pkgs.vimPlugins) chatgpt-nvim oil-nvim neoai-nvim cmp-ai;
           };
         });

@@ -16,6 +16,7 @@ inputs: final: prev: {
   ytdl-sub = prev.callPackage ././packages/ytdl-sub { inherit inputs; };
   allas-cli-utils =
     prev.callPackage ././packages/allas-cli-utils { inherit inputs; };
+  grokker = prev.callPackage ././packages/grokker { inherit inputs; };
   # python3.pkgs.sphinx-design =
   #sphinx-design = prev.callPackage ././packages/sphinx-design { };
   # Overlay structure from: https://discourse.nixos.org/t/add-python-package-via-overlay/19783/3
