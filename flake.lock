@@ -51,11 +51,11 @@
     "cmp-ai-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1683656115,
-        "narHash": "sha256-g7w48dItsPMfJuvFUaa2/jjss9GDhNSa/dZr4+Mz4qA=",
+        "lastModified": 1684402504,
+        "narHash": "sha256-isKf1DuOvdDOzIwZgFoCTELLFTMplWq8iTH0tGDuj9c=",
         "owner": "tzachar",
         "repo": "cmp-ai",
-        "rev": "60d3bb826cf82e2dc5bf5a9bb1b9ae906e8b7847",
+        "rev": "63ab09f09afaca8d54c6c44dad645396d4ec4d4a",
         "type": "github"
       },
       "original": {
@@ -612,11 +612,11 @@
     "grokker-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1684095201,
-        "narHash": "sha256-Z1I9pFygzgEF39p6H34vWMBNcIEyT7wUM66ObtYYDvM=",
+        "lastModified": 1684603384,
+        "narHash": "sha256-6n9fw1tCyFe+NzW8JKs6KEJdcpUmzRsgQPF1iRbaleA=",
         "owner": "stevegt",
         "repo": "grokker",
-        "rev": "a5bf805c23212bc40906d5b440d4642b2066f2ee",
+        "rev": "7952ae8b360bf0c0d8f6838db3be534f6fbeac92",
         "type": "github"
       },
       "original": {
@@ -707,11 +707,11 @@
         "topiary": "topiary"
       },
       "locked": {
-        "lastModified": 1683800431,
-        "narHash": "sha256-scdjS3NVy2/WGuZUYWOWsHSFswbXFabUPOuP2qJCR1c=",
+        "lastModified": 1684327843,
+        "narHash": "sha256-8peoO3B5LHKiTUyDLpe0A2xg82LPI7l2vuGdyNhV478=",
         "owner": "tweag",
         "repo": "nickel",
-        "rev": "ffa3d0c63526a6bc2cd86cc73a51d24205901b0c",
+        "rev": "c4da6975b39e700b4e78b7dc2faf8610bb901ea3",
         "type": "github"
       },
       "original": {
@@ -817,11 +817,11 @@
     },
     "nixpkgs-stable_2": {
       "locked": {
-        "lastModified": 1683928319,
-        "narHash": "sha256-maz0DRKixJVcNRMiAMWlJniiF8IuQ+WbfmlJJ8D+jfM=",
+        "lastModified": 1684398685,
+        "narHash": "sha256-TRE62m91iZ5ArVMgA+uj22Yda8JoQuuhc9uwZ+NoX+0=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "9656e85a15a0fe67847ee8cdb99a20d8df499962",
+        "rev": "628d4bb6e9f4f0c30cfd9b23d3c1cdcec9d3cb5c",
         "type": "github"
       },
       "original": {
@@ -910,11 +910,11 @@
     },
     "nixpkgs_6": {
       "locked": {
-        "lastModified": 1683408522,
-        "narHash": "sha256-9kcPh6Uxo17a3kK3XCHhcWiV1Yu1kYj22RHiymUhMkU=",
+        "lastModified": 1684570954,
+        "narHash": "sha256-FX5y4Sm87RWwfu9PI71XFvuRpZLowh00FQpIJ1WfXqE=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "897876e4c484f1e8f92009fd11b7d988a121a4e7",
+        "rev": "3005f20ce0aaa58169cdee57c8aa12e5f1b6e1b3",
         "type": "github"
       },
       "original": {
@@ -942,11 +942,11 @@
     "oil-nvim-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1683475724,
-        "narHash": "sha256-MOeV2jCOM6nrR+wyFTbdNDFkKdXY5FZ3dHNQ6M8bOcI=",
+        "lastModified": 1684294365,
+        "narHash": "sha256-FMrnmo8gIgh3J1iRc2KrQnoAvT72B7sII2gvAlrz6Qs=",
         "owner": "stevearc",
         "repo": "oil.nvim",
-        "rev": "d0efcc0c10cde11fd650a4ca399539e6f8f9f956",
+        "rev": "19563c365800ab519e46a08a0aa59d5677b329b6",
         "type": "github"
       },
       "original": {
@@ -1012,11 +1012,11 @@
         "nixpkgs-stable": "nixpkgs-stable_3"
       },
       "locked": {
-        "lastModified": 1682596858,
-        "narHash": "sha256-Hf9XVpqaGqe/4oDGr30W8HlsWvJXtMsEPHDqHZA6dDg=",
+        "lastModified": 1684195081,
+        "narHash": "sha256-IKnQUSBhQTChFERxW2AzuauVpY1HRgeVzAjNMAA4B6I=",
         "owner": "cachix",
         "repo": "pre-commit-hooks.nix",
-        "rev": "fb58866e20af98779017134319b5663b8215d912",
+        "rev": "96eabec58248ed8f4b0ad59e7ce9398018684fdc",
         "type": "github"
       },
       "original": {
@@ -1389,11 +1389,11 @@
     "ytdl-sub-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1682735780,
-        "narHash": "sha256-Yi8lBf8nHIB1Vyoq8WY00LcHicNbGUq0WrkRgf6EGvU=",
+        "lastModified": 1684512351,
+        "narHash": "sha256-UNvdWMXNXl1uL0r5ONz4ubf7noQ5Jxb6J+hf89C28Bg=",
         "owner": "jmbannon",
         "repo": "ytdl-sub",
-        "rev": "a2f1a2ba949263f43d455bbfcb89f3dc140b87f3",
+        "rev": "2f1756dea79e7b25397a4e9f11fb1f2b2973413a",
         "type": "github"
       },
       "original": {
