@@ -1,6 +1,12 @@
 # final is the final product, prev is before applying this overlay
 # final: prev: {
-inputs: final: prev: {
+inputs: final: prev:
+
+let
+
+  inherit (prev) system;
+
+in {
   # Added to nixpkgs
   # gitmux = prev.callPackage ././packages/gitmux { };
   homer = prev.callPackage ././packages/homer { inherit inputs; };
@@ -47,6 +53,7 @@ inputs: final: prev: {
         python-final.callPackage ././packages/gazpacho { inherit inputs; };
       kibitzr =
         python-final.callPackage ././packages/kibitzr { inherit inputs; };
+      inherit (inputs.doit-ext-src.packages."${system}") doit-ext;
     })
   ];
   python3 = let
