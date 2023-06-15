@@ -37,7 +37,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     copier-src = { url = "github:nialov/nialov-py-template"; };
-    doit-ext-src = { url = "github:nialov/doit-ext"; };
+    doit-ext-src = {
+      url = "github:nialov/doit-ext";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     deploy-rs-input = { url = "github:serokell/deploy-rs"; };
 
     # Custom non-flake sources
