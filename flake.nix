@@ -37,6 +37,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     copier-src = { url = "github:nialov/nialov-py-template"; };
+    doit-ext-src = { url = "github:nialov/doit-ext"; };
     deploy-rs-input = { url = "github:serokell/deploy-rs"; };
 
     # Custom non-flake sources
@@ -238,6 +239,7 @@
               pre-commit-hook-ensure-sops deploy-rs clean-git-branches-script
               allas-cli-utils grokker;
             inherit (pkgs.vimPlugins) chatgpt-nvim oil-nvim neoai-nvim cmp-ai;
+            inherit (pkgs.python3Packages) doit-ext sphinxcontrib-mermaid;
           };
         });
 
