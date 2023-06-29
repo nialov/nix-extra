@@ -38,7 +38,7 @@
     };
     copier-src = { url = "github:nialov/nialov-py-template"; };
     doit-ext-src = {
-      url = "github:nialov/doit-ext";
+      url = "github:nialov/doit-ext/refactor-remove-python-build-tools";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     deploy-rs-input = { url = "github:serokell/deploy-rs"; };
@@ -189,6 +189,7 @@
         inputOverlay
         stableOverlay
         kibitzrOverlay
+        inputs.doit-ext-src.overlays.default
       ];
 
       perSystem = inputs.flake-utils.lib.eachSystem [ "x86_64-linux" ] (system:
@@ -240,7 +241,7 @@
               pretty-task kibitzr ytdl-sub bootstrapSecretsScript tasklite-core
               comma-update-flag rstcheck copier tmuxp
               pre-commit-hook-ensure-sops deploy-rs clean-git-branches-script
-              allas-cli-utils grokker;
+              allas-cli-utils grokker poetry-with-c-tooling;
             inherit (pkgs.vimPlugins) chatgpt-nvim oil-nvim neoai-nvim cmp-ai;
             inherit (pkgs.python3Packages) doit-ext sphinxcontrib-mermaid;
           };

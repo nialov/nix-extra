@@ -2,11 +2,8 @@
 # final: prev: {
 inputs: final: prev:
 
-let
-
-  inherit (prev) system;
-
-in {
+# let inherit (prev) system; in 
+{
   # Added to nixpkgs
   # gitmux = prev.callPackage ././packages/gitmux { };
   homer = prev.callPackage ././packages/homer { inherit inputs; };
@@ -22,6 +19,8 @@ in {
   allas-cli-utils =
     prev.callPackage ././packages/allas-cli-utils { inherit inputs; };
   grokker = prev.callPackage ././packages/grokker { inherit inputs; };
+  poetry-with-c-tooling =
+    prev.callPackage ././packages/poetry-with-c-tooling { };
   # python3.pkgs.sphinx-design =
   #sphinx-design = prev.callPackage ././packages/sphinx-design { };
   # Overlay structure from: https://discourse.nixos.org/t/add-python-package-via-overlay/19783/3
@@ -51,11 +50,6 @@ in {
         python-final.callPackage ././packages/gazpacho { inherit inputs; };
       kibitzr =
         python-final.callPackage ././packages/kibitzr { inherit inputs; };
-      # TODO: this maybe should be done in the doit-ext repo
-      # i.e. use the overlay approach there
-      doit-ext =
-        let inherit (inputs.doit-ext-src.packages."${system}") doit-ext;
-        in python-final.toPythonModule doit-ext;
     })
   ];
 
