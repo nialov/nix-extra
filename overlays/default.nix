@@ -17,7 +17,6 @@ in {
   wsl-open-dynamic = prev.callPackage ././packages/wsl-open-dynamic { };
   pretty-task = prev.callPackage ././packages/pretty-task { };
   proton-ge-custom = prev.callPackage ././packages/proton-ge-custom { };
-  # TODO: move to pythonPackagesOverlays and then reference result from there
   inherit (final.python3Packages) synonym-cli kibitzr;
   ytdl-sub = prev.callPackage ././packages/ytdl-sub { inherit inputs; };
   allas-cli-utils =
@@ -35,10 +34,9 @@ in {
         b ripgrep
       } --invert-match 'master' | ${b parallel} '${b git} branch -d {}'
     '');
-  pythonPackagesOverlays = (prev.pythonPackagesOverlays or [ ]) ++ [
+
+  pythonPackagesExtensions = prev.pythonPackagesExtensions ++ [
     (python-final: _: {
-      # cviz = python-final.callPackage cvizPkg { };
-      # sphinx-design = python-final.callPackage ././packages/sphinx-design { };
       sphinxcontrib-mermaid =
         python-final.callPackage ././packages/sphinxcontrib-mermaid {
           inherit inputs;
@@ -60,15 +58,6 @@ in {
         in python-final.toPythonModule doit-ext;
     })
   ];
-  python3 = let
-    self = prev.python3.override {
-      inherit self;
-      packageOverrides =
-        prev.lib.composeManyExtensions final.pythonPackagesOverlays;
-    };
-  in self;
-
-  python3Packages = final.python3.pkgs;
 
   haskellPackages = prev.haskellPackages.override {
     overrides = self: super: {
