@@ -14,8 +14,10 @@ to show the packages and provided ``nixosModules``.
 packages
 --------
 
-I have packaged e.g. `ytdl-sub <https://github.com/jmbannon/ytdl-sub>`__
-and `tasklite <https://github.com/ad-si/tasklite>`__.
+I have packaged e.g.
+`ytdl-sub <https://github.com/jmbannon/ytdl-sub>`__,
+`tasklite <https://github.com/ad-si/tasklite>`__ and
+`gpt-engineer <https://github.com/AntonOsika/gpt-engineer>`__.
 
 nixosModules
 ------------
