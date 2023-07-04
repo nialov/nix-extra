@@ -1480,6 +1480,22 @@
         "type": "github"
       }
     },
+    "gpt-engineer-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1688412514,
+        "narHash": "sha256-5354aB7tNqSsdaKTlc0K3V3mnoPDJtpgMjcj7xZh8c0=",
+        "owner": "AntonOsika",
+        "repo": "gpt-engineer",
+        "rev": "8fd315d26466004a79d8b6ea5c9a7c5f3238a26c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "AntonOsika",
+        "repo": "gpt-engineer",
+        "type": "github"
+      }
+    },
     "grokker-src": {
       "flake": false,
       "locked": {
@@ -2527,6 +2543,7 @@
         "flake-utils": "flake-utils_21",
         "gazpacho-src": "gazpacho-src_2",
         "gotta-scrape-em-all": "gotta-scrape-em-all_2",
+        "gpt-engineer-src": "gpt-engineer-src",
         "grokker-src": "grokker-src_2",
         "homer-src": "homer-src_2",
         "kibitzr-src": "kibitzr-src_2",

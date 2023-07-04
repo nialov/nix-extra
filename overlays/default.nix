@@ -21,6 +21,7 @@ inputs: final: prev:
   grokker = prev.callPackage ././packages/grokker { inherit inputs; };
   poetry-with-c-tooling =
     prev.callPackage ././packages/poetry-with-c-tooling { };
+  gpt-engineer = prev.callPackage ././packages/gpt-engineer { inherit inputs; };
   # python3.pkgs.sphinx-design =
   #sphinx-design = prev.callPackage ././packages/sphinx-design { };
   # Overlay structure from: https://discourse.nixos.org/t/add-python-package-via-overlay/19783/3
