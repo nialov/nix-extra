@@ -1268,6 +1268,23 @@
         "type": "github"
       }
     },
+    "gazpacho-1-1-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1602247710,
+        "narHash": "sha256-UXOpTTiny5drJoD9cICcYD0SggEFfnyXWymiinS+IWE=",
+        "owner": "maxhumber",
+        "repo": "gazpacho",
+        "rev": "fddedfde9a9d5345de12cc349c5c194517965c91",
+        "type": "github"
+      },
+      "original": {
+        "owner": "maxhumber",
+        "ref": "v1.1",
+        "repo": "gazpacho",
+        "type": "github"
+      }
+    },
     "gazpacho-src": {
       "flake": false,
       "locked": {
@@ -2541,6 +2558,7 @@
         "deploy-rs-input": "deploy-rs-input",
         "doit-ext-src": "doit-ext-src",
         "flake-utils": "flake-utils_21",
+        "gazpacho-1-1-src": "gazpacho-1-1-src",
         "gazpacho-src": "gazpacho-src_2",
         "gotta-scrape-em-all": "gotta-scrape-em-all_2",
         "gpt-engineer-src": "gpt-engineer-src",

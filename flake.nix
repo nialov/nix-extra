@@ -84,6 +84,10 @@
       url = "github:maxhumber/gazpacho";
       flake = false;
     };
+    gazpacho-1-1-src = {
+      url = "github:maxhumber/gazpacho/v1.1";
+      flake = false;
+    };
     tasklite-src = {
       url = "github:ad-si/tasklite";
       flake = false;
