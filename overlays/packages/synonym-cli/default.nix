@@ -1,5 +1,5 @@
-{ inputs, lib, buildPythonPackage, gazpacho, rich, poetry-core, aiohttp, pytest
-, pytestCheckHook, requests, importlib-metadata }:
+{ inputs, lib, buildPythonPackage, gazpacho, rich, poetry-core, aiohttp
+, requests, importlib-metadata, beautifulsoup4 }:
 
 let
 
@@ -22,19 +22,20 @@ in buildPythonPackage rec {
 
   # buildInputs = [ sphinx ];
   propagatedBuildInputs =
-    [ gazpachoOlder rich importlib-metadata aiohttp requests ];
+    [ gazpachoOlder rich importlib-metadata aiohttp requests beautifulsoup4 ];
   postPatch = ''
     substituteInPlace pyproject.toml \
-      --replace 'importlib-metadata = "^5.2.0"' 'importlib-metadata = "*"' \
-      --replace 'rich = "^12.6.0"' 'rich = "*"'
+      --replace 'importlib-metadata = "^6.7.0"' 'importlib-metadata = "*"' \
+      --replace 'beautifulsoup4 = "^4.12.2"' 'beautifulsoup4 = "*"' \
+      --replace 'rich = "^13.4.2"' 'rich = "*"'
   '';
 
-  checkInputs = [ pytestCheckHook pytest ];
+  # Only test of the package but also a network test
+  # Consequently, disable tests
+  # checkInputs = [ pytestCheckHook pytest ];
+  # disabledTests = [ "test_req" ];
 
   pythonImportsCheck = [ "synonym_cli" "synonym_cli.cli" ];
-
-  # Only test of the package but also a network test
-  disabledTests = [ "test_req" ];
 
   meta = with lib; {
     description = "";
@@ -43,7 +44,7 @@ in buildPythonPackage rec {
     # TODO: No license for project
     license = licenses.bsd3;
     # TODO: Does not seem to work and the only test is a network test
-    broken = true;
+    # broken = true;
   };
 
 }

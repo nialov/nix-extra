@@ -2846,11 +2846,11 @@
     "synonym-cli-src_2": {
       "flake": false,
       "locked": {
-        "lastModified": 1676060812,
-        "narHash": "sha256-Wy1UkrCrQwrtiqmbldYtyKKbDWCBj7wqbWO766pkdaM=",
+        "lastModified": 1688724625,
+        "narHash": "sha256-eK7GwBY7UiTwni1qWF0R+pSmO/bpFlZ799k2gLIVdGs=",
         "owner": "agmmnn",
         "repo": "synonym-cli",
-        "rev": "88eb52b8e7c098fb9065cdadb9cddda48066ed5a",
+        "rev": "0e5fc487aa59fb76a7882268006e5a9b0d9486e6",
         "type": "github"
       },
       "original": {

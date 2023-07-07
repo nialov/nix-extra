@@ -249,7 +249,8 @@
               pretty-task kibitzr ytdl-sub bootstrapSecretsScript tasklite-core
               comma-update-flag rstcheck copier tmuxp
               pre-commit-hook-ensure-sops deploy-rs clean-git-branches-script
-              allas-cli-utils grokker poetry-with-c-tooling gpt-engineer;
+              allas-cli-utils grokker poetry-with-c-tooling gpt-engineer
+              synonym-cli;
             inherit (pkgs.vimPlugins) chatgpt-nvim oil-nvim neoai-nvim cmp-ai;
             inherit (pkgs.python3Packages) doit-ext sphinxcontrib-mermaid;
           };
