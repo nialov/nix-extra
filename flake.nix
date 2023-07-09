@@ -13,9 +13,6 @@
     nixpkgs-stable.url = "nixpkgs/nixos-22.11";
     nixpkgs-kibitzr.url =
       "github:nixos/nixpkgs/2f9fd351ec37f5d479556cd48be4ca340da59b8f";
-    # TODO: Remove when pr is merged.
-    nixpkgs-pre-commit-hook-ensure-sops.url =
-      "github:nialov/nixpkgs/6a3811938f0bb0ac439ffe44ffe6c40f374a96d6";
     # Use flake-utils for utility functions
     flake-utils = { url = "github:numtide/flake-utils"; };
     pre-commit-hooks = {
@@ -162,9 +159,6 @@
 
           nickel = inputs.nickel-src.packages."${system}".build;
           # Use stable version of tmuxp
-
-          inherit (inputs.nixpkgs-pre-commit-hook-ensure-sops.legacyPackages."${system}".python3Packages)
-            pre-commit-hook-ensure-sops;
         };
       stableOverlay = _: prev:
         let
