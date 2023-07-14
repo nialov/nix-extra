@@ -42,6 +42,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     deploy-rs-input = { url = "github:serokell/deploy-rs"; };
+    mosaic-src = {
+      url = "github:nialov/mosaic";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # Custom non-flake sources
     tmux-nvim-src = {
@@ -122,10 +126,6 @@
     };
     gpt-engineer-src = {
       url = "github:AntonOsika/gpt-engineer";
-      flake = false;
-    };
-    mosaic-src = {
-      url = "github:nialov/mosaic";
       flake = false;
     };
   };

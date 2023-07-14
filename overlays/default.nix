@@ -22,7 +22,7 @@ inputs: final: prev:
   poetry-with-c-tooling =
     prev.callPackage ././packages/poetry-with-c-tooling { };
   gpt-engineer = prev.callPackage ././packages/gpt-engineer { inherit inputs; };
-  mosaic = prev.callPackage ././packages/mosaic { inherit inputs; };
+  inherit (inputs.mosaic-src.packages."${prev.system}") mosaic;
   # python3.pkgs.sphinx-design =
   #sphinx-design = prev.callPackage ././packages/sphinx-design { };
   # Overlay structure from: https://discourse.nixos.org/t/add-python-package-via-overlay/19783/3
