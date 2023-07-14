@@ -1635,11 +1635,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1689331518,
-        "narHash": "sha256-lZbZBgoA9KvaFpRlFKK/dtrxI9EOo5ffOc3L3C3XmvM=",
+        "lastModified": 1689336979,
+        "narHash": "sha256-kmfxAfF8GHimXwcIZhtjTnJdqFfWpWFmCIjVXOBgF88=",
         "owner": "nialov",
         "repo": "mosaic",
-        "rev": "3345fa76972293606dcaa5e9d67b4a14441f9ae9",
+        "rev": "0bcac3a391c2676b8332ed432c754d61ddd4adc3",
         "type": "github"
       },
       "original": {
