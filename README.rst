@@ -15,9 +15,17 @@ packages
 --------
 
 I have packaged e.g.
-`ytdl-sub <https://github.com/jmbannon/ytdl-sub>`__,
-`tasklite <https://github.com/ad-si/tasklite>`__ and
-`gpt-engineer <https://github.com/AntonOsika/gpt-engineer>`__.
+
+-  `ytdl-sub <https://github.com/jmbannon/ytdl-sub>`__ which can be used
+   for downloading YouTube videos automatically into a folder structure
+   using ``YAML`` configuration.
+-  `tasklite <https://github.com/ad-si/tasklite>`__ which is a
+   replacement to ``taskwarrior`` command-line task management
+-  `gpt-engineer <https://github.com/AntonOsika/gpt-engineer>`__ can be
+   used to template/render a project of any language using large
+   language models (*OpenAI GPT-3/4*)
+-  `mosaic <https://github.com/codebox/mosaic>`__ can be used to
+   recreate a target image using preset tiles which can be any images.
 
 nixosModules
 ------------
