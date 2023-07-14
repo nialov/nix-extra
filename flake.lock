@@ -1612,11 +1612,11 @@
     "mosaic-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1689279245,
-        "narHash": "sha256-jvDOkx66eu3a2yp1DqpOw4Gn1r7zj3jHseG5HW+qf+A=",
+        "lastModified": 1689330347,
+        "narHash": "sha256-v2ii5VA43lwoN39W2ktWAHdARAqRcj9SV58D3EsifpI=",
         "owner": "nialov",
         "repo": "mosaic",
-        "rev": "1f2cf9cc788fe5440c8edc3711b197512c0bf17a",
+        "rev": "07d717084db20e73dafc64eafbd849ca6864dfd6",
         "type": "github"
       },
       "original": {

@@ -1,19 +1,20 @@
-{ inputs, lib, python3, poetry2nix, ripgrep }:
+{ inputs, lib, python3, poetry2nix }:
 
 python3.pkgs.buildPythonApplication {
   pname = "mosaic";
   version = "unstable-2023-07-13";
-  format = "setuptools";
-
+  format = "pyproject";
   src = poetry2nix.cleanPythonSources { src = inputs.mosaic-src; };
-
-  propagatedBuildInputs = with python3.pkgs; [ pillow ];
+  propagatedBuildInputs = with python3.pkgs;
+    [ typer pillow ] ++ typer.passthru.optional-dependencies.all;
+  nativeBuildInputs = with python3.pkgs; [ setuptools wheel ];
+  checkInputs = with python3.pkgs; [
+    pytestCheckHook
+    pytest
+    pytest-regressions
+  ];
 
   pythonImportsCheck = [ "mosaic" ];
-
-  postCheck = ''
-    $out/bin/mosaic | ${ripgrep}/bin/rg --quiet "ERROR: Usage: "
-  '';
 
   meta = with lib; {
     description = "Python script for creating photomosaic images";
