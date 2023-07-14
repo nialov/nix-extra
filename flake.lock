@@ -1609,6 +1609,22 @@
         "type": "github"
       }
     },
+    "mosaic-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1689279245,
+        "narHash": "sha256-jvDOkx66eu3a2yp1DqpOw4Gn1r7zj3jHseG5HW+qf+A=",
+        "owner": "nialov",
+        "repo": "mosaic",
+        "rev": "1f2cf9cc788fe5440c8edc3711b197512c0bf17a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nialov",
+        "repo": "mosaic",
+        "type": "github"
+      }
+    },
     "naersk": {
       "inputs": {
         "nixpkgs": [
@@ -2565,6 +2581,7 @@
         "grokker-src": "grokker-src_2",
         "homer-src": "homer-src_2",
         "kibitzr-src": "kibitzr-src_2",
+        "mosaic-src": "mosaic-src",
         "neoai-nvim-src": "neoai-nvim-src_2",
         "nickel-src": "nickel-src_2",
         "nixpkgs": "nixpkgs_15",
