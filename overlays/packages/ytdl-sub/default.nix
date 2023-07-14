@@ -6,16 +6,9 @@ python3.pkgs.buildPythonApplication {
   format = "setuptools";
 
   src = inputs.ytdl-sub-src;
-  # src = fetchFromGitHub {
-  #   owner = "jmbannon";
-  #   repo = "ytdl-sub";
-  #   rev = version;
-  #   hash = "sha256-E6FrlB+MDGWh5yi+ZYoi5Jk6KrQ0XIxU8LgySViLx6Y=";
-  # };
+
   # Add dummy setup.py, remove argparse and strict dependency versions
-
   # Add ffmpeg from nix to default path
-
   postPatch = let
     setupPyText = ''
       from setuptools import setup
@@ -30,16 +23,12 @@ python3.pkgs.buildPythonApplication {
         --replace 'DEFAULT_FFPROBE_PATH = "/usr/bin/ffprobe"' \
         'DEFAULT_FFPROBE_PATH = "${ffmpeg}/bin/ffprobe"'
     substituteInPlace setup.cfg \
-        --replace 'argparse==1.4.0' \
-        "" \
-        --replace 'mergedeep==1.3.4' \
-        'mergedeep' \
-        --replace 'mediafile==0.10.1' \
-        'mediafile' \
-        --replace 'PyYAML==6.0' \
-        'PyYAML' \
-        --replace 'colorama==0.4.6,' \
-        'colorama'
+        --replace 'argparse==1.4.0' "" \
+        --replace 'mergedeep==1.3.4' 'mergedeep' \
+        --replace 'mediafile==0.10.1' 'mediafile' \
+        --replace 'PyYAML==6.0' 'PyYAML' \
+        --replace 'yt-dlp==2023.6.22' 'yt-dlp' \
+        --replace 'colorama==0.4.6,' 'colorama'
     cp ${setupPy} setup.py
   '';
 
