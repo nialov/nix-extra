@@ -1286,6 +1286,23 @@
         "type": "github"
       }
     },
+    "frackit-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1631778031,
+        "narHash": "sha256-yI2dmv7Ir3TY/aybR1GyZzf4gshNhzLROq193Mk7G4k=",
+        "ref": "feature/geodataframes-parser",
+        "rev": "5bc5d691b772e696aeebba07bb794df996732ce9",
+        "revCount": 1133,
+        "type": "git",
+        "url": "https://git.iws.uni-stuttgart.de/tools/frackit"
+      },
+      "original": {
+        "ref": "feature/geodataframes-parser",
+        "type": "git",
+        "url": "https://git.iws.uni-stuttgart.de/tools/frackit"
+      }
+    },
     "gazpacho-1-1-src": {
       "flake": false,
       "locked": {
@@ -1920,6 +1937,21 @@
         "repo": "nixpkgs",
         "rev": "334c000bbbc51894a3b02e05375eae36ac03e137",
         "type": "github"
+      }
+    },
+    "nixpkgs-frackit": {
+      "locked": {
+        "lastModified": 1659446231,
+        "narHash": "sha256-hekabNdTdgR/iLsgce5TGWmfIDZ86qjPhxDg/8TlzhE=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "eabc38219184cc3e04a974fe31857d8e0eac098d",
+        "type": "github"
+      },
+      "original": {
+        "id": "nixpkgs",
+        "ref": "nixos-21.11",
+        "type": "indirect"
       }
     },
     "nixpkgs-kibitzr": {
@@ -2581,6 +2613,7 @@
         "deploy-rs-input": "deploy-rs-input",
         "doit-ext-src": "doit-ext-src",
         "flake-utils": "flake-utils_21",
+        "frackit-src": "frackit-src",
         "gazpacho-1-1-src": "gazpacho-1-1-src",
         "gazpacho-src": "gazpacho-src_2",
         "gotta-scrape-em-all": "gotta-scrape-em-all_2",
@@ -2592,6 +2625,7 @@
         "neoai-nvim-src": "neoai-nvim-src_2",
         "nickel-src": "nickel-src_2",
         "nixpkgs": "nixpkgs_15",
+        "nixpkgs-frackit": "nixpkgs-frackit",
         "nixpkgs-kibitzr": "nixpkgs-kibitzr_2",
         "nixpkgs-stable": "nixpkgs-stable_7",
         "oil-nvim-src": "oil-nvim-src_2",

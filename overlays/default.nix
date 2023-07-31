@@ -22,6 +22,7 @@ inputs: final: prev:
   poetry-with-c-tooling =
     prev.callPackage ././packages/poetry-with-c-tooling { };
   gpt-engineer = prev.callPackage ././packages/gpt-engineer { inherit inputs; };
+  frackit = prev.callPackage ././packages/frackit { inherit inputs; };
   inherit (inputs.mosaic-src.packages."${prev.system}") mosaic;
   # python3.pkgs.sphinx-design =
   #sphinx-design = prev.callPackage ././packages/sphinx-design { };
@@ -55,6 +56,7 @@ inputs: final: prev:
       sphinx-gallery = python-final.callPackage ././packages/sphinx-gallery {
         inherit inputs;
       };
+      inherit (final) frackit;
     })
   ];
 

@@ -11,8 +11,10 @@
     # Use unstable nixpkgs channel
     nixpkgs.url = "nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "nixpkgs/nixos-22.11";
+    nixpkgs-frackit.url = "nixpkgs/nixos-21.11";
     nixpkgs-kibitzr.url =
       "github:nixos/nixpkgs/2f9fd351ec37f5d479556cd48be4ca340da59b8f";
+    # TODO: Probably no need to use old opencascade-occt version
     # Use flake-utils for utility functions
     flake-utils = { url = "github:numtide/flake-utils"; };
     pre-commit-hooks = {
@@ -129,6 +131,11 @@
       url = "github:AntonOsika/gpt-engineer";
       flake = false;
     };
+    frackit-src = {
+      url =
+        "git+https://git.iws.uni-stuttgart.de/tools/frackit?ref=feature/geodataframes-parser";
+      flake = false;
+    };
   };
 
   outputs = { self, ... }@inputs:
@@ -174,21 +181,12 @@
           };
         in {
 
-          # vimPlugins =
-          # Update the unstable set with stable nvim-treesitter plugins using recursiveUpdate
-          # lib.recursiveUpdate
-          # Unstable vimPlugins
-          # prev.vimPlugins
-          # Stable nvim-treesitter from stable nixpkgs
-          # { inherit (pkgsStable.vimPlugins) nvim-treesitter; };
-          # Use stable version of tmuxp
           inherit (pkgsStable) tmuxp;
 
         };
       kibitzrOverlay = _: prev:
         let
           inherit (prev) system;
-          # pkgsStable has the local overlay added
           pkgsKibitzr = import inputs.nixpkgs-kibitzr {
             inherit system;
             overlays = [ localOverlay inputOverlay ];
@@ -209,21 +207,40 @@
             inherit system;
             overlays = [ self.overlays.default ];
           };
+          pkgsFrackit = import inputs.nixpkgs-frackit {
+            inherit system;
+            overlays = [ self.overlays.default ];
+          };
         in {
 
-          devShells.default = pkgs.mkShell {
-            buildInputs = with pkgs; [
-              bash
-              # task execution from dodo.py
-              git
-              nixVersions.stable
-              # Formatters & linters
-              pre-commit
-              watchexec
-            ];
+          devShells = {
+            default = pkgs.mkShell {
+              buildInputs = with pkgs; [
+                bash
+                # task execution from dodo.py
+                git
+                nixVersions.stable
+                # Formatters & linters
+                pre-commit
+                watchexec
+              ];
+              # Include pre-commit check shellHook so they can be ran with `pre-commit ...`
+              inherit (self.checks."${system}".preCommitCheck) shellHook;
+            };
+            frackit-python = pkgsFrackit.mkShell {
+              buildInputs = with pkgsFrackit;
+                [
+                  python3
 
-            # Include pre-commit check shellHook so they can be ran with `pre-commit ...`
-            inherit (self.checks."${system}".preCommitCheck) shellHook;
+                ] ++ (with pkgsFrackit.python3Packages; [
+                  networkx
+                  geopandas
+                  jupyterlab
+                  matplotlib
+                  scipy
+                  frackit
+                ]);
+            };
           };
 
           # Filter out packages which have meta.broken == true
@@ -256,6 +273,7 @@
             inherit (pkgs.vimPlugins) chatgpt-nvim oil-nvim neoai-nvim cmp-ai;
             inherit (pkgs.python3Packages)
               doit-ext sphinxcontrib-mermaid sphinx-gallery;
+            inherit (pkgsFrackit) frackit;
           };
         });
 
