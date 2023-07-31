@@ -52,6 +52,9 @@ inputs: final: prev:
         python-final.callPackage ././packages/gazpacho { inherit inputs; };
       kibitzr =
         python-final.callPackage ././packages/kibitzr { inherit inputs; };
+      sphinx-gallery = python-final.callPackage ././packages/sphinx-gallery {
+        inherit inputs;
+      };
     })
   ];
 

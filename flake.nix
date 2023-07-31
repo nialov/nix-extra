@@ -77,6 +77,10 @@
       url = "github:mgaitan/sphinxcontrib-mermaid";
       flake = false;
     };
+    sphinx-gallery-src = {
+      url = "github:sphinx-gallery/sphinx-gallery";
+      flake = false;
+    };
     synonym-cli-src = {
       url = "github:agmmnn/synonym-cli";
       flake = false;
@@ -250,7 +254,8 @@
               allas-cli-utils grokker poetry-with-c-tooling gpt-engineer
               synonym-cli mosaic;
             inherit (pkgs.vimPlugins) chatgpt-nvim oil-nvim neoai-nvim cmp-ai;
-            inherit (pkgs.python3Packages) doit-ext sphinxcontrib-mermaid;
+            inherit (pkgs.python3Packages)
+              doit-ext sphinxcontrib-mermaid sphinx-gallery;
           };
         });
 

@@ -2596,6 +2596,7 @@
         "nixpkgs-stable": "nixpkgs-stable_7",
         "oil-nvim-src": "oil-nvim-src_2",
         "pre-commit-hooks": "pre-commit-hooks_6",
+        "sphinx-gallery-src": "sphinx-gallery-src",
         "sphinxcontrib-mermaid-src": "sphinxcontrib-mermaid-src_2",
         "synonym-cli-src": "synonym-cli-src_2",
         "taskfzf-src": "taskfzf-src_2",
@@ -2815,6 +2816,22 @@
       "original": {
         "owner": "oxalica",
         "repo": "rust-overlay",
+        "type": "github"
+      }
+    },
+    "sphinx-gallery-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1690681951,
+        "narHash": "sha256-mghcT6UP20fVIsgbMICJUsD3TKb5RvTSSWu3zoO/voY=",
+        "owner": "sphinx-gallery",
+        "repo": "sphinx-gallery",
+        "rev": "60fd6e40384bc66852dff45dbcdc27af23457bb7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "sphinx-gallery",
+        "repo": "sphinx-gallery",
         "type": "github"
       }
     },
