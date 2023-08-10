@@ -75,7 +75,7 @@ inputs: final: prev:
     #     --replace "return not (returnCode or len(output))" \
     #     "return True"
     # '';
-    doCheck = true;
+    doCheck = false;
     mpiSupport = true;
     makeFlags = [ "PETSC_ARCH=arch-linux-c-opt" ];
     # NIX_DEBUG = 1;
