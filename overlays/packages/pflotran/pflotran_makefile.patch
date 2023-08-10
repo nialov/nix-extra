@@ -1,0 +1,33 @@
+diff --git a/src/pflotran/makefile b/src/pflotran/makefile
+index 0dfcf41a4..8f674925a 100644
+--- a/src/pflotran/makefile
++++ b/src/pflotran/makefile
+@@ -52,6 +52,8 @@ PETSC_MAKE_STOP_ON_ERROR=
+ # the petsc configured in $PETSC_DIR/$PETSC_ARCH
+ 
+ MYFLAGS = -I. 
++MYFLAGS += -I$(HDF5_INCLUDE) -I$(HDF5_LIB) ${FC_DEFINE_FLAG}PETSC_HAVE_HDF5
++LIBS +=  -L${HDF5_LIB} -lhdf5_fortran -lhdf5 -lz 
+ 
+ ###############################################################################
+ # Preprocessor flags for special PFLOTRAN features/hacks
+@@ -129,9 +131,6 @@ ifdef coll
+   MYFLAGS += ${FC_DEFINE_FLAG}COLL
+ endif
+ 
+-ifdef have_hdf5
+-  MYFLAGS += -I$(HDF5_INCLUDE) -I$(HDF5_LIB) ${FC_DEFINE_FLAG}PETSC_HAVE_HDF5
+-endif
+ 
+ ifdef ugrid_debug
+   MYFLAGS += ${FC_DEFINE_FLAG}UGRID_DEBUG
+@@ -182,9 +181,6 @@ ifdef ug_mpi_scatter_ghost
+   MYFLAGS += ${FC_DEFINE_FLAG}MPI_SCATTER_GHOST_ONLY
+ endif
+ 
+-ifdef have_hdf5
+-LIBS +=  -L${HDF5_LIB} -lhdf5_fortran -lhdf5 -lz 
+-endif
+ 
+ # Set this accordingly on your platform
+ # SCORPIO_DIR=${HOME}/soft/scorpio

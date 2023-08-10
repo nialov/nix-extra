@@ -11,6 +11,8 @@
     # Use unstable nixpkgs channel
     nixpkgs.url = "nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "nixpkgs/nixos-22.11";
+    nixpkgs-petsc.url =
+      "github:nixos/nixpkgs/27bd67e55fe09f9d68c77ff151c3e44c4f81f7de";
     nixpkgs-frackit.url = "nixpkgs/nixos-21.11";
     nixpkgs-kibitzr.url =
       "github:nixos/nixpkgs/2f9fd351ec37f5d479556cd48be4ca340da59b8f";
@@ -43,6 +45,10 @@
     deploy-rs-input = { url = "github:serokell/deploy-rs"; };
     mosaic-src = {
       url = "github:nialov/mosaic";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    lmix-flake-src = {
+      url = "github:kilzm/lmix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -136,6 +142,30 @@
         "git+https://git.iws.uni-stuttgart.de/tools/frackit?ref=feature/geodataframes-parser";
       flake = false;
     };
+    dfnworks-src = {
+      url = "github:lanl/dfnworks";
+      flake = false;
+    };
+    lagrit-src = {
+      url = "github:lanl/lagrit";
+      flake = false;
+    };
+    fehm-src = {
+      url = "github:lanl/fehm";
+      flake = false;
+    };
+    pflotran-src = {
+      url = "git+https://bitbucket.org/pflotran/pflotran.git";
+      flake = false;
+    };
+    pkg-fblaslapack-src = {
+      url = "git+https://bitbucket.org/petsc/pkg-fblaslapack.git";
+      flake = false;
+    };
+    hdf5-src = {
+      url = "github:HDFGroup/hdf5/hdf5-1_12_2";
+      flake = false;
+    };
   };
 
   outputs = { self, ... }@inputs:
@@ -179,11 +209,7 @@
             inherit system;
             overlays = [ localOverlay inputOverlay ];
           };
-        in {
-
-          inherit (pkgsStable) tmuxp;
-
-        };
+        in { inherit (pkgsStable) tmuxp; };
       kibitzrOverlay = _: prev:
         let
           inherit (prev) system;
@@ -206,6 +232,7 @@
           pkgs = import inputs.nixpkgs {
             inherit system;
             overlays = [ self.overlays.default ];
+            config = { allowUnfree = true; };
           };
           pkgsFrackit = import inputs.nixpkgs-frackit {
             inherit system;
@@ -215,15 +242,7 @@
 
           devShells = {
             default = pkgs.mkShell {
-              buildInputs = with pkgs; [
-                bash
-                # task execution from dodo.py
-                git
-                nixVersions.stable
-                # Formatters & linters
-                pre-commit
-                watchexec
-              ];
+              buildInputs = with pkgs; [ pre-commit watchexec ];
               # Include pre-commit check shellHook so they can be ran with `pre-commit ...`
               inherit (self.checks."${system}".preCommitCheck) shellHook;
             };
@@ -269,7 +288,7 @@
               comma-update-flag rstcheck copier tmuxp
               pre-commit-hook-ensure-sops deploy-rs clean-git-branches-script
               allas-cli-utils grokker poetry-with-c-tooling gpt-engineer
-              synonym-cli mosaic;
+              synonym-cli mosaic lagrit dfnworks fehm pflotran petsc hdf5-full;
             inherit (pkgs.vimPlugins) chatgpt-nvim oil-nvim neoai-nvim cmp-ai;
             inherit (pkgs.python3Packages)
               doit-ext sphinxcontrib-mermaid sphinx-gallery;

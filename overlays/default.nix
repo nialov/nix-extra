@@ -23,6 +23,87 @@ inputs: final: prev:
     prev.callPackage ././packages/poetry-with-c-tooling { };
   gpt-engineer = prev.callPackage ././packages/gpt-engineer { inherit inputs; };
   frackit = prev.callPackage ././packages/frackit { inherit inputs; };
+  lagrit = prev.callPackage ././packages/lagrit { inherit inputs; };
+  dfnworks = prev.callPackage ././packages/dfnworks { inherit inputs; };
+  fehm = prev.callPackage ././packages/fehm { inherit inputs; };
+  pflotran = final.callPackage ././packages/pflotran { inherit inputs; };
+  pkg-fblaslapack =
+    prev.callPackage ././packages/pkg-fblaslapack { inherit inputs; };
+  petsc = let
+    petscStable = inputs.nixpkgs-petsc.legacyPackages."${prev.system}".petsc;
+    petscStableMpi = petscStable.override { inherit (final) mpi; };
+  in petscStableMpi.overrideAttrs (_: prevAttrs: {
+    buildInputs = prevAttrs.buildInputs
+      ++ [ prev.metis final.hdf5-full prev.zlib ];
+    # RUN ./configure --CFLAGS='-O3' --CXXFLAGS='-O3' --FFLAGS='-O3' --with-debugging=no --download-mpich=yes --download-hdf5=yes --download-hdf5-fortran-bindings=yes --download-fblaslapack=yes --download-metis=yes --download-parmetis=yes
+    # make PETSC_DIR=/build/petsc-3.19.2 PETSC_ARCH=arch-linux-c-opt all
+    # export FC="${prev.gfortran}/bin/gfortran" F77="${prev.gfortran}/bin/gfortran"
+    preConfigure = ''
+      patchShebangs ./lib/petsc/bin
+    '';
+    configureFlags = [
+      "F77=${prev.gfortran}/bin/gfortran"
+      "AR=${prev.gfortran}/bin/ar"
+      "CC=${prev.openmpi}/bin/mpicc"
+      "--with-hdf5=1"
+      "--with-hdf5-fortran-bindings=1"
+      "--CFLAGS='-O3'"
+      "--CXXFLAGS='-O3'"
+      "--FFLAGS='-O3'"
+      "--with-debugging=no"
+      "--with-metis=1"
+      # "--with-fblaslapack=1"
+      # "--with-hdf5-include=${prev.hdf5-fortran.dev.outPath}/include"
+      # "--with-hdf5-lib=-L${prev.hdf5-fortran.out.outPath}/lib -lz"
+      # "--with-mpi=0"
+      # '' else ''
+      # "--CC=mpicc"
+      "--with-cxx=mpicxx"
+      "--with-fc=mpif90"
+      "--with-mpi=1"
+      "--with-zlib=1"
+      # ''}
+      # ${if withp4est then ''
+      "--with-p4est=1"
+      # "--with-zlib-include=${prev.zlib.dev}/include"
+      # "--with-zlib-lib=-L${prev.zlib}/lib -lz"
+      "--with-blas=1"
+      "--with-lapack=1"
+    ];
+    # postPatch = ''
+    #   substituteInPlace config/BuildSystem/config/base.py \
+    #     --replace "return not (returnCode or len(output))" \
+    #     "return True"
+    # '';
+    doCheck = true;
+    mpiSupport = true;
+    makeFlags = [ "PETSC_ARCH=arch-linux-c-opt" ];
+    # NIX_DEBUG = 1;
+    # TODO: Only for debugging
+    nativeBuildInputs = prevAttrs.nativeBuildInputs ++ [ prev.breakpointHook ];
+  });
+  # hdf5-full = prev.hdf5.override {
+  #   fortranSupport = true;
+  #   mpiSupport = true;
+  #   cppSupport = false;
+  #   mpi = prev.openmpi;
+  # };
+  # openmpi_4_1_4_gcc11 = prev.callPackage
+  #   "${inputs.lmix-flake-src.outPath}/pkgs/openmpi/default.nix" {
+  #     stdenv = prev.gcc11Stdenv;
+  #     gfortran = prev.gfortran11;
+  #   };
+  # Build with cmake
+  hdf5-full = (prev.callPackage "${inputs.lmix-flake-src.outPath}/pkgs/HDF5" {
+    inherit (prev) stdenv;
+    mpiSupport = true;
+    mpi = prev.openmpi;
+    fortranSupport = true;
+    fortran = prev.gfortran;
+  }).overrideAttrs (_: _: { src = inputs.hdf5-src; });
+  # hdf5-full =
+  #   inputs.lmix-flake-src.packages."${prev.system}".hdf5_gcc11_ompi_4_1_4;
+  # mpi = prev.openmpi;
   inherit (inputs.mosaic-src.packages."${prev.system}") mosaic;
   # python3.pkgs.sphinx-design =
   #sphinx-design = prev.callPackage ././packages/sphinx-design { };
