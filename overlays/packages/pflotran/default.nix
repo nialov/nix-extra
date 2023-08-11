@@ -1,4 +1,4 @@
-{ inputs, lib, stdenv, gfortran, petsc, mpi, hdf5-full, metis, breakpointHook }:
+{ inputs, lib, stdenv, gfortran, petsc, mpi, hdf5-full, metis }:
 
 # let
 
@@ -34,7 +34,7 @@ stdenv.mkDerivation {
   # '';
   # PETSC_HAVE_HDF5 = 1;
 
-  nativeBuildInputs = [ gfortran breakpointHook ];
+  nativeBuildInputs = [ gfortran ];
   propagatedBuildInputs = [ mpi ];
   buildInputs = [ petsc hdf5-full metis ];
   enableParallelBuilding = true;
