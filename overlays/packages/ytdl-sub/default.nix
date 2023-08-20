@@ -25,9 +25,9 @@ python3.pkgs.buildPythonApplication {
     substituteInPlace setup.cfg \
         --replace 'argparse==1.4.0' "" \
         --replace 'mergedeep==1.3.4' 'mergedeep' \
-        --replace 'mediafile==0.10.1' 'mediafile' \
-        --replace 'PyYAML==6.0' 'PyYAML' \
-        --replace 'yt-dlp==2023.6.22' 'yt-dlp' \
+        --replace 'mediafile==0.12.0' 'mediafile' \
+        --replace 'PyYAML==5.3.1' 'PyYAML' \
+        --replace 'yt-dlp==2023.7.6' 'yt-dlp' \
         --replace 'colorama==0.4.6,' 'colorama'
     cp ${setupPy} setup.py
   '';
