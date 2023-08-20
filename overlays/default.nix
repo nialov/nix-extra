@@ -21,7 +21,8 @@ inputs: final: prev:
   grokker = prev.callPackage ././packages/grokker { inherit inputs; };
   poetry-with-c-tooling =
     prev.callPackage ././packages/poetry-with-c-tooling { };
-  gpt-engineer = prev.callPackage ././packages/gpt-engineer { inherit inputs; };
+  gpt-engineer =
+    final.callPackage ././packages/gpt-engineer { inherit inputs; };
   frackit = prev.callPackage ././packages/frackit { inherit inputs; };
   inherit (inputs.mosaic-src.packages."${prev.system}") mosaic;
   # python3.pkgs.sphinx-design =
@@ -38,7 +39,7 @@ inputs: final: prev:
     '');
 
   pythonPackagesExtensions = prev.pythonPackagesExtensions ++ [
-    (python-final: _: {
+    (python-final: python-prev: {
       sphinxcontrib-mermaid =
         python-final.callPackage ././packages/sphinxcontrib-mermaid {
           inherit inputs;
@@ -57,6 +58,13 @@ inputs: final: prev:
         inherit inputs;
       };
       inherit (final) frackit;
+      # TODO: psycopg overrides can be removed after a while and test gpt-engineer build
+      psycopg2 =
+        python-prev.psycopg2.overridePythonAttrs (_: { doCheck = false; });
+      psycopg = python-prev.psycopg.overridePythonAttrs (_: {
+        doCheck = false;
+        pythonImportsCheck = [ "psycopg" ];
+      });
     })
   ];
 
