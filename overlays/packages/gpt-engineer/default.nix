@@ -27,6 +27,11 @@ python3.pkgs.buildPythonApplication {
     typer
     tiktoken
     tabulate
+    python-dotenv
+    (langchain.override {
+      psycopg2 = psycopg2.overrideAttrs (_: _: { doCheck = false; });
+    })
+
   ];
 
   # Disable rudder-sdk-python usage (telemetry) and remove
@@ -40,6 +45,8 @@ python3.pkgs.buildPythonApplication {
       --replace "'black == 23.3.0'," "" \
       --replace "'pre-commit == 3.3.3'," "" \
       --replace "'mypy == 1.3.0'," "" \
+      --replace "dataclasses-json == 0.5.7" "dataclasses-json >= 0.5.7" \
+      --replace "termcolor==2.3.0" "termcolor >= 2.0.0" \
       --replace "'ruff == 0.0.272'," ""
   '';
 

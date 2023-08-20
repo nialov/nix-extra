@@ -21,7 +21,8 @@ inputs: final: prev:
   grokker = prev.callPackage ././packages/grokker { inherit inputs; };
   poetry-with-c-tooling =
     prev.callPackage ././packages/poetry-with-c-tooling { };
-  gpt-engineer = prev.callPackage ././packages/gpt-engineer { inherit inputs; };
+  gpt-engineer =
+    final.callPackage ././packages/gpt-engineer { inherit inputs; };
   frackit = prev.callPackage ././packages/frackit { inherit inputs; };
   inherit (inputs.mosaic-src.packages."${prev.system}") mosaic;
   # python3.pkgs.sphinx-design =
@@ -37,8 +38,28 @@ inputs: final: prev:
       } --invert-match 'master' | ${b parallel} '${b git} branch -d {}'
     '');
 
+  # TODO: This needs to be upstreamed. After v1.2 release in main repo, pr in nixpkgs
+  pre-commit-hook-ensure-sops =
+    prev.pre-commit-hook-ensure-sops.overridePythonAttrs (prevAttrs: {
+
+      src = prev.fetchFromGitHub {
+        owner = "yuvipanda";
+        repo = prevAttrs.pname;
+        rev = "fb9c7108c6c62aaf05441daa97ace3f40e840ac3";
+        hash = "sha256-CPCCNZBWzaeDfNMNI99ALzE02oM9Mfr4pyW2ag8dk7U=";
+      };
+      patches = [ ];
+      nativeCheckInputs = with prev.python3Packages; [ pytest ];
+      checkPhase = ''
+        runHook preCheck
+        pytest
+        runHook postCheck
+      '';
+
+    });
+
   pythonPackagesExtensions = prev.pythonPackagesExtensions ++ [
-    (python-final: _: {
+    (python-final: python-prev: {
       sphinxcontrib-mermaid =
         python-final.callPackage ././packages/sphinxcontrib-mermaid {
           inherit inputs;
@@ -57,6 +78,13 @@ inputs: final: prev:
         inherit inputs;
       };
       inherit (final) frackit;
+      # TODO: psycopg overrides can be removed after a while and test gpt-engineer build
+      psycopg2 =
+        python-prev.psycopg2.overridePythonAttrs (_: { doCheck = false; });
+      psycopg = python-prev.psycopg.overridePythonAttrs (_: {
+        doCheck = false;
+        pythonImportsCheck = [ "psycopg" ];
+      });
     })
   ];
 

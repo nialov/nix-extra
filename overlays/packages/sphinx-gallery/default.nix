@@ -12,8 +12,8 @@ buildPythonPackage rec {
   # Move tests outside of package and remove use of pytest-coverage
   postPatch = ''
     mv sphinx_gallery/tests tests/
-    substituteInPlace setup.cfg \
-      --replace " --cov-report= --cov=sphinx_gallery" ""
+    substituteInPlace pyproject.toml \
+      --replace "--cov-report= --cov=sphinx_gallery" ""
     substituteInPlace tests/test_gen_rst.py \
       --replace "sphinx_gallery/tests/reference_parse.txt" "tests/reference_parse.txt"
   '';
