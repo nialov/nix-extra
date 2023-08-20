@@ -1752,6 +1752,22 @@
         "type": "github"
       }
     },
+    "mplstereonet-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1672355150,
+        "narHash": "sha256-WERMrF3tgA4eTIFXInLmGHy9g67hXOvKYgME4XiOFEw=",
+        "owner": "joferkington",
+        "repo": "mplstereonet",
+        "rev": "89a3b5a028703452bfc5dbfc3d77af355f645485",
+        "type": "github"
+      },
+      "original": {
+        "owner": "joferkington",
+        "repo": "mplstereonet",
+        "type": "github"
+      }
+    },
     "naersk": {
       "inputs": {
         "nixpkgs": [
@@ -2534,11 +2550,11 @@
     "pflotran-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1691530015,
-        "narHash": "sha256-hOh0gv/dEJhPVhmyaGUEsKPFiAxGqMW7/alZyIr3i7s=",
+        "lastModified": 1692133572,
+        "narHash": "sha256-a8PGhTYMdwZVS4DFy4unbM+/gsVpq+6blgeuS7XMhnw=",
         "ref": "refs/heads/master",
-        "rev": "4d65d2e5d507ed5677be33cfb1e9e10a2006da67",
-        "revCount": 16607,
+        "rev": "bf18794418f7646c6143ce47ed678b9c19a0246d",
+        "revCount": 16609,
         "type": "git",
         "url": "https://bitbucket.org/pflotran/pflotran.git"
       },
@@ -2771,6 +2787,22 @@
         "type": "github"
       }
     },
+    "pyvtk-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1496048584,
+        "narHash": "sha256-rD7/BIpOsuCRq05auZN07ea0BFHBUpD4zLb6wDIxey0=",
+        "owner": "pearu",
+        "repo": "pyvtk",
+        "rev": "b004ec3c03299a2d75338a4be93dd29f076b70ab",
+        "type": "github"
+      },
+      "original": {
+        "owner": "pearu",
+        "repo": "pyvtk",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "allas-cli-utils-src": "allas-cli-utils-src",
@@ -2796,6 +2828,7 @@
         "lagrit-src": "lagrit-src",
         "lmix-flake-src": "lmix-flake-src",
         "mosaic-src": "mosaic-src",
+        "mplstereonet-src": "mplstereonet-src",
         "neoai-nvim-src": "neoai-nvim-src_2",
         "nickel-src": "nickel-src_2",
         "nixpkgs": "nixpkgs_16",
@@ -2807,6 +2840,7 @@
         "pflotran-src": "pflotran-src",
         "pkg-fblaslapack-src": "pkg-fblaslapack-src",
         "pre-commit-hooks": "pre-commit-hooks_6",
+        "pyvtk-src": "pyvtk-src",
         "sphinx-gallery-src": "sphinx-gallery-src",
         "sphinxcontrib-mermaid-src": "sphinxcontrib-mermaid-src_2",
         "synonym-cli-src": "synonym-cli-src_2",

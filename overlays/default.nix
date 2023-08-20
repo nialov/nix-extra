@@ -138,6 +138,10 @@ inputs: final: prev:
         inherit inputs;
       };
       inherit (final) frackit;
+      mplstereonet =
+        python-final.callPackage ././packages/mplstereonet { inherit inputs; };
+      pyvtk = python-final.callPackage ././packages/pyvtk { inherit inputs; };
+
     })
   ];
 

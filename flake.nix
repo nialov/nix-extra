@@ -166,6 +166,14 @@
       url = "github:HDFGroup/hdf5/hdf5-1_12_2";
       flake = false;
     };
+    mplstereonet-src = {
+      url = "github:joferkington/mplstereonet";
+      flake = false;
+    };
+    pyvtk-src = {
+      url = "github:pearu/pyvtk";
+      flake = false;
+    };
   };
 
   outputs = { self, ... }@inputs:
@@ -291,7 +299,7 @@
               synonym-cli mosaic lagrit dfnworks fehm pflotran petsc hdf5-full;
             inherit (pkgs.vimPlugins) chatgpt-nvim oil-nvim neoai-nvim cmp-ai;
             inherit (pkgs.python3Packages)
-              doit-ext sphinxcontrib-mermaid sphinx-gallery;
+              doit-ext sphinxcontrib-mermaid sphinx-gallery mplstereonet pyvtk;
             inherit (pkgsFrackit) frackit;
           };
         });
