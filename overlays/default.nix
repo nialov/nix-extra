@@ -38,6 +38,26 @@ inputs: final: prev:
       } --invert-match 'master' | ${b parallel} '${b git} branch -d {}'
     '');
 
+  # TODO: This needs to be upstreamed. After v1.2 release in main repo, pr in nixpkgs
+  pre-commit-hook-ensure-sops =
+    prev.pre-commit-hook-ensure-sops.overridePythonAttrs (prevAttrs: {
+
+      src = prev.fetchFromGitHub {
+        owner = "yuvipanda";
+        repo = prevAttrs.pname;
+        rev = "fb9c7108c6c62aaf05441daa97ace3f40e840ac3";
+        hash = "sha256-CPCCNZBWzaeDfNMNI99ALzE02oM9Mfr4pyW2ag8dk7U=";
+      };
+      patches = [ ];
+      nativeCheckInputs = with prev.python3Packages; [ pytest ];
+      checkPhase = ''
+        runHook preCheck
+        pytest
+        runHook postCheck
+      '';
+
+    });
+
   pythonPackagesExtensions = prev.pythonPackagesExtensions ++ [
     (python-final: python-prev: {
       sphinxcontrib-mermaid =
