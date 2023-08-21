@@ -35,7 +35,9 @@ inputs: final: prev:
     in with prev; ''
       ${b git} branch --merged | string trim | ${
         b ripgrep
-      } --invert-match 'master' | ${b parallel} '${b git} branch -d {}'
+      } --invert-match 'master' | ${lib.getExe' parallel "parallel"} '${
+        b git
+      } branch -d {}'
     '');
 
   # TODO: This needs to be upstreamed. After v1.2 release in main repo, pr in nixpkgs
