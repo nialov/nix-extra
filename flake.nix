@@ -14,7 +14,10 @@
     nixpkgs-frackit.url = "nixpkgs/nixos-21.11";
     nixpkgs-kibitzr.url =
       "github:nixos/nixpkgs/2f9fd351ec37f5d479556cd48be4ca340da59b8f";
-    # TODO: Probably no need to use old opencascade-occt version
+    # TODO: Can be removed when tensorflow no longer broken
+    #       https://github.com/NixOS/nixpkgs/blob/master/pkgs/development/python-modules/tensorflow/default.nix#L453
+    nixpkgs-gpt-engineer.url =
+      "github:nixos/nixpkgs/d680ded26da5cf104dd2735a51e88d2d8f487b4d";
     # Use flake-utils for utility functions
     flake-utils = { url = "github:numtide/flake-utils"; };
     pre-commit-hooks = {
@@ -22,11 +25,6 @@
       # inputs.nixpkgs.follows = "nixpkgs";
     };
     # nix-index-database = { url = "github:Mic92/nix-index-database"; };
-    # TODO: When gets merged into master (and nixpkgs-unstable), can use that instead
-    comma-update-flag = {
-      url = "github:patricksjackson/comma/update-flag";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     gotta-scrape-em-all = {
       url = "github:nialov/gotta-scrape-em-all";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -151,16 +149,8 @@
         in {
 
           # Some custom packages or overrides to add/fix functionality
-          comma-update-flag =
-            inputs.comma-update-flag.packages."${system}".comma;
           inherit (inputs.gotta-scrape-em-all.packages."${system}")
             gotta-scrape-em-all;
-
-          # Modify rstcheck to include sphinx as a buildInput
-          rstcheck = prev.rstcheck.overrideAttrs (_: prevAttrs: {
-            propagatedBuildInputs = prevAttrs.propagatedBuildInputs
-              ++ [ prev.python3Packages.sphinx ];
-          });
 
           # Get copier from nialov-py-template flake
           inherit (inputs.copier-src.packages."${system}") copier;
@@ -171,46 +161,37 @@
           nickel = inputs.nickel-src.packages."${system}".build;
           # Use stable version of tmuxp
         };
-      stableOverlay = _: prev:
-        let
-          inherit (prev) system;
-          # pkgsStable has the local overlay added
-          pkgsStable = import inputs.nixpkgs-stable {
-            inherit system;
-            overlays = [ localOverlay inputOverlay ];
-          };
-        in {
-
-          inherit (pkgsStable) tmuxp;
-
-        };
-      kibitzrOverlay = _: prev:
-        let
-          inherit (prev) system;
-          pkgsKibitzr = import inputs.nixpkgs-kibitzr {
-            inherit system;
-            overlays = [ localOverlay inputOverlay ];
-          };
-        in { inherit (pkgsKibitzr) kibitzr; };
       fullOverlay = lib.composeManyExtensions [
         localOverlay
         inputOverlay
-        stableOverlay
-        kibitzrOverlay
         inputs.doit-ext-src.overlays.default
       ];
 
       perSystem = inputs.flake-utils.lib.eachSystem [ "x86_64-linux" ] (system:
 
         let
-          pkgs = import inputs.nixpkgs {
-            inherit system;
-            overlays = [ self.overlays.default ];
-          };
-          pkgsFrackit = import inputs.nixpkgs-frackit {
-            inherit system;
-            overlays = [ self.overlays.default ];
-          };
+          mkPkgs = nixpkgs:
+            import nixpkgs {
+              inherit system;
+              overlays = [ self.overlays.default ];
+            };
+          pkgs = mkPkgs inputs.nixpkgs;
+          pkgsFrackit = mkPkgs inputs.nixpkgs-frackit;
+          pkgsStable = mkPkgs inputs.nixpkgs-stable;
+          pkgsGptEngineer = mkPkgs inputs.nixpkgs-gpt-engineer;
+          pkgsKibitzr = mkPkgs inputs.nixpkgs-kibitzr;
+          # pkgs = import inputs.nixpkgs {
+          #   inherit system;
+          #   overlays = [ self.overlays.default ];
+          # };
+          # pkgsFrackit = import inputs.nixpkgs-frackit {
+          #   inherit system;
+          #   overlays = [ self.overlays.default ];
+          # };
+          # pkgsStable = import inputs.nixpkgs-stable {
+          #   inherit system;
+          #   overlays = [self.overlays.default];
+          # };
         in {
 
           devShells = {
@@ -258,22 +239,22 @@
             homerModule = moduleTest { imports = [ ./nixos/tests/homer.nix ]; };
             flipperzeroModule =
               moduleTest { imports = [ ./nixos/tests/flipperzero.nix ]; };
-          } self.packages."${system}"
-
-          ;
+          } self.packages."${system}";
 
           packages = {
             inherit (pkgs)
               homer taskfzf pathnames backupper wiki-builder wsl-open-dynamic
-              pretty-task kibitzr ytdl-sub bootstrapSecretsScript tasklite-core
-              comma-update-flag rstcheck copier tmuxp
-              pre-commit-hook-ensure-sops deploy-rs clean-git-branches-script
-              allas-cli-utils grokker poetry-with-c-tooling gpt-engineer
-              synonym-cli mosaic;
+              pretty-task ytdl-sub bootstrapSecretsScript tasklite-core rstcheck
+              copier pre-commit-hook-ensure-sops deploy-rs
+              clean-git-branches-script allas-cli-utils grokker
+              poetry-with-c-tooling synonym-cli mosaic;
             inherit (pkgs.vimPlugins) chatgpt-nvim oil-nvim neoai-nvim cmp-ai;
             inherit (pkgs.python3Packages)
               doit-ext sphinxcontrib-mermaid sphinx-gallery;
             inherit (pkgsFrackit) frackit;
+            inherit (pkgsStable) tmuxp;
+            inherit (pkgsGptEngineer) gpt-engineer;
+            inherit (pkgsKibitzr) kibitzr;
           };
         });
 

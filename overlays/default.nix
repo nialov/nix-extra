@@ -59,6 +59,11 @@ inputs: final: prev:
       '';
 
     });
+  # Modify rstcheck to include sphinx as a buildInput
+  rstcheck = prev.rstcheck.overrideAttrs (_: prevAttrs: {
+    propagatedBuildInputs = prevAttrs.propagatedBuildInputs
+      ++ [ prev.python3Packages.sphinx ];
+  });
 
   pythonPackagesExtensions = prev.pythonPackagesExtensions ++ [
     (python-final: python-prev: {
@@ -87,6 +92,7 @@ inputs: final: prev:
         doCheck = false;
         pythonImportsCheck = [ "psycopg" ];
       });
+
     })
   ];
 
