@@ -18,7 +18,6 @@
     #       https://github.com/NixOS/nixpkgs/blob/master/pkgs/development/python-modules/tensorflow/default.nix#L453
     nixpkgs-gpt-engineer.url =
       "github:nixos/nixpkgs/d680ded26da5cf104dd2735a51e88d2d8f487b4d";
-    # TODO: Probably no need to use old opencascade-occt version
     # Use flake-utils for utility functions
     flake-utils = { url = "github:numtide/flake-utils"; };
     pre-commit-hooks = {
