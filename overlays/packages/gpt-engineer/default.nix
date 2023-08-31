@@ -2,7 +2,7 @@
 
 python3.pkgs.buildPythonApplication {
   pname = "gpt-engineer";
-  version = "0.0.7";
+  version = inputs.gpt-engineer-src.rev;
   format = "pyproject";
 
   src = inputs.gpt-engineer-src;
