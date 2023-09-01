@@ -33,12 +33,14 @@
       url = "github:tweag/nickel";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    copier-src = { url = "github:nialov/nialov-py-template"; };
     doit-ext-src = {
       url = "github:nialov/doit-ext/refactor-remove-python-build-tools";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    deploy-rs-input = { url = "github:serokell/deploy-rs"; };
+    deploy-rs-input = {
+      url = "github:serokell/deploy-rs";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     mosaic-src = {
       url = "github:nialov/mosaic";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -151,9 +153,6 @@
           # Some custom packages or overrides to add/fix functionality
           inherit (inputs.gotta-scrape-em-all.packages."${system}")
             gotta-scrape-em-all;
-
-          # Get copier from nialov-py-template flake
-          inherit (inputs.copier-src.packages."${system}") copier;
 
           # Get deploy-rs form its repository flake
           inherit (inputs.deploy-rs-input.packages."${system}") deploy-rs;
