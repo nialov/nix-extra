@@ -68,10 +68,6 @@
       url = "github:nialov/ChatGPT.nvim";
       flake = false;
     };
-    oil-nvim-src = {
-      url = "github:stevearc/oil.nvim";
-      flake = false;
-    };
     ytdl-sub-src = {
       url = "github:jmbannon/ytdl-sub";
       flake = false;

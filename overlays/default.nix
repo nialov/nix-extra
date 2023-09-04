@@ -154,10 +154,6 @@ inputs: final: prev:
       name = "chatgpt-nvim";
       src = inputs.chatgpt-nvim-src;
     };
-    oil-nvim = prev.vimUtils.buildVimPlugin {
-      name = "oil.nvim";
-      src = inputs.oil-nvim-src;
-    };
     neoai-nvim = prev.vimUtils.buildVimPlugin {
       name = "neoai.nvim";
       src = inputs.neoai-nvim-src;
