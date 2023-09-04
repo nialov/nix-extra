@@ -1,8 +1,7 @@
-{ writeShellApplication, poetry-with-c-tooling, python39, python310, python311
-}:
+{ writeShellApplication, poetry-with-c-tooling, pythons }:
 writeShellApplication {
   name = "poetry-run";
-  runtimeInputs = [ poetry-with-c-tooling python39 python310 python311 ];
+  runtimeInputs = [ poetry-with-c-tooling ] ++ pythons;
   text = ''
     poetry check
     poetry env use "$1"

@@ -70,7 +70,9 @@ inputs: final: prev:
   resolve-version = prev.callPackage ./packages/resolve-version.nix { };
   update-changelog = prev.callPackage ./packages/update-version.nix { };
   pre-release = prev.callPackage ./packages/pre-release.nix { };
-  poetry-run = prev.callPackage ./packages/poetry-run.nix { };
+  poetry-run = prev.callPackage ./packages/poetry-run.nix {
+    pythons = with prev; [ python39 python310 python311 ];
+  };
 
   pythonPackagesExtensions = prev.pythonPackagesExtensions ++ [
     (python-final: python-prev: {
