@@ -8,7 +8,8 @@ pkgs.symlinkJoin {
     caBundle = "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt";
     ccLib = "${pkgs.stdenv.cc.cc.lib}/lib";
     zlibLib = "${pkgs.zlib}/lib";
-    ldPath = "${ccLib}:${zlibLib}";
+    expatLib = "${pkgs.expat}/lib";
+    ldPath = "${ccLib}:${zlibLib}:${expatLib}";
     wraps = [
       "--set GIT_SSL_CAINFO ${caBundle}"
       "--set SSL_CERT_FILE ${caBundle}"
