@@ -1663,6 +1663,21 @@
         "type": "github"
       }
     },
+    "nix-filter_3": {
+      "locked": {
+        "lastModified": 1687178632,
+        "narHash": "sha256-HS7YR5erss0JCaUijPeyg2XrisEb959FIct3n2TMGbE=",
+        "owner": "numtide",
+        "repo": "nix-filter",
+        "rev": "d90c75e8319d0dd9be67d933d8eb9d0894ec9174",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "nix-filter",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1643381941,
@@ -2328,6 +2343,7 @@
         "mosaic-src": "mosaic-src",
         "neoai-nvim-src": "neoai-nvim-src_2",
         "nickel-src": "nickel-src_2",
+        "nix-filter": "nix-filter_3",
         "nixpkgs": "nixpkgs_11",
         "nixpkgs-frackit": "nixpkgs-frackit",
         "nixpkgs-gpt-engineer": "nixpkgs-gpt-engineer",

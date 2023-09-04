@@ -45,6 +45,7 @@
       url = "github:nialov/mosaic";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-filter.url = "github:numtide/nix-filter";
 
     # Custom non-flake sources
     tmux-nvim-src = {
@@ -158,7 +159,8 @@
           inherit (inputs.deploy-rs-input.packages."${system}") deploy-rs;
 
           nickel = inputs.nickel-src.packages."${system}".build;
-          # Use stable version of tmuxp
+          # numtide/nix-filter library used for filtering local packages sources
+          filter = inputs.nix-filter.lib;
         };
       fullOverlay = lib.composeManyExtensions [
         localOverlay
