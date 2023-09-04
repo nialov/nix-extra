@@ -246,7 +246,8 @@
               pretty-task ytdl-sub bootstrapSecretsScript tasklite-core rstcheck
               copier pre-commit-hook-ensure-sops deploy-rs
               clean-git-branches-script allas-cli-utils grokker
-              poetry-with-c-tooling synonym-cli mosaic;
+              poetry-with-c-tooling synonym-cli mosaic sync-git-tag-with-poetry
+              resolve-version update-changelog pre-release poetry-run;
             inherit (pkgs.vimPlugins) chatgpt-nvim oil-nvim neoai-nvim cmp-ai;
             inherit (pkgs.python3Packages)
               doit-ext sphinxcontrib-mermaid sphinx-gallery;
