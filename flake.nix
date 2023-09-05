@@ -133,6 +133,10 @@
         "git+https://git.iws.uni-stuttgart.de/tools/frackit?ref=feature/geodataframes-parser";
       flake = false;
     };
+    pandera-src = {
+      url = "github:unionai-oss/pandera";
+      flake = false;
+    };
   };
 
   outputs = { self, ... }@inputs:
@@ -248,7 +252,7 @@
               resolve-version update-changelog pre-release poetry-run;
             inherit (pkgs.vimPlugins) chatgpt-nvim oil-nvim neoai-nvim cmp-ai;
             inherit (pkgs.python3Packages)
-              doit-ext sphinxcontrib-mermaid sphinx-gallery;
+              doit-ext sphinxcontrib-mermaid sphinx-gallery pandera;
             inherit (pkgsFrackit) frackit;
             inherit (pkgsStable) tmuxp;
             inherit (pkgsGptEngineer) gpt-engineer;

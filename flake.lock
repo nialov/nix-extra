@@ -2119,6 +2119,22 @@
         "type": "github"
       }
     },
+    "pandera-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1693077045,
+        "narHash": "sha256-Uvhkd6Soihwo3Yv2BHlKdwoU3z/aJjd27/0jpnMupPI=",
+        "owner": "unionai-oss",
+        "repo": "pandera",
+        "rev": "850dcf8e59632d54bc9a6df47b9ca08afa089a27",
+        "type": "github"
+      },
+      "original": {
+        "owner": "unionai-oss",
+        "repo": "pandera",
+        "type": "github"
+      }
+    },
     "poetry2nix-copier": {
       "inputs": {
         "flake-utils": "flake-utils_5",
@@ -2333,6 +2349,7 @@
         "nixpkgs-gpt-engineer": "nixpkgs-gpt-engineer",
         "nixpkgs-kibitzr": "nixpkgs-kibitzr_2",
         "nixpkgs-stable": "nixpkgs-stable_7",
+        "pandera-src": "pandera-src",
         "pre-commit-hooks": "pre-commit-hooks_6",
         "sphinx-gallery-src": "sphinx-gallery-src",
         "sphinxcontrib-mermaid-src": "sphinxcontrib-mermaid-src_2",
