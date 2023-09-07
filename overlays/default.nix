@@ -68,7 +68,7 @@ inputs: final: prev:
   sync-git-tag-with-poetry =
     prev.callPackage ./packages/sync-git-tag-with-poetry.nix { };
   resolve-version = prev.callPackage ./packages/resolve-version.nix { };
-  update-changelog = prev.callPackage ./packages/update-version.nix { };
+  update-changelog = prev.callPackage ./packages/update-changelog.nix { };
   pre-release = prev.callPackage ./packages/pre-release.nix { };
   poetry-run = prev.callPackage ./packages/poetry-run.nix {
     pythons = with prev; [ python39 python310 python311 ];
