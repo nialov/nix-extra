@@ -275,12 +275,15 @@
     in lib.recursiveUpdate {
       overlays = {
         default = fullOverlay;
-        # Overlay for only e.g. library utils such as filter
-        # Can use this overlay instead of the default one to avoid circular dependencies
-        utils = _: _: {
-          # numtide/nix-filter library used for filtering local packages sources
-          filter = inputs.nix-filter.lib;
-        };
+        # Overlay for only e.g. library utils such as filter and local packages
+        # Can use this overlay instead of the default one to avoid (some) circular dependencies
+        utils = lib.composeManyExtensions [
+          (_: _: {
+            # numtide/nix-filter library used for filtering local packages sources
+            filter = inputs.nix-filter.lib;
+          })
+          localOverlay
+        ];
       };
       nixosModules = {
         ytdl-sub = import ./nixos/modules/ytdl-sub;
