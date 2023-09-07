@@ -46,6 +46,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-filter.url = "github:numtide/nix-filter";
+    fractopo = {
+      url = "github:nialov/fractopo";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    tracerepo = {
+      url = "github:nialov/tracerepo";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # Custom non-flake sources
     tmux-nvim-src = {
@@ -160,12 +168,15 @@
 
           nickel = inputs.nickel-src.packages."${system}".build;
           # numtide/nix-filter library used for filtering local packages sources
-          filter = inputs.nix-filter.lib;
+          # filter = inputs.nix-filter.lib;
+          inherit (inputs.fractopo.packages."${system}") fractopo;
+          inherit (inputs.tracerepo.packages."${system}") tracerepo;
         };
       fullOverlay = lib.composeManyExtensions [
         localOverlay
         inputOverlay
         inputs.doit-ext-src.overlays.default
+        self.overlays.utils
       ];
 
       perSystem = inputs.flake-utils.lib.eachSystem [ "x86_64-linux" ] (system:
@@ -249,7 +260,8 @@
               copier pre-commit-hook-ensure-sops deploy-rs
               clean-git-branches-script allas-cli-utils grokker
               poetry-with-c-tooling synonym-cli mosaic sync-git-tag-with-poetry
-              resolve-version update-changelog pre-release poetry-run;
+              resolve-version update-changelog pre-release poetry-run fractopo
+              tracerepo;
             inherit (pkgs.vimPlugins) chatgpt-nvim oil-nvim neoai-nvim cmp-ai;
             inherit (pkgs.python3Packages)
               doit-ext sphinxcontrib-mermaid sphinx-gallery pandera;
@@ -261,7 +273,15 @@
         });
 
     in lib.recursiveUpdate {
-      overlays.default = fullOverlay;
+      overlays = {
+        default = fullOverlay;
+        # Overlay for only e.g. library utils such as filter
+        # Can use this overlay instead of the default one to avoid circular dependencies
+        utils = _: _: {
+          # numtide/nix-filter library used for filtering local packages sources
+          filter = inputs.nix-filter.lib;
+        };
+      };
       nixosModules = {
         ytdl-sub = import ./nixos/modules/ytdl-sub;
         homer = import ./nixos/modules/homer;
