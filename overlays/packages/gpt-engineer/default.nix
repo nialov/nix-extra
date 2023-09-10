@@ -21,6 +21,7 @@ python3.pkgs.buildPythonApplication {
   pythonRelaxDeps = true;
 
   propagatedBuildInputs = with python3.pkgs; [
+    tkinter
     dataclasses-json
     openai
     termcolor
