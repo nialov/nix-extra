@@ -145,6 +145,10 @@
       url = "github:unionai-oss/pandera";
       flake = false;
     };
+    semantra-src = {
+      url = "github:freedmand/semantra";
+      flake = false;
+    };
   };
 
   outputs = { self, ... }@inputs:
@@ -261,10 +265,10 @@
               clean-git-branches-script allas-cli-utils grokker
               poetry-with-c-tooling synonym-cli mosaic sync-git-tag-with-poetry
               resolve-version update-changelog pre-release poetry-run fractopo
-              tracerepo;
+              tracerepo semantra;
             inherit (pkgs.vimPlugins) chatgpt-nvim oil-nvim neoai-nvim cmp-ai;
             inherit (pkgs.python3Packages)
-              doit-ext sphinxcontrib-mermaid sphinx-gallery pandera;
+              doit-ext sphinxcontrib-mermaid sphinx-gallery pandera pypdfium2;
             inherit (pkgsFrackit) frackit;
             inherit (pkgsStable) tmuxp;
             inherit (pkgsGptEngineer) gpt-engineer;

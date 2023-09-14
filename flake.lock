@@ -12862,6 +12862,7 @@
         "nixpkgs-stable": "nixpkgs-stable_34",
         "pandera-src": "pandera-src_4",
         "pre-commit-hooks": "pre-commit-hooks_27",
+        "semantra-src": "semantra-src",
         "sphinx-gallery-src": "sphinx-gallery-src_4",
         "sphinxcontrib-mermaid-src": "sphinxcontrib-mermaid-src_8",
         "synonym-cli-src": "synonym-cli-src_8",
@@ -14099,6 +14100,22 @@
       "original": {
         "owner": "oxalica",
         "repo": "rust-overlay",
+        "type": "github"
+      }
+    },
+    "semantra-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1688827767,
+        "narHash": "sha256-obteS2vUfHoKYQnDv5QL8HnRTST9N8+UsiPjVRGPPmg=",
+        "owner": "freedmand",
+        "repo": "semantra",
+        "rev": "55ae5fe5ebc02f723b678e6fd2084316853c9d72",
+        "type": "github"
+      },
+      "original": {
+        "owner": "freedmand",
+        "repo": "semantra",
         "type": "github"
       }
     },
