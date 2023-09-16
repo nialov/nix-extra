@@ -320,6 +320,22 @@
         "type": "github"
       }
     },
+    "bubop-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1675608857,
+        "narHash": "sha256-dr//R3CP/59pr6gMMC4w7x3VfOiml/w8+I2EZYNGWj4=",
+        "owner": "bergercookie",
+        "repo": "bubop",
+        "rev": "a8fc712ca60f2c6988694b6d5a05cf285fd92d7a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "bergercookie",
+        "repo": "bubop",
+        "type": "github"
+      }
+    },
     "chatgpt-nvim-src": {
       "flake": false,
       "locked": {
@@ -7138,6 +7154,22 @@
         "type": "github"
       }
     },
+    "gkeepapi-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1692079712,
+        "narHash": "sha256-+ZnnB8YdN1rHg0J+EFfpM4RqSWN9siQVAQM0cssgCOE=",
+        "owner": "kiwiz",
+        "repo": "gkeepapi",
+        "rev": "17a089558a9f3c9f32624b0e2a3ee543d5a2e38a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "kiwiz",
+        "repo": "gkeepapi",
+        "type": "github"
+      }
+    },
     "gotta-scrape-em-all": {
       "inputs": {
         "nixpkgs": [
@@ -7783,6 +7815,22 @@
       "original": {
         "owner": "bastienwirtz",
         "repo": "homer",
+        "type": "github"
+      }
+    },
+    "item-synchronizer-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1670279563,
+        "narHash": "sha256-97xshwhRKXagZZNCqNiMhe31L1Yzvdo9aGT5fMi4zFs=",
+        "owner": "bergercookie",
+        "repo": "item_synchronizer",
+        "rev": "e5ed3e39a93b224a1a3883391860891ed290ac34",
+        "type": "github"
+      },
+      "original": {
+        "owner": "bergercookie",
+        "repo": "item_synchronizer",
         "type": "github"
       }
     },
@@ -12836,6 +12884,7 @@
     "root": {
       "inputs": {
         "allas-cli-utils-src": "allas-cli-utils-src",
+        "bubop-src": "bubop-src",
         "chatgpt-nvim-src": "chatgpt-nvim-src",
         "cmp-ai-src": "cmp-ai-src",
         "cmp-tmux": "cmp-tmux",
@@ -12846,10 +12895,12 @@
         "fractopo": "fractopo",
         "gazpacho-1-1-src": "gazpacho-1-1-src_4",
         "gazpacho-src": "gazpacho-src_8",
+        "gkeepapi-src": "gkeepapi-src",
         "gotta-scrape-em-all": "gotta-scrape-em-all_8",
         "gpt-engineer-src": "gpt-engineer-src_4",
         "grokker-src": "grokker-src_8",
         "homer-src": "homer-src_8",
+        "item-synchronizer-src": "item-synchronizer-src",
         "kibitzr-src": "kibitzr-src_8",
         "mosaic-src": "mosaic-src_4",
         "neoai-nvim-src": "neoai-nvim-src_8",
@@ -12864,6 +12915,7 @@
         "pre-commit-hooks": "pre-commit-hooks_27",
         "sphinx-gallery-src": "sphinx-gallery-src_4",
         "sphinxcontrib-mermaid-src": "sphinxcontrib-mermaid-src_8",
+        "syncall-src": "syncall-src",
         "synonym-cli-src": "synonym-cli-src_8",
         "taskfzf-src": "taskfzf-src_8",
         "tasklite-src": "tasklite-src_8",
@@ -14340,6 +14392,24 @@
         "owner": "mgaitan",
         "repo": "sphinxcontrib-mermaid",
         "type": "github"
+      }
+    },
+    "syncall-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1693396206,
+        "narHash": "sha256-TWiMvNJqvTWjFCddEV23W1q6Jc1WoYzg+D5NvC5uNKM=",
+        "ref": "refs/heads/master",
+        "rev": "ccfeb306c5ceeee509b2aed4ae12da710e3f1b35",
+        "revCount": 171,
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/bergercookie/syncall"
+      },
+      "original": {
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/bergercookie/syncall"
       }
     },
     "synonym-cli-src": {

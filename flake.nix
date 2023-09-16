@@ -145,6 +145,23 @@
       url = "github:unionai-oss/pandera";
       flake = false;
     };
+    syncall-src = {
+      # url = "github:bergercookier/syncall";
+      url = "git+https://github.com/bergercookie/syncall?submodules=1";
+      flake = false;
+    };
+    bubop-src = {
+      url = "github:bergercookie/bubop";
+      flake = false;
+    };
+    item-synchronizer-src = {
+      url = "github:bergercookie/item_synchronizer";
+      flake = false;
+    };
+    gkeepapi-src = {
+      url = "github:kiwiz/gkeepapi";
+      flake = false;
+    };
   };
 
   outputs = { self, ... }@inputs:
@@ -261,10 +278,11 @@
               clean-git-branches-script allas-cli-utils grokker
               poetry-with-c-tooling synonym-cli mosaic sync-git-tag-with-poetry
               resolve-version update-changelog pre-release poetry-run fractopo
-              tracerepo;
+              tracerepo syncall;
             inherit (pkgs.vimPlugins) chatgpt-nvim oil-nvim neoai-nvim cmp-ai;
             inherit (pkgs.python3Packages)
-              doit-ext sphinxcontrib-mermaid sphinx-gallery pandera;
+              doit-ext sphinxcontrib-mermaid sphinx-gallery pandera bubop
+              item-synchronizer gkeepapi;
             inherit (pkgsFrackit) frackit;
             inherit (pkgsStable) tmuxp;
             inherit (pkgsGptEngineer) gpt-engineer;

@@ -24,6 +24,7 @@ inputs: final: prev:
   gpt-engineer =
     final.callPackage ././packages/gpt-engineer { inherit inputs; };
   frackit = prev.callPackage ././packages/frackit { inherit inputs; };
+  syncall = prev.callPackage ././packages/syncall { inherit inputs; };
   inherit (inputs.mosaic-src.packages."${prev.system}") mosaic;
   # python3.pkgs.sphinx-design =
   #sphinx-design = prev.callPackage ././packages/sphinx-design { };
@@ -95,6 +96,13 @@ inputs: final: prev:
       sphinx-gallery = python-final.callPackage ././packages/sphinx-gallery {
         inherit inputs;
       };
+      bubop = python-final.callPackage ././packages/bubop { inherit inputs; };
+      item-synchronizer =
+        python-final.callPackage ././packages/item-synchronizer {
+          inherit inputs;
+        };
+      gkeepapi =
+        python-final.callPackage ././packages/gkeepapi { inherit inputs; };
       inherit (final) frackit;
       # TODO: psycopg overrides can be removed after a while and test gpt-engineer build
       psycopg2 =
