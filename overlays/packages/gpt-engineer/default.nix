@@ -39,7 +39,7 @@ python3.pkgs.buildPythonApplication {
   # development dependencies from pyproject.toml
   postPatch = ''
     substituteInPlace gpt_engineer/collect.py \
-      --replace "send_learning(learnings)" ""
+      --replace "send_learning(learnings)" "return"
     substituteInPlace pyproject.toml \
       --replace "'rudder-sdk-python == 2.0.2'," "" \
       --replace "'pytest == 7.3.1'," "" \
@@ -51,7 +51,7 @@ python3.pkgs.buildPythonApplication {
       --replace "'ruff == 0.0.272'," ""
   '';
 
-  pythonImportsCheck = [ "gpt_engineer" ];
+  pythonImportsCheck = [ "gpt_engineer" "gpt_engineer.collect" ];
 
   checkInputs = with python3.pkgs; [ pytestCheckHook pytest ];
 
