@@ -7173,16 +7173,17 @@
     "gkeepapi-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1695835519,
-        "narHash": "sha256-Gg72aLAEGfO/ssOCXuqN3Q91sWpSfL0Qqfgd7A/DMWU=",
+        "lastModified": 1687714260,
+        "narHash": "sha256-UyYiQ96M7/CICIbFyE8n105XjX/PFsR2Ry8SUNlwK40=",
         "owner": "kiwiz",
         "repo": "gkeepapi",
-        "rev": "47b9a2bcd9228505a0f3362c5fbf54c46d140a93",
+        "rev": "3d91b57e44e38f964309113974cf01a190b26c39",
         "type": "github"
       },
       "original": {
         "owner": "kiwiz",
         "repo": "gkeepapi",
+        "rev": "3d91b57e44e38f964309113974cf01a190b26c39",
         "type": "github"
       }
     },
