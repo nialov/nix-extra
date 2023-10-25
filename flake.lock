@@ -163,11 +163,11 @@
     "allas-cli-utils-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1694690742,
-        "narHash": "sha256-BjAkVXxRd1FG11oBaxgDwQ9tFES00x0YMFmDkzPJyzQ=",
+        "lastModified": 1698066562,
+        "narHash": "sha256-cMauhrFFbsplG+xUraMcVPszODaesUlzb/02J2w8GCE=",
         "owner": "CSCfi",
         "repo": "allas-cli-utils",
-        "rev": "dc06647654b844ea84abbf71f4d1215cdae5b5ea",
+        "rev": "413b6094730120822bf9c59b33773ebba1031a0d",
         "type": "github"
       },
       "original": {
@@ -7486,11 +7486,11 @@
     "gpt-engineer-src_4": {
       "flake": false,
       "locked": {
-        "lastModified": 1697833199,
-        "narHash": "sha256-ipQvSHdePAUiMcMIAVRm49p/TIy+hJcvpxblbA0XSNQ=",
+        "lastModified": 1698078003,
+        "narHash": "sha256-g0tsUBcuteqm80JKAN0ZmitGIUFhCqfs0FPP+728dbg=",
         "owner": "AntonOsika",
         "repo": "gpt-engineer",
-        "rev": "f67c1bdb4018b7925c79be3a2b01d409bf6d4812",
+        "rev": "2e162862cb4b322afdcbb8aa3bbe152c3dde8138",
         "type": "github"
       },
       "original": {
@@ -8686,11 +8686,11 @@
         "topiary": "topiary_8"
       },
       "locked": {
-        "lastModified": 1697796574,
-        "narHash": "sha256-Ag32WsYYCUPoV+r7qBO2SbvLZz+RnVH4QHVxZ0MPqq8=",
+        "lastModified": 1698190805,
+        "narHash": "sha256-owLapXI6co+jZzzR3jaOc7c+xX6sxUSHLot55OYSPpU=",
         "owner": "tweag",
         "repo": "nickel",
-        "rev": "fe66a02bded97bb804521a79b2272ad1591f807c",
+        "rev": "f0de135af5e559b587df5223ca4bfab8675c54ce",
         "type": "github"
       },
       "original": {
@@ -11855,11 +11855,11 @@
     "pandera-src_4": {
       "flake": false,
       "locked": {
-        "lastModified": 1697761953,
-        "narHash": "sha256-ZMNhVbfQntp00DC72dnq+rSccsCA8wiu7wewb2Oyj7Q=",
+        "lastModified": 1698085308,
+        "narHash": "sha256-2Rxx3nsX8zEWwI2pJoCI+9R+B69nmJUbHC1qUyBNMnk=",
         "owner": "unionai-oss",
         "repo": "pandera",
-        "rev": "fb680ac00a3c007ff5f3bbab51fadb867542b10c",
+        "rev": "cf6b5e45dfb0cd593f948b12a2a327bbf3699657",
         "type": "github"
       },
       "original": {
@@ -14292,11 +14292,11 @@
     "sphinx-gallery-src_4": {
       "flake": false,
       "locked": {
-        "lastModified": 1696485267,
-        "narHash": "sha256-AgPr1ILwZpl61yngTtHIcLJjvsKzjwPRAQHGdjovm2U=",
+        "lastModified": 1698192699,
+        "narHash": "sha256-VjUeHY5gv4FdR07AI7U+GtDdcEFNwn3UnrGytwoFRnI=",
         "owner": "sphinx-gallery",
         "repo": "sphinx-gallery",
-        "rev": "7725679181d4c6e8b0ce57d1def5754751ec5a4c",
+        "rev": "f0523c230e3585d46b20c04d5fdbdadeaa6e45de",
         "type": "github"
       },
       "original": {
@@ -17754,11 +17754,11 @@
     "ytdl-sub-src_10": {
       "flake": false,
       "locked": {
-        "lastModified": 1697919200,
-        "narHash": "sha256-KuLgQHwRxMNP+0wC4JQacPna2LOW64C+867ZVqj8hs8=",
+        "lastModified": 1698164585,
+        "narHash": "sha256-R6QxhRVDlysKewNWNsTR96hVxk+7a17Vyx2/lzuDgMw=",
         "owner": "jmbannon",
         "repo": "ytdl-sub",
-        "rev": "8a02a40ca3de1f43a17be4c92ef2e2bee1184f62",
+        "rev": "ff857c84afbc6795a02defb4fb392c077e6df46a",
         "type": "github"
       },
       "original": {
