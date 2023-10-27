@@ -53,7 +53,11 @@ python3.pkgs.buildPythonApplication {
   #   --replace "termcolor==2.3.0" "termcolor >= 2.0.0" \
   #   --replace "'ruff == 0.0.272'," ""
 
-  pythonImportsCheck = [ "gpt_engineer" "gpt_engineer.cli.collect" ];
+  pythonImportsCheck = [
+    "gpt_engineer"
+    # Tested because contents are substituted in postPatch
+    "gpt_engineer.cli.collect"
+  ];
 
   checkInputs = with python3.pkgs; [ pytestCheckHook pytest ];
 
@@ -64,6 +68,8 @@ python3.pkgs.buildPythonApplication {
     "tests/test_ai.py"
     # package install test
     "tests/test_install.py"
+    # openai test
+    "tests/test_token_usage.py"
   ];
 
   meta = with lib; {
