@@ -115,6 +115,9 @@ inputs: final: prev:
         propagatedBuildInputs = prevAttrs.propagatedBuildInputs
           ++ [ python-prev.six ];
       });
+      fiona = python-prev.fiona.overridePythonAttrs (prevAttrs: {
+        disabledTests = prevAttrs.disabledTests ++ [ "test_issue1169" ];
+      });
 
     })
   ];

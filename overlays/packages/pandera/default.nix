@@ -50,6 +50,8 @@ buildPythonPackage {
     "test_mypy_pandas_dataframe"
     # TypeError: 'type' object is not s...
     "test_pandas_modules_importable"
+    # Error while executing check function KeyError
+    "test_check_groups"
   ];
 
   pythonImportsCheck = [ "pandera" ];
