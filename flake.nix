@@ -48,11 +48,11 @@
     nix-filter.url = "github:numtide/nix-filter";
     fractopo = {
       url = "github:nialov/fractopo";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
     tracerepo = {
       url = "github:nialov/tracerepo";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # Custom non-flake sources
