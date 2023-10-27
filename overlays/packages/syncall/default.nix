@@ -10,6 +10,12 @@ python3.pkgs.buildPythonApplication {
     substituteInPlace pyproject.toml \
       --replace "poetry>=0.12" poetry-core \
       --replace poetry.masonry.api poetry.core.masonry.api
+    substituteInPlace syncall/asana/asana_side.py \
+      --replace "asana.Client" "asana.ApiClient"
+    substituteInPlace syncall/scripts/tw_asana_sync.py \
+      --replace "asana.Client" "asana.ApiClient"
+    substituteInPlace syncall/asana/utils.py \
+      --replace "asana.Client" "asana.ApiClient"
   '';
   nativeBuildInputs = [ python3.pkgs.poetry-core ];
   propagatedBuildInputs = with python3.pkgs; [

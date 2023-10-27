@@ -1,5 +1,5 @@
 { inputs, lib, buildPythonPackage, enum34, future, gpsoauth, mock
-, pytestCheckHook, setuptools, six }:
+, pytestCheckHook, six, setuptools, cython }:
 
 buildPythonPackage {
   pname = "gkeepapi";
@@ -7,8 +7,16 @@ buildPythonPackage {
   format = "pyproject";
 
   src = inputs.gkeepapi-src;
+  # postPatch = ''
+  #   rm Makefile
+  # '';
+  postPatch = ''
+    substituteInPlace pyproject.toml \
+      --replace "setuptools ~= 58.0" "setuptools" \
+      --replace "cython ~= 0.29.0" "cython"
+  '';
 
-  nativeBuildInputs = [ setuptools ];
+  nativeBuildInputs = [ setuptools cython ];
   propagatedBuildInputs = [ enum34 future gpsoauth mock ];
 
   checkInputs = [ pytestCheckHook six ];

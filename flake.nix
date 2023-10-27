@@ -48,11 +48,11 @@
     nix-filter.url = "github:numtide/nix-filter";
     fractopo = {
       url = "github:nialov/fractopo";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
     tracerepo = {
       url = "github:nialov/tracerepo";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # Custom non-flake sources
@@ -159,7 +159,8 @@
       flake = false;
     };
     gkeepapi-src = {
-      url = "github:kiwiz/gkeepapi";
+      # TODO: Newer build with flit did not work. Take a look in 2024 if the package is added to nixpkgs
+      url = "github:kiwiz/gkeepapi/3d91b57e44e38f964309113974cf01a190b26c39";
       flake = false;
     };
   };
