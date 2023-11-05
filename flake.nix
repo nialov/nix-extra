@@ -34,8 +34,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     doit-ext-src = {
-      url = "github:nialov/doit-ext/refactor-remove-python-build-tools";
-      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:nialov/doit-ext";
+      flake = false;
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
     deploy-rs-input = {
       url = "github:serokell/deploy-rs";
@@ -192,7 +193,6 @@
       fullOverlay = lib.composeManyExtensions [
         localOverlay
         inputOverlay
-        inputs.doit-ext-src.overlays.default
         self.overlays.utils
       ];
 

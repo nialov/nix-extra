@@ -103,6 +103,8 @@ inputs: final: prev:
         };
       gkeepapi =
         python-final.callPackage ././packages/gkeepapi { inherit inputs; };
+      doit-ext =
+        python-final.callPackage ././packages/doit-ext { inherit inputs; };
       inherit (final) frackit;
       # TODO: psycopg overrides can be removed after a while and test gpt-engineer build
       psycopg2 =
