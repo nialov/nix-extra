@@ -43,7 +43,7 @@
     };
     mosaic-src = {
       url = "github:nialov/mosaic";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-filter.url = "github:numtide/nix-filter";
     fractopo = {
@@ -54,7 +54,6 @@
       url = "github:nialov/tracerepo";
       # inputs.nixpkgs.follows = "nixpkgs";
     };
-
     # Custom non-flake sources
     tmux-nvim-src = {
       url = "github:aserowy/tmux.nvim";
