@@ -262,13 +262,13 @@
             }, hostPkgs ? pkgs }:
               nixos-lib.runTest { inherit imports defaults hostPkgs; };
 
-          in lib.recursiveUpdate {
+          in lib.foldl' lib.recursiveUpdate {
             preCommitCheck = inputs.pre-commit-hooks.lib.${system}.run
               (import ././pre-commit.nix { inherit pkgs; });
             homerModule = moduleTest { imports = [ ./nixos/tests/homer.nix ]; };
             flipperzeroModule =
               moduleTest { imports = [ ./nixos/tests/flipperzero.nix ]; };
-          } self.packages."${system}";
+          } [ self.packages."${system}" self.devShells."${system}" ];
 
           packages = {
             inherit (pkgs)
