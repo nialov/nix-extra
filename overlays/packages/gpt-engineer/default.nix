@@ -1,4 +1,4 @@
-{ inputs, lib, python3, }:
+{ inputs, lib, python3, relax-pyproject-dependencies }:
 
 python3.pkgs.buildPythonApplication {
   pname = "gpt-engineer";
@@ -12,7 +12,7 @@ python3.pkgs.buildPythonApplication {
   #   rev = "v${version}";
   #   hash = "sha256-06u0X/73xpDrFuhG5Mq1NTft38JmiktH1dSpXSA3QH0=";
   # };
-  patches = [ ./pyproject.patch ];
+  # patches = [ ./pyproject.patch ];
 
   nativeBuildInputs = [
     python3.pkgs.setuptools
@@ -20,6 +20,7 @@ python3.pkgs.buildPythonApplication {
     python3.pkgs.pythonRelaxDepsHook
   ];
   pythonRelaxDeps = true;
+  pythonRemoveDeps = true;
 
   propagatedBuildInputs = with python3.pkgs; [
     tkinter
@@ -34,12 +35,14 @@ python3.pkgs.buildPythonApplication {
       psycopg2 = psycopg2.overrideAttrs (_: _: { doCheck = false; });
     })
     backoff
-
+    llama-index
   ];
 
   # Disable rudder-sdk-python usage (telemetry) and remove
   # development dependencies from pyproject.toml
   postPatch = ''
+    ${relax-pyproject-dependencies}/bin/relax-pyproject-dependencies ./pyproject.toml \
+        black pytest mypy pre-commit ruff agent-protocol tree_sitter_languages rank-bm25 rudder-sdk-python
     substituteInPlace gpt_engineer/cli/collect.py \
       --replace "send_learning(learnings)" "return"
   '';

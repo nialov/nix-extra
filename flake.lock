@@ -8043,6 +8043,22 @@
         "type": "github"
       }
     },
+    "llama-index-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1699145345,
+        "narHash": "sha256-V2p6EWt8d8opx0Km1CREtH8Eg7UaSSnXv8UEhqJIhbs=",
+        "owner": "run-llama",
+        "repo": "llama_index",
+        "rev": "ca7e10d0743eb309eb07ed8ab6c636ede77428c9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "run-llama",
+        "repo": "llama_index",
+        "type": "github"
+      }
+    },
     "lowdown-src": {
       "flake": false,
       "locked": {
@@ -13160,6 +13176,7 @@
         "homer-src": "homer-src_8",
         "item-synchronizer-src": "item-synchronizer-src",
         "kibitzr-src": "kibitzr-src_8",
+        "llama-index-src": "llama-index-src",
         "mosaic-src": "mosaic-src_4",
         "neoai-nvim-src": "neoai-nvim-src_8",
         "nickel-src": "nickel-src_8",

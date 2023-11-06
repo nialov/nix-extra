@@ -163,6 +163,10 @@
       url = "github:kiwiz/gkeepapi/3d91b57e44e38f964309113974cf01a190b26c39";
       flake = false;
     };
+    llama-index-src = {
+      url = "github:run-llama/llama_index";
+      flake = false;
+    };
   };
 
   outputs = { self, ... }@inputs:
@@ -282,7 +286,7 @@
             inherit (pkgs.vimPlugins) chatgpt-nvim oil-nvim neoai-nvim cmp-ai;
             inherit (pkgs.python3Packages)
               doit-ext sphinxcontrib-mermaid sphinx-gallery pandera bubop
-              item-synchronizer gkeepapi;
+              item-synchronizer gkeepapi llama-index;
             inherit (pkgsFrackit) frackit;
             inherit (pkgsStable) tmuxp;
             inherit (pkgsGptEngineer) gpt-engineer;
