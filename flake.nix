@@ -132,8 +132,10 @@
       url = "github:stevegt/grokker";
       flake = false;
     };
+    # TODO: Check fix-attempt-gpt-engineer-fix branch for building newer versions
     gpt-engineer-src = {
-      url = "github:AntonOsika/gpt-engineer";
+      url =
+        "github:AntonOsika/gpt-engineer/2a66dd57f6e32940b7e783ab3cd5fe6a19461d6b";
       flake = false;
     };
     frackit-src = {

@@ -7518,16 +7518,17 @@
     "gpt-engineer-src_4": {
       "flake": false,
       "locked": {
-        "lastModified": 1699014547,
-        "narHash": "sha256-K7VaGHuHcklR3KLLwD9Jyk/+G0CJRFtIVKfpFAcZ0s4=",
+        "lastModified": 1698355817,
+        "narHash": "sha256-a/n9dkWVk+QAluIE/OIVbV7wDW8BBOx2Z9N+vrA3f9A=",
         "owner": "AntonOsika",
         "repo": "gpt-engineer",
-        "rev": "92e4f0ed224de334906aa88e74881b85a180df01",
+        "rev": "2a66dd57f6e32940b7e783ab3cd5fe6a19461d6b",
         "type": "github"
       },
       "original": {
         "owner": "AntonOsika",
         "repo": "gpt-engineer",
+        "rev": "2a66dd57f6e32940b7e783ab3cd5fe6a19461d6b",
         "type": "github"
       }
     },
