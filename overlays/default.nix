@@ -40,6 +40,14 @@ inputs: final: prev:
         b git
       } branch -d {}'
     '');
+  relax-pyproject-dependencies = prev.writeShellApplication {
+    name = "relax-pyproject-dependencies";
+    runtimeInputs = [ (prev.python3.withPackages (p: with p; [ tomlkit ])) ];
+    text = ''
+      python3 ${./pyproject.py} "$@"
+    '';
+
+  };
 
   # TODO: This needs to be upstreamed. After v1.2 release in main repo, pr in nixpkgs
   pre-commit-hook-ensure-sops =
