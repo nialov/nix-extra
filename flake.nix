@@ -270,7 +270,10 @@
             homerModule = moduleTest { imports = [ ./nixos/tests/homer.nix ]; };
             flipperzeroModule =
               moduleTest { imports = [ ./nixos/tests/flipperzero.nix ]; };
-          } [ self.packages."${system}" self.devShells."${system}" ];
+          } [
+            self.packages."${system}"
+            { devShell = self.devShells."${system}".default; }
+          ];
 
           packages = {
             inherit (pkgs)
