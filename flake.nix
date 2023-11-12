@@ -149,7 +149,9 @@
     };
     syncall-src = {
       # url = "github:bergercookier/syncall";
-      url = "git+https://github.com/bergercookie/syncall?submodules=1";
+      # TODO: New versions use poetry_dynamic_versioning as build tool in pyproject.toml
+      url =
+        "git+https://github.com/bergercookie/syncall?rev=ccfeb306c5ceeee509b2aed4ae12da710e3f1b35&submodules=1";
       flake = false;
     };
     bubop-src = {
