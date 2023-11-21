@@ -9,7 +9,7 @@ buildGoModule {
   # All tests use OpenAI API
   doCheck = false;
 
-  vendorHash = "sha256-kV0Q1oVvV1AmBSv6q5nal3683QOXZeEqeIhWBgeVGMY=";
+  vendorHash = "sha256-jmKy1GnGmbwcQNDjQoBkUil/xo5dykwzhYjNmlxkYDs=";
 
   ldflags = [ "-s" "-w" ];
 
