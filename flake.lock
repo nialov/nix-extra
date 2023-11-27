@@ -10142,11 +10142,11 @@
     },
     "nixpkgs_42": {
       "locked": {
-        "lastModified": 1700612854,
-        "narHash": "sha256-yrQ8osMD+vDLGFX7pcwsY/Qr5PUd6OmDMYJZzZi0+zc=",
+        "lastModified": 1700794826,
+        "narHash": "sha256-RyJTnTNKhO0yqRpDISk03I/4A67/dp96YRxc86YOPgU=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "19cbff58383a4ae384dea4d1d0c823d72b49d614",
+        "rev": "5a09cb4b393d58f9ed0d9ca1555016a8543c2ac8",
         "type": "github"
       },
       "original": {
@@ -12755,11 +12755,11 @@
     "sphinx-gallery-src_4": {
       "flake": false,
       "locked": {
-        "lastModified": 1700575970,
-        "narHash": "sha256-jz2u0GWoGEMpIWbf1VUydfFi+oP3GoqEk+TsPW4jOAA=",
+        "lastModified": 1701047047,
+        "narHash": "sha256-lIxv4y4TGvtO7zg2tsTMaA12UPp+2QJa2F/YUHmspaQ=",
         "owner": "sphinx-gallery",
         "repo": "sphinx-gallery",
-        "rev": "a49a66346655fa745db28707bba47dfba1cd7681",
+        "rev": "d9496fc2a2688dda9f5e154a593628c4219d5037",
         "type": "github"
       },
       "original": {
