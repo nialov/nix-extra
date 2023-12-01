@@ -10784,6 +10784,23 @@
         "type": "github"
       }
     },
+    "powerlaw-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1629249151,
+        "narHash": "sha256-x3jXk+xOQpIeEGlzYqNwuZNPpkesF0IOX8gUhhwHk5Q=",
+        "owner": "jeffalstott",
+        "repo": "powerlaw",
+        "rev": "6732699d790edbe27c2790bf22c3ef7355d2b07e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jeffalstott",
+        "repo": "powerlaw",
+        "rev": "6732699d790edbe27c2790bf22c3ef7355d2b07e",
+        "type": "github"
+      }
+    },
     "pre-commit-hooks": {
       "inputs": {
         "flake-compat": "flake-compat_6",
@@ -11601,6 +11618,7 @@
         "nixpkgs-kibitzr": "nixpkgs-kibitzr_7",
         "nixpkgs-stable": "nixpkgs-stable_29",
         "pandera-src": "pandera-src_4",
+        "powerlaw-src": "powerlaw-src",
         "pre-commit-hooks": "pre-commit-hooks_23",
         "sphinx-gallery-src": "sphinx-gallery-src_4",
         "sphinxcontrib-mermaid-src": "sphinxcontrib-mermaid-src_7",

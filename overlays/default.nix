@@ -128,6 +128,8 @@ inputs: final: prev:
       fiona = python-prev.fiona.overridePythonAttrs (prevAttrs: {
         disabledTests = prevAttrs.disabledTests ++ [ "test_issue1169" ];
       });
+      powerlaw =
+        python-final.callPackage ././packages/powerlaw { inherit inputs; };
 
     })
   ];

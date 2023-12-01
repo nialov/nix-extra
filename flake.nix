@@ -167,6 +167,12 @@
       url = "github:kiwiz/gkeepapi/3d91b57e44e38f964309113974cf01a190b26c39";
       flake = false;
     };
+    powerlaw-src = {
+      # TODO: Newer build with flit did not work. Take a look in 2024 if the package is added to nixpkgs
+      url =
+        "github:jeffalstott/powerlaw/6732699d790edbe27c2790bf22c3ef7355d2b07e";
+      flake = false;
+    };
   };
 
   outputs = { self, ... }@inputs:
@@ -289,7 +295,7 @@
             inherit (pkgs.vimPlugins) chatgpt-nvim oil-nvim neoai-nvim cmp-ai;
             inherit (pkgs.python3Packages)
               doit-ext sphinxcontrib-mermaid sphinx-gallery pandera bubop
-              item-synchronizer gkeepapi;
+              item-synchronizer gkeepapi powerlaw;
             inherit (pkgsFrackit) frackit;
             inherit (pkgsStable) tmuxp;
             inherit (pkgsGptEngineer) gpt-engineer;
