@@ -5259,11 +5259,11 @@
         "pre-commit-hooks": "pre-commit-hooks_21"
       },
       "locked": {
-        "lastModified": 1699863368,
-        "narHash": "sha256-lh18HW0cqKl1QFlnIbWoh8pEmrLDQQYnx8NNaig8ftI=",
+        "lastModified": 1701447097,
+        "narHash": "sha256-lO6/lAG5gV6mE1+Vi04eOGafoYF3HMhCYXhffJtY9GI=",
         "owner": "nialov",
         "repo": "fractopo",
-        "rev": "f2b1ffee5f1ed60d31dc085ad20c1063931e5b73",
+        "rev": "b72fd62fe3ba7319af8ae433f672ed31e6948506",
         "type": "github"
       },
       "original": {
