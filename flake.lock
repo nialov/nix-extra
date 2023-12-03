@@ -6757,11 +6757,11 @@
     "grokker-src_7": {
       "flake": false,
       "locked": {
-        "lastModified": 1700537885,
-        "narHash": "sha256-s1WYloavqVefKu3XdalStnjYW4t6M3bQg65GQ4NoieU=",
+        "lastModified": 1701503149,
+        "narHash": "sha256-uX5YYoNUadhGuZ+GdfvlaRFVAb4OtWxgYcCGUizGCPw=",
         "owner": "stevegt",
         "repo": "grokker",
-        "rev": "9da23730c7691e81ac9046ece75b2c7b17445cde",
+        "rev": "5f2aa6c606531ce6285f9db15b7cad2fe5d11918",
         "type": "github"
       },
       "original": {
@@ -7685,11 +7685,11 @@
         "topiary": "topiary_7"
       },
       "locked": {
-        "lastModified": 1700672218,
-        "narHash": "sha256-SLnmq6w9XKUDFZqYPE1p9TolcDlo69hiUrVE6O6609U=",
+        "lastModified": 1701425115,
+        "narHash": "sha256-CAEjkA96xd2OMqtnQiTGW/MCOXrekgNZjhxewMXTAzM=",
         "owner": "tweag",
         "repo": "nickel",
-        "rev": "f7ffe31697d639ba7d10bcb757a3a8ba73f011a7",
+        "rev": "5c4298f68536035499706d47181abea288224444",
         "type": "github"
       },
       "original": {
@@ -10142,11 +10142,11 @@
     },
     "nixpkgs_42": {
       "locked": {
-        "lastModified": 1700794826,
-        "narHash": "sha256-RyJTnTNKhO0yqRpDISk03I/4A67/dp96YRxc86YOPgU=",
+        "lastModified": 1701253981,
+        "narHash": "sha256-ztaDIyZ7HrTAfEEUt9AtTDNoCYxUdSd6NrRHaYOIxtk=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "5a09cb4b393d58f9ed0d9ca1555016a8543c2ac8",
+        "rev": "e92039b55bcd58469325ded85d4f58dd5a4eaf58",
         "type": "github"
       },
       "original": {
@@ -12773,11 +12773,11 @@
     "sphinx-gallery-src_4": {
       "flake": false,
       "locked": {
-        "lastModified": 1701047047,
-        "narHash": "sha256-lIxv4y4TGvtO7zg2tsTMaA12UPp+2QJa2F/YUHmspaQ=",
+        "lastModified": 1701099367,
+        "narHash": "sha256-IEEauW3x8VtfKrdSVNXR8NGf0rNkHGRW1rMsKtV8ofI=",
         "owner": "sphinx-gallery",
         "repo": "sphinx-gallery",
-        "rev": "d9496fc2a2688dda9f5e154a593628c4219d5037",
+        "rev": "1d7494e5efc8a87f6670f9ba5d6e46547d9bdd0a",
         "type": "github"
       },
       "original": {
@@ -12951,6 +12951,7 @@
       "locked": {
         "lastModified": 1693396206,
         "narHash": "sha256-TWiMvNJqvTWjFCddEV23W1q6Jc1WoYzg+D5NvC5uNKM=",
+        "ref": "refs/heads/master",
         "rev": "ccfeb306c5ceeee509b2aed4ae12da710e3f1b35",
         "revCount": 171,
         "submodules": true,
