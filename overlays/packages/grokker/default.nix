@@ -7,9 +7,12 @@ buildGoModule {
 
   src = inputs.grokker-src;
   # All tests use OpenAI API
+  postPatch = ''
+    cd v3/
+  '';
   doCheck = false;
 
-  vendorHash = "sha256-jmKy1GnGmbwcQNDjQoBkUil/xo5dykwzhYjNmlxkYDs=";
+  vendorHash = "sha256-AEZzHNHSkAF1GG9PXh92oMQMtLUeAXbXxjGg0v7K/u8=";
 
   ldflags = [ "-s" "-w" ];
 
