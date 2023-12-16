@@ -55,6 +55,10 @@
       url = "github:nialov/tracerepo";
       # inputs.nixpkgs.follows = "nixpkgs";
     };
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
+      inputs.nixpkgs-lib.follows = "nixpkgs";
+    };
     # Custom non-flake sources
     tmux-nvim-src = {
       url = "github:aserowy/tmux.nvim";
@@ -302,24 +306,39 @@
             inherit (pkgsKibitzr) kibitzr;
           };
         });
+      flakePart = inputs.flake-parts.lib.mkFlake { inherit inputs; }
+        ({ inputs, ... }: {
+          systems = [ "x86_64-linux" ];
+          imports = [ inputs.pre-commit-hooks.flakeModule ];
 
-    in lib.recursiveUpdate {
-      overlays = {
-        default = fullOverlay;
-        # Overlay for only e.g. library utils such as filter and local packages
-        # Can use this overlay instead of the default one to avoid (some) circular dependencies
-        utils = lib.composeManyExtensions [
-          (_: _: {
-            # numtide/nix-filter library used for filtering local packages sources
-            filter = inputs.nix-filter.lib;
-          })
-          localOverlay
-        ];
-      };
-      nixosModules = {
-        ytdl-sub = import ./nixos/modules/ytdl-sub;
-        homer = import ./nixos/modules/homer;
-        flipperzero = import ./nixos/modules/flipperzero.nix;
-      };
-    } perSystem;
+          flake = {
+            overlays = {
+              default = fullOverlay;
+              utils = lib.composeManyExtensions [
+                (_: _: {
+                  # numtide/nix-filter library used for filtering local packages sources
+                  filter = inputs.nix-filter.lib;
+                })
+                localOverlay
+              ];
+
+            };
+            nixosModules = {
+              ytdl-sub = import ./nixos/modules/ytdl-sub;
+              homer = import ./nixos/modules/homer;
+              flipperzero = import ./nixos/modules/flipperzero.nix;
+            };
+          };
+
+          # perSystem = { self', pkgs, ... }:
+          perSystem = { config, system, pkgs, ... }: {
+            _module.args.pkgs = import inputs.nixpkgs {
+              inherit system;
+              overlays = [ self.overlays.default ];
+              config = { allowUnfree = true; };
+            };
+          };
+        });
+
+    in lib.foldl' lib.recursiveUpdate { } [ perSystem flakePart ];
 }
