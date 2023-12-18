@@ -183,8 +183,6 @@
 
     let
       inherit (inputs.nixpkgs) lib;
-      nixos-lib = import (inputs.nixpkgs + "/nixos/lib") { };
-      # lib = inputs.nixpkgs.lib;
 
       localOverlay = import ./overlays inputs;
       inputOverlay = _: prev:
@@ -210,136 +208,42 @@
         self.overlays.utils
       ];
 
-      perSystem = inputs.flake-utils.lib.eachSystem [ "x86_64-linux" ] (system:
-
-        let
-          mkPkgs = nixpkgs:
-            import nixpkgs {
-              inherit system;
-              overlays = [ self.overlays.default ];
-            };
-          pkgs = mkPkgs inputs.nixpkgs;
-          pkgsFrackit = mkPkgs inputs.nixpkgs-frackit;
-          pkgsStable = mkPkgs inputs.nixpkgs-stable;
-          pkgsGptEngineer = mkPkgs inputs.nixpkgs-gpt-engineer;
-          pkgsKibitzr = mkPkgs inputs.nixpkgs-kibitzr;
-          # pkgs = import inputs.nixpkgs {
-          #   inherit system;
-          #   overlays = [ self.overlays.default ];
-          # };
-          # pkgsFrackit = import inputs.nixpkgs-frackit {
-          #   inherit system;
-          #   overlays = [ self.overlays.default ];
-          # };
-          # pkgsStable = import inputs.nixpkgs-stable {
-          #   inherit system;
-          #   overlays = [self.overlays.default];
-          # };
-        in {
-
-          frackit-python = pkgsFrackit.mkShell {
-            buildInputs = with pkgsFrackit;
-              [
-                python3
-
-              ] ++ (with pkgsFrackit.python3Packages; [
-                networkx
-                geopandas
-                jupyterlab
-                matplotlib
-                scipy
-                frackit
-              ]);
-          };
-          # };
-
-          # Filter out packages which have meta.broken == true
-          checks = let
-
-            moduleTest = { imports, defaults ? {
-              imports = builtins.attrValues self.nixosModules;
-              nixpkgs.pkgs = pkgs;
-            }, hostPkgs ? pkgs }:
-              nixos-lib.runTest { inherit imports defaults hostPkgs; };
-
-          in lib.foldl' lib.recursiveUpdate {
-            # preCommitCheck = inputs.pre-commit-hooks.lib.${system}.run (import ././pre-commit.nix { inherit pkgs; });
-            homerModule = moduleTest { imports = [ ./nixos/tests/homer.nix ]; };
-            flipperzeroModule =
-              moduleTest { imports = [ ./nixos/tests/flipperzero.nix ]; };
-          } [
-            self.packages."${system}"
-            # { devShell = self.devShells."${system}".default; }
-          ];
-
-          packages = {
-            inherit (pkgs)
-              homer taskfzf pathnames backupper wiki-builder wsl-open-dynamic
-              pretty-task ytdl-sub bootstrapSecretsScript tasklite-core rstcheck
-              copier pre-commit-hook-ensure-sops deploy-rs
-              clean-git-branches-script allas-cli-utils grokker
-              poetry-with-c-tooling synonym-cli mosaic sync-git-tag-with-poetry
-              resolve-version update-changelog pre-release poetry-run fractopo
-              tracerepo syncall;
-            inherit (pkgs.vimPlugins) chatgpt-nvim oil-nvim neoai-nvim cmp-ai;
-            inherit (pkgs.python3Packages)
-              doit-ext sphinxcontrib-mermaid sphinx-gallery pandera bubop
-              item-synchronizer gkeepapi powerlaw;
-            inherit (pkgsFrackit) frackit;
-            inherit (pkgsStable) tmuxp;
-            inherit (pkgsGptEngineer) gpt-engineer;
-            inherit (pkgsKibitzr) kibitzr;
-          };
-        });
-
       flakePart = inputs.flake-parts.lib.mkFlake { inherit inputs; }
-        ({ inputs, ... }: {
-          systems = [ "x86_64-linux" ];
-          imports = [ ./flakeModules/custom-pre-commit-hooks.nix ];
-
-          flake = {
-            overlays = {
-              default = fullOverlay;
-              utils = lib.composeManyExtensions [
-                (_: _: {
-                  # numtide/nix-filter library used for filtering local packages sources
-                  filter = inputs.nix-filter.lib;
-                })
-                localOverlay
-              ];
-
+        ({ inputs, flake-parts-lib, ... }:
+          let
+            inherit (flake-parts-lib) importApply;
+            flakeModules = {
+              custom-pre-commit-hooks =
+                importApply ./flakeModules/custom-pre-commit-hooks.nix {
+                  inherit inputs;
+                };
             };
-            nixosModules = {
-              ytdl-sub = import ./nixos/modules/ytdl-sub;
-              homer = import ./nixos/modules/homer;
-              flipperzero = import ./nixos/modules/flipperzero.nix;
-            };
-          };
+          in {
+            systems = [ "x86_64-linux" ];
+            imports = [ flakeModules.custom-pre-commit-hooks ./per-system.nix ];
 
-          # perSystem = { self', pkgs, ... }:
-          perSystem = { config, system, pkgs, ... }: {
-            _module.args.pkgs = import inputs.nixpkgs {
-              inherit system;
-              overlays = [ self.overlays.default ];
-              config = { allowUnfree = true; };
-            };
-            devShells = {
-              default = pkgs.mkShell {
-                buildInputs = with pkgs; [
-                  bash
-                  # task execution from dodo.py
-                  git
-                  nixVersions.stable
-                  # Formatters & linters
-                  pre-commit
-                  watchexec
+            flake = {
+              overlays = {
+                default = fullOverlay;
+                utils = lib.composeManyExtensions [
+                  (_: _: {
+                    # numtide/nix-filter library used for filtering local packages sources
+                    filter = inputs.nix-filter.lib;
+                  })
+                  localOverlay
                 ];
-                # Include pre-commit check shellHook so they can be ran with `pre-commit ...`
-                shellHook = config.pre-commit.installationScript;
-              };
-            };
-          };
-        });
 
-    in lib.foldl' lib.recursiveUpdate { } [ perSystem flakePart ];
+              };
+              nixosModules = {
+                ytdl-sub = import ./nixos/modules/ytdl-sub;
+                homer = import ./nixos/modules/homer;
+                flipperzero = import ./nixos/modules/flipperzero.nix;
+              };
+              inherit flakeModules;
+            };
+
+            # perSystem = { self', pkgs, ... }:
+          });
+
+    in lib.foldl' lib.recursiveUpdate { } [ flakePart ];
 }

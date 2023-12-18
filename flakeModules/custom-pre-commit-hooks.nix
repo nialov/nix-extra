@@ -1,16 +1,16 @@
-({ self, inputs, ... }: {
+({ inputs, ... }: {
   systems = [ "x86_64-linux" ];
   imports = [ inputs.pre-commit-hooks.flakeModule ];
 
   flake = { };
 
   # perSystem = { self', pkgs, ... }:
-  perSystem = { config, system, pkgs, lib, ... }: {
-    _module.args.pkgs = lib.mkDefault (import inputs.nixpkgs {
-      inherit system;
-      overlays = [ self.overlays.default ];
-      config = { };
-    });
+  perSystem = { pkgs, lib, ... }: {
+    # _module.args.pkgs = lib.mkDefault (import inputs.nixpkgs {
+    #   inherit system;
+    #   overlays = [ self.overlays.default ];
+    #   config = { };
+    # });
     pre-commit = {
       check.enable = lib.mkDefault false;
       settings =
