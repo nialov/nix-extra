@@ -237,35 +237,21 @@
           # };
         in {
 
-          devShells = {
-            default = pkgs.mkShell {
-              buildInputs = with pkgs; [
-                bash
-                # task execution from dodo.py
-                git
-                nixVersions.stable
-                # Formatters & linters
-                pre-commit
-                watchexec
-              ];
-              # Include pre-commit check shellHook so they can be ran with `pre-commit ...`
-              inherit (self.checks."${system}".preCommitCheck) shellHook;
-            };
-            frackit-python = pkgsFrackit.mkShell {
-              buildInputs = with pkgsFrackit;
-                [
-                  python3
+          frackit-python = pkgsFrackit.mkShell {
+            buildInputs = with pkgsFrackit;
+              [
+                python3
 
-                ] ++ (with pkgsFrackit.python3Packages; [
-                  networkx
-                  geopandas
-                  jupyterlab
-                  matplotlib
-                  scipy
-                  frackit
-                ]);
-            };
+              ] ++ (with pkgsFrackit.python3Packages; [
+                networkx
+                geopandas
+                jupyterlab
+                matplotlib
+                scipy
+                frackit
+              ]);
           };
+          # };
 
           # Filter out packages which have meta.broken == true
           checks = let
@@ -277,14 +263,13 @@
               nixos-lib.runTest { inherit imports defaults hostPkgs; };
 
           in lib.foldl' lib.recursiveUpdate {
-            preCommitCheck = inputs.pre-commit-hooks.lib.${system}.run
-              (import ././pre-commit.nix { inherit pkgs; });
+            # preCommitCheck = inputs.pre-commit-hooks.lib.${system}.run (import ././pre-commit.nix { inherit pkgs; });
             homerModule = moduleTest { imports = [ ./nixos/tests/homer.nix ]; };
             flipperzeroModule =
               moduleTest { imports = [ ./nixos/tests/flipperzero.nix ]; };
           } [
             self.packages."${system}"
-            { devShell = self.devShells."${system}".default; }
+            # { devShell = self.devShells."${system}".default; }
           ];
 
           packages = {
@@ -306,10 +291,11 @@
             inherit (pkgsKibitzr) kibitzr;
           };
         });
+
       flakePart = inputs.flake-parts.lib.mkFlake { inherit inputs; }
         ({ inputs, ... }: {
           systems = [ "x86_64-linux" ];
-          imports = [ inputs.pre-commit-hooks.flakeModule ];
+          imports = [ ./flakeModules/custom-pre-commit-hooks.nix ];
 
           flake = {
             overlays = {
@@ -336,6 +322,21 @@
               inherit system;
               overlays = [ self.overlays.default ];
               config = { allowUnfree = true; };
+            };
+            devShells = {
+              default = pkgs.mkShell {
+                buildInputs = with pkgs; [
+                  bash
+                  # task execution from dodo.py
+                  git
+                  nixVersions.stable
+                  # Formatters & linters
+                  pre-commit
+                  watchexec
+                ];
+                # Include pre-commit check shellHook so they can be ran with `pre-commit ...`
+                shellHook = config.pre-commit.installationScript;
+              };
             };
           };
         });
