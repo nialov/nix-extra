@@ -21,6 +21,24 @@ inputs: final: prev:
   grokker = prev.callPackage ././packages/grokker { inherit inputs; };
   poetry-with-c-tooling =
     prev.callPackage ././packages/poetry-with-c-tooling { };
+  # TODO: Generate more succinctly
+  python38-with-c-tooling =
+    prev.callPackage ././packages/python-with-c-tooling {
+      python3ToWrap = prev.python38;
+    };
+  python39-with-c-tooling =
+    prev.callPackage ././packages/python-with-c-tooling {
+      python3ToWrap = prev.python39;
+    };
+  python310-with-c-tooling =
+    prev.callPackage ././packages/python-with-c-tooling {
+      python3ToWrap = prev.python10;
+    };
+  python311-with-c-tooling =
+    prev.callPackage ././packages/python-with-c-tooling {
+      python3ToWrap = prev.python11;
+    };
+
   gpt-engineer =
     final.callPackage ././packages/gpt-engineer { inherit inputs; };
   frackit = prev.callPackage ././packages/frackit { inherit inputs; };
