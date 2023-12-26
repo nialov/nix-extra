@@ -32,11 +32,11 @@ inputs: final: prev:
     };
   python310-with-c-tooling =
     prev.callPackage ././packages/python-with-c-tooling {
-      python3ToWrap = prev.python10;
+      python3ToWrap = prev.python310;
     };
   python311-with-c-tooling =
     prev.callPackage ././packages/python-with-c-tooling {
-      python3ToWrap = prev.python11;
+      python3ToWrap = prev.python311;
     };
 
   gpt-engineer =
