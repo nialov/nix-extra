@@ -44,6 +44,16 @@
                 frackit
               ]);
           };
+          python38-with-c-tooling = pkgs.mkShell {
+            buildInputs = with pkgs; [
+              python38-with-c-tooling
+              python39-with-c-tooling
+              python310-with-c-tooling
+              python311-with-c-tooling
+              poetry-with-c-tooling
+            ];
+          };
+
         };
         packages = {
           inherit (pkgs)
