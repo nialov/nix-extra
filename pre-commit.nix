@@ -1,4 +1,8 @@
-{ pkgs }: {
+{ pkgs }:
+let
+
+  inherit (pkgs) lib;
+in {
   src = ./.;
   hooks =
     # let pre-commit-fish-src = inputs.pre-commit-fish-src.outPath;
@@ -16,7 +20,7 @@
       luacheck.enable = true;
       stylua.enable = true;
       detect-secrets = {
-        enable = false;
+        enable = lib.mkDefault false;
         name = "detect-secrets";
         entry =
           "${pkgs.python3Packages.detect-secrets}/bin/detect-secrets-hook";
@@ -60,12 +64,19 @@
         files = "\\.(fish)$";
       };
       pre-commit-hook-ensure-sops = {
-        enable = false;
+        enable = lib.mkDefault false;
         name = "pre-commit-hook-ensure-sops";
         entry = ''
           ${pkgs.pre-commit-hook-ensure-sops}/bin/pre-commit-hook-ensure-sops
         '';
         files = "^secrets/";
+      };
+      nbstripout = {
+        enable = lib.mkDefault false;
+        name = "nbstripout";
+        description = "Strip output from Jupyter notebooks";
+        entry = "${pkgs.nbstripout}/bin/nbstripout";
+        files = "\\.(ipynb)$";
       };
     };
 }
