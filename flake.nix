@@ -132,8 +132,9 @@
       url = "github:tzachar/cmp-ai";
       flake = false;
     };
+    # TODO: Failing as of 14.1.2024
     grokker-src = {
-      url = "github:stevegt/grokker";
+      url = "github:stevegt/grokker/7e4259c3c21951e70dd7f12d6bf7ceda09af7a81";
       flake = false;
     };
     # TODO: Check fix-attempt-gpt-engineer-fix branch for building newer versions
@@ -162,8 +163,10 @@
       url = "github:bergercookie/bubop";
       flake = false;
     };
+    # TODO: Failing as of 14.1.2024
     item-synchronizer-src = {
-      url = "github:bergercookie/item_synchronizer";
+      url =
+        "github:bergercookie/item_synchronizer/6c8302f1c0118ab60e72030c834e8cf8ced00577";
       flake = false;
     };
     gkeepapi-src = {

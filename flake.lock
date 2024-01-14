@@ -9056,16 +9056,17 @@
     "grokker-src_10": {
       "flake": false,
       "locked": {
-        "lastModified": 1705019985,
-        "narHash": "sha256-NGv5R1sBIC6/UIEAx8K/wCTAW0Ki4X5XfwPuL3M7wzI=",
+        "lastModified": 1703646564,
+        "narHash": "sha256-Kp9h6NBEouJktHP5L0DAGwWVOqfPJuOdxplU90tw2Jw=",
         "owner": "stevegt",
         "repo": "grokker",
-        "rev": "827906815db4d983b7eea15031217889c229cc63",
+        "rev": "7e4259c3c21951e70dd7f12d6bf7ceda09af7a81",
         "type": "github"
       },
       "original": {
         "owner": "stevegt",
         "repo": "grokker",
+        "rev": "7e4259c3c21951e70dd7f12d6bf7ceda09af7a81",
         "type": "github"
       }
     },
@@ -9440,16 +9441,17 @@
     "item-synchronizer-src_2": {
       "flake": false,
       "locked": {
-        "lastModified": 1704017418,
-        "narHash": "sha256-+mviKtCLlJhYV576Q07kcFJvtls5qohKSrqZtBqE/s4=",
+        "lastModified": 1699698960,
+        "narHash": "sha256-6DdIPPNGpJAhahlzU2L3aai9On0l8lxrNihpnMtfpCo=",
         "owner": "bergercookie",
         "repo": "item_synchronizer",
-        "rev": "b9f3bb05320739d8542d9036be81756213016a55",
+        "rev": "6c8302f1c0118ab60e72030c834e8cf8ced00577",
         "type": "github"
       },
       "original": {
         "owner": "bergercookie",
         "repo": "item_synchronizer",
+        "rev": "6c8302f1c0118ab60e72030c834e8cf8ced00577",
         "type": "github"
       }
     },
