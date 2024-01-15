@@ -1,7 +1,7 @@
 ({ self, inputs, ... }:
 
   {
-    perSystem = { config, system, pkgs, lib, ... }:
+    perSystem = { config, system, pkgs, lib, self', ... }:
       let
         mkNixpkgs = nixpkgs:
           import nixpkgs {
@@ -72,6 +72,7 @@
           inherit (pkgsStable) tmuxp;
           inherit (pkgsGptEngineer) gpt-engineer;
           inherit (pkgsKibitzr) kibitzr;
+          inherit (self'.devShells) poetry-devshell;
         };
         checks = let
 

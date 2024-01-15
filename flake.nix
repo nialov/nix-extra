@@ -222,10 +222,17 @@
                 importApply ./flakeModules/custom-pre-commit-hooks.nix {
                   inherit inputs;
                 };
+              poetryDevshell = importApply ./flakeModules/poetry-devshell.nix {
+                inherit inputs;
+              };
             };
           in {
             systems = [ "x86_64-linux" ];
-            imports = [ flakeModules.custom-pre-commit-hooks ./per-system.nix ];
+            imports = [
+              flakeModules.custom-pre-commit-hooks
+              flakeModules.poetryDevshell
+              ./per-system.nix
+            ];
 
             flake = {
               overlays = {
