@@ -20,8 +20,10 @@
       "github:nixos/nixpkgs/d680ded26da5cf104dd2735a51e88d2d8f487b4d";
     # Use flake-utils for utility functions
     flake-utils = { url = "github:numtide/flake-utils"; };
+    # TODO: Failed 15.1.2024. Probably will be fixed soon.
     pre-commit-hooks = {
-      url = "github:cachix/pre-commit-hooks.nix";
+      url =
+        "github:cachix/pre-commit-hooks.nix/7f35ec30d16b38fe0eed8005933f418d1a4693ee";
       # inputs.nixpkgs.follows = "nixpkgs";
     };
     # nix-index-database = { url = "github:Mic92/nix-index-database"; };
