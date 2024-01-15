@@ -78,5 +78,20 @@ in {
         entry = "${pkgs.nbstripout}/bin/nbstripout";
         files = "\\.(ipynb)$";
       };
+      black-nb = {
+        enable = lib.mkDefault false;
+        name = "black-nb";
+        entry = let
+          black-nb =
+
+            pkgs.python3Packages.black.overrideAttrs (_: prevAttrs: {
+
+              propagatedBuildInputs = prevAttrs.propagatedBuildInputs
+                ++ prevAttrs.passthru.optional-dependencies.jupyter;
+            });
+        in "${black-nb}/bin/black";
+
+        files = "\\.ipynb$";
+      };
     };
 }
