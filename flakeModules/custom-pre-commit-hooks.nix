@@ -113,7 +113,7 @@
                 entry = "${pkgs.python3Packages.cogapp}/bin/cog";
                 pass_filenames = false;
                 raw = {
-                  args = [ "-e" "-r" "--check" "-c" ];
+                  args = lib.mkBefore [ "-e" "-r" "--check" "-c" ];
                   always_run = true;
                 };
               };
