@@ -16,7 +16,6 @@
       settings =
 
         {
-          src = ./.;
           hooks =
             # let pre-commit-fish-src = inputs.pre-commit-fish-src.outPath;
             # in
@@ -105,19 +104,16 @@
                 description = "Check documentation with rstcheck";
                 entry = "${pkgs.rstcheck}/bin/rstcheck";
                 files = "\\.(rst)$";
-                raw = {
-                  args = [ "-r" "docs_src" "--ignore-directives" "automodule" ];
-                };
+                raw = { args = [ "--ignore-directives" "automodule" ]; };
               };
               cogapp = {
                 enable = lib.mkDefault false;
                 name = "cogapp";
                 description = "Execute Python snippets in text files";
                 entry = "${pkgs.python3Packages.cogapp}/bin/cog";
-                files = "(README.rst|docs_src/index.rst)";
                 pass_filenames = false;
                 raw = {
-                  args = [ "-e" "-r" "--check" "-c" "docs_src/index.rst" ];
+                  args = [ "-e" "-r" "--check" "-c" ];
                   always_run = true;
                 };
               };
