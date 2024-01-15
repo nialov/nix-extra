@@ -39,14 +39,18 @@ in {
     services.udev.packages = [ pkgs.qFlipper ];
 
     # Disable u2f login
-    security.pam.services.login.u2fAuth = cfg.enableu2fLogin;
-    # Enable (enabled by default) u2f sudo prompt
-    security.pam.services.sudo.u2fAuth = cfg.enableu2fSudo;
-    security.pam.u2f = {
-      enable = cfg.enableu2f;
-      authFile = pkgs.writeTextFile {
-        name = "u2f_keys";
-        text = concatStringsSep "\n" cfg.u2fKeys;
+    security = {
+      pam = {
+        services.login.u2fAuth = cfg.enableu2fLogin;
+        # Enable (enabled by default) u2f sudo prompt
+        services.sudo.u2fAuth = cfg.enableu2fSudo;
+        u2f = {
+          enable = cfg.enableu2f;
+          authFile = pkgs.writeTextFile {
+            name = "u2f_keys";
+            text = concatStringsSep "\n" cfg.u2fKeys;
+          };
+        };
       };
     };
 

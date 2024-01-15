@@ -92,6 +92,27 @@
           self.packages."${system}"
           # { devShell = self.devShells."${system}".default; }
         ];
+
+        pre-commit = {
+          check.enable = true;
+          settings = {
+            hooks = {
+              nixfmt.enable = true;
+              black.enable = true;
+              isort = { enable = true; };
+              shellcheck.enable = true;
+              statix.enable = true;
+              deadnix.enable = true;
+              luacheck.enable = true;
+              stylua.enable = true;
+              yamllint = { enable = true; };
+              fish-lint = { enable = true; };
+              fish-format = { enable = true; };
+            };
+          };
+
+        };
+
       };
 
   })
