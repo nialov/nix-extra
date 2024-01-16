@@ -98,7 +98,7 @@ inputs: final: prev:
   update-changelog = prev.callPackage ./packages/update-changelog.nix { };
   pre-release = prev.callPackage ./packages/pre-release.nix { };
   poetry-run = prev.callPackage ./packages/poetry-run.nix {
-    pythons = with prev; [ python39 python310 python311 ];
+    pythons = with prev; [ python38 python39 python310 python311 python312 ];
   };
 
   pythonPackagesExtensions = prev.pythonPackagesExtensions ++ [
