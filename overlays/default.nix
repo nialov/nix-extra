@@ -101,6 +101,14 @@ inputs: final: prev:
     pythons = with prev; [ python38 python39 python310 python311 python312 ];
   };
 
+  copier = prev.copier.overridePythonAttrs (_: {
+    postPatch = ''
+      substituteInPlace pyproject.toml \
+        --replace 'pydantic = ">=1.10.2,<2"' 'pydantic = ">=1.10.2"'
+    '';
+
+  });
+
   pythonPackagesExtensions = prev.pythonPackagesExtensions ++ [
     (python-final: python-prev: {
       sphinxcontrib-mermaid =
@@ -148,7 +156,17 @@ inputs: final: prev:
       });
       powerlaw =
         python-final.callPackage ././packages/powerlaw { inherit inputs; };
+      notion-client = python-prev.notion-client.overridePythonAttrs
+        (_: { disabledTests = [ "test_api_http_response_error" ]; });
+      gpsoauth = python-prev.gpsoauth.overridePythonAttrs (prevAttrs: {
+        nativeBuildInputs = prevAttrs.nativeBuildInputs
+          ++ [ python-prev.poetry-core ];
+        postPatch = ''
+          substituteInPlace pyproject.toml \
+            --replace 'urllib3 = "<2.0"' 'urllib3 = "*"'
+        '';
 
+      });
     })
   ];
 
