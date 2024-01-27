@@ -9,6 +9,7 @@ python3.pkgs.buildPythonApplication {
   postPatch = ''
     substituteInPlace pyproject.toml \
       --replace "poetry>=0.12" poetry-core \
+      --replace 'typing = "^3.7.4"' "" \
       --replace poetry.masonry.api poetry.core.masonry.api
     substituteInPlace syncall/asana/asana_side.py \
       --replace "asana.Client" "asana.ApiClient"
@@ -17,7 +18,10 @@ python3.pkgs.buildPythonApplication {
     substituteInPlace syncall/asana/utils.py \
       --replace "asana.Client" "asana.ApiClient"
   '';
-  nativeBuildInputs = [ python3.pkgs.poetry-core ];
+  nativeBuildInputs =
+    [ python3.pkgs.poetry-core python3.pkgs.pythonRelaxDepsHook ];
+
+  pythonRelaxDeps = [ "pyyaml" "bidict" "bubop" "loguru" ];
   propagatedBuildInputs = with python3.pkgs; [
     pyyaml
     bidict
@@ -37,6 +41,7 @@ python3.pkgs.buildPythonApplication {
     google-auth-oauthlib
     asana
     pyfakefs
+    typing-extensions
   ];
 
   checkInputs = with python3.pkgs; [ pytestCheckHook ];

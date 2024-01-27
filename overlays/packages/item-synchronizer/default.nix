@@ -10,6 +10,7 @@ buildPythonPackage rec {
   postPatch = ''
     substituteInPlace pyproject.toml \
       --replace "poetry>=0.12" poetry-core \
+      --replace 'bidict = "^0.21.4"' 'bidict = ">=0.21.4"' \
       --replace poetry.masonry.api poetry.core.masonry.api
   '';
 

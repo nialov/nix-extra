@@ -10,6 +10,8 @@ buildPythonPackage rec {
   postPatch = ''
     substituteInPlace pyproject.toml \
       --replace "poetry>=0.12" poetry-core \
+      --replace 'PyYAML = "~5.3.1"' 'PyYAML = ">=5.3.1"' \
+      --replace 'loguru = "^0.5.3"' 'loguru = ">=0.5.3"'  \
       --replace poetry.masonry.api poetry.core.masonry.api
   '';
 
