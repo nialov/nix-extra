@@ -1,5 +1,6 @@
 { inputs, lib, buildPythonPackage, sphinx, pytestCheckHook, pytest, numpy
-, matplotlib, joblib, pillow, seaborn, statsmodels, plotly, graphviz, absl-py }:
+, matplotlib, joblib, pillow, seaborn, statsmodels, plotly, graphviz, absl-py
+, lxml }:
 
 buildPythonPackage rec {
   pname = "sphinx-gallery";
@@ -30,6 +31,7 @@ buildPythonPackage rec {
     plotly
     graphviz
     absl-py
+    lxml
   ];
 
   # We do not want tests from tests/tinybuild
