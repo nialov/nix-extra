@@ -22,9 +22,8 @@
     flake-utils = { url = "github:numtide/flake-utils"; };
     # TODO: Failed 15.1.2024. Probably will be fixed soon.
     pre-commit-hooks = {
-      url =
-        "github:cachix/pre-commit-hooks.nix/7f35ec30d16b38fe0eed8005933f418d1a4693ee";
-      # inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:cachix/pre-commit-hooks.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     # nix-index-database = { url = "github:Mic92/nix-index-database"; };
     gotta-scrape-em-all = {
