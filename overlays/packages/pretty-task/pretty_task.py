@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Script for intelligent path handling using pathlib.
+Pretty printing completed tasks from taskwarrior.
 """
 
 import subprocess
@@ -98,17 +98,11 @@ def pending(
     for col in ("description", "project"):
         df[col] = df[col].astype(str)
 
-    # import IPython
-
-    # IPython.embed()
     projects_sorted_by_mean = (
         df.groupby("project")["urgency"].mean().sort_values(ascending=False)
     )
     projects = projects_sorted_by_mean.index.values
     project_means = projects_sorted_by_mean.values
-    # import IPython
-
-    # IPython.embed()
     date = datetime.now().strftime("%Y.%m.%d")
     lines = [f"# Taskwarrior Task Status ({date})", ""]
     for project, project_mean in zip(projects, project_means):
@@ -123,16 +117,6 @@ def pending(
                  """
             )
             lines.append(message)
-
-    # df_as_rst = tabulate(
-    #     df,
-    #     headers=[col.capitalize() for col in df.columns],
-    #     tablefmt="html",
-    #     showindex=False,
-    #     maxcolwidths=40,
-    #     # TODO: Updated feature of tabulate: maxcolwidths=80,
-    # )
-    # print(text)
 
     process_result = subprocess.run(
         ["pandoc", "--from", "markdown", "--to", "markdown"],

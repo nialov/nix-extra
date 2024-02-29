@@ -17,6 +17,7 @@ stdenv.mkDerivation {
         rich
         tabulate
         ipython
+        pyarrow
       ]))
     # taskwarrior
     # pandoc
