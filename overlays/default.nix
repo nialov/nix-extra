@@ -100,6 +100,7 @@ inputs: final: prev:
   poetry-run = prev.callPackage ./packages/poetry-run.nix {
     pythons = with prev; [ python38 python39 python310 python311 python312 ];
   };
+  jupytext-nb-edit = prev.callPackage ./packages/jupytext-nb-edit { };
 
   copier = prev.copier.overridePythonAttrs (_: {
     postPatch = ''
