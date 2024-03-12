@@ -139,6 +139,11 @@
                 entry = "${pkgs.nbstripout}/bin/nbstripout";
                 files = "\\.(ipynb)$";
               };
+              ruff = {
+                enable = lib.mkDefault false;
+                types = lib.mkForce [ "text" ];
+                files = "\\.(ipynb|py)$";
+              };
             };
         };
     };

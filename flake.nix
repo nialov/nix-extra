@@ -250,6 +250,14 @@
                 homer = import ./nixos/modules/homer;
                 flipperzero = import ./nixos/modules/flipperzero.nix;
               };
+              templates = {
+                default = {
+                  path = ./templates/basic;
+                  description = ''
+                    A flake using nix-extra overlay with flake-parts.
+                  '';
+                };
+              };
               inherit flakeModules;
             };
 
