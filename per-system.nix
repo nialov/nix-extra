@@ -9,7 +9,7 @@
             overlays = [ self.overlays.default ];
             config = { allowUnfree = true; };
           };
-        pkgsFrackit = mkNixpkgs inputs.nixpkgs-frackit;
+        # pkgsFrackit = mkNixpkgs inputs.nixpkgs-frackit;
         pkgsStable = mkNixpkgs inputs.nixpkgs-stable;
         pkgsGptEngineer = mkNixpkgs inputs.nixpkgs-gpt-engineer;
         pkgsKibitzr = mkNixpkgs inputs.nixpkgs-kibitzr;
@@ -29,20 +29,6 @@
             ];
             # Include pre-commit check shellHook so they can be ran with `pre-commit ...`
             shellHook = config.pre-commit.installationScript;
-          };
-          frackit-python = pkgsFrackit.mkShell {
-            buildInputs = with pkgsFrackit;
-              [
-                python3
-
-              ] ++ (with pkgsFrackit.python3Packages; [
-                networkx
-                geopandas
-                jupyterlab
-                matplotlib
-                scipy
-                frackit
-              ]);
           };
           python39-with-c-tooling-env = pkgs.mkShell {
             buildInputs = with pkgs; [ python39-with-c-tooling ];
@@ -67,8 +53,7 @@
           inherit (pkgs.vimPlugins) chatgpt-nvim oil-nvim neoai-nvim cmp-ai;
           inherit (pkgs.python3Packages)
             doit-ext sphinxcontrib-mermaid sphinx-gallery pandera bubop
-            item-synchronizer gkeepapi powerlaw fractopo;
-          inherit (pkgsFrackit) frackit;
+            item-synchronizer gkeepapi powerlaw fractopo frackit;
           inherit (pkgsStable) tmuxp;
           inherit (pkgsGptEngineer) gpt-engineer;
           inherit (pkgsKibitzr) kibitzr;

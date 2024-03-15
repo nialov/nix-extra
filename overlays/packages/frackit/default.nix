@@ -1,11 +1,11 @@
-{ inputs, lib, stdenv, cmake, python3, opencascade-occt, doxygen, graphviz-nox
-, fontconfig, ... }:
+{ inputs, lib, stdenv, cmake, pythonPackages, opencascade-occt, doxygen
+, graphviz-nox, fontconfig, ... }:
 
 let
 
-  frackit-base = stdenv.mkDerivation {
+  self = stdenv.mkDerivation {
     pname = "frackit-base";
-    version = "0.0.1";
+    version = "1.3.0";
 
     src = inputs.frackit-src;
 
@@ -13,7 +13,7 @@ let
 
     postPatch = ''
       substituteInPlace appl/CMakeLists.txt \
-        --replace "add_subdirectory(example3)" "# add_subdirectory(example3)" 
+        --replace-fail "add_subdirectory(example3)" "# add_subdirectory(example3)" 
     '';
 
     preBuild = ''
@@ -22,14 +22,17 @@ let
 
     nativeBuildInputs = [ cmake ];
     buildInputs = [
-      (python3.withPackages (p: with p; [ pybind11 wheel pip setuptools ]))
+      (pythonPackages.python.withPackages
+        (p: with p; [ pybind11 wheel pip setuptools ]))
       opencascade-occt
       doxygen
       graphviz-nox
       fontconfig
     ];
     doCheck = true;
+    # Check version matches that in repo
     preCheck = ''
+      grep ${self.version} ${self.src}/CMakeLists.txt -q
       make build_tests
     '';
     checkPhase = ''
@@ -62,4 +65,4 @@ let
     };
   };
 
-in frackit-base
+in self
