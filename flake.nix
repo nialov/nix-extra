@@ -48,10 +48,6 @@
       # inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-filter.url = "github:numtide/nix-filter";
-    fractopo = {
-      url = "github:nialov/fractopo";
-      # inputs.nixpkgs.follows = "nixpkgs";
-    };
     tracerepo = {
       url = "github:nialov/tracerepo";
       # inputs.nixpkgs.follows = "nixpkgs";
@@ -180,6 +176,11 @@
       url =
         "github:jeffalstott/powerlaw/6732699d790edbe27c2790bf22c3ef7355d2b07e";
       flake = false;
+    };
+    fractopo-src = {
+      url = "github:nialov/fractopo";
+      flake = false;
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 

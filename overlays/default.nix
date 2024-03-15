@@ -168,6 +168,8 @@ inputs: final: prev:
         '';
 
       });
+      fractopo =
+        python-final.callPackage ././packages/fractopo { inherit inputs; };
     })
   ];
 

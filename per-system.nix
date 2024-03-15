@@ -59,15 +59,15 @@
             copier pre-commit-hook-ensure-sops deploy-rs
             clean-git-branches-script allas-cli-utils grokker
             poetry-with-c-tooling synonym-cli mosaic sync-git-tag-with-poetry
-            resolve-version update-changelog pre-release poetry-run fractopo
-            tracerepo syncall python38-with-c-tooling python39-with-c-tooling
+            resolve-version update-changelog pre-release poetry-run tracerepo
+            syncall python38-with-c-tooling python39-with-c-tooling
             python310-with-c-tooling python311-with-c-tooling jupytext-nb-edit
 
           ;
           inherit (pkgs.vimPlugins) chatgpt-nvim oil-nvim neoai-nvim cmp-ai;
           inherit (pkgs.python3Packages)
             doit-ext sphinxcontrib-mermaid sphinx-gallery pandera bubop
-            item-synchronizer gkeepapi powerlaw;
+            item-synchronizer gkeepapi powerlaw fractopo;
           inherit (pkgsFrackit) frackit;
           inherit (pkgsStable) tmuxp;
           inherit (pkgsGptEngineer) gpt-engineer;
