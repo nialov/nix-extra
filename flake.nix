@@ -204,7 +204,6 @@
           nickel = inputs.nickel-src.packages."${system}".build;
           # numtide/nix-filter library used for filtering local packages sources
           # filter = inputs.nix-filter.lib;
-          inherit (inputs.fractopo.packages."${system}") fractopo;
           inherit (inputs.tracerepo.packages."${system}") tracerepo;
         };
       fullOverlay = lib.composeManyExtensions [
