@@ -53,7 +53,7 @@
           inherit (pkgs.vimPlugins) chatgpt-nvim oil-nvim neoai-nvim cmp-ai;
           inherit (pkgs.python3Packages)
             doit-ext sphinxcontrib-mermaid sphinx-gallery pandera bubop
-            item-synchronizer gkeepapi powerlaw fractopo frackit;
+            item-synchronizer gkeepapi powerlaw fractopo frackit python-ternary;
           inherit (pkgsStable) tmuxp;
           inherit (pkgsGptEngineer) gpt-engineer;
           inherit (pkgsKibitzr) kibitzr;

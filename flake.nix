@@ -180,7 +180,10 @@
     fractopo-src = {
       url = "github:nialov/fractopo";
       flake = false;
-      # inputs.nixpkgs.follows = "nixpkgs";
+    };
+    python-ternary-src = {
+      url = "github:marcharper/python-ternary";
+      flake = false;
     };
   };
 

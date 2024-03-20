@@ -3714,6 +3714,22 @@
         "type": "github"
       }
     },
+    "python-ternary-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1709783385,
+        "narHash": "sha256-B3LmulaViRCAo4b0R35cW2/Js0SyJ2x1cNcIngiUriU=",
+        "owner": "marcharper",
+        "repo": "python-ternary",
+        "rev": "af117032ed66ac975ce8e458cdd7e171841d17b1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "marcharper",
+        "repo": "python-ternary",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "allas-cli-utils-src": "allas-cli-utils-src",
@@ -3748,6 +3764,7 @@
         "pandera-src": "pandera-src",
         "powerlaw-src": "powerlaw-src",
         "pre-commit-hooks": "pre-commit-hooks_2",
+        "python-ternary-src": "python-ternary-src",
         "sphinx-gallery-src": "sphinx-gallery-src",
         "sphinxcontrib-mermaid-src": "sphinxcontrib-mermaid-src",
         "syncall-src": "syncall-src",

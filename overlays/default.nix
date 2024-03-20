@@ -171,6 +171,9 @@ inputs: final: prev:
       });
       fractopo =
         python-final.callPackage ././packages/fractopo { inherit inputs; };
+      python-ternary = python-final.callPackage ././packages/python-ternary {
+        inherit inputs;
+      };
     })
   ];
 
