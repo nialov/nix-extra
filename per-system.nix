@@ -46,8 +46,8 @@
             clean-git-branches-script allas-cli-utils grokker
             poetry-with-c-tooling synonym-cli mosaic sync-git-tag-with-poetry
             resolve-version update-changelog pre-release poetry-run tracerepo
-            syncall python38-with-c-tooling python39-with-c-tooling
-            python310-with-c-tooling python311-with-c-tooling jupytext-nb-edit
+            syncall python39-with-c-tooling python310-with-c-tooling
+            python311-with-c-tooling jupytext-nb-edit
 
           ;
           inherit (pkgs.vimPlugins) chatgpt-nvim oil-nvim neoai-nvim cmp-ai;

@@ -22,10 +22,6 @@ inputs: final: prev:
   poetry-with-c-tooling =
     prev.callPackage ././packages/poetry-with-c-tooling { };
   # TODO: Generate more succinctly
-  python38-with-c-tooling =
-    prev.callPackage ././packages/python-with-c-tooling {
-      python3ToWrap = prev.python38;
-    };
   python39-with-c-tooling =
     prev.callPackage ././packages/python-with-c-tooling {
       python3ToWrap = prev.python39;
@@ -98,7 +94,7 @@ inputs: final: prev:
   update-changelog = prev.callPackage ./packages/update-changelog.nix { };
   pre-release = prev.callPackage ./packages/pre-release.nix { };
   poetry-run = prev.callPackage ./packages/poetry-run.nix {
-    pythons = with prev; [ python38 python39 python310 python311 python312 ];
+    pythons = with prev; [ python39 python310 python311 python312 ];
   };
   jupytext-nb-edit = prev.callPackage ./packages/jupytext-nb-edit { };
 
