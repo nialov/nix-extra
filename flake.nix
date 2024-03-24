@@ -26,6 +26,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # nix-index-database = { url = "github:Mic92/nix-index-database"; };
+    # TODO: Move nix build definition to nix-extra
     gotta-scrape-em-all = {
       url = "github:nialov/gotta-scrape-em-all";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -43,11 +44,13 @@
       url = "github:serokell/deploy-rs";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # TODO: Move nix build definition to nix-extra
     mosaic-src = {
       url = "github:nialov/mosaic";
       # inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-filter.url = "github:numtide/nix-filter";
+    # TODO: Move nix build definition to nix-extra
     tracerepo = {
       url = "github:nialov/tracerepo";
       # inputs.nixpkgs.follows = "nixpkgs";
