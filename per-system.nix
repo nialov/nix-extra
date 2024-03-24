@@ -55,7 +55,7 @@
           inherit (pkgsKibitzr) kibitzr;
           # TODO: How include this information of using the stable branch in an
           # overlay?
-          inherit (pkgsStable) tasklite-core tmuxp;
+          inherit (pkgsStable) tasklite-core;
           inherit (self'.devShells) poetry-devshell;
         };
         checks = let
