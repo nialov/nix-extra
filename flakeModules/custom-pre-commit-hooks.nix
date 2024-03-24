@@ -22,7 +22,7 @@
             {
               isort = {
                 enable = lib.mkDefault false;
-                raw = { args = [ "--profile" "black" ]; };
+                raw = { args = lib.mkDefault [ "--profile" "black" ]; };
               };
               detect-secrets = {
                 enable = lib.mkDefault false;
