@@ -46,16 +46,16 @@
             allas-cli-utils grokker poetry-with-c-tooling synonym-cli mosaic
             sync-git-tag-with-poetry resolve-version update-changelog
             pre-release poetry-run tracerepo syncall python39-with-c-tooling
-            python310-with-c-tooling python311-with-c-tooling jupytext-nb-edit
-
-          ;
+            python310-with-c-tooling python311-with-c-tooling jupytext-nb-edit;
           inherit (pkgs.vimPlugins) chatgpt-nvim oil-nvim neoai-nvim cmp-ai;
           inherit (pkgs.python3Packages)
             doit-ext sphinxcontrib-mermaid sphinx-gallery pandera bubop
             item-synchronizer gkeepapi powerlaw fractopo frackit python-ternary;
-          inherit (pkgsStable) tmuxp tasklite-core;
           inherit (pkgsGptEngineer) gpt-engineer;
           inherit (pkgsKibitzr) kibitzr;
+          # TODO: How include this information of using the stable branch in an
+          # overlay?
+          inherit (pkgsStable) tasklite-core tmuxp;
           inherit (self'.devShells) poetry-devshell;
         };
         checks = let
