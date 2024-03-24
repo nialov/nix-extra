@@ -1,12 +1,14 @@
 { inputs, lib, buildPythonPackage, sphinx, pytestCheckHook, pytest, numpy
 , matplotlib, joblib, pillow, seaborn, statsmodels, plotly, graphviz, absl-py
-, lxml }:
+, lxml, setuptools-scm }:
 
 buildPythonPackage rec {
   pname = "sphinx-gallery";
   version = inputs.sphinx-gallery-src.shortRev;
-  format = "setuptools";
+  format = "pyproject";
   src = inputs.sphinx-gallery-src;
+
+  nativeBuildInputs = [ setuptools-scm ];
 
   propagatedBuildInputs = [ sphinx ];
 
@@ -14,9 +16,11 @@ buildPythonPackage rec {
   postPatch = ''
     mv sphinx_gallery/tests tests/
     substituteInPlace pyproject.toml \
-      --replace "--cov-report= --cov=sphinx_gallery" ""
+      --replace-fail "--cov-report=" ""
+    substituteInPlace pyproject.toml \
+      --replace-fail "--cov=sphinx_gallery" ""
     substituteInPlace tests/test_gen_rst.py \
-      --replace "sphinx_gallery/tests/reference_parse.txt" "tests/reference_parse.txt"
+      --replace-fail "sphinx_gallery/tests/reference_parse.txt" "tests/reference_parse.txt"
   '';
 
   checkInputs = [

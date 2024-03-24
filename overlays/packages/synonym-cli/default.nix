@@ -1,5 +1,5 @@
 { inputs, lib, buildPythonPackage, gazpacho, rich, poetry-core, aiohttp
-, requests, importlib-metadata, beautifulsoup4 }:
+, requests, importlib-metadata, beautifulsoup4, pythonRelaxDepsHook }:
 
 let
 
@@ -18,17 +18,12 @@ in buildPythonPackage rec {
   #   rev = "v${version}";
   #   sha256 = "sha256-KLk6OMuQFWv+zToqJeePW17fK+eols+3VB8B4w8Sy5Y=";
   # };
-  nativeBuildInputs = [ poetry-core ];
+  nativeBuildInputs = [ poetry-core pythonRelaxDepsHook ];
+  pythonRelaxDeps = [ "importlib-metadata" ];
 
   # buildInputs = [ sphinx ];
   propagatedBuildInputs =
     [ gazpachoOlder rich importlib-metadata aiohttp requests beautifulsoup4 ];
-  postPatch = ''
-    substituteInPlace pyproject.toml \
-      --replace 'importlib-metadata = "^6.7.0"' 'importlib-metadata = "*"' \
-      --replace 'beautifulsoup4 = "^4.12.2"' 'beautifulsoup4 = "*"' \
-      --replace 'rich = "^13.4.2"' 'rich = "*"'
-  '';
 
   # Only test of the package but also a network test
   # Consequently, disable tests

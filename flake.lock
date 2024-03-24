@@ -2519,7 +2519,7 @@
           "fractopo",
           "nixpkgs"
         ],
-        "nixpkgs-frackit": "nixpkgs-frackit_2",
+        "nixpkgs-frackit": "nixpkgs-frackit",
         "nixpkgs-gpt-engineer": "nixpkgs-gpt-engineer_2",
         "nixpkgs-kibitzr": "nixpkgs-kibitzr_3",
         "nixpkgs-stable": "nixpkgs-stable_10",
@@ -2782,21 +2782,6 @@
         "type": "indirect"
       }
     },
-    "nixpkgs-frackit_2": {
-      "locked": {
-        "lastModified": 1659446231,
-        "narHash": "sha256-hekabNdTdgR/iLsgce5TGWmfIDZ86qjPhxDg/8TlzhE=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "eabc38219184cc3e04a974fe31857d8e0eac098d",
-        "type": "github"
-      },
-      "original": {
-        "id": "nixpkgs",
-        "ref": "nixos-21.11",
-        "type": "indirect"
-      }
-    },
     "nixpkgs-gpt-engineer": {
       "locked": {
         "lastModified": 1692447944,
@@ -2974,16 +2959,16 @@
     },
     "nixpkgs-stable_2": {
       "locked": {
-        "lastModified": 1688392541,
-        "narHash": "sha256-lHrKvEkCPTUO+7tPfjIcb7Trk6k31rz18vkyqmkeJfY=",
+        "lastModified": 1711124224,
+        "narHash": "sha256-l0zlN/3CiodvWDtfBOVxeTwYSRz93muVbXWSpaMjXxM=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "ea4c80b39be4c09702b0cb3b42eab59e2ba4f24b",
+        "rev": "56528ee42526794d413d6f244648aaee4a7b56c0",
         "type": "github"
       },
       "original": {
         "id": "nixpkgs",
-        "ref": "nixos-22.11",
+        "ref": "nixos-23.11",
         "type": "indirect"
       }
     },
@@ -3757,7 +3742,6 @@
         "nickel-src": "nickel-src",
         "nix-filter": "nix-filter_2",
         "nixpkgs": "nixpkgs_4",
-        "nixpkgs-frackit": "nixpkgs-frackit",
         "nixpkgs-gpt-engineer": "nixpkgs-gpt-engineer",
         "nixpkgs-kibitzr": "nixpkgs-kibitzr",
         "nixpkgs-stable": "nixpkgs-stable_2",
@@ -4760,16 +4744,17 @@
     "tasklite-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1710691481,
-        "narHash": "sha256-jmCyx+9zKUmPmJj9NJ8z+09qefXfBjnZ/jr2MLCOjeg=",
+        "lastModified": 1705523910,
+        "narHash": "sha256-fLlLshjYu09iC63bIMiUQ4c3AoCV7D5rSMnEs8rakSM=",
         "owner": "ad-si",
         "repo": "tasklite",
-        "rev": "24a57b35482a74aa8127d15e1e49a09a170021fc",
+        "rev": "1cdded1e915de8d9c2fbd7770f948f33c507d0ce",
         "type": "github"
       },
       "original": {
         "owner": "ad-si",
         "repo": "tasklite",
+        "rev": "1cdded1e915de8d9c2fbd7770f948f33c507d0ce",
         "type": "github"
       }
     },

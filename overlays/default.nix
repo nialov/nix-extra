@@ -63,6 +63,8 @@ inputs: final: prev:
 
   };
 
+  inherit (inputs.nixpkgs-stable.legacyPackages.x86_64-linux) clog-cli;
+
   # TODO: This needs to be upstreamed. After v1.2 release in main repo, pr in nixpkgs
   pre-commit-hook-ensure-sops =
     prev.pre-commit-hook-ensure-sops.overridePythonAttrs (prevAttrs: {

@@ -10,8 +10,8 @@
   inputs = {
     # Use unstable nixpkgs channel
     nixpkgs.url = "nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "nixpkgs/nixos-22.11";
-    nixpkgs-frackit.url = "nixpkgs/nixos-21.11";
+    nixpkgs-stable.url = "nixpkgs/nixos-23.11";
+    # nixpkgs-frackit.url = "nixpkgs/nixos-21.11";
     nixpkgs-kibitzr.url =
       "github:nixos/nixpkgs/2f9fd351ec37f5d479556cd48be4ca340da59b8f";
     # TODO: Can be removed when tensorflow no longer broken
@@ -102,7 +102,8 @@
       flake = false;
     };
     tasklite-src = {
-      url = "github:ad-si/tasklite";
+      # TODO: Try to fix later
+      url = "github:ad-si/tasklite/1cdded1e915de8d9c2fbd7770f948f33c507d0ce";
       flake = false;
     };
     taskfzf-src = {

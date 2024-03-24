@@ -1,7 +1,7 @@
 { inputs, lib, buildPythonPackage, setuptools, multimethod, numpy, packaging
 , pandas, pydantic, typeguard, typing-inspect, wrapt, pytestCheckHook, pytest
-, pyspark, pyyaml, pytest-xdist, pytest-asyncio, hypothesis, sphinx, requests
-, geopandas, mypy }:
+, pyspark, pyyaml, pytest-asyncio, hypothesis, sphinx, requests, geopandas, mypy
+, polars }:
 
 buildPythonPackage {
   pname = "pandera";
@@ -23,12 +23,13 @@ buildPythonPackage {
     wrapt
     pyspark
     pyyaml
+    polars
   ];
 
   checkInputs = [
     pytestCheckHook
     pytest
-    pytest-xdist
+    # pytest-xdist
     pytest-asyncio
     hypothesis
     sphinx

@@ -2,7 +2,7 @@
 
 python3.pkgs.buildPythonApplication {
   pname = "syncall";
-  version = "0.3.1";
+  version = inputs.syncall-src.shortRev;
   format = "pyproject";
 
   src = inputs.syncall-src;
@@ -18,8 +18,11 @@ python3.pkgs.buildPythonApplication {
     substituteInPlace syncall/asana/utils.py \
       --replace "asana.Client" "asana.ApiClient"
   '';
-  nativeBuildInputs =
-    [ python3.pkgs.poetry-core python3.pkgs.pythonRelaxDepsHook ];
+  nativeBuildInputs = [
+    python3.pkgs.poetry-core
+    python3.pkgs.pythonRelaxDepsHook
+    python3.pkgs.setuptools
+  ];
 
   pythonRelaxDeps = [ "pyyaml" "bidict" "bubop" "loguru" ];
   propagatedBuildInputs = with python3.pkgs; [
