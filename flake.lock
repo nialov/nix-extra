@@ -499,11 +499,11 @@
     "dfnworks-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1690478098,
-        "narHash": "sha256-E4dwiilQ3P2SLQMT1zRMHjO3F+I7WlwvDMdd+IoqDwY=",
+        "lastModified": 1710259645,
+        "narHash": "sha256-gt1DmDAlP9OWZQftdZLtEipkpP+ZSC3/38o/8VUXNxQ=",
         "owner": "lanl",
         "repo": "dfnworks",
-        "rev": "7a8ffec977e30b254a4524a8a06f09c9e0418fff",
+        "rev": "a76988603770e9f4ab2dfe54ad92ac50f3fcffac",
         "type": "github"
       },
       "original": {
@@ -1696,11 +1696,11 @@
     "lagrit-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1689097537,
-        "narHash": "sha256-tvaM2vIa+dl80BC3PEun60KFRa3IE4fh4E/N0Gtb7YI=",
+        "lastModified": 1709572450,
+        "narHash": "sha256-whx0odVHN4a5mt0cbnOtqDTnOsLHFy/zIujv/XF8NJg=",
         "owner": "lanl",
         "repo": "lagrit",
-        "rev": "bc1ba76cb3444927d197b168b5ac71e11cd48543",
+        "rev": "48161bb7115abcdb30c58706b899f71398045024",
         "type": "github"
       },
       "original": {
