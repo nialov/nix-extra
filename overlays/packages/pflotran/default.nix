@@ -1,5 +1,5 @@
 { inputs, lib, stdenv, gfortran, petsc, mpi, hdf5-full, metis, python3, busybox
-, openssh, runCommand }:
+, openssh, runCommand, parmetis }:
 
 # TODO: mpi must be the same used for compiling petsc
 # petsc should therefore have passthru attribute of the mpi used
@@ -31,7 +31,7 @@ stdenv.mkDerivation (finalAttrs: {
   nativeBuildInputs = [ gfortran ];
   propagatedBuildInputs = [ mpi ];
   # TODO: Is metis used?
-  buildInputs = [ petsc hdf5-full metis ];
+  buildInputs = [ petsc hdf5-full metis parmetis ];
   enableParallelBuilding = true;
 
   configureFlags = [

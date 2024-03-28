@@ -34,7 +34,7 @@ inputs: final: prev:
     petscStableMpi = petscStable.override { inherit (final) mpi; };
   in petscStableMpi.overrideAttrs (_: prevAttrs: {
     buildInputs = prevAttrs.buildInputs
-      ++ [ prev.metis final.hdf5-full prev.zlib ];
+      ++ [ prev.metis final.hdf5-full prev.zlib prev.parmetis ];
     # RUN ./configure --CFLAGS='-O3' --CXXFLAGS='-O3' --FFLAGS='-O3' --with-debugging=no --download-mpich=yes --download-hdf5=yes --download-hdf5-fortran-bindings=yes --download-fblaslapack=yes --download-metis=yes --download-parmetis=yes
     # make PETSC_DIR=/build/petsc-3.19.2 PETSC_ARCH=arch-linux-c-opt all
     # export FC="${prev.gfortran}/bin/gfortran" F77="${prev.gfortran}/bin/gfortran"
@@ -69,6 +69,7 @@ inputs: final: prev:
       # "--with-zlib-lib=-L${prev.zlib}/lib -lz"
       "--with-blas=1"
       "--with-lapack=1"
+      "--with-parmetis=1"
     ];
     # postPatch = ''
     #   substituteInPlace config/BuildSystem/config/base.py \
@@ -141,6 +142,10 @@ inputs: final: prev:
       mplstereonet =
         python-final.callPackage ././packages/mplstereonet { inherit inputs; };
       pyvtk = python-final.callPackage ././packages/pyvtk { inherit inputs; };
+      pydfnworks =
+        python-final.callPackage ././packages/dfnworks/pydfnworks.nix {
+          inherit inputs;
+        };
 
     })
   ];

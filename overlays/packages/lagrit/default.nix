@@ -23,6 +23,7 @@ let
       # TODO: To include Exodus, use -DLAGRIT_BUILD_EXODUS=ON
       # Exodus is from https://github.com/sandialabs/seacas but it is not packaged with nix
       nativeBuildInputs = [ gfortran cmake ];
+      cmakeFlags = [ "-DCMAKE_BUILD_TYPE=Debug" ];
 
       # TODO: Move to installCheckPhase
       passthru = {

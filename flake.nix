@@ -299,7 +299,8 @@
               synonym-cli mosaic lagrit dfnworks fehm pflotran petsc hdf5-full;
             inherit (pkgs.vimPlugins) chatgpt-nvim oil-nvim neoai-nvim cmp-ai;
             inherit (pkgs.python3Packages)
-              doit-ext sphinxcontrib-mermaid sphinx-gallery mplstereonet pyvtk;
+              doit-ext sphinxcontrib-mermaid sphinx-gallery mplstereonet pyvtk
+              pydfnworks;
             inherit (pkgsFrackit) frackit;
           };
         });
