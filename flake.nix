@@ -9,7 +9,8 @@
     [ "nialov.cachix.org-1:Z2oarwKpwXCZUZ6OfQx5/Ia2mEC+uizpb+c5lu/gNk4=" ];
   inputs = {
     # Use unstable nixpkgs channel
-    nixpkgs.url = "nixpkgs/nixos-unstable";
+    nixpkgs.url =
+      "github:nixos/nixpkgs/d6dc19adbda4fd92fe9a332327a8113eaa843894";
     nixpkgs-stable.url = "nixpkgs/nixos-23.11";
     # nixpkgs-frackit.url = "nixpkgs/nixos-21.11";
     nixpkgs-kibitzr.url =
