@@ -159,10 +159,6 @@ inputs: final: prev:
         doCheck = false;
         pythonImportsCheck = [ "psycopg" ];
       });
-      pytest-cram = python-prev.pytest-cram.overridePythonAttrs (_: {
-        doInstallCheck = false;
-        doCheck = false;
-      });
       asana = python-prev.asana.overridePythonAttrs (prevAttrs: {
         propagatedBuildInputs = prevAttrs.propagatedBuildInputs
           ++ [ python-prev.six ];

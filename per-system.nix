@@ -46,7 +46,8 @@
             allas-cli-utils grokker poetry-with-c-tooling synonym-cli mosaic
             sync-git-tag-with-poetry resolve-version update-changelog
             pre-release poetry-run tracerepo syncall python39-with-c-tooling
-            python310-with-c-tooling python311-with-c-tooling jupytext-nb-edit;
+            python310-with-c-tooling python311-with-c-tooling jupytext-nb-edit
+            template-check;
           inherit (pkgs.vimPlugins) chatgpt-nvim oil-nvim neoai-nvim cmp-ai;
           inherit (pkgs.python3Packages)
             doit-ext sphinxcontrib-mermaid sphinx-gallery pandera bubop
@@ -73,10 +74,7 @@
           homerModule = moduleTest { imports = [ ./nixos/tests/homer.nix ]; };
           flipperzeroModule =
             moduleTest { imports = [ ./nixos/tests/flipperzero.nix ]; };
-        } [
-          self.packages."${system}"
-          # { devShell = self.devShells."${system}".default; }
-        ];
+        } [ self.packages."${system}" ];
 
         pre-commit = {
           check.enable = true;
