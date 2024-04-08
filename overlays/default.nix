@@ -108,6 +108,18 @@ inputs: final: prev:
 
   });
 
+  template-check = prev.writeShellApplication {
+    name = "template-check";
+    # runtimeInputs = [ (prev.python3.withPackages (p: with p; [ tomlkit ])) ];
+    text = ''
+      temp_dir="$(mktemp -d)"
+      pushd "$temp_dir"
+      nix flake new -t ${./..} . --refresh
+      nix build .#devShells.x86_64-linux.default
+    '';
+
+  };
+
   pythonPackagesExtensions = prev.pythonPackagesExtensions ++ [
     (python-final: python-prev: {
       sphinxcontrib-mermaid =
@@ -146,6 +158,10 @@ inputs: final: prev:
       psycopg = python-prev.psycopg.overridePythonAttrs (_: {
         doCheck = false;
         pythonImportsCheck = [ "psycopg" ];
+      });
+      pytest-cram = python-prev.pytest-cram.overridePythonAttrs (_: {
+        doInstallCheck = false;
+        doCheck = false;
       });
       asana = python-prev.asana.overridePythonAttrs (prevAttrs: {
         propagatedBuildInputs = prevAttrs.propagatedBuildInputs
