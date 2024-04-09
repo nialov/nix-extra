@@ -1,5 +1,5 @@
-{ inputs, lib, stdenv, python3, lagrit, fehm, pflotran, symlinkJoin, makeWrapper
-, petsc, lndir, texlive, runCommand, mpi, openssh }:
+{ lib, stdenv, python3, lagrit, fehm, pflotran, symlinkJoin, makeWrapper, petsc
+, lndir, texlive, mpi, openssh }:
 
 let
 

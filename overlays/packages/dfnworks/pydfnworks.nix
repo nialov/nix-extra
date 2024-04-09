@@ -1,5 +1,4 @@
-{ inputs, lib, stdenv, python3, lagrit, fehm, pflotran, symlinkJoin, makeWrapper
-, runCommand }:
+{ inputs, lib, python3, pflotran, runCommand }:
 
 let
   # TODO: Make a patch instead of this mess of edits...

@@ -1,5 +1,4 @@
-{ inputs, lib, stdenv, gfortran, cmake, python3, runCommand, lndir, applyPatches
-}:
+{ inputs, lib, stdenv, gfortran, cmake, python3, runCommand, lndir }:
 
 let
 
