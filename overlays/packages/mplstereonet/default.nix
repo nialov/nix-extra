@@ -16,7 +16,11 @@ buildPythonPackage {
   #        > FAILED tests/test_examples.py::test_all_examples - TypeError:
   #        object of type 'GeometryCollection' has no len()
 
-  disabledTests = [ "test_all_examples" ];
+  disabledTests = [
+    "test_all_examples"
+    # TODO: pytest.PytestRemovedIn8Warning: Support for nose tests is deprecated
+    "test_stereonet_math"
+  ];
 
   pythonImportsCheck = [ "mplstereonet" ];
 

@@ -9,26 +9,28 @@
     [ "nialov.cachix.org-1:Z2oarwKpwXCZUZ6OfQx5/Ia2mEC+uizpb+c5lu/gNk4=" ];
   inputs = {
     # Use unstable nixpkgs channel
-    nixpkgs.url = "nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "nixpkgs/nixos-22.11";
+    nixpkgs.url =
+      "github:nixos/nixpkgs/d6dc19adbda4fd92fe9a332327a8113eaa843894";
+    nixpkgs-stable.url = "nixpkgs/nixos-23.11";
     nixpkgs-petsc.url =
       "github:nixos/nixpkgs/27bd67e55fe09f9d68c77ff151c3e44c4f81f7de";
-    nixpkgs-frackit.url = "nixpkgs/nixos-21.11";
     nixpkgs-kibitzr.url =
       "github:nixos/nixpkgs/2f9fd351ec37f5d479556cd48be4ca340da59b8f";
-    # TODO: Probably no need to use old opencascade-occt version
+    # TODO: Can be removed when tensorflow no longer broken
+    #       https://github.com/NixOS/nixpkgs/blob/master/pkgs/development/python-modules/tensorflow/default.nix#L453
+    nixpkgs-gpt-engineer.url =
+      "github:nixos/nixpkgs/d680ded26da5cf104dd2735a51e88d2d8f487b4d";
+    nixpkgs-dfnworks.url =
+      "github:nixos/nixpkgs/5efc8ca954272c4376ac929f4c5ffefcc20551d5";
     # Use flake-utils for utility functions
     flake-utils = { url = "github:numtide/flake-utils"; };
+    # TODO: Failed 15.1.2024. Probably will be fixed soon.
     pre-commit-hooks = {
       url = "github:cachix/pre-commit-hooks.nix";
-      # inputs.nixpkgs.follows = "nixpkgs";
-    };
-    # nix-index-database = { url = "github:Mic92/nix-index-database"; };
-    # TODO: When gets merged into master (and nixpkgs-unstable), can use that instead
-    comma-update-flag = {
-      url = "github:patricksjackson/comma/update-flag";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # nix-index-database = { url = "github:Mic92/nix-index-database"; };
+    # TODO: Move nix build definition to nix-extra
     gotta-scrape-em-all = {
       url = "github:nialov/gotta-scrape-em-all";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -37,15 +39,29 @@
       url = "github:tweag/nickel";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    copier-src = { url = "github:nialov/nialov-py-template"; };
     doit-ext-src = {
-      url = "github:nialov/doit-ext/refactor-remove-python-build-tools";
+      url = "github:nialov/doit-ext";
+      flake = false;
+      # inputs.nixpkgs.follows = "nixpkgs";
+    };
+    deploy-rs-input = {
+      url = "github:serokell/deploy-rs";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    deploy-rs-input = { url = "github:serokell/deploy-rs"; };
+    # TODO: Move nix build definition to nix-extra
     mosaic-src = {
       url = "github:nialov/mosaic";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nix-filter.url = "github:numtide/nix-filter";
+    # TODO: Move nix build definition to nix-extra
+    tracerepo = {
+      url = "github:nialov/tracerepo";
+      # inputs.nixpkgs.follows = "nixpkgs";
+    };
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
+      inputs.nixpkgs-lib.follows = "nixpkgs";
     };
     lmix-flake-src = {
       url = "github:kilzm/lmix";
@@ -73,10 +89,6 @@
       url = "github:nialov/ChatGPT.nvim";
       flake = false;
     };
-    oil-nvim-src = {
-      url = "github:stevearc/oil.nvim";
-      flake = false;
-    };
     ytdl-sub-src = {
       url = "github:jmbannon/ytdl-sub";
       flake = false;
@@ -102,7 +114,8 @@
       flake = false;
     };
     tasklite-src = {
-      url = "github:ad-si/tasklite";
+      # TODO: Try to fix later
+      url = "github:ad-si/tasklite/1cdded1e915de8d9c2fbd7770f948f33c507d0ce";
       flake = false;
     };
     taskfzf-src = {
@@ -129,12 +142,15 @@
       url = "github:tzachar/cmp-ai";
       flake = false;
     };
+    # TODO: Failing as of 14.1.2024
     grokker-src = {
-      url = "github:stevegt/grokker";
+      url = "github:stevegt/grokker/7e4259c3c21951e70dd7f12d6bf7ceda09af7a81";
       flake = false;
     };
+    # TODO: Check fix-attempt-gpt-engineer-fix branch for building newer versions
     gpt-engineer-src = {
-      url = "github:AntonOsika/gpt-engineer";
+      url =
+        "github:AntonOsika/gpt-engineer/2a66dd57f6e32940b7e783ab3cd5fe6a19461d6b";
       flake = false;
     };
     frackit-src = {
@@ -143,19 +159,21 @@
       flake = false;
     };
     dfnworks-src = {
-      url = "github:lanl/dfnworks";
+      url = "github:lanl/dfnworks/a76988603770e9f4ab2dfe54ad92ac50f3fcffac";
       flake = false;
     };
     lagrit-src = {
-      url = "github:lanl/lagrit";
+      url = "github:lanl/lagrit/48161bb7115abcdb30c58706b899f71398045024";
       flake = false;
     };
     fehm-src = {
-      url = "github:lanl/fehm";
+      url = "github:lanl/fehm/5d8d8811bf283fcca0a8a2a1479f442d95371968";
       flake = false;
     };
     pflotran-src = {
-      url = "git+https://bitbucket.org/pflotran/pflotran.git";
+      url =
+        # TODO: Requires higher petsc version than came from nixpkgs 9.4.2024
+        "git+https://bitbucket.org/pflotran/pflotran.git?rev=bf18794418f7646c6143ce47ed678b9c19a0246d";
       flake = false;
     };
     pkg-fblaslapack-src = {
@@ -174,14 +192,52 @@
       url = "github:pearu/pyvtk";
       flake = false;
     };
+    pandera-src = {
+      url = "github:unionai-oss/pandera";
+      flake = false;
+    };
+    syncall-src = {
+      # url = "github:bergercookier/syncall";
+      # TODO: New versions use poetry_dynamic_versioning as build tool in pyproject.toml
+      url =
+        "git+https://github.com/bergercookie/syncall?rev=ccfeb306c5ceeee509b2aed4ae12da710e3f1b35&submodules=1";
+      flake = false;
+    };
+    bubop-src = {
+      url = "github:bergercookie/bubop";
+      flake = false;
+    };
+    # TODO: Failing as of 14.1.2024
+    item-synchronizer-src = {
+      url =
+        "github:bergercookie/item_synchronizer/6c8302f1c0118ab60e72030c834e8cf8ced00577";
+      flake = false;
+    };
+    gkeepapi-src = {
+      # TODO: Newer build with flit did not work. Take a look in 2024 if the package is added to nixpkgs
+      url = "github:kiwiz/gkeepapi/3d91b57e44e38f964309113974cf01a190b26c39";
+      flake = false;
+    };
+    powerlaw-src = {
+      # TODO: Newer build with flit did not work. Take a look in 2024 if the package is added to nixpkgs
+      url =
+        "github:jeffalstott/powerlaw/6732699d790edbe27c2790bf22c3ef7355d2b07e";
+      flake = false;
+    };
+    fractopo-src = {
+      url = "github:nialov/fractopo";
+      flake = false;
+    };
+    python-ternary-src = {
+      url = "github:marcharper/python-ternary";
+      flake = false;
+    };
   };
 
   outputs = { self, ... }@inputs:
 
     let
       inherit (inputs.nixpkgs) lib;
-      nixos-lib = import (inputs.nixpkgs + "/nixos/lib") { };
-      # lib = inputs.nixpkgs.lib;
 
       localOverlay = import ./overlays inputs;
       inputOverlay = _: prev:
@@ -189,128 +245,74 @@
         in {
 
           # Some custom packages or overrides to add/fix functionality
-          comma-update-flag =
-            inputs.comma-update-flag.packages."${system}".comma;
           inherit (inputs.gotta-scrape-em-all.packages."${system}")
             gotta-scrape-em-all;
-
-          # Modify rstcheck to include sphinx as a buildInput
-          rstcheck = prev.rstcheck.overrideAttrs (_: prevAttrs: {
-            propagatedBuildInputs = prevAttrs.propagatedBuildInputs
-              ++ [ prev.python3Packages.sphinx ];
-          });
-
-          # Get copier from nialov-py-template flake
-          inherit (inputs.copier-src.packages."${system}") copier;
 
           # Get deploy-rs form its repository flake
           inherit (inputs.deploy-rs-input.packages."${system}") deploy-rs;
 
           nickel = inputs.nickel-src.packages."${system}".build;
-          # Use stable version of tmuxp
+          # numtide/nix-filter library used for filtering local packages sources
+          # filter = inputs.nix-filter.lib;
+          inherit (inputs.tracerepo.packages."${system}") tracerepo;
         };
-      stableOverlay = _: prev:
-        let
-          inherit (prev) system;
-          # pkgsStable has the local overlay added
-          pkgsStable = import inputs.nixpkgs-stable {
-            inherit system;
-            overlays = [ localOverlay inputOverlay ];
-          };
-        in { inherit (pkgsStable) tmuxp; };
-      kibitzrOverlay = _: prev:
-        let
-          inherit (prev) system;
-          pkgsKibitzr = import inputs.nixpkgs-kibitzr {
-            inherit system;
-            overlays = [ localOverlay inputOverlay ];
-          };
-        in { inherit (pkgsKibitzr) kibitzr; };
       fullOverlay = lib.composeManyExtensions [
         localOverlay
         inputOverlay
-        stableOverlay
-        kibitzrOverlay
-        inputs.doit-ext-src.overlays.default
+        self.overlays.utils
       ];
 
-      perSystem = inputs.flake-utils.lib.eachSystem [ "x86_64-linux" ] (system:
-
-        let
-          pkgs = import inputs.nixpkgs {
-            inherit system;
-            overlays = [ self.overlays.default ];
-            config = { allowUnfree = true; };
-          };
-          pkgsFrackit = import inputs.nixpkgs-frackit {
-            inherit system;
-            overlays = [ self.overlays.default ];
-          };
-        in {
-
-          devShells = {
-            default = pkgs.mkShell {
-              buildInputs = with pkgs; [ pre-commit watchexec ];
-              # Include pre-commit check shellHook so they can be ran with `pre-commit ...`
-              inherit (self.checks."${system}".preCommitCheck) shellHook;
+      flakePart = inputs.flake-parts.lib.mkFlake { inherit inputs; }
+        ({ inputs, flake-parts-lib, ... }:
+          let
+            inherit (flake-parts-lib) importApply;
+            flakeModules = {
+              custom-pre-commit-hooks =
+                importApply ./flakeModules/custom-pre-commit-hooks.nix {
+                  inherit inputs;
+                };
+              poetryDevshell = importApply ./flakeModules/poetry-devshell.nix {
+                inherit inputs;
+              };
             };
-            frackit-python = pkgsFrackit.mkShell {
-              buildInputs = with pkgsFrackit;
-                [
-                  python3
+          in {
+            systems = [ "x86_64-linux" ];
+            imports = [
+              flakeModules.custom-pre-commit-hooks
+              flakeModules.poetryDevshell
+              ./per-system.nix
+            ];
 
-                ] ++ (with pkgsFrackit.python3Packages; [
-                  networkx
-                  geopandas
-                  jupyterlab
-                  matplotlib
-                  scipy
-                  frackit
-                ]);
+            flake = {
+              overlays = {
+                default = fullOverlay;
+                utils = lib.composeManyExtensions [
+                  (_: _: {
+                    # numtide/nix-filter library used for filtering local packages sources
+                    filter = inputs.nix-filter.lib;
+                  })
+                  localOverlay
+                ];
+
+              };
+              nixosModules = {
+                ytdl-sub = import ./nixos/modules/ytdl-sub;
+                homer = import ./nixos/modules/homer;
+                flipperzero = import ./nixos/modules/flipperzero.nix;
+              };
+              templates = {
+                default = {
+                  path = ./templates/basic;
+                  description = ''
+                    A flake using nix-extra overlay with flake-parts.
+                  '';
+                };
+              };
+              inherit flakeModules;
             };
-          };
 
-          # Filter out packages which have meta.broken == true
-          checks = let
+            # perSystem = { self', pkgs, ... }:
+          });
 
-            moduleTest = { imports, defaults ? {
-              imports = builtins.attrValues self.nixosModules;
-              nixpkgs.pkgs = pkgs;
-            }, hostPkgs ? pkgs }:
-              nixos-lib.runTest { inherit imports defaults hostPkgs; };
-
-          in lib.recursiveUpdate {
-            preCommitCheck = inputs.pre-commit-hooks.lib.${system}.run
-              (import ././pre-commit.nix { inherit pkgs; });
-            homerModule = moduleTest { imports = [ ./nixos/tests/homer.nix ]; };
-            flipperzeroModule =
-              moduleTest { imports = [ ./nixos/tests/flipperzero.nix ]; };
-          } self.packages."${system}"
-
-          ;
-
-          packages = {
-            inherit (pkgs)
-              homer taskfzf pathnames backupper wiki-builder wsl-open-dynamic
-              pretty-task kibitzr ytdl-sub bootstrapSecretsScript tasklite-core
-              comma-update-flag rstcheck copier tmuxp
-              pre-commit-hook-ensure-sops deploy-rs clean-git-branches-script
-              allas-cli-utils grokker poetry-with-c-tooling gpt-engineer
-              synonym-cli mosaic lagrit dfnworks fehm pflotran petsc hdf5-full;
-            inherit (pkgs.vimPlugins) chatgpt-nvim oil-nvim neoai-nvim cmp-ai;
-            inherit (pkgs.python3Packages)
-              doit-ext sphinxcontrib-mermaid sphinx-gallery mplstereonet pyvtk
-              pydfnworks;
-            inherit (pkgsFrackit) frackit;
-          };
-        });
-
-    in lib.recursiveUpdate {
-      overlays.default = fullOverlay;
-      nixosModules = {
-        ytdl-sub = import ./nixos/modules/ytdl-sub;
-        homer = import ./nixos/modules/homer;
-        flipperzero = import ./nixos/modules/flipperzero.nix;
-      };
-    } perSystem;
+    in lib.foldl' lib.recursiveUpdate { } [ flakePart ];
 }

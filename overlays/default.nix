@@ -21,68 +21,32 @@ inputs: final: prev:
   grokker = prev.callPackage ././packages/grokker { inherit inputs; };
   poetry-with-c-tooling =
     prev.callPackage ././packages/poetry-with-c-tooling { };
-  gpt-engineer = prev.callPackage ././packages/gpt-engineer { inherit inputs; };
+  # TODO: Generate more succinctly
+  python39-with-c-tooling =
+    prev.callPackage ././packages/python-with-c-tooling {
+      python3ToWrap = prev.python39;
+    };
+  python310-with-c-tooling =
+    prev.callPackage ././packages/python-with-c-tooling {
+      python3ToWrap = prev.python310;
+    };
+  python311-with-c-tooling =
+    prev.callPackage ././packages/python-with-c-tooling {
+      python3ToWrap = prev.python311;
+    };
+
+  gpt-engineer =
+    final.callPackage ././packages/gpt-engineer { inherit inputs; };
   frackit = prev.callPackage ././packages/frackit { inherit inputs; };
+  syncall = prev.callPackage ././packages/syncall { inherit inputs; };
   lagrit = prev.callPackage ././packages/lagrit { inherit inputs; };
   dfnworks = prev.callPackage ././packages/dfnworks { inherit inputs; };
   fehm = prev.callPackage ././packages/fehm { inherit inputs; };
   pflotran = final.callPackage ././packages/pflotran { inherit inputs; };
   pkg-fblaslapack =
     prev.callPackage ././packages/pkg-fblaslapack { inherit inputs; };
-  petsc = let
-    petscStable = inputs.nixpkgs-petsc.legacyPackages."${prev.system}".petsc;
-    petscStableMpi = petscStable.override { inherit (final) mpi; };
-  in petscStableMpi.overrideAttrs (_: prevAttrs: {
-    buildInputs = prevAttrs.buildInputs
-      ++ [ prev.metis final.hdf5-full prev.zlib prev.parmetis ];
-    # RUN ./configure --CFLAGS='-O3' --CXXFLAGS='-O3' --FFLAGS='-O3' --with-debugging=no --download-mpich=yes --download-hdf5=yes --download-hdf5-fortran-bindings=yes --download-fblaslapack=yes --download-metis=yes --download-parmetis=yes
-    # make PETSC_DIR=/build/petsc-3.19.2 PETSC_ARCH=arch-linux-c-opt all
-    # export FC="${prev.gfortran}/bin/gfortran" F77="${prev.gfortran}/bin/gfortran"
-    preConfigure = ''
-      patchShebangs ./lib/petsc/bin
-    '';
-    configureFlags = [
-      "F77=${prev.gfortran}/bin/gfortran"
-      "AR=${prev.gfortran}/bin/ar"
-      "CC=${prev.openmpi}/bin/mpicc"
-      "--with-hdf5=1"
-      "--with-hdf5-fortran-bindings=1"
-      "--CFLAGS='-O3'"
-      "--CXXFLAGS='-O3'"
-      "--FFLAGS='-O3'"
-      "--with-debugging=no"
-      "--with-metis=1"
-      # "--with-fblaslapack=1"
-      # "--with-hdf5-include=${prev.hdf5-fortran.dev.outPath}/include"
-      # "--with-hdf5-lib=-L${prev.hdf5-fortran.out.outPath}/lib -lz"
-      # "--with-mpi=0"
-      # '' else ''
-      # "--CC=mpicc"
-      "--with-cxx=mpicxx"
-      "--with-fc=mpif90"
-      "--with-mpi=1"
-      "--with-zlib=1"
-      # ''}
-      # ${if withp4est then ''
-      "--with-p4est=1"
-      # "--with-zlib-include=${prev.zlib.dev}/include"
-      # "--with-zlib-lib=-L${prev.zlib}/lib -lz"
-      "--with-blas=1"
-      "--with-lapack=1"
-      "--with-parmetis=1"
-    ];
-    # postPatch = ''
-    #   substituteInPlace config/BuildSystem/config/base.py \
-    #     --replace "return not (returnCode or len(output))" \
-    #     "return True"
-    # '';
-    doCheck = false;
-    mpiSupport = true;
-    makeFlags = [ "PETSC_ARCH=arch-linux-c-opt" ];
-    # NIX_DEBUG = 1;
-    # TODO: Only for debugging
-    nativeBuildInputs = prevAttrs.nativeBuildInputs ++ [ prev.breakpointHook ];
-  });
+  petsc = import ./packages/petsc-override.nix { inherit inputs prev final; };
+
   # hdf5-full = prev.hdf5.override {
   #   fortranSupport = true;
   #   mpiSupport = true;
@@ -95,7 +59,7 @@ inputs: final: prev:
   #     gfortran = prev.gfortran11;
   #   };
   # Build with cmake
-  hdf5-full = (prev.callPackage "${inputs.lmix-flake-src.outPath}/pkgs/HDF5" {
+  hdf5-full = (prev.callPackage "${inputs.lmix-flake-src.outPath}/pkgs/hdf5" {
     inherit (prev) stdenv;
     mpiSupport = true;
     mpi = prev.openmpi;
@@ -116,11 +80,78 @@ inputs: final: prev:
     in with prev; ''
       ${b git} branch --merged | string trim | ${
         b ripgrep
-      } --invert-match 'master' | ${b parallel} '${b git} branch -d {}'
+      } --invert-match 'master' | ${lib.getExe' parallel "parallel"} '${
+        b git
+      } branch -d {}'
     '');
+  relax-pyproject-dependencies = prev.writeShellApplication {
+    name = "relax-pyproject-dependencies";
+    runtimeInputs = [ (prev.python3.withPackages (p: with p; [ tomlkit ])) ];
+    text = ''
+      python3 ${./pyproject.py} "$@"
+    '';
+
+  };
+
+  inherit (inputs.nixpkgs-stable.legacyPackages.x86_64-linux) clog-cli;
+
+  # TODO: This needs to be upstreamed. After v1.2 release in main repo, pr in nixpkgs
+  pre-commit-hook-ensure-sops =
+    prev.pre-commit-hook-ensure-sops.overridePythonAttrs (prevAttrs: {
+
+      src = prev.fetchFromGitHub {
+        owner = "yuvipanda";
+        repo = prevAttrs.pname;
+        rev = "fb9c7108c6c62aaf05441daa97ace3f40e840ac3";
+        hash = "sha256-CPCCNZBWzaeDfNMNI99ALzE02oM9Mfr4pyW2ag8dk7U=";
+      };
+      patches = [ ];
+      nativeCheckInputs = with prev.python3Packages; [ pytest ];
+      checkPhase = ''
+        runHook preCheck
+        pytest
+        runHook postCheck
+      '';
+
+    });
+  # Modify rstcheck to include sphinx as a buildInput
+  rstcheck = prev.rstcheck.overrideAttrs (_: prevAttrs: {
+    propagatedBuildInputs = prevAttrs.propagatedBuildInputs
+      ++ [ prev.python3Packages.sphinx ];
+  });
+
+  sync-git-tag-with-poetry =
+    prev.callPackage ./packages/sync-git-tag-with-poetry.nix { };
+  resolve-version = prev.callPackage ./packages/resolve-version.nix { };
+  update-changelog = prev.callPackage ./packages/update-changelog.nix { };
+  pre-release = prev.callPackage ./packages/pre-release.nix { };
+  poetry-run = prev.callPackage ./packages/poetry-run.nix {
+    pythons = with prev; [ python39 python310 python311 python312 ];
+  };
+  jupytext-nb-edit = prev.callPackage ./packages/jupytext-nb-edit { };
+
+  copier = prev.copier.overridePythonAttrs (_: {
+    postPatch = ''
+      substituteInPlace pyproject.toml \
+        --replace 'pydantic = ">=1.10.2,<2"' 'pydantic = ">=1.10.2"'
+    '';
+
+  });
+
+  template-check = prev.writeShellApplication {
+    name = "template-check";
+    # runtimeInputs = [ (prev.python3.withPackages (p: with p; [ tomlkit ])) ];
+    text = ''
+      temp_dir="$(mktemp -d)"
+      pushd "$temp_dir"
+      nix flake new -t ${./..} . --refresh
+      nix build .#devShells.x86_64-linux.default
+    '';
+
+  };
 
   pythonPackagesExtensions = prev.pythonPackagesExtensions ++ [
-    (python-final: _: {
+    (python-final: python-prev: {
       sphinxcontrib-mermaid =
         python-final.callPackage ././packages/sphinxcontrib-mermaid {
           inherit inputs;
@@ -135,10 +166,55 @@ inputs: final: prev:
         python-final.callPackage ././packages/gazpacho { inherit inputs; };
       kibitzr =
         python-final.callPackage ././packages/kibitzr { inherit inputs; };
+      pandera =
+        python-final.callPackage ././packages/pandera { inherit inputs; };
       sphinx-gallery = python-final.callPackage ././packages/sphinx-gallery {
         inherit inputs;
       };
-      inherit (final) frackit;
+      bubop = python-final.callPackage ././packages/bubop { inherit inputs; };
+      item-synchronizer =
+        python-final.callPackage ././packages/item-synchronizer {
+          inherit inputs;
+        };
+
+      gkeepapi =
+        python-final.callPackage ././packages/gkeepapi { inherit inputs; };
+      doit-ext =
+        python-final.callPackage ././packages/doit-ext { inherit inputs; };
+      frackit = python-prev.toPythonModule
+        (python-final.pkgs.frackit.override { pythonPackages = python-final; });
+      # TODO: psycopg overrides can be removed after a while and test gpt-engineer build
+      psycopg2 =
+        python-prev.psycopg2.overridePythonAttrs (_: { doCheck = false; });
+      psycopg = python-prev.psycopg.overridePythonAttrs (_: {
+        doCheck = false;
+        pythonImportsCheck = [ "psycopg" ];
+      });
+      asana = python-prev.asana.overridePythonAttrs (prevAttrs: {
+        propagatedBuildInputs = prevAttrs.propagatedBuildInputs
+          ++ [ python-prev.six ];
+      });
+      fiona = python-prev.fiona.overridePythonAttrs (prevAttrs: {
+        disabledTests = prevAttrs.disabledTests ++ [ "test_issue1169" ];
+      });
+      powerlaw =
+        python-final.callPackage ././packages/powerlaw { inherit inputs; };
+      notion-client = python-prev.notion-client.overridePythonAttrs
+        (_: { disabledTests = [ "test_api_http_response_error" ]; });
+      gpsoauth = python-prev.gpsoauth.overridePythonAttrs (prevAttrs: {
+        nativeBuildInputs = prevAttrs.nativeBuildInputs
+          ++ [ python-prev.poetry-core ];
+        postPatch = ''
+          substituteInPlace pyproject.toml \
+            --replace 'urllib3 = "<2.0"' 'urllib3 = "*"'
+        '';
+
+      });
+      fractopo =
+        python-final.callPackage ././packages/fractopo { inherit inputs; };
+      python-ternary = python-final.callPackage ././packages/python-ternary {
+        inherit inputs;
+      };
       mplstereonet =
         python-final.callPackage ././packages/mplstereonet { inherit inputs; };
       pyvtk = python-final.callPackage ././packages/pyvtk { inherit inputs; };
@@ -146,7 +222,6 @@ inputs: final: prev:
         python-final.callPackage ././packages/dfnworks/pydfnworks.nix {
           inherit inputs;
         };
-
     })
   ];
 
@@ -198,10 +273,6 @@ inputs: final: prev:
     chatgpt-nvim = prev.vimUtils.buildVimPlugin {
       name = "chatgpt-nvim";
       src = inputs.chatgpt-nvim-src;
-    };
-    oil-nvim = prev.vimUtils.buildVimPlugin {
-      name = "oil.nvim";
-      src = inputs.oil-nvim-src;
     };
     neoai-nvim = prev.vimUtils.buildVimPlugin {
       name = "neoai.nvim";

@@ -1,10 +1,10 @@
-{ inputs, lib, writeText, applyPatches, mkDerivation, runCommand, aeson
-, ansi-terminal, beam-core, beam-migrate, beam-sqlite, cassava, colour
-, file-embed, generic-random, githash, hourglass, hsemail, hspec, huzzy
-, iso8601-duration, optparse-applicative, portable-lines, pretty-simple
-, prettyprinter, prettyprinter-ansi-terminal, protolude, quickcheck-instances
-, read-editor, simple-sql-parser, sqlite-simple, temporary, ulid
-, unordered-containers, vector, yaml }:
+{ inputs, lib, writeText, mkDerivation, aeson, ansi-terminal, beam-core
+, beam-migrate, beam-sqlite, cassava, colour, file-embed, generic-random
+, githash, hourglass, hsemail, hspec, huzzy, iso8601-duration
+, optparse-applicative, portable-lines, pretty-simple, prettyprinter
+, prettyprinter-ansi-terminal, protolude, quickcheck-instances, read-editor
+, simple-sql-parser, sqlite-simple, temporary, ulid, unordered-containers
+, vector, yaml }:
 
 let
   versionSlugPatch = ''
@@ -37,6 +37,7 @@ let
      
      aliasWarning :: Text -> Doc AnsiStyle
   '';
+  versionSlugPatchFile = writeText "versionSlugPatch.patch" versionSlugPatch;
 
 in mkDerivation {
   pname = "tasklite-core";
@@ -111,16 +112,22 @@ in mkDerivation {
   # vector,
   # yaml
 
-  src = let
+  # src = let
 
-    fullSrc = inputs.tasklite-src;
-    patchedFullSrc = applyPatches {
-      name = "tasklite-core-src-patched";
-      src = fullSrc;
-      patches = [ (writeText "versionSlugPatch.patch" versionSlugPatch) ];
-    };
-  in runCommand "tasklite-core" { } ''
-    cp -r ${patchedFullSrc}/tasklite-core $out
+  #   fullSrc = inputs.tasklite-src;
+  #   patchedFullSrc = applyPatches {
+  #     name = "tasklite-core-src-patched";
+  #     src = fullSrc;
+  #     patches = [ (writeText "versionSlugPatch.patch" versionSlugPatch) ];
+  #   };
+  # in runCommand "tasklite-core" { } ''
+  #   cp -r ${patchedFullSrc}/tasklite-core $out
+  # '';
+
+  src = inputs.tasklite-src;
+  patches = [ versionSlugPatchFile ];
+  postPatch = ''
+    cd ./tasklite-core/
   '';
 
   # meta = with lib; {

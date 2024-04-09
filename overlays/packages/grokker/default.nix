@@ -6,16 +6,13 @@ buildGoModule {
   name = "grokker";
 
   src = inputs.grokker-src;
-  # src = fetchFromGitHub {
-  #   owner = "stevegt";
-  #   repo = "grokker";
-  #   rev = "a5bf805c23212bc40906d5b440d4642b2066f2ee";
-  #   hash = "sha256-Z1I9pFygzgEF39p6H34vWMBNcIEyT7wUM66ObtYYDvM=";
-  # };
   # All tests use OpenAI API
+  postPatch = ''
+    cd v3/
+  '';
   doCheck = false;
 
-  vendorHash = "sha256-5xK2HX7RLfR7UGotydpQIids628qONPlgG+pWGpdIqQ=";
+  vendorHash = "sha256-AEZzHNHSkAF1GG9PXh92oMQMtLUeAXbXxjGg0v7K/u8=";
 
   ldflags = [ "-s" "-w" ];
 

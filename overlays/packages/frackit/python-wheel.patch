@@ -1,0 +1,13 @@
+diff --git a/python/CMakeLists.txt b/python/CMakeLists.txt
+index 51287d2..102ae30 100644
+--- a/python/CMakeLists.txt
++++ b/python/CMakeLists.txt
+@@ -14,7 +14,6 @@ if (FRACKIT_ENABLE_PYTHONBINDINGS)
+ 
+     # installation rule
+     install(CODE "message(\"Installing the python package wheel at ${CMAKE_CURRENT_BINARY_DIR}\")
+-                  execute_process(COMMAND ${PYTHON_EXECUTABLE} -m pip wheel ${CMAKE_CURRENT_BINARY_DIR}
+-                                  ERROR_MESSAGE \"Error installing wheel for python package at ${CMAKE_CURRENT_BINARY_DIR}\")"
++                  execute_process(COMMAND ${PYTHON_EXECUTABLE} -m pip wheel --verbose --no-index --no-deps --no-clean --no-build-isolation --wheel-dir dist ${CMAKE_CURRENT_BINARY_DIR})"
+            )
+ endif()

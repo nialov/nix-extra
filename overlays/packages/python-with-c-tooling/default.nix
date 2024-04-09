@@ -1,8 +1,8 @@
-{ pkgs, ... }:
+{ pkgs, python3ToWrap, ... }:
 pkgs.symlinkJoin {
-  name = "poetry-with-c-tooling";
+  name = "python-with-c-tooling";
   buildInputs = with pkgs; [ makeWrapper ];
-  paths = with pkgs; [ poetry ];
+  paths = [ python3ToWrap ];
   postBuild = let
 
     caBundle = "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt";
@@ -18,7 +18,8 @@ pkgs.symlinkJoin {
     ];
 
   in ''
-    wrapProgram $out/bin/poetry ${builtins.concatStringsSep " " wraps}
-    $out/bin/poetry --help
+    wrapProgram $out/bin/python3 ${builtins.concatStringsSep " " wraps}
+    cp $out/bin/python3 $out/bin/python3-with-c-tooling
+    $out/bin/python3-with-c-tooling --help
   '';
 }

@@ -119,35 +119,37 @@ in {
   };
 
   config = mkIf cfg.enable {
-    systemd.tmpfiles.rules =
-      [ "d '${cfg.dataDir}' 0700 ${cfg.user} ${cfg.group} - -" ];
+    systemd = {
+      tmpfiles.rules =
+        [ "d '${cfg.dataDir}' 0700 ${cfg.user} ${cfg.group} - -" ];
 
-    systemd.services.ytdl-sub = {
-      description = "ytdl-sub";
-      # after = [ "network.target" ];
-      # wantedBy = [ "multi-user.target" ];
-      environment = { "HOME" = "${cfg.dataDir}"; };
+      services.ytdl-sub = {
+        description = "ytdl-sub";
+        # after = [ "network.target" ];
+        # wantedBy = [ "multi-user.target" ];
+        environment = { "HOME" = "${cfg.dataDir}"; };
 
-      serviceConfig = {
-        Type = "oneshot";
-        User = cfg.user;
-        Group = cfg.group;
-        ProtectSystem = "strict";
-        PrivateUsers = true;
-        PrivateTmp = true;
-        StateDirectory = "ytdl-sub";
-        RuntimeDirectory = "ytdl-sub";
-        ExecStartPre =
-          "${cfg.package}/bin/ytdl-sub --config='${configFile}' --dry-run --log-level verbose";
-        ExecStart =
-          "${cfg.package}/bin/ytdl-sub --config='${configFile}' sub ${subscriptionsFile}";
+        serviceConfig = {
+          Type = "oneshot";
+          User = cfg.user;
+          Group = cfg.group;
+          ProtectSystem = "strict";
+          PrivateUsers = true;
+          PrivateTmp = true;
+          StateDirectory = "ytdl-sub";
+          RuntimeDirectory = "ytdl-sub";
+          ExecStartPre =
+            "${cfg.package}/bin/ytdl-sub --config='${configFile}' --dry-run --log-level verbose";
+          ExecStart =
+            "${cfg.package}/bin/ytdl-sub --config='${configFile}' sub ${subscriptionsFile}";
+        };
       };
-    };
 
-    systemd.timers."ytdl-sub" = {
-      wantedBy = [ "timers.target" ];
-      partOf = [ "ytdl-sub.service" ];
-      inherit (cfg) timerConfig;
+      timers."ytdl-sub" = {
+        wantedBy = [ "timers.target" ];
+        partOf = [ "ytdl-sub.service" ];
+        inherit (cfg) timerConfig;
+      };
     };
 
     # networking.firewall = mkIf cfg.openFirewall {

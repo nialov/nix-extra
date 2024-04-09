@@ -1,21 +1,26 @@
 { inputs, lib, buildPythonPackage, sphinx, pytestCheckHook, pytest, numpy
-, matplotlib, joblib, pillow, seaborn, statsmodels, plotly, graphviz, absl-py }:
+, matplotlib, joblib, pillow, seaborn, statsmodels, plotly, graphviz, absl-py
+, lxml, setuptools-scm }:
 
 buildPythonPackage rec {
   pname = "sphinx-gallery";
   version = inputs.sphinx-gallery-src.shortRev;
-  format = "setuptools";
+  format = "pyproject";
   src = inputs.sphinx-gallery-src;
+
+  nativeBuildInputs = [ setuptools-scm ];
 
   propagatedBuildInputs = [ sphinx ];
 
   # Move tests outside of package and remove use of pytest-coverage
   postPatch = ''
     mv sphinx_gallery/tests tests/
-    substituteInPlace setup.cfg \
-      --replace " --cov-report= --cov=sphinx_gallery" ""
+    substituteInPlace pyproject.toml \
+      --replace-fail "--cov-report=" ""
+    substituteInPlace pyproject.toml \
+      --replace-fail "--cov=sphinx_gallery" ""
     substituteInPlace tests/test_gen_rst.py \
-      --replace "sphinx_gallery/tests/reference_parse.txt" "tests/reference_parse.txt"
+      --replace-fail "sphinx_gallery/tests/reference_parse.txt" "tests/reference_parse.txt"
   '';
 
   checkInputs = [
@@ -30,6 +35,7 @@ buildPythonPackage rec {
     plotly
     graphviz
     absl-py
+    lxml
   ];
 
   # We do not want tests from tests/tinybuild

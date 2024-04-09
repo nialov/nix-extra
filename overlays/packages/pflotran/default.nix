@@ -14,7 +14,7 @@ stdenv.mkDerivation (finalAttrs: {
     # TODO: Probably only part of the flags are required
     # could try using NIX_LD path or similar method to give them
     flags =
-      "-L${hdf5-full}/lib -I${hdf5-full}/include -lhdf5_hl -lhdf5_hl_fortran -lhdf5 -lz -ldl -lm -h5p";
+      "-L${hdf5-full}/lib -I${hdf5-full}/include -lhdf5_hl -lhdf5_hl_fortran -lhdf5 -lz -ldl -lm";
   in ''
     substituteInPlace src/pflotran/makefile \
       --replace 'MYFLAGS = -I.' \

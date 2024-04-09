@@ -1,17 +1,19 @@
-{ inputs, lib, stdenv, cmake, python3, opencascade-occt, ... }:
+{ inputs, lib, stdenv, cmake, pythonPackages, opencascade-occt, doxygen
+, graphviz-nox, fontconfig, ... }:
 
 let
 
-  frackit-base = stdenv.mkDerivation rec {
+  self = stdenv.mkDerivation {
     pname = "frackit-base";
-    version = "unstable";
+    version = "1.3.0";
 
     src = inputs.frackit-src;
 
-    # TODO: Can enable all tests, just used to speed up builds currently
+    patches = [ ./python-wheel.patch ];
+
     postPatch = ''
       substituteInPlace appl/CMakeLists.txt \
-        --replace "add_subdirectory(example3)" "# add_subdirectory(example3)" 
+        --replace-fail "add_subdirectory(example3)" "# add_subdirectory(example3)" 
     '';
 
     preBuild = ''
@@ -20,11 +22,17 @@ let
 
     nativeBuildInputs = [ cmake ];
     buildInputs = [
-      (python3.withPackages (p: with p; [ pybind11 wheel pip setuptools ]))
+      (pythonPackages.python.withPackages
+        (p: with p; [ pybind11 wheel pip setuptools ]))
       opencascade-occt
+      doxygen
+      graphviz-nox
+      fontconfig
     ];
     doCheck = true;
+    # Check version matches that in repo
     preCheck = ''
+      grep ${self.version} ${self.src}/CMakeLists.txt -q
       make build_tests
     '';
     checkPhase = ''
@@ -33,20 +41,21 @@ let
       runHook postCheck
     '';
 
-    # postFixup = ''
-    #   ls -la
-    #   cp -r appl $out/appl
-    #   cp -r python $out/python
-    #   cp -r frackit $out/frackit
-    # '';
+    FONTCONFIG_FILE = "${fontconfig.out}/etc/fonts/fonts.conf";
+    FONTCONFIG_PATH = "${fontconfig.out}/etc/fonts/";
+    postBuild = ''
+      FONTCONFIG_CACHE="$(mktemp -d)" make doc_doxygen
+      cp -r doc/ "$doc"
+    '';
 
     # Install as Python package
-    postInstall = let pythonVersion = lib.versions.majorMinor python3.version;
-    in ''
-      mkdir -p $out/lib/python${pythonVersion}/site-packages
-      python3 -m pip install ./python --target $out/lib/python${pythonVersion}/site-packages
-      # cp -r ./python/frackit $out/lib/python${pythonVersion}/site-packages/
+    postInstall = ''
+      pushd $NIX_BUILD_TOP/$sourceRoot/build/dist
+      python -m pip install ./*.whl --no-index --no-warn-script-location --prefix="$out" --no-cache
+      popd
     '';
+
+    outputs = [ "out" "doc" ];
 
     meta = with lib; {
       description = "";
@@ -56,4 +65,4 @@ let
     };
   };
 
-in frackit-base
+in self
