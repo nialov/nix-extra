@@ -13,7 +13,7 @@
         pkgsStable = mkNixpkgs inputs.nixpkgs-stable;
         pkgsGptEngineer = mkNixpkgs inputs.nixpkgs-gpt-engineer;
         pkgsKibitzr = mkNixpkgs inputs.nixpkgs-kibitzr;
-        pkgsDfnworks = mkNixpkgs inputs.nixpkgs-dfnworks;
+        # pkgsDfnworks = mkNixpkgs inputs.nixpkgs-dfnworks;
 
       in {
         _module.args.pkgs = mkNixpkgs inputs.nixpkgs;
