@@ -149,10 +149,7 @@
                 types = lib.mkForce [ "text" ];
                 files = "\\.(ipynb|py)$";
               };
-              yamllint = {
-                enable = lib.mkDefault false;
-                raw = { args = lib.mkBefore [ "-d" "relaxed" ]; };
-              };
+              yamllint = { enable = lib.mkDefault false; };
             };
         };
     };
