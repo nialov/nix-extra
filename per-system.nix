@@ -61,7 +61,33 @@
           # overlay?
           inherit (pkgsStable) tasklite-core;
           inherit (self'.devShells) poetry-devshell;
-        };
+        } //
+
+          # Adds all pre-commit hooks from pre-commit-hooks.nix to checks
+          # Should I exclude default ones and how?
+          (
+
+            # TODO: Make exclude smarter. E.g. make perSystem option where I define my own hooks
+            # Or mark them in the definition for testing
+            lib.filterAttrs (n: _:
+              builtins.elem n
+              # List of pre-commit hook entries that I want to check
+              # I.e. it tests the package build
+              [
+                "nbstripout"
+                "black-nb"
+                "cogapp"
+                "rstcheck"
+                "check-added-large-files"
+                "trim-trailing-whitespace"
+                "detect-secrets"
+              ]) (lib.mapAttrs' (name: value:
+                lib.nameValuePair name
+                (pkgs.writeText "${name}-entry" value.entry))
+
+                config.pre-commit.settings.hooks))
+
+        ;
         checks = let
 
           nixos-lib = import (inputs.nixpkgs + "/nixos/lib") { };
