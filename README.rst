@@ -27,6 +27,19 @@ I have packaged e.g.
 -  `mosaic <https://github.com/codebox/mosaic>`__ can be used to
    recreate a target image using preset tiles which can be any images.
 
+Scientific software
+~~~~~~~~~~~~~~~~~~~
+
+These packaging efforts are preliminary and require actual maintainer
+expertise to see if they truly work as expected. However, the builds run
+the provided test suites to a reasonable extent.
+
+-  `lagrit <https://github.com/lanl/LaGriT>`__
+-  `fehm <https://github.com/lanl/fehm>`__
+-  `pflotran <https://bitbucket.org/pflotran/pflotran>`__
+-  `dfnworks <https://github.com/lanl/dfnWorks>`__
+-  `frackit <https://git.iws.uni-stuttgart.de/tools/frackit>`__
+
 nixosModules
 ------------
 
