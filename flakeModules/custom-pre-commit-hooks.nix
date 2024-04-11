@@ -136,7 +136,12 @@
                 enable = lib.mkDefault false;
                 name = "nbstripout";
                 description = "Strip output from Jupyter notebooks";
-                entry = "${pkgs.nbstripout}/bin/nbstripout";
+                entry = let
+                  # TODO: 
+                  inherit (inputs.nixpkgs-stable.legacyPackages.x86_64-linux)
+                    nbstripout;
+
+                in "${nbstripout}/bin/nbstripout";
                 files = "\\.(ipynb)$";
               };
               ruff = {
