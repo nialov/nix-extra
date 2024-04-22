@@ -5,8 +5,8 @@ Pretty printing completed tasks from taskwarrior.
 
 import subprocess
 from datetime import datetime
-from pathlib import Path
 from textwrap import dedent
+from typing import List
 
 import json5
 import pandas as pd
@@ -24,12 +24,13 @@ APP = typer.Typer()
 @APP.command()
 def completed(
     end_interval: str = typer.Option("48h"),
-    column_config: str = typer.Option(
-        "rc.report.completed.columns=project,description"
-    ),
-    column_label_config: str = typer.Option(
-        "rc.report.completed.labels=Project,Description"
-    ),
+    # column_config: str = typer.Option(
+    #     "rc.report.completed.columns=project,description"
+    # ),
+    # column_label_config: str = typer.Option(
+    #     "rc.report.completed.labels=Project,Description"
+    # ),
+    optional_columns: List[str] = typer.Option([]),
 ):
     """
     Export tasks in a pretty table.
@@ -37,7 +38,12 @@ def completed(
     today_config = f"end.after:now-{end_interval}our"
 
     exported_tasks_json = subprocess.check_output(
-        ["task", column_config, column_label_config, today_config, "export"]
+        [
+            "task",
+            # column_config, column_label_config,
+            today_config,
+            "export",
+        ]
     ).decode("UTF-8")
 
     exported_tasks_parsed = json5.loads(exported_tasks_json)
@@ -46,10 +52,9 @@ def completed(
         return
 
     df = pd.DataFrame(exported_tasks_parsed)
-    optional_columns = ["tags"]
     for opt_col in optional_columns:
         if opt_col not in df.columns:
-            df[opt_col] = [[] for _ in df.shape[0]]
+            df[opt_col] = [[] for _ in range(df.shape[0])]
     wanted_columns = ["description", "project", *optional_columns]
     df = df[wanted_columns]
 
