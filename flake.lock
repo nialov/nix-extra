@@ -1692,11 +1692,11 @@
     "fractopo-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1716184018,
-        "narHash": "sha256-NeoUMa71sQEJATl3dACds4GiXhkP83LR2PrkENcqj3A=",
+        "lastModified": 1716211577,
+        "narHash": "sha256-szLujHgTt+tErDKRtvTfP6+U9yBOMvpuUKuhVREaAr8=",
         "owner": "nialov",
         "repo": "fractopo",
-        "rev": "363c3e06252467d974114d2a62d4d157b873b0b7",
+        "rev": "c5ef216d87c6194d398d40a30509aaae8da201c3",
         "type": "github"
       },
       "original": {
@@ -3545,6 +3545,7 @@
       "locked": {
         "lastModified": 1692133572,
         "narHash": "sha256-a8PGhTYMdwZVS4DFy4unbM+/gsVpq+6blgeuS7XMhnw=",
+        "ref": "refs/heads/master",
         "rev": "bf18794418f7646c6143ce47ed678b9c19a0246d",
         "revCount": 16609,
         "type": "git",
@@ -3746,11 +3747,11 @@
         "nixpkgs-stable": "nixpkgs-stable_3"
       },
       "locked": {
-        "lastModified": 1715870890,
-        "narHash": "sha256-nacSOeXtUEM77Gn0G4bTdEOeFIrkCBXiyyFZtdGwuH0=",
+        "lastModified": 1716213921,
+        "narHash": "sha256-xrsYFST8ij4QWaV6HEokCUNIZLjjLP1bYC60K8XiBVA=",
         "owner": "cachix",
         "repo": "pre-commit-hooks.nix",
-        "rev": "fa606cccd7b0ccebe2880051208e4a0f61bfc8c1",
+        "rev": "0e8fcc54b842ad8428c9e705cb5994eaf05c26a0",
         "type": "github"
       },
       "original": {
@@ -4304,11 +4305,11 @@
     "sphinx-gallery-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1715783218,
-        "narHash": "sha256-YflP+wSUzELUpOIzx/oUK7tsVMLrfH3s/u3e8zxQA7g=",
+        "lastModified": 1716232074,
+        "narHash": "sha256-x4/m8E+mr3UDsS1qf6mvjii8GHp3UbsOlKXoeDa9bm4=",
         "owner": "sphinx-gallery",
         "repo": "sphinx-gallery",
-        "rev": "85f9a3a315917a1f6c6099ebabccafde4ed2db54",
+        "rev": "049ae4df182bd5fa3a82c13dfae660b35cf00cbc",
         "type": "github"
       },
       "original": {
