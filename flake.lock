@@ -2197,16 +2197,17 @@
     "homer-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1716446747,
-        "narHash": "sha256-0RuwmGVkSwbbPcP7LRIOuyiR8ivxu4vRIgWr/ZDEklM=",
+        "lastModified": 1710164181,
+        "narHash": "sha256-25U4TGXKz1x0jvuVzo0hGZXYCU3Td7J68h7lNqtjTPI=",
         "owner": "bastienwirtz",
         "repo": "homer",
-        "rev": "e6adfd7bb7958255b71320e200b6543f1ca5e036",
+        "rev": "63aa567c526a04c0d4cb17332a3e3d6d03c4f9f0",
         "type": "github"
       },
       "original": {
         "owner": "bastienwirtz",
         "repo": "homer",
+        "rev": "63aa567c526a04c0d4cb17332a3e3d6d03c4f9f0",
         "type": "github"
       }
     },

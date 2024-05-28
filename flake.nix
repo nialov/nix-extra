@@ -127,7 +127,9 @@
       flake = false;
     };
     homer-src = {
-      url = "github:bastienwirtz/homer";
+      url =
+        # TODO: Build no longer contains yarn.lock in e6adfd7bb7958255b71320e200b6543f1ca5e036
+        "github:bastienwirtz/homer/63aa567c526a04c0d4cb17332a3e3d6d03c4f9f0";
       flake = false;
     };
     allas-cli-utils-src = {
