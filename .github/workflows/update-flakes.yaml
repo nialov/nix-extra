@@ -10,20 +10,17 @@ jobs:
   update-flakes:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
         with:
           # Nix Flakes doesn't work on shallow clones
           fetch-depth: 0
 
-      - name: Install Nix
-        uses: DeterminateSystems/nix-installer-action@v2
+      - uses: DeterminateSystems/nix-installer-action@v2
         with:
           extra-conf: |
             system-features = nixos-test benchmark big-parallel kvm
             access-tokens = github.com=${{ github.token }}
 
-            - name: Update flake.lock
       - uses: DeterminateSystems/update-flake-lock@v21
         with:
           pr-title: "Update flake.lock" # Title of PR to be created
