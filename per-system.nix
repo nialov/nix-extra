@@ -125,6 +125,8 @@
 
         };
 
+        legacyPackages = pkgs;
+
       };
 
   })
