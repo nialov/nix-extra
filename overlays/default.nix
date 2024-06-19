@@ -190,10 +190,8 @@ inputs: final: prev:
         doCheck = false;
         pythonImportsCheck = [ "psycopg" ];
       });
-      asana = python-prev.asana.overridePythonAttrs (prevAttrs: {
-        propagatedBuildInputs = prevAttrs.propagatedBuildInputs
-          ++ [ python-prev.six ];
-      });
+      asana = python-prev.asana.overridePythonAttrs
+        (prevAttrs: { propagatedBuildInputs = [ python-prev.six ]; });
       fiona = python-prev.fiona.overridePythonAttrs (prevAttrs: {
         disabledTests = prevAttrs.disabledTests ++ [ "test_issue1169" ];
       });
