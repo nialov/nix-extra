@@ -191,7 +191,7 @@ inputs: final: prev:
         pythonImportsCheck = [ "psycopg" ];
       });
       asana = python-prev.asana.overridePythonAttrs
-        (prevAttrs: { propagatedBuildInputs = [ python-prev.six ]; });
+        (_: { propagatedBuildInputs = [ python-prev.six ]; });
       fiona = python-prev.fiona.overridePythonAttrs (prevAttrs: {
         disabledTests = prevAttrs.disabledTests ++ [ "test_issue1169" ];
       });
