@@ -20,8 +20,12 @@ buildPythonPackage rec {
     substituteInPlace pyproject.toml \
       --replace-fail "--cov=sphinx_gallery" ""
     substituteInPlace tests/test_gen_rst.py \
-      --replace-fail "sphinx_gallery/tests/reference_parse.txt" "tests/reference_parse.txt"
+      --replace-fail "root = Path(__file__).parents[2]" "root = Path(__file__).parent.parent"
+    substituteInPlace tests/test_notebook.py \
+      --replace-fail "root = Path(__file__).parents[2]" "root = Path(__file__).parent.parent"
   '';
+  # substituteInPlace tests/test_gen_rst.py \
+  #   --replace-fail "sphinx_gallery/tests/reference_parse.txt" "tests/reference_parse.txt"
 
   checkInputs = [
     pytestCheckHook
@@ -42,8 +46,8 @@ buildPythonPackage rec {
   pytestFlagsArray = [ "tests/*.py" ];
   disabledTests = [
     # Requires jupyterlite
-    "test_full"
-    "test_create_jupyterlite"
+    "test_full_noexec"
+    # "test_create_jupyterlite"
     # Requires network
     "test_embed_code_links_get_data"
   ];
