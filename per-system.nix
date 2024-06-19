@@ -52,7 +52,7 @@
           inherit (pkgs.vimPlugins) chatgpt-nvim oil-nvim neoai-nvim cmp-ai;
           inherit (pkgs.python3Packages)
             doit-ext sphinxcontrib-mermaid sphinx-gallery pandera bubop
-            item-synchronizer gkeepapi powerlaw fractopo frackit python-ternary;
+            item-synchronizer gkeepapi powerlaw frackit python-ternary;
           inherit (pkgsGptEngineer) gpt-engineer;
           inherit (pkgsKibitzr) kibitzr;
           inherit (pkgs) lagrit dfnworks fehm pflotran petsc hdf5-full;
@@ -60,6 +60,9 @@
           # TODO: How include this information of using the stable branch in an
           # overlay?
           inherit (pkgsStable) tasklite-core;
+          # TODO: pygeos no longer in nixpkgs as it was merged to shapely 2.0
+          # 19.6.2024
+          inherit (pkgsStable.python3Packages) fractopo;
           inherit (self'.devShells) poetry-devshell;
         } //
 
