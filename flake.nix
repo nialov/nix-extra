@@ -195,7 +195,9 @@
       flake = false;
     };
     pandera-src = {
-      url = "github:unionai-oss/pandera";
+      # TODO: modin is not part of python3Packages as of 19.6.2024
+      # Also: spark-submit binary is not found for some reason
+      url = "github:unionai-oss/pandera/9b485ce";
       flake = false;
     };
     syncall-src = {

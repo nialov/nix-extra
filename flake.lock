@@ -3512,15 +3512,16 @@
     "pandera-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1715653843,
-        "narHash": "sha256-j1DMzEl+gDtlKFoQINoju358zPzvYojvOMY/AN26Mx0=",
+        "lastModified": 1713026038,
+        "narHash": "sha256-n+ElLOhEfM+lfd+HWghXgvENx24UPoFX3e/47nMOY2c=",
         "owner": "unionai-oss",
         "repo": "pandera",
-        "rev": "c24dda9ad64ec904b1bab8e9eca6e3607f92832d",
+        "rev": "9b485ce5bfa5a884e05918b1f366cc0e46662156",
         "type": "github"
       },
       "original": {
         "owner": "unionai-oss",
+        "ref": "9b485ce",
         "repo": "pandera",
         "type": "github"
       }

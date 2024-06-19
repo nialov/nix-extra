@@ -1,7 +1,7 @@
 { inputs, lib, buildPythonPackage, setuptools, multimethod, numpy, packaging
 , pandas, pydantic, typeguard, typing-inspect, wrapt, pytestCheckHook, pytest
 , pyspark, pyyaml, pytest-asyncio, hypothesis, sphinx, requests, geopandas, mypy
-, polars, pyarrow, joblib }:
+, polars, pyarrow, joblib, dask }:
 
 buildPythonPackage {
   pname = "pandera";
@@ -26,6 +26,7 @@ buildPythonPackage {
     polars
     pyarrow
     joblib
+    dask
   ];
 
   checkInputs = [
