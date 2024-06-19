@@ -6,12 +6,7 @@ python3.pkgs.buildPythonApplication {
   format = "pyproject";
 
   src = inputs.gpt-engineer-src;
-  # src = fetchFromGitHub {
-  #   owner = "AntonOsika";
-  #   repo = "gpt-engineer";
-  #   rev = "v${version}";
-  #   hash = "sha256-06u0X/73xpDrFuhG5Mq1NTft38JmiktH1dSpXSA3QH0=";
-  # };
+
   patches = [ ./pyproject.patch ];
 
   nativeBuildInputs = [
