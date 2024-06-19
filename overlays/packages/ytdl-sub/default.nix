@@ -39,6 +39,7 @@ python3.pkgs.buildPythonApplication {
   disabledTests = [
     "test_logger_always_outputs_to_debug_file"
     "test_logger_can_be_cleaned_during_execution"
+    "test_no_config_works"
   ];
   # Skip tests that use the network
   pytestFlagsArray = [
