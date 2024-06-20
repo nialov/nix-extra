@@ -29,5 +29,8 @@ in stdenv.mkDerivation {
   doInstallCheck = true;
   installCheckPhase = ''
     $out/bin/${name} --help
+    $out/bin/${name} -m sphinx --help
+    tmpdir=$(mktemp -d)
+    $out/bin/${name} -m sphinx ${python3.pkgs.sphinx.src.outPath}/doc $tmpdir
   '';
 }
