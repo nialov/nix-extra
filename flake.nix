@@ -10,7 +10,7 @@
   inputs = {
     # Use unstable nixpkgs channel
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "nixpkgs/nixos-23.11";
+    nixpkgs-stable.url = "nixpkgs/nixos-24.05";
     nixpkgs-petsc.url =
       "github:nixos/nixpkgs/27bd67e55fe09f9d68c77ff151c3e44c4f81f7de";
     nixpkgs-kibitzr.url =
