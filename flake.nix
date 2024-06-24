@@ -212,12 +212,6 @@
       url = "github:bergercookie/bubop";
       flake = false;
     };
-    # TODO: Failing as of 14.1.2024
-    item-synchronizer-src = {
-      url =
-        "github:bergercookie/item_synchronizer/6c8302f1c0118ab60e72030c834e8cf8ced00577";
-      flake = false;
-    };
     gkeepapi-src = {
       # TODO: Newer build with flit did not work. Take a look in 2024 if the package is added to nixpkgs
       url = "github:kiwiz/gkeepapi/3d91b57e44e38f964309113974cf01a190b26c39";
