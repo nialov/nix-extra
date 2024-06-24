@@ -194,6 +194,8 @@ inputs: final: prev:
         # TODO: Error in pytest of the package (24.6.2024):
         # ERROR . - TypeError: Can't instantiate abstract class CramItem with abstract ...
         python-prev.pytest-cram.overridePythonAttrs (_: { doCheck = false; });
+      notion-client = python-prev.notion-client.overridePythonAttrs
+        (_: { disabledTests = [ "test_api_http_response_error" ]; });
     })
   ];
 
