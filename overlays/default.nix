@@ -93,7 +93,8 @@ inputs: final: prev:
 
   };
 
-  inherit (inputs.nixpkgs-stable.legacyPackages.x86_64-linux) clog-cli;
+  # TODO: clog-cli-0.9.3 marked as broken as of at least 24.6.2024
+  inherit (inputs.nixpkgs-fractopo.legacyPackages.x86_64-linux) clog-cli;
 
   # TODO: This needs to be upstreamed. After v1.2 release in main repo, pr in nixpkgs
   pre-commit-hook-ensure-sops =
@@ -130,13 +131,9 @@ inputs: final: prev:
   };
   jupytext-nb-edit = prev.callPackage ./packages/jupytext-nb-edit { };
 
-  copier = prev.copier.overridePythonAttrs (_: {
-    postPatch = ''
-      substituteInPlace pyproject.toml \
-        --replace 'pydantic = ">=1.10.2,<2"' 'pydantic = ">=1.10.2"'
-    '';
-
-  });
+  nbstripout =
+    # TODO: Error in pytest-cram propagates to nbstripout
+    prev.nbstripout.overridePythonAttrs (_: { doCheck = false; });
 
   template-check = prev.writeShellApplication {
     name = "template-check";
@@ -172,10 +169,6 @@ inputs: final: prev:
         inherit inputs;
       };
       bubop = python-final.callPackage ././packages/bubop { inherit inputs; };
-      item-synchronizer =
-        python-final.callPackage ././packages/item-synchronizer {
-          inherit inputs;
-        };
 
       gkeepapi =
         python-final.callPackage ././packages/gkeepapi { inherit inputs; };
@@ -183,31 +176,8 @@ inputs: final: prev:
         python-final.callPackage ././packages/doit-ext { inherit inputs; };
       frackit = python-prev.toPythonModule
         (python-final.pkgs.frackit.override { pythonPackages = python-final; });
-      # TODO: psycopg overrides can be removed after a while and test gpt-engineer build
-      psycopg2 =
-        python-prev.psycopg2.overridePythonAttrs (_: { doCheck = false; });
-      psycopg = python-prev.psycopg.overridePythonAttrs (_: {
-        doCheck = false;
-        pythonImportsCheck = [ "psycopg" ];
-      });
-      asana = python-prev.asana.overridePythonAttrs
-        (_: { propagatedBuildInputs = [ python-prev.six ]; });
-      fiona = python-prev.fiona.overridePythonAttrs (prevAttrs: {
-        disabledTests = prevAttrs.disabledTests ++ [ "test_issue1169" ];
-      });
       powerlaw =
         python-final.callPackage ././packages/powerlaw { inherit inputs; };
-      notion-client = python-prev.notion-client.overridePythonAttrs
-        (_: { disabledTests = [ "test_api_http_response_error" ]; });
-      gpsoauth = python-prev.gpsoauth.overridePythonAttrs (prevAttrs: {
-        nativeBuildInputs = prevAttrs.nativeBuildInputs
-          ++ [ python-prev.poetry-core ];
-        postPatch = ''
-          substituteInPlace pyproject.toml \
-            --replace 'urllib3 = "<2.0"' 'urllib3 = "*"'
-        '';
-
-      });
       fractopo =
         python-final.callPackage ././packages/fractopo { inherit inputs; };
       python-ternary = python-final.callPackage ././packages/python-ternary {
@@ -220,6 +190,10 @@ inputs: final: prev:
         python-final.callPackage ././packages/dfnworks/pydfnworks.nix {
           inherit inputs;
         };
+      pytest-cram =
+        # TODO: Error in pytest of the package (24.6.2024):
+        # ERROR . - TypeError: Can't instantiate abstract class CramItem with abstract ...
+        python-prev.pytest-cram.overridePythonAttrs (_: { doCheck = false; });
     })
   ];
 
@@ -228,13 +202,6 @@ inputs: final: prev:
       easyplot = null;
       huzzy =
         super.callPackage ./packages/tasklite/huzzy.nix { inherit inputs; };
-      # tasty = super.tasty.overrideAttrs (finalAttrs: prevAttrs: {
-      #   version
-      # });
-      # easyplot = super.easyplot.overrideAttrs (finalAttrs: prevAttrs: {
-      #   broken = false;
-      #   meta.broken = false;
-      # });
       iso8601-duration = super.iso8601-duration.overrideAttrs (_: _: {
         meta.broken = false;
         postPatch = ''

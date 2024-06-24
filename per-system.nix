@@ -13,6 +13,7 @@
         pkgsStable = mkNixpkgs inputs.nixpkgs-stable;
         pkgsGptEngineer = mkNixpkgs inputs.nixpkgs-gpt-engineer;
         pkgsKibitzr = mkNixpkgs inputs.nixpkgs-kibitzr;
+        pkgsFractopo = mkNixpkgs inputs.nixpkgs-fractopo;
         # pkgsDfnworks = mkNixpkgs inputs.nixpkgs-dfnworks;
 
       in {
@@ -45,24 +46,23 @@
             pretty-task ytdl-sub bootstrapSecretsScript rstcheck copier
             pre-commit-hook-ensure-sops deploy-rs clean-git-branches-script
             allas-cli-utils grokker poetry-with-c-tooling synonym-cli mosaic
-            sync-git-tag-with-poetry resolve-version update-changelog
-            pre-release poetry-run tracerepo syncall python39-with-c-tooling
-            python310-with-c-tooling python311-with-c-tooling jupytext-nb-edit
-            template-check;
+            sync-git-tag-with-poetry resolve-version poetry-run tracerepo
+            syncall python39-with-c-tooling python310-with-c-tooling
+            python311-with-c-tooling jupytext-nb-edit template-check;
           inherit (pkgs.vimPlugins) chatgpt-nvim oil-nvim neoai-nvim cmp-ai;
           inherit (pkgs.python3Packages)
             doit-ext sphinxcontrib-mermaid sphinx-gallery pandera bubop
             item-synchronizer gkeepapi powerlaw frackit python-ternary;
           inherit (pkgsGptEngineer) gpt-engineer;
           inherit (pkgsKibitzr) kibitzr;
-          inherit (pkgs) lagrit dfnworks fehm pflotran petsc hdf5-full;
+          inherit (pkgsStable) lagrit dfnworks fehm pflotran petsc hdf5-full;
           inherit (pkgs.python3Packages) mplstereonet pyvtk pydfnworks;
           # TODO: How include this information of using the stable branch in an
           # overlay?
-          inherit (pkgsStable) tasklite-core;
+          inherit (pkgsFractopo) tasklite-core;
           # TODO: pygeos no longer in nixpkgs as it was merged to shapely 2.0
           # 19.6.2024
-          inherit (pkgsStable.python3Packages) fractopo;
+          inherit (pkgsFractopo.python3Packages) fractopo;
           inherit (self'.devShells) poetry-devshell;
         } //
 

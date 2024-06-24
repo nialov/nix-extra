@@ -138,8 +138,7 @@
                 description = "Strip output from Jupyter notebooks";
                 entry = let
                   # TODO: 
-                  inherit (inputs.nixpkgs-stable.legacyPackages.x86_64-linux)
-                    nbstripout;
+                  inherit (pkgs) nbstripout;
 
                 in "${nbstripout}/bin/nbstripout";
                 files = "\\.(ipynb)$";
