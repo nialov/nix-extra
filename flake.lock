@@ -2243,23 +2243,6 @@
         "type": "github"
       }
     },
-    "item-synchronizer-src": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1699698960,
-        "narHash": "sha256-6DdIPPNGpJAhahlzU2L3aai9On0l8lxrNihpnMtfpCo=",
-        "owner": "bergercookie",
-        "repo": "item_synchronizer",
-        "rev": "6c8302f1c0118ab60e72030c834e8cf8ced00577",
-        "type": "github"
-      },
-      "original": {
-        "owner": "bergercookie",
-        "repo": "item_synchronizer",
-        "rev": "6c8302f1c0118ab60e72030c834e8cf8ced00577",
-        "type": "github"
-      }
-    },
     "kibitzr-src": {
       "flake": false,
       "locked": {
@@ -3993,7 +3976,6 @@
         "grokker-src": "grokker-src",
         "hdf5-src": "hdf5-src",
         "homer-src": "homer-src",
-        "item-synchronizer-src": "item-synchronizer-src",
         "kibitzr-src": "kibitzr-src",
         "lagrit-src": "lagrit-src",
         "lmix-flake-src": "lmix-flake-src",
