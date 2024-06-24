@@ -21,6 +21,8 @@
       "github:nixos/nixpkgs/d680ded26da5cf104dd2735a51e88d2d8f487b4d";
     nixpkgs-dfnworks.url =
       "github:nixos/nixpkgs/5efc8ca954272c4376ac929f4c5ffefcc20551d5";
+    # TODO: pygeos was removed in nixos-24.05
+    nixpkgs-fractopo.url = "github:nixos/nixpkgs/nixos-23.11";
     # Use flake-utils for utility functions
     flake-utils = { url = "github:numtide/flake-utils"; };
     # TODO: Failed 15.1.2024. Probably will be fixed soon.

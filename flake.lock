@@ -2890,6 +2890,22 @@
         "type": "indirect"
       }
     },
+    "nixpkgs-fractopo": {
+      "locked": {
+        "lastModified": 1718811006,
+        "narHash": "sha256-0Y8IrGhRmBmT7HHXlxxepg2t8j1X90++qRN3lukGaIk=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "03d771e513ce90147b65fe922d87d3a0356fc125",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-23.11",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs-gpt-engineer": {
       "locked": {
         "lastModified": 1692447944,
@@ -3988,6 +4004,7 @@
         "nix-filter": "nix-filter_2",
         "nixpkgs": "nixpkgs_5",
         "nixpkgs-dfnworks": "nixpkgs-dfnworks",
+        "nixpkgs-fractopo": "nixpkgs-fractopo",
         "nixpkgs-gpt-engineer": "nixpkgs-gpt-engineer",
         "nixpkgs-kibitzr": "nixpkgs-kibitzr",
         "nixpkgs-petsc": "nixpkgs-petsc",
