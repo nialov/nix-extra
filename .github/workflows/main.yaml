@@ -19,3 +19,20 @@ jobs:
       - name: "Check flake"
         run: |
           nix flake check --keep-going --verbose -L --show-trace
+  fast-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2.5.0
+        with:
+          submodules: "recursive"
+      - uses: DeterminateSystems/nix-installer-action@v9
+        with:
+          kvm: true
+      - uses: DeterminateSystems/magic-nix-cache-action@v3
+      - uses: cachix/cachix-action@v14
+        with:
+          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+          name: nialov
+      - name: "Evaluate and build checks faster"
+        run: |
+          nix run .#nix-fast-build -- --no-nom --skip-cached
