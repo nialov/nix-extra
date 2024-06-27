@@ -2674,6 +2674,30 @@
         "type": "github"
       }
     },
+    "nix-fast-build": {
+      "inputs": {
+        "flake-parts": [
+          "flake-parts"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "treefmt-nix": "treefmt-nix_2"
+      },
+      "locked": {
+        "lastModified": 1719475157,
+        "narHash": "sha256-8zW6eWvE9T03cMpo/hY8RRZIsSCfs1zmsJOkEZzuYwM=",
+        "owner": "Mic92",
+        "repo": "nix-fast-build",
+        "rev": "030e586195c97424844965d2ce680140f6565c02",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Mic92",
+        "repo": "nix-fast-build",
+        "type": "github"
+      }
+    },
     "nix-filter": {
       "locked": {
         "lastModified": 1710156097,
@@ -3983,6 +4007,7 @@
         "mplstereonet-src": "mplstereonet-src",
         "neoai-nvim-src": "neoai-nvim-src",
         "nickel-src": "nickel-src",
+        "nix-fast-build": "nix-fast-build",
         "nix-filter": "nix-filter_2",
         "nixpkgs": "nixpkgs_5",
         "nixpkgs-dfnworks": "nixpkgs-dfnworks",
@@ -5221,6 +5246,27 @@
         "owner": "numtide",
         "repo": "treefmt-nix",
         "rev": "5deb8dc125a9f83b65ca86cf0c8167c46593e0b1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "treefmt-nix",
+        "type": "github"
+      }
+    },
+    "treefmt-nix_2": {
+      "inputs": {
+        "nixpkgs": [
+          "nix-fast-build",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1714058656,
+        "narHash": "sha256-Qv4RBm4LKuO4fNOfx9wl40W2rBbv5u5m+whxRYUMiaA=",
+        "owner": "numtide",
+        "repo": "treefmt-nix",
+        "rev": "c6aaf729f34a36c445618580a9f95a48f5e4e03f",
         "type": "github"
       },
       "original": {

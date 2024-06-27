@@ -146,6 +146,7 @@ inputs: final: prev:
     '';
 
   };
+  nix-fast-build = inputs.nix-fast-build.packages."${prev.system}".default;
 
   pythonPackagesExtensions = prev.pythonPackagesExtensions ++ [
     (python-final: python-prev: {
