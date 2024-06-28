@@ -46,6 +46,7 @@ inputs: final: prev:
   pkg-fblaslapack =
     prev.callPackage ././packages/pkg-fblaslapack { inherit inputs; };
   petsc = import ./packages/petsc-override.nix { inherit inputs prev final; };
+  mosaic = prev.callPackage ./packages/mosaic { inherit inputs; };
 
   # hdf5-full = prev.hdf5.override {
   #   fortranSupport = true;
@@ -69,7 +70,7 @@ inputs: final: prev:
   # hdf5-full =
   #   inputs.lmix-flake-src.packages."${prev.system}".hdf5_gcc11_ompi_4_1_4;
   # mpi = prev.openmpi;
-  inherit (inputs.mosaic-src.packages."${prev.system}") mosaic;
+  # inherit (inputs.mosaic-src.packages."${prev.system}") mosaic;
   # python3.pkgs.sphinx-design =
   #sphinx-design = prev.callPackage ././packages/sphinx-design { };
   # Overlay structure from: https://discourse.nixos.org/t/add-python-package-via-overlay/19783/3

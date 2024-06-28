@@ -54,6 +54,7 @@
     # TODO: Move nix build definition to nix-extra
     mosaic-src = {
       url = "github:nialov/mosaic";
+      flake = false;
       # inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-filter.url = "github:numtide/nix-filter";
