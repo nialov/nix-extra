@@ -47,6 +47,7 @@ inputs: final: prev:
     prev.callPackage ././packages/pkg-fblaslapack { inherit inputs; };
   petsc = import ./packages/petsc-override.nix { inherit inputs prev final; };
   mosaic = prev.callPackage ./packages/mosaic { inherit inputs; };
+  micromamba-fhs-env = prev.callPackage ./packages/micromamba-fhs-env { };
 
   # hdf5-full = prev.hdf5.override {
   #   fortranSupport = true;
