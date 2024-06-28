@@ -96,6 +96,32 @@ inputs: final: prev:
   # TODO: clog-cli-0.9.3 marked as broken as of at least 24.6.2024
   inherit (inputs.nixpkgs-fractopo.legacyPackages.x86_64-linux) clog-cli;
 
+  pandoc-with-xnos = prev.symlinkJoin {
+    name = "pandoc-with-xnos";
+    nativeBuildInputs = [ prev.makeWrapper ];
+    paths =
+      let pkgsPandoc = import inputs.nixpkgs-pandoc { inherit (prev) system; };
+
+      in prev.lib.attrValues {
+        inherit (pkgsPandoc) pandoc;
+
+      };
+    postBuild = let
+      toWrap = prev.lib.attrValues {
+        inherit (prev) pandoc-fignos pandoc-secnos pandoc-eqnos pandoc-tablenos;
+        inherit (prev.python3Packages) pandoc-xnos;
+        inherit (prev.texlive.combined) scheme-full;
+      };
+    in ''
+      makeWrapper $out/bin/pandoc $out/bin/pandoc-with-xnos \
+        --suffix PATH : ${prev.lib.makeBinPath toWrap}
+    '';
+    doInstallCheck = true;
+    installCheckPhase = ''
+      $out/bin/pretty-task --help
+    '';
+  };
+
   # TODO: This needs to be upstreamed. After v1.2 release in main repo, pr in nixpkgs
   pre-commit-hook-ensure-sops =
     prev.pre-commit-hook-ensure-sops.overridePythonAttrs (prevAttrs: {
