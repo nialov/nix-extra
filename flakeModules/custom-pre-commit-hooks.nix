@@ -13,6 +13,7 @@
     # });
     pre-commit = {
       check.enable = lib.mkDefault false;
+      # TODO: Could I use option paradigm here rather than making default configuration?
       settings =
 
         {
@@ -136,9 +137,7 @@
                 enable = lib.mkDefault false;
                 name = "nbstripout";
                 description = "Strip output from Jupyter notebooks";
-                entry = let
-                  # TODO: 
-                  inherit (pkgs) nbstripout;
+                entry = let inherit (pkgs) nbstripout;
 
                 in "${nbstripout}/bin/nbstripout";
                 files = "\\.(ipynb)$";
