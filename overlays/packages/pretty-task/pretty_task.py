@@ -42,6 +42,7 @@ def completed(
             "task",
             # column_config, column_label_config,
             today_config,
+            "rc.verbose=no",
             "export",
         ]
     ).decode("UTF-8")
