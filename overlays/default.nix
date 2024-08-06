@@ -176,6 +176,11 @@ inputs: final: prev:
   };
   nix-fast-build = inputs.nix-fast-build.packages."${prev.system}".default;
 
+  gdal-mdb = prev.gdal.overrideAttrs (_: prevAttrs: {
+    buildInputs = prevAttrs.buildInputs
+      ++ [ prev.mdbtools-unixodbc prev.unixODBC ];
+  });
+
   pythonPackagesExtensions = prev.pythonPackagesExtensions ++ [
     (python-final: python-prev: {
       sphinxcontrib-mermaid =
