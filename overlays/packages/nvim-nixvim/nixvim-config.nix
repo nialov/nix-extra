@@ -660,7 +660,7 @@ in {
     };
     luasnip = {
       enable = true;
-      fromLua = [{ paths = ./lua/snippets; }];
+      fromLua = [{ paths = ./snippets; }];
     };
     oil = {
       enable = true;
