@@ -400,9 +400,6 @@ in {
           ];
         in srcWithConf ++ (builtins.map (source: { name = source; }) srcList);
         mapping = {
-          # TODO: Enable luasnip completion?
-          # "<C-k>" =
-          #   "cmp.mapping.confirm({select = true, behavior = cmp.ConfirmBehavior.Replace})";
           "<C-k>" = ''
             cmp.mapping(
               function(fallback)
