@@ -316,6 +316,22 @@ in {
       action = "<cmd>WikiEntry<CR>";
       options.desc = "Open diary entry for editing";
     }
+    {
+      key = "<A-h>";
+      action.__raw = "require('tmux').move_left";
+    }
+    {
+      key = "<A-j>";
+      action.__raw = "require('tmux').move_bottom";
+    }
+    {
+      key = "<A-k>";
+      action.__raw = "require('tmux').move_top";
+    }
+    {
+      key = "<A-l>";
+      action.__raw = "require('tmux').move_right";
+    }
 
   ];
   extraPackages = lib.attrValues { inherit (pkgs) ripgrep pretty-task; };
@@ -420,6 +436,18 @@ in {
                     config = {
                       sources = cmp.config.sources({
                         { name = 'cmp_ai' },
+                      }),
+                    },
+              }),
+              { 'i' }
+            )
+          '';
+          "<C-x><C-f>" = ''
+              cmp.mapping(
+                  cmp.mapping.complete({
+                    config = {
+                      sources = cmp.config.sources({
+                        { name = 'async_path' },
                       }),
                     },
               }),
@@ -723,28 +751,28 @@ in {
         check_ts = true;
       };
     };
-    tmux-navigator = {
-      enable = true;
-      settings.no_mappings = true;
-      keymaps = [
-        {
-          action = "left";
-          key = "<A-h>";
-        }
-        {
-          action = "down";
-          key = "<A-j>";
-        }
-        {
-          action = "up";
-          key = "<A-k>";
-        }
-        {
-          action = "right";
-          key = "<A-l>";
-        }
-      ];
-    };
+    # tmux-navigator = {
+    #   enable = true;
+    #   settings.no_mappings = true;
+    #   keymaps = [
+    #     {
+    #       action = "left";
+    #       key = "<A-h>";
+    #     }
+    #     {
+    #       action = "down";
+    #       key = "<A-j>";
+    #     }
+    #     {
+    #       action = "up";
+    #       key = "<A-k>";
+    #     }
+    #     {
+    #       action = "right";
+    #       key = "<A-l>";
+    #     }
+    #   ];
+    # };
     telescope = { enable = true; };
     which-key = {
       enable = true;
@@ -786,37 +814,37 @@ in {
         let g:dispatch_no_tmux_start = 1
       '';
     }
-    # {
-    #   plugin = pkgs.vimPlugins.tmux-nvim;
-    #   config = ''
-    #     lua << EOF
-    #     require("tmux").setup({
-    #     	-- overwrite default configuration
-    #     	-- here, e.g. to enable default bindings
-    #     	copy_sync = {
-    #     		-- enables copy sync and overwrites all register actions to
-    #     		-- sync registers *, +, unnamed, and 0 till 9 from tmux in advance
-    #     		enable = true,
-    #     		redirect_to_clipboard = true,
-    #     		sync_clipboard = true,
-    #     		-- Stop SyncRegisters slowdown (maybe)
-    #     		sync_registers = true,
-    #     		register_offset = 9,
-    #     		sync_unnamed = true,
-    #     		sync_deletes = true,
-    #     	},
-    #     	navigation = {
-    #     		-- enables default keybindings (C-hjkl) for normal mode
-    #     		enable_default_keybindings = false,
-    #     	},
-    #     	resize = {
-    #     		-- enables default keybindings (A-hjkl) for normal mode
-    #     		enable_default_keybindings = false,
-    #     	},
-    #     })
-    #     EOF
-    #   '';
-    # }
+    {
+      plugin = pkgs.vimPlugins.tmux-nvim;
+      config = ''
+        lua << EOF
+        require("tmux").setup({
+        	-- overwrite default configuration
+        	-- here, e.g. to enable default bindings
+        	copy_sync = {
+        		-- enables copy sync and overwrites all register actions to
+        		-- sync registers *, +, unnamed, and 0 till 9 from tmux in advance
+        		enable = true,
+        		redirect_to_clipboard = true,
+        		sync_clipboard = true,
+        		-- Stop SyncRegisters slowdown (maybe)
+        		sync_registers = true,
+        		register_offset = 9,
+        		sync_unnamed = true,
+        		sync_deletes = true,
+        	},
+        	navigation = {
+        		-- enables default keybindings (C-hjkl) for normal mode
+        		enable_default_keybindings = false,
+        	},
+        	resize = {
+        		-- enables default keybindings (A-hjkl) for normal mode
+        		enable_default_keybindings = false,
+        	},
+        })
+        EOF
+      '';
+    }
   ];
 
 }
