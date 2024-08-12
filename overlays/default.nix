@@ -265,6 +265,13 @@ inputs: final: prev:
   tasklite-core =
     final.haskell.lib.justStaticExecutables final.haskellPackages.tasklite-core;
 
+  nvim-nixvim =
+
+    let nixvim' = inputs.nixvim.legacyPackages."${prev.system}";
+
+    in nixvim'.makeNixvim
+    (import ./packages/nvim-nixvim/nixvim-config.nix { pkgs = prev; });
+
   vimPlugins = prev.lib.recursiveUpdate prev.vimPlugins {
     tmux-nvim = prev.vimUtils.buildVimPlugin {
       name = "tmux-nvim";

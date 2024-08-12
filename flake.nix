@@ -71,7 +71,12 @@
       url = "github:kilzm/lmix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
+    nixvim = {
+      url =
+        "github:nix-community/nixvim/49452662b7b4dd2467cbac19e0f9820d570d8976";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-parts.follows = "flake-parts";
+    };
     # Custom non-flake sources
     tmux-nvim-src = {
       url = "github:aserowy/tmux.nvim";
