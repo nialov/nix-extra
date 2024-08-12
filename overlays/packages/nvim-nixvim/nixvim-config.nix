@@ -567,6 +567,26 @@ in {
       enable = true;
       globalstatus = true;
       extensions = [ "fzf" "quickfix" "fugitive" "oil" ];
+      sections = {
+        lualine_b = [ "branch" "diff" "diagnostics" ];
+        lualine_a = [ "mode" ];
+        lualine_c = [{
+          name = "filename";
+          icon = "-";
+          extraConfig = {
+            file_status = true;
+            newfile_status = true;
+            path = 1;
+            shorting_target = 60;
+          };
+        }];
+
+        lualine_z = [ "location" ];
+      };
+      inactiveSections = {
+        lualine_c = [ "filename" ];
+        lualine_z = [ "location" ];
+      };
     };
     lsp = {
       enable = true;
