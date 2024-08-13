@@ -106,10 +106,10 @@ in {
     {
       callback.__raw = ''
         function ()
-          local ft = vim.bo.filetype
           local disable_env_variable_name = "NEOVIM_DISABLE_AUTOFORMAT"
           local disable_autoformat = vim.tbl_contains(vim.tbl_keys(vim.fn.environ()), disable_env_variable_name)
           if disable_autoformat then
+              vim.cmd([[ FormatDisable ]])
               vim.notify(
                   string.format(
                       "Would enable auto-formatting for buffer but environment variable %s exists.",
@@ -828,6 +828,7 @@ in {
       vim-repeat
       vim-abolish
       nui-nvim
+      vim-pandoc-syntax
     ];
 
   in noConfigPlugins ++ [
@@ -868,6 +869,21 @@ in {
         	},
         })
         EOF
+      '';
+    }
+    {
+      plugin = pkgs.vimPlugins.vim-pandoc;
+      config = ''
+        let g:pandoc#completion#bib#mode = 'fallback'
+        let g:pandoc#syntax#conceal#use = 0
+        let g:pandoc#folding#level = 4
+        let g:pandoc#hypertext#use_default_mappings = 0
+        let g:pandoc#keyboard#use_default_mappings = 0
+        let g:pandoc#keyboard#display_motions = 0
+        augroup PandocAugroup
+            autocmd!
+            autocmd BufEnter *.md setlocal omnifunc=pandoc#completion#Complete
+        augroup END
       '';
     }
   ];
