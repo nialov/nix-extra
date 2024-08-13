@@ -122,8 +122,8 @@ in {
           end
         end
       '';
-      event = [ "FileType" ];
-      pattern = [ "python,lua,yaml,json,nix" ];
+      event = [ "BufEnter" ];
+      pattern = [ "*" ];
     }
     {
       event = [ "VimResized" "WinEnter" "FocusGained" ];
@@ -240,7 +240,7 @@ in {
     end
 
     vim.api.nvim_create_autocmd({ "VimResized", "WinEnter" }, { pattern = "*", callback = resize })
-    require("nialov_utils")
+    vim.cmd [[cabbrev wq execute "Format sync" <bar> wq]]
   '';
   extraConfigVim = ''
     augroup enable_hl_search
@@ -718,6 +718,8 @@ in {
     none-ls = {
       enable = true;
       enableLspFormat = true;
+      # TODO: I do not want to format every filetype automatically
+      # onAttach = "";
       sources = {
         diagnostics = {
 
@@ -734,11 +736,11 @@ in {
           proselint = {
             enable = true;
             withArgs = ''
-                                  {
-              				extra_filetypes = { "rst", "pandoc" },
-              				timeout = 2000,
-              				method = require("null-ls").methods.DIAGNOSTICS_ON_SAVE,
-                                  }
+              {
+                extra_filetypes = { "rst", "pandoc" },
+                timeout = 2000,
+                method = require("null-ls").methods.DIAGNOSTICS_ON_SAVE,
+              }
 
             '';
           };
@@ -754,7 +756,13 @@ in {
               { extra_args = { "--profile", "black" }, }
             '';
           };
-          prettier.enable = true;
+          prettier = {
+            enable = true;
+            withArgs = ''
+              { disabled_filetypes = { "pandoc", "markdown" }, }
+            '';
+
+          };
           shfmt.enable = true;
 
         };
