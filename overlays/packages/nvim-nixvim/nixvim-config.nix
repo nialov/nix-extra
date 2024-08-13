@@ -572,7 +572,6 @@ in {
         lualine_a = [ "mode" ];
         lualine_c = [{
           name = "filename";
-          icon = "-";
           extraConfig = {
             file_status = true;
             newfile_status = true;
