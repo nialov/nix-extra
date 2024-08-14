@@ -377,28 +377,22 @@ in {
       enable = true;
       autoEnableSources = true;
       settings = {
-        sources = let
-          srcList = [
-            "async_path"
-            "tmux"
-            "nvim_lsp"
-            # "nvim_lsp_signature_help"
-            # TODO: Does biblio completion work? pandoc.nvim is recommended
-            "cmp_pandoc"
-            "spell"
-            "fuzzy_buffer"
-          ];
-          srcWithConf = [
-            {
-              name = "luasnip";
-              option = { use_show_condition = false; };
-            }
-            {
-              name = "buffer";
-              # option = { get_bufnrs = "vim.api.nvim_list_bufs"; };
-            }
-          ];
-        in srcWithConf ++ (builtins.map (source: { name = source; }) srcList);
+        sources = [
+          { name = "nvim_lsp"; }
+          {
+            name = "luasnip";
+            option = { use_show_condition = false; };
+          }
+          { name = "cmp_pandoc"; }
+          { name = "async_path"; }
+          { name = "spell"; }
+          {
+            name = "buffer";
+            # option = { get_bufnrs = "vim.api.nvim_list_bufs"; };
+          }
+          { name = "fuzzy_buffer"; }
+          { name = "tmux"; }
+        ];
         mapping = {
           "<C-k>" = ''
             cmp.mapping(
@@ -428,16 +422,14 @@ in {
           "<C-p>" = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
           "<C-n>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
           "<C-b>" = ''
-              cmp.mapping(
+            cmp.mapping(
                   cmp.mapping.complete({
                     config = {
                       sources = cmp.config.sources({
                         { name = 'cmp_ai' },
                       }),
                     },
-              }),
-              { 'i' }
-            )
+              }), {"i"})
           '';
           "<C-x><C-f>" = ''
               cmp.mapping(
@@ -477,14 +469,17 @@ in {
 
       };
     };
-    cmp-ai.settings = {
-      max_lines = 50;
-      provider = "OpenAI";
-      provider_options.model = "gpt-3.5-turbo";
-      run_on_every_keystroke = false;
-      ignored_file_types = { };
-      notify = false;
+    cmp-ai = {
+      enable = true;
+      settings = {
+        max_lines = 1000;
+        provider = "OpenAI";
+        provider_options.model = "gpt-3.5-turbo";
+        run_on_every_keystroke = false;
+        ignored_file_types = { };
+        notify = true;
 
+      };
     };
     treesitter = {
       enable = true;
@@ -640,6 +635,11 @@ in {
             options.desc = "Document diagnostics";
           }
           {
+            key = "<leader>la";
+            action.__raw = "require('fzf-lua').lsp_code_actions";
+            options.desc = "LSP code actions";
+          }
+          {
             mode = "n";
             key = "<leader>ll";
             action.__raw = "vim.lsp.codelens.refresh";
@@ -715,7 +715,18 @@ in {
         skip_confirm_for_simple_edits = true;
       };
     };
-    lsp-format.enable = true;
+    which-key = {
+      enable = true;
+      registrations = {
+        "<leader>l" = { name = "lsp"; };
+        "<leader>g" = { name = "git"; };
+        "<leader>d" = { name = "diff"; };
+        "<leader>s" = { name = "startify"; };
+        "<leader>v" = { name = "vim"; };
+        "<leader>w" = { name = "wiki"; };
+        "<leader>n" = { name = "oil.nvim"; };
+      };
+    };
     none-ls = {
       enable = true;
       enableLspFormat = true;
@@ -777,41 +788,8 @@ in {
         check_ts = true;
       };
     };
-    # tmux-navigator = {
-    #   enable = true;
-    #   settings.no_mappings = true;
-    #   keymaps = [
-    #     {
-    #       action = "left";
-    #       key = "<A-h>";
-    #     }
-    #     {
-    #       action = "down";
-    #       key = "<A-j>";
-    #     }
-    #     {
-    #       action = "up";
-    #       key = "<A-k>";
-    #     }
-    #     {
-    #       action = "right";
-    #       key = "<A-l>";
-    #     }
-    #   ];
-    # };
+    lsp-format.enable = true;
     telescope = { enable = true; };
-    which-key = {
-      enable = true;
-      registrations = {
-        "<leader>l" = { name = "lsp"; };
-        "<leader>g" = { name = "git"; };
-        "<leader>d" = { name = "diff"; };
-        "<leader>s" = { name = "startify"; };
-        "<leader>v" = { name = "vim"; };
-        "<leader>w" = { name = "wiki"; };
-        "<leader>n" = { name = "oil.nvim"; };
-      };
-    };
     fugitive.enable = true;
     friendly-snippets.enable = true;
     rainbow-delimiters.enable = true;
@@ -888,6 +866,7 @@ in {
         augroup END
       '';
     }
+
   ];
 
 }
