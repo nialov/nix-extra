@@ -807,6 +807,7 @@ in {
         "<leader>s" = { name = "startify"; };
         "<leader>v" = { name = "vim"; };
         "<leader>w" = { name = "wiki"; };
+        "<leader>n" = { name = "oil.nvim"; };
       };
     };
     fugitive.enable = true;
