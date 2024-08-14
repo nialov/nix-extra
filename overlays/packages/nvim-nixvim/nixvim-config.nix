@@ -392,6 +392,7 @@ in {
           }
           { name = "fuzzy_buffer"; }
           { name = "tmux"; }
+          { name = "emoji"; }
         ];
         mapping = {
           "<C-k>" = ''
@@ -416,7 +417,7 @@ in {
             )
           '';
 
-          "<C-e>" = "cmp.mapping.close()";
+          # "<C-e>" = "cmp.mapping.close()";
           # "<CR>" =
           #   "cmp.mapping.confirm({ select = true, behavior = cmp.ConfirmBehavior.Replace })";
           "<C-p>" = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
@@ -427,6 +428,17 @@ in {
                     config = {
                       sources = cmp.config.sources({
                         { name = 'cmp_ai' },
+                      }),
+                    },
+              }), {"i"})
+          '';
+
+          "<C-e>" = ''
+            cmp.mapping(
+                  cmp.mapping.complete({
+                    config = {
+                      sources = cmp.config.sources({
+                        { name = 'emoji' },
                       }),
                     },
               }), {"i"})
@@ -470,7 +482,7 @@ in {
       };
     };
     cmp-ai = {
-      enable = true;
+      enable = false;
       settings = {
         max_lines = 1000;
         provider = "OpenAI";
@@ -481,6 +493,7 @@ in {
 
       };
     };
+    cmp-emoji = { enable = true; };
     treesitter = {
       enable = true;
       folding = true;
