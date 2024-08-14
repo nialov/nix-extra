@@ -8,8 +8,11 @@
   nixConfig.extra-trusted-public-keys =
     [ "nialov.cachix.org-1:Z2oarwKpwXCZUZ6OfQx5/Ia2mEC+uizpb+c5lu/gNk4=" ];
   inputs = {
+    # TODO: Avoid gdal build error
+    nixpkgs.url =
+      "github:nixos/nixpkgs/fa12935a32af71ab3a8b4ff60ab3c37490eea336";
     # Use unstable nixpkgs channel
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    # nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "nixpkgs/nixos-24.05";
     nixpkgs-petsc.url =
       "github:nixos/nixpkgs/27bd67e55fe09f9d68c77ff151c3e44c4f81f7de";
@@ -27,7 +30,6 @@
     nixpkgs-pandoc = { url = "github:nixos/nixpkgs/22.05"; };
     # Use flake-utils for utility functions
     flake-utils = { url = "github:numtide/flake-utils"; };
-    # TODO: Failed 15.1.2024. Probably will be fixed soon.
     pre-commit-hooks = {
       url = "github:cachix/pre-commit-hooks.nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -51,7 +53,6 @@
       url = "github:serokell/deploy-rs";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # TODO: Move nix build definition to nix-extra
     mosaic-src = {
       url = "github:nialov/mosaic";
       flake = false;
