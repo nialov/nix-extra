@@ -605,6 +605,8 @@ in {
           K = "hover";
           gi = "implementation";
           gt = "type_definition";
+          "<leader>crn" = "rename";
+          "<leader>la" = "code_action";
         };
         extra = [
           {
