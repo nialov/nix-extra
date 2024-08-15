@@ -7,8 +7,7 @@ let
     version = "unstable-2023-07-13-${inputs.mosaic-src.rev}";
     format = "pyproject";
     src = inputs.mosaic-src.outPath;
-    propagatedBuildInputs = with python3.pkgs;
-      [ typer pillow ] ++ typer.passthru.optional-dependencies.all;
+    propagatedBuildInputs = [ python3.pkgs.typer python3.pkgs.pillow ];
     nativeBuildInputs = with python3.pkgs; [ setuptools wheel ];
     checkInputs = with python3.pkgs; [
       pytestCheckHook

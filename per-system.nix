@@ -47,7 +47,7 @@
             pre-commit-hook-ensure-sops deploy-rs clean-git-branches-script
             allas-cli-utils grokker poetry-with-c-tooling synonym-cli mosaic
             sync-git-tag-with-poetry resolve-version poetry-run tracerepo
-            syncall python39-with-c-tooling python310-with-c-tooling
+            python39-with-c-tooling python310-with-c-tooling
             python311-with-c-tooling jupytext-nb-edit template-check
             nvim-nixvim;
           inherit (pkgs.vimPlugins) neoai-nvim;
@@ -56,7 +56,8 @@
             item-synchronizer gkeepapi powerlaw frackit python-ternary;
           inherit (pkgsGptEngineer) gpt-engineer;
           inherit (pkgsKibitzr) kibitzr;
-          inherit (pkgsStable) lagrit dfnworks fehm pflotran petsc hdf5-full;
+          inherit (pkgsStable)
+            lagrit dfnworks fehm pflotran petsc hdf5-full syncall;
           inherit (pkgs.python3Packages) mplstereonet pyvtk pydfnworks;
           # TODO: How include this information of using the stable branch in an
           # overlay?
