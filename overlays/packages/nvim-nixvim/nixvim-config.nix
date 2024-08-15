@@ -2,6 +2,7 @@
 let inherit (pkgs) lib;
 
 in {
+  imports = [ ./plugins/gp.nix ];
   luaLoader.enable = true;
   opts = {
     # Expand tab to spaces
@@ -826,8 +827,21 @@ in {
           __unkeyed-1 = "<leader>n";
           group = "oil.nvim";
         }
+        {
+          __unkeyed-1 = "<leader>c";
+          group = "lsp;";
+        }
+        {
+          __unkeyed-1 = "<leader>a";
+          group = "ai;";
+        }
 
       ];
+    };
+    chatgpt = {
+      enable = false;
+      settings = { keymaps = { submit = "<C-s>"; }; };
+
     };
     fugitive.enable = true;
     friendly-snippets.enable = true;
