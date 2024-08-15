@@ -573,7 +573,7 @@ in {
     };
     lualine = {
       enable = true;
-      globalstatus = true;
+      globalstatus = false;
       extensions = [ "fzf" "quickfix" "fugitive" "oil" ];
       sections = {
         lualine_b = [ "branch" "diff" "diagnostics" ];
