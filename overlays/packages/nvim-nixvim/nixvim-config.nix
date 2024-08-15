@@ -229,9 +229,7 @@ in {
     # TODO: Are others from after/ftdetect/ (jinja, meta.yaml, tmpl) needed?
 
   };
-  extraFiles = {
-    "lua/nialov_utils.lua" = builtins.readFile ./lua/nialov_utils.lua;
-  };
+  extraFiles = { "lua/nialov_utils.lua".source = ./lua/nialov_utils.lua; };
   extraConfigLua = ''
     vim.opt.diffopt:append("vertical")
     -- Resize window upon entering. VimResized does not seem to work?
@@ -497,23 +495,38 @@ in {
     treesitter = {
       enable = true;
       folding = true;
-      indent = true;
       nixvimInjections = true;
-      disabledLanguages = [
-        "fugitive"
-        "qf"
-        "help"
+      # disabledLanguages = [
+      #   "fugitive"
+      #   "qf"
+      #   "help"
 
-      ];
-      incrementalSelection = {
-        enable = true;
-        keymaps = {
-          initSelection = "gnn";
-          nodeDecremental = "grm";
-          nodeIncremental = "grn";
-          scopeIncremental = "grc";
+      # ];
+      settings = {
+        highlight = {
+          enable = true;
+          disable = [ "fugitive" "qf" "help" ];
+        };
+        incremental_selection = {
+          enable = true;
+          keymaps = {
+            init_selection = "gnn";
+            node_decremental = "grm";
+            node_incremental = "grn";
+            scope_incremental = "grc";
+          };
+          indent = true;
         };
       };
+      # incrementalSelection = {
+      #   enable = true;
+      #   keymaps = {
+      #     initSelection = "gnn";
+      #     nodeDecremental = "grm";
+      #     nodeIncremental = "grn";
+      #     scopeIncremental = "grc";
+      #   };
+      # };
       # TODO:
       # textobjects = {
       #   select = {
@@ -728,18 +741,6 @@ in {
         skip_confirm_for_simple_edits = true;
       };
     };
-    which-key = {
-      enable = true;
-      registrations = {
-        "<leader>l" = { name = "lsp"; };
-        "<leader>g" = { name = "git"; };
-        "<leader>d" = { name = "diff"; };
-        "<leader>s" = { name = "startify"; };
-        "<leader>v" = { name = "vim"; };
-        "<leader>w" = { name = "wiki"; };
-        "<leader>n" = { name = "oil.nvim"; };
-      };
-    };
     none-ls = {
       enable = true;
       enableLspFormat = true;
@@ -754,20 +755,15 @@ in {
           selene.enable = true;
           rstcheck = {
             enable = true;
-            withArgs = ''
-              { extra_args = { "--ignore-directives", "mermaid" }, }
-            '';
+            settings = { extra_args = [ "--ignore-directives" "mermaid" ]; };
           };
           proselint = {
             enable = true;
-            withArgs = ''
-              {
-                extra_filetypes = { "rst", "pandoc" },
-                timeout = 2000,
-                method = require("null-ls").methods.DIAGNOSTICS_ON_SAVE,
-              }
-
-            '';
+            settings = {
+              extra_filetypes = [ "rst" "pandoc" ];
+              timeout = 2000;
+              # method.__raw = "require('null-ls').methods.DIAGNOSTICS_ON_SAVE";
+            };
           };
         };
         formatting = {
@@ -777,15 +773,11 @@ in {
           black.enable = true;
           isort = {
             enable = true;
-            withArgs = ''
-              { extra_args = { "--profile", "black" }, }
-            '';
+            settings = { extra_args = [ "--profile" "black" ]; };
           };
           prettier = {
             enable = true;
-            withArgs = ''
-              { disabled_filetypes = { "pandoc", "markdown" }, }
-            '';
+            settings = { disabled_filetypes = [ "pandoc" "markdown" ]; };
 
           };
           shfmt.enable = true;
@@ -803,6 +795,40 @@ in {
     };
     lsp-format.enable = true;
     telescope = { enable = true; };
+    which-key = {
+      enable = true;
+      settings.spec = [
+        {
+          __unkeyed-1 = "<leader>l";
+          group = "lsp";
+        }
+        {
+          __unkeyed-1 = "<leader>g";
+          group = "git";
+        }
+        {
+          __unkeyed-1 = "<leader>d";
+          group = "diff";
+        }
+        {
+          __unkeyed-1 = "<leader>s";
+          group = "startify";
+        }
+        {
+          __unkeyed-1 = "<leader>v";
+          group = "vim";
+        }
+        {
+          __unkeyed-1 = "<leader>w";
+          group = "wiki";
+        }
+        {
+          __unkeyed-1 = "<leader>n";
+          group = "oil.nvim";
+        }
+
+      ];
+    };
     fugitive.enable = true;
     friendly-snippets.enable = true;
     rainbow-delimiters.enable = true;
