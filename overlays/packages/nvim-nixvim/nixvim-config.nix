@@ -795,7 +795,16 @@ in {
       };
     };
     lsp-format.enable = true;
-    telescope = { enable = true; };
+    telescope = {
+      enable = true;
+      # enabledExtensions = [ ];
+      keymaps = {
+        "<leader>ts" = {
+          action = "symbols";
+          options = { desc = "Telescope emojis and symbols"; };
+        };
+      };
+    };
     which-key = {
       enable = true;
       settings.spec = [
@@ -835,6 +844,10 @@ in {
           __unkeyed-1 = "<leader>a";
           group = "ai;";
         }
+        {
+          __unkeyed-1 = "<leader>t";
+          group = "telescope";
+        }
 
       ];
     };
@@ -862,6 +875,7 @@ in {
       vim-abolish
       nui-nvim
       vim-pandoc-syntax
+      telescope-symbols-nvim
     ];
 
   in noConfigPlugins ++ [
