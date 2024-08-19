@@ -84,7 +84,7 @@ in {
     whichwrap = "<,>,[,],h,l";
     grepprg = "rg --vimgrep --no-heading --ignore-case";
     grepformat = "%f:%l:%c:%m,%f:%l:%m";
-    completeopt = "menu,menuone,noselect";
+    # completeopt = "menu,menuone,noselect";
     clipboard = "";
     guicursor = lib.concatStringsSep "," [
       "n-v-c:block"
@@ -459,6 +459,15 @@ in {
           expand =
             "function(args) require('luasnip').lsp_expand(args.body) end";
         };
+        comparators.__raw = ''
+          {
+              require('cmp').config.compare.locality,
+              require('cmp').config.compare.recently_used,
+              require('cmp').config.compare.score,
+              require('cmp').config.compare.offset,
+              require('cmp').config.compare.order,
+          }
+        '';
       };
       cmdline = {
         "/" = {
