@@ -276,11 +276,11 @@ in {
       action = "<cmd>Fidget clear<CR>";
       options.desc = "Dismiss all notifications";
     }
-    {
-      key = "<leader>ss";
-      action = "<cmd>Startify<CR>";
-      options.desc = "Open Startify";
-    }
+    # {
+    #   key = "<leader>ss";
+    #   action = "<cmd>Startify<CR>";
+    #   options.desc = "Open Startify";
+    # }
     {
       key = "<leader>nn";
       action.__raw = ''require("oil").open'';
@@ -355,7 +355,7 @@ in {
   };
   plugins = {
     startify = {
-      enable = true;
+      enable = false;
       settings = {
         custom_header = [
           ""
