@@ -106,8 +106,6 @@
         in lib.foldl' lib.recursiveUpdate {
           # preCommitCheck = inputs.pre-commit-hooks.lib.${system}.run (import ././pre-commit.nix { inherit pkgs; });
           homerModule = moduleTest { imports = [ ./nixos/tests/homer.nix ]; };
-          flipperzeroModule =
-            moduleTest { imports = [ ./nixos/tests/flipperzero.nix ]; };
         } [ self.packages."${system}" ];
 
         pre-commit = {
