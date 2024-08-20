@@ -65,6 +65,8 @@
           # TODO: pygeos no longer in nixpkgs as it was merged to shapely 2.0
           # 19.6.2024
           inherit (pkgsFractopo.python3Packages) fractopo;
+          fractopo-documentation =
+            pkgsFractopo.python3Packages.fractopo.passthru.documentation.doc;
           inherit (self'.devShells) poetry-devshell;
         } //
 

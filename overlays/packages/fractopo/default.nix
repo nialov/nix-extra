@@ -7,6 +7,10 @@
 }:
 
 let
+  # TODO: Tests fail with older nixpkgs
+  # Probably not worth debugging as long as fractopo documentation build works
+  sphinx-gallery-no-check =
+    sphinx-gallery.overridePythonAttrs (_: { doCheck = false; });
 
   self = buildPythonPackage {
     pname = "fractopo";
@@ -33,7 +37,7 @@ let
           pandoc
           sphinx-autodoc-typehints
           sphinx-rtd-theme
-          sphinx-gallery
+          sphinx-gallery-no-check
           nbsphinx
           notebook
           ipython
