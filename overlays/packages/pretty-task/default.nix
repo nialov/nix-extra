@@ -3,7 +3,7 @@
 # libraries = with python3Packages; [ typer ];
 # flakeIgnore = [ "E501" ];
 # } (builtins.readFile ././pathnames.py)
-{ stdenv, python3, installShellFiles, taskwarrior, pandoc, lib, makeWrapper }:
+{ stdenv, python3, installShellFiles, taskwarrior2, pandoc, lib, makeWrapper }:
 
 stdenv.mkDerivation {
   name = "pretty-task";
@@ -28,7 +28,7 @@ stdenv.mkDerivation {
     mkdir -p $out/bin
     cp ${././pretty_task.py} $out/bin/pretty-task
     wrapProgram $out/bin/pretty-task --prefix PATH : ${
-      lib.makeBinPath [ taskwarrior pandoc ]
+      lib.makeBinPath [ taskwarrior2 pandoc ]
     }
     chmod +x $out/bin/pretty-task
   '';
