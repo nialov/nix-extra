@@ -8,9 +8,7 @@
   nixConfig.extra-trusted-public-keys =
     [ "nialov.cachix.org-1:Z2oarwKpwXCZUZ6OfQx5/Ia2mEC+uizpb+c5lu/gNk4=" ];
   inputs = {
-    # TODO: Avoid gdal build error
-    nixpkgs.url =
-      "github:nixos/nixpkgs/fa12935a32af71ab3a8b4ff60ab3c37490eea336";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     # Use unstable nixpkgs channel
     # nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "nixpkgs/nixos-24.05";
