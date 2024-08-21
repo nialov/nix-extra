@@ -12,12 +12,10 @@ stdenv.mkDerivation {
     (python3.withPackages (pythonPackages:
       with pythonPackages; [
         typer
-        pandas
         json5
         rich
         tabulate
         ipython
-        pyarrow
       ]))
     # taskwarrior
     # pandoc

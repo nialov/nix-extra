@@ -4,15 +4,11 @@ Pretty printing completed tasks from taskwarrior.
 """
 
 import subprocess
-from datetime import datetime
-from textwrap import dedent
-from typing import List
+from typing import Any, Dict, List
 
 import json5
-import pandas as pd
 import typer
 from rich.console import Console
-from rich.table import Table
 from tabulate import tabulate
 
 print = Console(width=120).print
@@ -47,21 +43,34 @@ def completed(
         ]
     ).decode("UTF-8")
 
-    exported_tasks_parsed = json5.loads(exported_tasks_json)
+    exported_tasks_parsed_list: List[Dict[str, Any]] = json5.loads(exported_tasks_json)
 
-    if len(exported_tasks_parsed) == 0:
+    if len(exported_tasks_parsed_list) == 0:
         return
 
-    df = pd.DataFrame(exported_tasks_parsed)
+    exported_tasks_parsed_dict = dict()
+    for item in exported_tasks_parsed_list:
+        for key, value in item.items():
+            if key not in exported_tasks_parsed_dict:
+                exported_tasks_parsed_dict[key] = [value]
+            else:
+                exported_tasks_parsed_dict[key].append(value)
+
     for opt_col in optional_columns:
-        if opt_col not in df.columns:
-            df[opt_col] = [[] for _ in range(df.shape[0])]
+        if opt_col not in exported_tasks_parsed_dict:
+            exported_tasks_parsed_dict[opt_col] = [
+                [] for _ in range(len(exported_tasks_parsed_dict))
+            ]
     wanted_columns = ["description", "project", *optional_columns]
-    df = df[wanted_columns]
+    exported_tasks_parsed_filtered = {
+        key: value
+        for key, value in exported_tasks_parsed_dict.items()
+        if key in wanted_columns
+    }
 
     df_as_rst = tabulate(
-        df,
-        headers=[col.capitalize() for col in df.columns],
+        exported_tasks_parsed_filtered,
+        headers=[col.capitalize() for col in exported_tasks_parsed_filtered],
         tablefmt="rst",
         showindex=False,
         maxcolwidths=80,
@@ -84,54 +93,8 @@ def pending(
     """
     Export pending tasks in a pretty table.
     """
-    exported_tasks_json = subprocess.check_output(["task", "export", suffix]).decode(
-        "UTF-8"
-    )
-
-    exported_tasks_parsed = json5.loads(exported_tasks_json)
-
-    if len(exported_tasks_parsed) == 0:
-        return
-
-    df = pd.DataFrame(exported_tasks_parsed)
-    optional_columns = []
-    for opt_col in optional_columns:
-        if opt_col not in df.columns:
-            df[opt_col] = [[] for _ in df.shape[0]]
-    wanted_columns = ["description", "project", "urgency", *optional_columns]
-    df = df[wanted_columns]
-
-    for col in ("description", "project"):
-        df[col] = df[col].astype(str)
-
-    projects_sorted_by_mean = (
-        df.groupby("project")["urgency"].mean().sort_values(ascending=False)
-    )
-    projects = projects_sorted_by_mean.index.values
-    project_means = projects_sorted_by_mean.values
-    date = datetime.now().strftime("%Y.%m.%d")
-    lines = [f"# Taskwarrior Task Status ({date})", ""]
-    for project, project_mean in zip(projects, project_means):
-        lines.append(f"## {project} ({project_mean:.1f})")
-        project_df = df.loc[df["project"] == project]
-        for _, row in project_df.iterrows():
-            desc = row["description"]
-            urgency = row["urgency"]
-            message = dedent(
-                f"""
-                 -  {desc} ({urgency:.1f})
-                 """
-            )
-            lines.append(message)
-
-    process_result = subprocess.run(
-        ["pandoc", "--from", "markdown", "--to", "markdown"],
-        stdout=subprocess.PIPE,
-        input="\n".join(lines),
-        encoding="UTF-8",
-    )
-    formatted_result = process_result.stdout
-    print(formatted_result)
+    print(dict(suffix=suffix))
+    print("Deprecated")
 
 
 if __name__ == "__main__":
