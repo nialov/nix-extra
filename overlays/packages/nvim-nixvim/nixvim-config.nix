@@ -380,7 +380,7 @@ in {
           { name = "nvim_lsp"; }
           {
             name = "luasnip";
-            option = { use_show_condition = false; };
+            option = { use_show_condition = true; };
           }
           { name = "cmp_pandoc"; }
           { name = "async_path"; }
@@ -459,15 +459,18 @@ in {
           expand =
             "function(args) require('luasnip').lsp_expand(args.body) end";
         };
-        comparators.__raw = ''
-          {
-              require('cmp').config.compare.locality,
-              require('cmp').config.compare.recently_used,
-              require('cmp').config.compare.score,
-              require('cmp').config.compare.offset,
-              require('cmp').config.compare.order,
-          }
-        '';
+        sorting.comparators = [
+          "require('cmp').config.compare.locality"
+          "require('cmp').config.compare.recently_used"
+          "require('cmp').config.compare.score"
+          "require('cmp').config.compare.offset"
+          "require('cmp').config.compare.order"
+        ];
+        performance = {
+          debounce = 240;
+          fetching_timeout = 1000;
+          throttle = 60;
+        };
       };
       cmdline = {
         "/" = {
