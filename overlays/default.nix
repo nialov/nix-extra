@@ -13,6 +13,8 @@ inputs: final: prev:
   wiki-builder = prev.callPackage ././packages/wiki-builder { };
   wsl-open-dynamic = prev.callPackage ././packages/wsl-open-dynamic { };
   pretty-task = prev.callPackage ././packages/pretty-task { };
+  nix-flake-metadata-inputs =
+    prev.callPackage ././packages/nix-flake-metadata-inputs { };
   proton-ge-custom = prev.callPackage ././packages/proton-ge-custom { };
   inherit (final.python3Packages) synonym-cli kibitzr;
   ytdl-sub = prev.callPackage ././packages/ytdl-sub { inherit inputs; };

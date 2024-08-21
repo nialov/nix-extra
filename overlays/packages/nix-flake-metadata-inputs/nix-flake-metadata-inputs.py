@@ -1,5 +1,5 @@
+#!/usr/bin/env python
 import argparse
-import datetime
 import json
 import subprocess
 from functools import partial
@@ -12,7 +12,7 @@ run_cmd = partial(
 )
 
 
-def main():
+def main(input_target: str):
     """
     Show metadata of flake inputs.
     """
@@ -21,7 +21,7 @@ def main():
     )
 
     input_target_output = run_cmd(
-        ["jq", '.locks.nodes."{}".locked'.format(_parse_arguments())],
+        ["jq", '.locks.nodes."{}".locked'.format(input_target)],
         input=metadata_output.stdout,
     )
 
@@ -56,4 +56,5 @@ def _parse_arguments() -> str:
 
 
 if __name__ == "__main__":
-    main()
+    input_target = _parse_arguments()
+    main(input_target=input_target)
