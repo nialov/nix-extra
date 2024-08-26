@@ -1,7 +1,9 @@
-{ stdenv, python3, installShellFiles, wsl-open }:
+{ stdenv, python3,
+# installShellFiles,
+wsl-open }:
 stdenv.mkDerivation {
   name = "wsl-open-dynamic";
-  nativeBuildInputs = [ installShellFiles ];
+  # nativeBuildInputs = [ installShellFiles ];
   buildInputs = [
     (python3.withPackages (pythonPackages: with pythonPackages; [ typer ]))
     wsl-open
@@ -14,13 +16,13 @@ stdenv.mkDerivation {
     chmod +x $out/bin/wsl-open-dynamic
     chmod +x $out/bin/xdg-open
   '';
-  postFixup = ''
-    INSTALL_DIR=$(mktemp -d)
-    $out/bin/wsl-open-dynamic --show-completion fish > $INSTALL_DIR/completion.fish
-    $out/bin/wsl-open-dynamic --show-completion bash > $INSTALL_DIR/completion.bash
-    installShellCompletion --name wsl-open-dynamic.bash --bash $INSTALL_DIR/completion.bash
-    installShellCompletion --name wsl-open-dynamic.fish --fish $INSTALL_DIR/completion.fish
-  '';
+  # postFixup = ''
+  #   INSTALL_DIR=$(mktemp -d)
+  #   $out/bin/wsl-open-dynamic --show-completion fish > $INSTALL_DIR/completion.fish
+  #   $out/bin/wsl-open-dynamic --show-completion bash > $INSTALL_DIR/completion.bash
+  #   installShellCompletion --name wsl-open-dynamic.bash --bash $INSTALL_DIR/completion.bash
+  #   installShellCompletion --name wsl-open-dynamic.fish --fish $INSTALL_DIR/completion.fish
+  # '';
   doInstallCheck = true;
   installCheckPhase = ''
     $out/bin/wsl-open-dynamic --help
