@@ -387,7 +387,7 @@ in {
           { name = "spell"; }
           {
             name = "buffer";
-            # option = { get_bufnrs = "vim.api.nvim_list_bufs"; };
+            option = { get_bufnrs.__raw = "vim.api.nvim_list_bufs"; };
           }
           { name = "fuzzy_buffer"; }
           { name = "tmux"; }
