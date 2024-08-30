@@ -572,7 +572,7 @@ in {
             silent = true;
           };
         };
-        "<C-g>" = "live_grep";
+        "<C-g>" = "grep_project";
         "<C-b>" = "buffers";
         # "gr" = "lsp_references";
         # "gd" = "lsp_definitions";
@@ -588,6 +588,7 @@ in {
           multiprocess = true;
           prompt = "Files❯ ";
         };
+        grep = { };
         winopts = {
           col = 0.3;
           height = 0.4;
