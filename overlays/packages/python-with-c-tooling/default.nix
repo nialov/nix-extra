@@ -1,7 +1,7 @@
 { pkgs, python3ToWrap, ... }:
 pkgs.symlinkJoin {
   name = "python-with-c-tooling";
-  buildInputs = with pkgs; [ makeWrapper ];
+  nativeBuildInputs = [ pkgs.makeWrapper ];
   paths = [ python3ToWrap ];
   postBuild = let
 

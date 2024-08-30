@@ -72,7 +72,7 @@ let
     mpiWrapped = symlinkJoin {
       name = "mpi-wrapped";
       paths = [ mpi ];
-      buildInputs = [ makeWrapper ];
+      nativeBuildInputs = [ makeWrapper ];
       postBuild = let
         wraps = [
           # Fix to make mpich run in a sandbox
@@ -93,7 +93,7 @@ let
       mkdir $out
       ${lndir}/bin/lndir -silent ${pythonEnv} $out
     '';
-    buildInputs = [ makeWrapper ];
+    nativeBuildInputs = [ makeWrapper ];
     postBuild = let
       PYTHON_EXE = "${pythonEnv}/bin/python3";
       LAGRIT_EXE = "${lagrit}/bin/lagrit";

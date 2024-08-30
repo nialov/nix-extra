@@ -1,7 +1,7 @@
 { pkgs, ... }:
 pkgs.symlinkJoin {
   name = "poetry-with-c-tooling";
-  buildInputs = with pkgs; [ makeWrapper ];
+  nativeBuildInputs = [ pkgs.makeWrapper ];
   paths = with pkgs; [ poetry ];
   postBuild = let
 

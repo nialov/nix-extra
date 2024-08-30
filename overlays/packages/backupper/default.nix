@@ -6,10 +6,9 @@
 { stdenv, python3, installShellFiles, p7zip, lib, makeWrapper }:
 stdenv.mkDerivation rec {
   name = "backupper";
-  nativeBuildInputs = [ installShellFiles ];
+  nativeBuildInputs = [ installShellFiles makeWrapper ];
   buildInputs = [
     (python3.withPackages (pythonPackages: with pythonPackages; [ typer rich ]))
-    makeWrapper
   ];
   unpackPhase = "true";
   installPhase = ''

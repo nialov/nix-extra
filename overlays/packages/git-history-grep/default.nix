@@ -2,10 +2,9 @@
 
 stdenv.mkDerivation {
   name = "git-history-grep";
-  nativeBuildInputs = [ installShellFiles ];
+  nativeBuildInputs = [ makeWrapper installShellFiles ];
   buildInputs = [
     (python3.withPackages (pythonPackages: with pythonPackages; [ typer rich ]))
-    makeWrapper
   ];
   unpackPhase = "true";
   installPhase = ''

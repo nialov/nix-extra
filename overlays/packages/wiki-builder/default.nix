@@ -16,8 +16,8 @@ let
 
 in stdenv.mkDerivation {
   inherit name;
-  nativeBuildInputs = [ installShellFiles ];
-  buildInputs = [ pythonSphinx makeWrapper ];
+  nativeBuildInputs = [ installShellFiles makeWrapper ];
+  buildInputs = [ pythonSphinx ];
   unpackPhase = "true";
   installPhase = ''
     mkdir -p $out/bin

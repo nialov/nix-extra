@@ -2,8 +2,8 @@
 
 stdenv.mkDerivation {
   name = "nix-flake-metadata-inputs";
-  nativeBuildInputs = [ installShellFiles ];
-  buildInputs = [ python3 makeWrapper ];
+  nativeBuildInputs = [ installShellFiles makeWrapper ];
+  buildInputs = [ python3 ];
   unpackPhase = "true";
   installPhase = ''
     mkdir -p $out/bin

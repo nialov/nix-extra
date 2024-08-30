@@ -7,7 +7,7 @@
 
 stdenv.mkDerivation {
   name = "pretty-task";
-  nativeBuildInputs = [ installShellFiles ];
+  nativeBuildInputs = [ makeWrapper installShellFiles ];
   buildInputs = [
     (python3.withPackages (pythonPackages:
       with pythonPackages; [
@@ -19,7 +19,6 @@ stdenv.mkDerivation {
       ]))
     # taskwarrior
     # pandoc
-    makeWrapper
   ];
   unpackPhase = "true";
   installPhase = ''

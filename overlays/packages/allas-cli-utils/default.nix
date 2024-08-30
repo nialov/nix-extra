@@ -55,7 +55,7 @@ in stdenv.mkDerivation
   name = "allas-cli-utils";
   src = inputs.allas-cli-utils-src;
   # nativeBuildInputs = [ installShellFiles ];
-  buildInputs = [ makeWrapper ];
+  nativeBuildInputs = [ makeWrapper ];
   # unpackPhase = "true";
   installPhase = ''
     cp -r ${inputs.allas-cli-utils-src} $out
