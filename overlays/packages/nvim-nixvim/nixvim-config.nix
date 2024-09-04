@@ -188,7 +188,7 @@ in {
         equalprg = "pandoc -f rst -t rst";
         formatprg = "pandoc -f rst -t rst";
         spell = true;
-        spelllang = "en";
+        # spelllang = "en";
         shiftwidth = 3;
         softtabstop = -1;
         tabstop = 3;
@@ -207,19 +207,6 @@ in {
         setlocal suffixesadd+=.rst
         setlocal suffixes+=.rst
         nmap <buffer> <silent> gw gq
-        function! AuFocusLost()
-            " Save when losing focus.
-            exe ':silent! update'
-
-            " Go back to normal mode from insert mode.
-            if mode() == 'i'
-              exe ':stopinsert'
-            endif
-
-            if getbufvar(bufnr('%'), '&filetype') == 'fzf'
-              exe ':q'
-            endif
-        endfunction
       '';
     };
     "after/ftdetect/direnv.lua" = {
@@ -259,6 +246,29 @@ in {
         autocmd!
         autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank()
     augroup END
+
+    function! AuFocusLost()
+        " Save when losing focus.
+        exe ':silent! update'
+
+        " Go back to normal mode from insert mode.
+        if mode() == 'i'
+          exe ':stopinsert'
+        endif
+
+        if getbufvar(bufnr('%'), '&filetype') == 'fzf'
+          exe ':q'
+        endif
+    endfunction
+    autocmd FocusLost * call AuFocusLost()
+
+    function! SetSpellLang()
+        let l:spelllang = matchstr(expand('%:t'), '\.\zs[^.]*\ze\..*$')
+        if !empty(l:spelllang)
+            execute 'setlocal spelllang=' . l:spelllang
+        endif
+    endfunction
+    autocmd BufRead,BufNewFile * call SetSpellLang()
   '';
   keymaps = [
     {
