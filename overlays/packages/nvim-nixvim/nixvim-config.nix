@@ -247,21 +247,6 @@ in {
         autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank()
     augroup END
 
-    function! AuFocusLost()
-        " Save when losing focus.
-        exe ':silent! update'
-
-        " Go back to normal mode from insert mode.
-        if mode() == 'i'
-          exe ':stopinsert'
-        endif
-
-        if getbufvar(bufnr('%'), '&filetype') == 'fzf'
-          exe ':q'
-        endif
-    endfunction
-    autocmd FocusLost * call AuFocusLost()
-
     function! SetSpellLang()
         let l:spelllang = matchstr(expand('%:t'), '\.\zs[^.]*\ze\..*$')
         if !empty(l:spelllang)
@@ -340,6 +325,11 @@ in {
     {
       key = "<A-l>";
       action.__raw = "require('tmux').move_right";
+    }
+    {
+      key = "<leader>gg";
+      action = "<cmd>Git<CR>";
+      options.desc = "Open vim-fugitive git menu";
     }
 
   ];
