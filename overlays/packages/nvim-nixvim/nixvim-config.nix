@@ -250,6 +250,10 @@ in {
     function! SetSpellLang()
         let l:spelllang = matchstr(expand('%:t'), '\.\zs[^.]*\ze\..*$')
         if !empty(l:spelllang)
+            call nvim_notify('Spelllang solving found: ' . l:spelllang, 2, {})
+            if strlen(l:spelllang) > 2
+                return
+            endif
             execute 'setlocal spelllang=' . l:spelllang
         endif
     endfunction
