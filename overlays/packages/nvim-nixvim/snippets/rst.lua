@@ -89,9 +89,9 @@ local meeting_snip = s(
         {}
         {}
 
-        Stakeholders & Participants:
+        -   Stakeholders & Participants:
 
-        -  {}
+            -  {}
 
         ]],
 		{
