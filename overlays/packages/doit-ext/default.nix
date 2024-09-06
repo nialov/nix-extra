@@ -8,6 +8,13 @@ buildPythonPackage {
 
   src = inputs.doit-ext-src;
 
+  # TODO: Conflicts when other package also includes the same file
+  # nix puts both in site-packages/ directory
+  postPatch = ''
+    substituteInPlace pyproject.toml \
+        --replace-fail 'include = ["CHANGELOG.md"]' ""
+  '';
+
   nativeBuildInputs = [ poetry-core ];
   propagatedBuildInputs = [ doit ];
 
