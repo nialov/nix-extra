@@ -68,6 +68,10 @@
           fractopo-documentation =
             pkgsFractopo.python3Packages.fractopo.passthru.documentation.doc;
           inherit (self'.devShells) poetry-devshell;
+          # Test that fractopo and doit-ext do not have conflicting include files
+          # (CHANGELOG.md)
+          python3-include-conflict-test-env = pkgsFractopo.python3.withPackages
+            (p: lib.attrValues { inherit (p) fractopo doit-ext; });
         } //
 
           # Adds all pre-commit hooks from pre-commit-hooks.nix to checks
