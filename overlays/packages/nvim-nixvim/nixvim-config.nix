@@ -446,18 +446,18 @@ in {
                     },
               }), {"i"})
           '';
-          "<C-x><C-f>" = ''
-              cmp.mapping(
-                  cmp.mapping.complete({
-                    config = {
-                      sources = cmp.config.sources({
-                        { name = 'async_path' },
-                      }),
-                    },
-              }),
-              { 'i' }
-            )
-          '';
+          # "<C-x><C-f>" = ''
+          #     cmp.mapping(
+          #         cmp.mapping.complete({
+          #           config = {
+          #             sources = cmp.config.sources({
+          #               { name = 'async_path' },
+          #             }),
+          #           },
+          #     }),
+          #     { 'i' }
+          #   )
+          # '';
         };
         snippet = {
           expand =
@@ -578,6 +578,14 @@ in {
         };
         "<C-g>" = "grep_project";
         "<C-b>" = "buffers";
+        "<C-x><C-f>" = {
+          action = "complete_path";
+          mode = [ "i" "s" ];
+          options = {
+            desc = "Fzf-Lua path completion";
+            silent = true;
+          };
+        };
         # "gr" = "lsp_references";
         # "gd" = "lsp_definitions";
       };
