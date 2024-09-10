@@ -1620,11 +1620,11 @@
     "fractopo-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1724167704,
-        "narHash": "sha256-66cyPxBTm/vs+i3tFj44y6E2H3JZimwh8dUWBq32gw8=",
+        "lastModified": 1725951346,
+        "narHash": "sha256-lxdJ9fJaBZVNHWWQer4E9RGHArc1/TJRSD12NbZxg+I=",
         "owner": "nialov",
         "repo": "fractopo",
-        "rev": "d2e1135d121701f1a40931adfbeb6a68cc30fdd6",
+        "rev": "f7f919a56d4906f678915f0fe7e3b53a2cfb2cd5",
         "type": "github"
       },
       "original": {
