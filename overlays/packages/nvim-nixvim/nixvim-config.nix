@@ -405,8 +405,8 @@ in {
                 if cmp.visible() then
                     if luasnip.expandable() then
                       luasnip.expand()
-                    elseif luasnip.expand_or_jumpable() then
-                      luasnip.expand_or_jump()
+                    -- elseif luasnip.expand_or_jumpable() then
+                      -- luasnip.expand_or_jump()
                     else
                       cmp.confirm({select = true, behavior = cmp.ConfirmBehavior.Replace})
                     end
