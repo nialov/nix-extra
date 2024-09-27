@@ -46,7 +46,7 @@
             pretty-task ytdl-sub bootstrapSecretsScript rstcheck copier
             pre-commit-hook-ensure-sops deploy-rs clean-git-branches-script
             allas-cli-utils grokker poetry-with-c-tooling synonym-cli mosaic
-            sync-git-tag-with-poetry resolve-version poetry-run tracerepo
+            sync-git-tag-with-poetry resolve-version poetry-run
             python39-with-c-tooling python310-with-c-tooling
             python311-with-c-tooling jupytext-nb-edit template-check nvim-nixvim
             git-history-grep micromamba-fhs-env geo-fhs-env;
@@ -64,7 +64,7 @@
           inherit (pkgsFractopo) tasklite-core;
           # TODO: pygeos no longer in nixpkgs as it was merged to shapely 2.0
           # 19.6.2024
-          inherit (pkgsFractopo.python3Packages) fractopo;
+          inherit (pkgsFractopo.python3Packages) fractopo tracerepo;
           fractopo-documentation =
             pkgsFractopo.python3Packages.fractopo.passthru.documentation.doc;
           inherit (self'.devShells) poetry-devshell;

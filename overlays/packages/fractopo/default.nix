@@ -1,16 +1,12 @@
 { inputs, buildPythonPackage, lib, click, pytest, geopandas, joblib, matplotlib
 , numpy, pandas, pygeos, rich, scikit-learn, scipy, seaborn, shapely, typer
 , pytest-regressions, hypothesis, poetry-core, sphinxHook, pandoc
-, sphinx-autodoc-typehints, sphinx-rtd-theme, sphinx-gallery, nbsphinx, notebook
-, ipython, coverage, powerlaw, python-ternary,
+, sphinx-autodoc-typehints, sphinx-rtd-theme, sphinx-gallery-no-check, nbsphinx
+, notebook, ipython, coverage, powerlaw, python-ternary,
 
 }:
 
 let
-  # TODO: Tests fail with older nixpkgs
-  # Probably not worth debugging as long as fractopo documentation build works
-  sphinx-gallery-no-check =
-    sphinx-gallery.overridePythonAttrs (_: { doCheck = false; });
 
   self = buildPythonPackage {
     pname = "fractopo";

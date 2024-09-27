@@ -218,6 +218,12 @@ inputs: final: prev:
         python-final.callPackage ././packages/powerlaw { inherit inputs; };
       fractopo =
         python-final.callPackage ././packages/fractopo { inherit inputs; };
+      tracerepo =
+        python-final.callPackage ././packages/tracerepo { inherit inputs; };
+      # TODO: Tests fail with older nixpkgs
+      # Probably not worth debugging as long as fractopo documentation build works
+      sphinx-gallery-no-check = python-prev.sphinx-gallery.overridePythonAttrs
+        (_: { doCheck = false; });
       python-ternary = python-final.callPackage ././packages/python-ternary {
         inherit inputs;
       };

@@ -57,9 +57,9 @@
       # inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-filter.url = "github:numtide/nix-filter";
-    # TODO: Move nix build definition to nix-extra
-    tracerepo = {
+    tracerepo-src = {
       url = "github:nialov/tracerepo";
+      flake = false;
       # inputs.nixpkgs.follows = "nixpkgs";
     };
     flake-parts = {
@@ -207,6 +207,12 @@
       url = "github:unionai-oss/pandera/9b485ce";
       flake = false;
     };
+    # TODO: Tracerepo build too old to support newer pandera src
+    pandera-tracerepo-src = {
+      url =
+        "github:unionai-oss/pandera/850dcf8e59632d54bc9a6df47b9ca08afa089a27";
+      flake = false;
+    };
     syncall-src = {
       # url = "github:bergercookier/syncall";
       # TODO: New versions use poetry_dynamic_versioning as build tool in pyproject.toml
@@ -264,7 +270,6 @@
           nickel = inputs.nickel-src.packages."${system}".build;
           # numtide/nix-filter library used for filtering local packages sources
           # filter = inputs.nix-filter.lib;
-          inherit (inputs.tracerepo.packages."${system}") tracerepo;
         };
       fullOverlay = lib.composeManyExtensions [
         localOverlay
