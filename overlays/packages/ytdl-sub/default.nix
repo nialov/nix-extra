@@ -10,9 +10,9 @@ python3.pkgs.buildPythonApplication {
   # Add ffmpeg from nix to default path
   postPatch = ''
     substituteInPlace src/ytdl_sub/config/defaults.py \
-        --replace 'DEFAULT_FFMPEG_PATH = "/usr/bin/ffmpeg' \
+        --replace-fail 'DEFAULT_FFMPEG_PATH = "/usr/bin/ffmpeg' \
         'DEFAULT_FFMPEG_PATH = "${ffmpeg}/bin/ffmpeg' \
-        --replace 'DEFAULT_FFPROBE_PATH = "/usr/bin/ffprobe"' \
+        --replace-fail 'DEFAULT_FFPROBE_PATH = "/usr/bin/ffprobe"' \
         'DEFAULT_FFPROBE_PATH = "${ffmpeg}/bin/ffprobe"'
   '';
 

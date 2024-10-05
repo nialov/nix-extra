@@ -97,7 +97,12 @@
       flake = false;
     };
     ytdl-sub-src = {
-      url = "github:jmbannon/ytdl-sub";
+      # TODO: Not in use so not priority to fix for new src
+      # ytdl_sub.utils.exceptions.ValidationException: Validation error in
+      # config_options_unit_test.ffmpeg_path: Expects an ffmpeg executable at
+      # '/usr/bin/ffmpeg', but does not exist.
+      # Probably due to failing substitute
+      url = "github:jmbannon/ytdl-sub/e529674b859a28acffef2fc9a0d795e864bbd013";
       flake = false;
     };
     sphinxcontrib-mermaid-src = {
