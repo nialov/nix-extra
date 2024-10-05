@@ -1204,23 +1204,6 @@
     "pandera-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1713026038,
-        "narHash": "sha256-n+ElLOhEfM+lfd+HWghXgvENx24UPoFX3e/47nMOY2c=",
-        "owner": "unionai-oss",
-        "repo": "pandera",
-        "rev": "9b485ce5bfa5a884e05918b1f366cc0e46662156",
-        "type": "github"
-      },
-      "original": {
-        "owner": "unionai-oss",
-        "ref": "9b485ce",
-        "repo": "pandera",
-        "type": "github"
-      }
-    },
-    "pandera-tracerepo-src": {
-      "flake": false,
-      "locked": {
         "lastModified": 1693077045,
         "narHash": "sha256-Uvhkd6Soihwo3Yv2BHlKdwoU3z/aJjd27/0jpnMupPI=",
         "owner": "unionai-oss",
@@ -1406,7 +1389,6 @@
         "nixpkgs-stable": "nixpkgs-stable_2",
         "nixvim": "nixvim",
         "pandera-src": "pandera-src",
-        "pandera-tracerepo-src": "pandera-tracerepo-src",
         "pflotran-src": "pflotran-src",
         "pkg-fblaslapack-src": "pkg-fblaslapack-src",
         "powerlaw-src": "powerlaw-src",

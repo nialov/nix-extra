@@ -206,14 +206,14 @@
       url = "github:pearu/pyvtk";
       flake = false;
     };
-    pandera-src = {
-      # TODO: modin is not part of python3Packages as of 19.6.2024
-      # Also: spark-submit binary is not found for some reason
-      url = "github:unionai-oss/pandera/9b485ce";
-      flake = false;
-    };
+    # pandera-src = {
+    #   # TODO: modin is not part of python3Packages as of 19.6.2024
+    #   # Also: spark-submit binary is not found for some reason
+    #   url = "github:unionai-oss/pandera";
+    #   flake = false;
+    # };
     # TODO: Tracerepo build too old to support newer pandera src
-    pandera-tracerepo-src = {
+    pandera-src = {
       url =
         "github:unionai-oss/pandera/850dcf8e59632d54bc9a6df47b9ca08afa089a27";
       flake = false;

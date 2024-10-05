@@ -32,7 +32,8 @@ buildPythonPackage {
 
   propagatedBuildInputs = [
     fractopo
-    (pandera.overridePythonAttrs (_: { src = inputs.pandera-tracerepo-src; }))
+    # (pandera.overridePythonAttrs (_: { src = inputs.pandera-tracerepo-src; }))
+    pandera
     json5
   ];
 

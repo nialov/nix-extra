@@ -52,7 +52,7 @@
             git-history-grep micromamba-fhs-env geo-fhs-env;
           inherit (pkgs.vimPlugins) neoai-nvim;
           inherit (pkgs.python3Packages)
-            doit-ext sphinxcontrib-mermaid sphinx-gallery pandera bubop
+            doit-ext sphinxcontrib-mermaid sphinx-gallery bubop
             item-synchronizer gkeepapi powerlaw frackit python-ternary;
           inherit (pkgsGptEngineer) gpt-engineer;
           inherit (pkgsKibitzr) kibitzr;
@@ -64,7 +64,7 @@
           inherit (pkgsFractopo) tasklite-core;
           # TODO: pygeos no longer in nixpkgs as it was merged to shapely 2.0
           # 19.6.2024
-          inherit (pkgsFractopo.python3Packages) fractopo tracerepo;
+          inherit (pkgsFractopo.python3Packages) fractopo tracerepo pandera;
           fractopo-documentation =
             pkgsFractopo.python3Packages.fractopo.passthru.documentation.doc;
           inherit (self'.devShells) poetry-devshell;
