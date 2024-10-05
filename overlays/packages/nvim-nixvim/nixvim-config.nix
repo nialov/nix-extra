@@ -612,26 +612,26 @@ in {
     };
     lualine = {
       enable = true;
-      globalstatus = false;
-      extensions = [ "fzf" "quickfix" "fugitive" "oil" ];
-      sections = {
-        lualine_b = [ "branch" "diff" "diagnostics" ];
-        lualine_a = [ "mode" ];
-        lualine_c = [{
-          name = "filename";
-          extraConfig = {
+      settings = {
+        globalstatus = false;
+        extensions = [ "fzf" "quickfix" "fugitive" "oil" ];
+        sections = {
+          lualine_b = [ "branch" "diff" "diagnostics" ];
+          lualine_a = [ "mode" ];
+          lualine_c = [{
+            __unkeyed-1 = "filename";
             file_status = true;
             newfile_status = true;
             path = 1;
             shorting_target = 60;
-          };
-        }];
+          }];
 
-        lualine_z = [ "location" ];
-      };
-      inactiveSections = {
-        lualine_c = [ "filename" ];
-        lualine_z = [ "location" ];
+          lualine_z = [ "location" ];
+        };
+        inactive_sections = {
+          lualine_c = [ "filename" ];
+          lualine_z = [ "location" ];
+        };
       };
     };
     lsp = {
@@ -884,10 +884,11 @@ in {
     fugitive.enable = true;
     friendly-snippets.enable = true;
     rainbow-delimiters.enable = true;
-    surround.enable = true;
+    vim-surround.enable = true;
     commentary.enable = true;
     gitblame = { enable = true; };
     gitsigns = { enable = true; };
+    web-devicons = { enable = true; };
   };
 
   extraPlugins = let
