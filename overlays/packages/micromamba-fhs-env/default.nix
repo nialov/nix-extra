@@ -8,6 +8,7 @@ buildFHSUserEnv {
   profile = ''
     set -e
     export MAMBA_ROOT_PREFIX=./.mamba
+    exec fish --no-config
     set +e
   '';
 }
