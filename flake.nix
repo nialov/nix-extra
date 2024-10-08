@@ -26,6 +26,9 @@
     nixpkgs-fractopo.url = "github:nixos/nixpkgs/nixos-23.11";
     # For use with pandox-xnos and friends
     nixpkgs-pandoc = { url = "github:nixos/nixpkgs/22.05"; };
+    nixpkgs-parmetis = {
+      url = "github:nixos/nixpkgs/a468bfc94288627df0c8c5b6c804e4d318d34dc1";
+    };
     # Use flake-utils for utility functions
     flake-utils = { url = "github:numtide/flake-utils"; };
     pre-commit-hooks = {
@@ -249,11 +252,11 @@
       flake = false;
     };
     # TODO: Can be removed when nixpkgs pr 329102 is included
-    parmetis-src = {
-      url =
-        "github:KarypisLab/ParMETIS/d90a2a6cf08d1d35422e060daa28718376213659";
-      flake = false;
-    };
+    # parmetis-src = {
+    #   url =
+    #     "github:KarypisLab/ParMETIS/d90a2a6cf08d1d35422e060daa28718376213659";
+    #   flake = false;
+    # };
     nix-fast-build = {
       url = "github:Mic92/nix-fast-build";
       inputs.nixpkgs.follows = "nixpkgs";

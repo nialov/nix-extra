@@ -46,8 +46,6 @@ inputs: final: prev:
   dfnworks = prev.callPackage ././packages/dfnworks { inherit inputs; };
   fehm = prev.callPackage ././packages/fehm { inherit inputs; };
   pflotran = final.callPackage ././packages/pflotran { inherit inputs; };
-  partmetis =
-    prev.parmetis.overrideAttrs (_: _: { src = inputs.parmetis-src; });
   pkg-fblaslapack =
     prev.callPackage ././packages/pkg-fblaslapack { inherit inputs; };
   petsc = import ./packages/petsc-override.nix { inherit inputs prev final; };

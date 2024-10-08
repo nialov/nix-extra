@@ -1,11 +1,22 @@
 { inputs, prev, final }:
 
 let
-  petscStable = inputs.nixpkgs-petsc.legacyPackages."${prev.system}".petsc;
-  petscStableMpi = petscStable.override { inherit (final) mpi; };
+  petscStableMpi =
+    inputs.nixpkgs-petsc.legacyPackages."${prev.system}".petsc.override {
+      inherit (final) mpi;
+    };
+  parmetisPkgs = import inputs.nixpkgs-parmetis {
+
+    inherit (prev) system;
+    config = { allowUnfree = true; };
+
+  };
+  parmetisFixed =
+
+    parmetisPkgs.parmetis;
 in petscStableMpi.overrideAttrs (_: prevAttrs: {
   buildInputs = prevAttrs.buildInputs
-    ++ [ prev.metis final.hdf5-full prev.zlib prev.parmetis ];
+    ++ [ prev.metis final.hdf5-full prev.zlib parmetisFixed ];
   # RUN ./configure --CFLAGS='-O3' --CXXFLAGS='-O3' --FFLAGS='-O3' --with-debugging=no --download-mpich=yes --download-hdf5=yes --download-hdf5-fortran-bindings=yes --download-fblaslapack=yes --download-metis=yes --download-parmetis=yes
   # make PETSC_DIR=/build/petsc-3.19.2 PETSC_ARCH=arch-linux-c-opt all
   # export FC="${prev.gfortran}/bin/gfortran" F77="${prev.gfortran}/bin/gfortran"
