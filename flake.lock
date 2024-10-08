@@ -1218,6 +1218,23 @@
         "type": "github"
       }
     },
+    "parmetis-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1606498436,
+        "narHash": "sha256-22YQxwC0phdMLX660wokRgmAif/9tRbUmQWwNMZ//7M=",
+        "owner": "KarypisLab",
+        "repo": "ParMETIS",
+        "rev": "d90a2a6cf08d1d35422e060daa28718376213659",
+        "type": "github"
+      },
+      "original": {
+        "owner": "KarypisLab",
+        "repo": "ParMETIS",
+        "rev": "d90a2a6cf08d1d35422e060daa28718376213659",
+        "type": "github"
+      }
+    },
     "pflotran-src": {
       "flake": false,
       "locked": {
@@ -1389,6 +1406,7 @@
         "nixpkgs-stable": "nixpkgs-stable_2",
         "nixvim": "nixvim",
         "pandera-src": "pandera-src",
+        "parmetis-src": "parmetis-src",
         "pflotran-src": "pflotran-src",
         "pkg-fblaslapack-src": "pkg-fblaslapack-src",
         "powerlaw-src": "powerlaw-src",

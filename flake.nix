@@ -248,6 +248,12 @@
       url = "github:marcharper/python-ternary";
       flake = false;
     };
+    # TODO: Can be removed when nixpkgs pr 329102 is included
+    parmetis-src = {
+      url =
+        "github:KarypisLab/ParMETIS/d90a2a6cf08d1d35422e060daa28718376213659";
+      flake = false;
+    };
     nix-fast-build = {
       url = "github:Mic92/nix-fast-build";
       inputs.nixpkgs.follows = "nixpkgs";
