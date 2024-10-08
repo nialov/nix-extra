@@ -49,6 +49,15 @@ inputs: final: prev:
   pkg-fblaslapack =
     prev.callPackage ././packages/pkg-fblaslapack { inherit inputs; };
   petsc = import ./packages/petsc-override.nix { inherit inputs prev final; };
+  # TODO: Uses nixpkgs of a merged pull request. Can be removed soon.
+  parmetis = let
+    parmetisPkgs = import inputs.nixpkgs-parmetis {
+
+      inherit (prev) system;
+      config = { allowUnfree = true; };
+
+    };
+  in parmetisPkgs.parmetis;
   mosaic = prev.callPackage ./packages/mosaic { inherit inputs; };
   micromamba-fhs-env = prev.callPackage ./packages/micromamba-fhs-env { };
   geo-fhs-env = prev.callPackage ./packages/geo-fhs-env { };
