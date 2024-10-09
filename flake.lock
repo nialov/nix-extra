@@ -366,11 +366,11 @@
     "fractopo-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1725964171,
-        "narHash": "sha256-n1MxV5vN/IIb1N5AS1qX4ZSEfu1INlq2SuCTNATzrTs=",
+        "lastModified": 1728476556,
+        "narHash": "sha256-uT0DXXHPQX6hr+Bv4DMTL5l8Z7hx04yO5FfZr5OozjE=",
         "owner": "nialov",
         "repo": "fractopo",
-        "rev": "381cf4b999954513e72dceafc33fea45c6ebec7c",
+        "rev": "83af0eaa90a5e62fa22f6628e5037ba2f371a5de",
         "type": "github"
       },
       "original": {
