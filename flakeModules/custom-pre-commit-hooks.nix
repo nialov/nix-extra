@@ -14,6 +14,7 @@
     pre-commit = {
       check.enable = lib.mkDefault false;
       # TODO: Could I use option paradigm here rather than making default configuration?
+      # Yes, see: pre-commit-hooks.nix/flake-module.nix
       settings =
 
         {
@@ -174,6 +175,7 @@
                     "--processes"
                     "0"
                     "--disable-progress-bar"
+                    "--force"
                   ];
                   require_serial = true;
                 };
