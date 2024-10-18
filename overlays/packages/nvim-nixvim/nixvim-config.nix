@@ -791,6 +791,11 @@ in {
               # method.__raw = "require('null-ls').methods.DIAGNOSTICS_ON_SAVE";
             };
           };
+          sqlfluff = {
+            enable = true;
+            # dialect can be specified by .sqlfluff file in the directory of sql file
+            # settings = { extra_args = [ "--dialect" "postgres" ]; };
+          };
         };
         formatting = {
 
