@@ -148,6 +148,36 @@
                 files = "\\.(ipynb|py)$";
               };
               yamllint = { enable = lib.mkDefault false; };
+              sqlfluff-lint = {
+                enable = lib.mkDefault false;
+                description = "Lints sql files with `SQLFluff`";
+                types = [ "sql" ];
+                entry = ''
+                  ${pkgs.sqlfluff}/bin/sqlfluff lint
+                '';
+                raw = {
+                  args =
+                    lib.mkBefore [ "--processes" "0" "--disable-progress-bar" ];
+                  require_serial = true;
+                };
+              };
+              sqlfluff-fix = {
+                enable = lib.mkDefault false;
+                description = "Fixes sql lint errors with `SQLFluff`";
+                types = [ "sql" ];
+                entry = ''
+                  ${pkgs.sqlfluff}/bin/sqlfluff fix
+                '';
+                raw = {
+                  args = lib.mkBefore [
+                    "--show-lint-violations"
+                    "--processes"
+                    "0"
+                    "--disable-progress-bar"
+                  ];
+                  require_serial = true;
+                };
+              };
             };
         };
     };
