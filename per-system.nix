@@ -92,6 +92,9 @@
                 "check-added-large-files"
                 "trim-trailing-whitespace"
                 "detect-secrets"
+                "sqlfluff-lint"
+                "sqlfluff-fix"
+                "ruff"
               ]) (lib.mapAttrs' (name: value:
                 lib.nameValuePair name
                 (pkgs.writeText "${name}-entry" value.entry))
