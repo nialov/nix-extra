@@ -709,12 +709,30 @@ in {
         ];
       };
       servers = {
-        pyright = {
+        # pyright = {
+        #   enable = true;
+        #   settings = {
+
+        #     pyright = { disableOrganizeImports = true; };
+        #     python = {
+
+        #       analysis = {
+        #         autoImportCompletions = false;
+        #         autoSearchPaths = true;
+        #         useLibraryCodeForTypes = true;
+        #         # -- openFilesOnly fixes very high cpu usage of pyright
+        #         diagnosticMode = "openFilesOnly";
+        #         # -- typeCheckingMode = "off",
+        #       };
+        #     };
+        #   };
+        # };
+        basedpyright = {
           enable = true;
           settings = {
 
-            pyright = { disableOrganizeImports = true; };
-            python = {
+            basedpyright = { disableOrganizeImports = true; };
+            basedpyright = {
 
               analysis = {
                 autoImportCompletions = false;
