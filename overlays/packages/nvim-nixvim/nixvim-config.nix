@@ -731,9 +731,8 @@ in {
           enable = true;
           settings = {
 
-            basedpyright = { disableOrganizeImports = true; };
             basedpyright = {
-
+              disableOrganizeImports = true;
               analysis = {
                 autoImportCompletions = false;
                 autoSearchPaths = true;
@@ -791,6 +790,7 @@ in {
     none-ls = {
       enable = true;
       enableLspFormat = true;
+      settings = { update_in_insert = false; };
       # TODO: I do not want to format every filetype automatically
       # onAttach = "";
       sources = {
