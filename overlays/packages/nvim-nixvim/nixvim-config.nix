@@ -740,6 +740,7 @@ in {
                 # -- openFilesOnly fixes very high cpu usage of pyright
                 diagnosticMode = "openFilesOnly";
                 # -- typeCheckingMode = "off",
+                typeCheckingMode = "standard";
               };
             };
           };
