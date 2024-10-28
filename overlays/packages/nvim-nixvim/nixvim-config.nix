@@ -126,7 +126,7 @@ in {
           end
         end
       '';
-      event = [ "BufEnter" ];
+      event = [ "FileReadPost" ];
       pattern = [ "*" ];
     }
     {
@@ -629,10 +629,62 @@ in {
             shorting_target = 60;
           }];
 
+          lualine_x = [
+            {
+              __unkeyed-1.__raw = ''
+                function ()
+                    local lsp_format = require("lsp-format")
+                    if lsp_format.disabled then
+                        return "Autoformat OFF"
+                    end
+                    return "Autoformat ON"
+                end
+              '';
+              color.__raw = ''
+                function (section)
+                    if require("lsp-format").disabled then
+                        return { fg = "#aa3355" }
+                    end
+                    return { fg = "#33aa88" }
+                end
+              '';
+            }
+            # Copied from nixvim examples:
+            "diagnostics"
+            {
+              __unkeyed-1.__raw = ''
+                function()
+                    local msg = ""
+                    local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')
+                    local clients = vim.lsp.get_active_clients()
+                    if next(clients) == nil then
+                        return msg
+                    end
+                    for _, client in ipairs(clients) do
+                        local filetypes = client.config.filetypes
+                        if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
+                            return client.name
+                        end
+                    end
+                    return msg
+                end
+              '';
+              icon = "";
+              color.fg = "#ffffff";
+            }
+            "encoding"
+            "fileformat"
+            "filetype"
+
+          ];
           lualine_z = [ "location" ];
         };
         inactive_sections = {
-          lualine_c = [ "filename" ];
+          lualine_c = [{
+            __unkeyed-1 = "filename";
+            # Absolute path, with tilde as the home directory
+            path = 3;
+          }];
           lualine_z = [ "location" ];
         };
       };

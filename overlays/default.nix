@@ -301,10 +301,17 @@ inputs: final: prev:
 
   nvim-nixvim =
 
-    let nixvim' = inputs.nixvim.legacyPackages."${prev.system}";
+    let
+      nixvim' = inputs.nixvim.legacyPackages."${prev.system}";
 
-    in nixvim'.makeNixvim
-    (import ./packages/nvim-nixvim/nixvim-config.nix { pkgs = prev; });
+      # This function takes an attribute set of the form: {pkgs,
+      # extraSpecialArgs, module}. The only required argument is module, being
+      # a nixvim module. This gives access to the imports, options, config
+      # variables, and using functions like {config, ...}: { ... }.
+    in nixvim'.makeNixvimWithModule {
+      module = ./packages/nvim-nixvim/nixvim-config.nix;
+      pkgs = prev;
+    };
 
   vimPlugins = prev.lib.recursiveUpdate prev.vimPlugins {
     tmux-nvim = prev.vimUtils.buildVimPlugin {
