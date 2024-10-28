@@ -635,9 +635,9 @@ in {
                 function ()
                     local lsp_format = require("lsp-format")
                     if lsp_format.disabled then
-                        return "Autoformat OFF"
+                        return "Autoformat (off)"
                     end
-                    return "Autoformat ON"
+                    return "Autoformat (on)"
                 end
               '';
               color.__raw = ''
