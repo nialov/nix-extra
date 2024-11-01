@@ -244,7 +244,7 @@
       flake = false;
     };
     fractopo-src = {
-      url = "github:nialov/fractopo/deprecate-pygeos-and-update-deps";
+      url = "github:nialov/fractopo";
       flake = false;
     };
     python-ternary-src = {

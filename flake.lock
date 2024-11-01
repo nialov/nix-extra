@@ -366,16 +366,15 @@
     "fractopo-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1730456420,
-        "narHash": "sha256-k8h2vFZsK+kQmEDgfmKecvxeaOHwIe65A3d+y4y+zyc=",
+        "lastModified": 1730472804,
+        "narHash": "sha256-5b0QmxADE0yePBbaA6CTnI+VWzZMszr+lzMsDvcuFrQ=",
         "owner": "nialov",
         "repo": "fractopo",
-        "rev": "d9e51f024d3fee0380fa4007232efceec25ef334",
+        "rev": "2c87eb41c02dcf9fa42c36a056ae08e90b0123ba",
         "type": "github"
       },
       "original": {
         "owner": "nialov",
-        "ref": "deprecate-pygeos-and-update-deps",
         "repo": "fractopo",
         "type": "github"
       }
