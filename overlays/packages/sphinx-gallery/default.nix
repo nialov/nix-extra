@@ -10,7 +10,7 @@ buildPythonPackage rec {
 
   nativeBuildInputs = [ setuptools-scm ];
 
-  propagatedBuildInputs = [ sphinx ];
+  propagatedBuildInputs = [ sphinx pillow ];
 
   # Move tests outside of package and remove use of pytest-coverage
   postPatch = ''
