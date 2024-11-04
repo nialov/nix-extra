@@ -741,6 +741,38 @@ in {
     lsp = {
       enable = true;
       inlayHints = true;
+      preConfig = ''
+        vim.diagnostic.config({
+          severity_sort = true,
+          float = {
+            border = 'rounded',
+            source = 'always',
+          },
+        })
+
+        vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
+          vim.lsp.handlers.hover,
+          {border = 'rounded'}
+        )
+
+        vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
+          vim.lsp.handlers.signature_help,
+          {border = 'rounded'}
+        )
+
+        vim.lsp.handlers["textDocument/diagnostic"] = vim.lsp.with(
+          vim.lsp.diagnostic.on_diagnostic, {
+            -- Enable underline, use default values
+            underline = true,
+            -- Enable virtual text, override spacing to 4
+            virtual_text = {
+              spacing = 4,
+            },
+            -- Disable a feature
+            update_in_insert = false,
+          }
+        )
+      '';
       keymaps = {
         diagnostic = {
           "<leader>lj" = {
@@ -845,6 +877,7 @@ in {
               };
             };
           };
+          onAttach.function = "\n";
         };
         pylyzer = { enable = false; };
         ruff = { enable = true; };
