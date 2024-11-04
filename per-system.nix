@@ -9,12 +9,10 @@
             overlays = [ self.overlays.default ];
             config = { allowUnfree = true; };
           };
-        # pkgsFrackit = mkNixpkgs inputs.nixpkgs-frackit;
         pkgsStable = mkNixpkgs inputs.nixpkgs-stable;
         pkgsGptEngineer = mkNixpkgs inputs.nixpkgs-gpt-engineer;
         pkgsKibitzr = mkNixpkgs inputs.nixpkgs-kibitzr;
-        pkgsFractopo = mkNixpkgs inputs.nixpkgs-fractopo;
-        # pkgsDfnworks = mkNixpkgs inputs.nixpkgs-dfnworks;
+        pkgsStabler = mkNixpkgs inputs.nixpkgs-stabler;
 
       in {
         _module.args.pkgs = mkNixpkgs inputs.nixpkgs;
@@ -53,7 +51,8 @@
           inherit (pkgs.vimPlugins) neoai-nvim;
           inherit (pkgs.python3Packages)
             doit-ext sphinxcontrib-mermaid sphinx-gallery bubop
-            item-synchronizer gkeepapi powerlaw frackit python-ternary fractopo;
+            item-synchronizer gkeepapi powerlaw frackit python-ternary fractopo
+            tracerepo pandera;
           inherit (pkgsGptEngineer) gpt-engineer;
           inherit (pkgsKibitzr) kibitzr;
           inherit (pkgsStable)
@@ -61,17 +60,10 @@
           inherit (pkgs.python3Packages) mplstereonet pyvtk pydfnworks;
           # TODO: How include this information of using the stable branch in an
           # overlay?
-          inherit (pkgsFractopo) tasklite-core;
-          # TODO: pygeos no longer in nixpkgs as it was merged to shapely 2.0
-          # 19.6.2024
-          inherit (pkgsFractopo.python3Packages) tracerepo pandera;
+          inherit (pkgsStabler) tasklite-core;
           fractopo-documentation =
             pkgs.python3Packages.fractopo.passthru.documentation.doc;
           inherit (self'.devShells) poetry-devshell;
-          # Test that fractopo and doit-ext do not have conflicting include files
-          # (CHANGELOG.md)
-          python3-include-conflict-test-env = pkgsFractopo.python3.withPackages
-            (p: lib.attrValues { inherit (p) fractopo doit-ext; });
         } //
 
           # Adds all pre-commit hooks from pre-commit-hooks.nix to checks

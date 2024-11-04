@@ -953,22 +953,6 @@
         "type": "github"
       }
     },
-    "nixpkgs-fractopo": {
-      "locked": {
-        "lastModified": 1720535198,
-        "narHash": "sha256-zwVvxrdIzralnSbcpghA92tWu2DV2lwv89xZc8MTrbg=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "205fd4226592cc83fd4c0885a3e4c9c400efabb5",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "ref": "nixos-23.11",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "nixpkgs-gpt-engineer": {
       "locked": {
         "lastModified": 1692447944,
@@ -1108,6 +1092,22 @@
       "original": {
         "owner": "NixOS",
         "ref": "nixos-24.05",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs-stabler": {
+      "locked": {
+        "lastModified": 1720535198,
+        "narHash": "sha256-zwVvxrdIzralnSbcpghA92tWu2DV2lwv89xZc8MTrbg=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "205fd4226592cc83fd4c0885a3e4c9c400efabb5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-23.11",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -1391,13 +1391,13 @@
         "nix-filter": "nix-filter",
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-dfnworks": "nixpkgs-dfnworks",
-        "nixpkgs-fractopo": "nixpkgs-fractopo",
         "nixpkgs-gpt-engineer": "nixpkgs-gpt-engineer",
         "nixpkgs-kibitzr": "nixpkgs-kibitzr",
         "nixpkgs-pandoc": "nixpkgs-pandoc",
         "nixpkgs-parmetis": "nixpkgs-parmetis",
         "nixpkgs-petsc": "nixpkgs-petsc",
         "nixpkgs-stable": "nixpkgs-stable_2",
+        "nixpkgs-stabler": "nixpkgs-stabler",
         "nixvim": "nixvim",
         "pandera-src": "pandera-src",
         "pflotran-src": "pflotran-src",

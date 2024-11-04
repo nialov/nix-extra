@@ -229,10 +229,6 @@ inputs: final: prev:
         python-final.callPackage ././packages/fractopo { inherit inputs; };
       tracerepo =
         python-final.callPackage ././packages/tracerepo { inherit inputs; };
-      # TODO: Tests fail with older nixpkgs
-      # Probably not worth debugging as long as fractopo documentation build works
-      sphinx-gallery-no-check = python-prev.sphinx-gallery.overridePythonAttrs
-        (_: { doCheck = false; });
       python-ternary = python-final.callPackage ././packages/python-ternary {
         inherit inputs;
       };
@@ -249,21 +245,6 @@ inputs: final: prev:
         python-prev.pytest-cram.overridePythonAttrs (_: { doCheck = false; });
       notion-client = python-prev.notion-client.overridePythonAttrs
         (_: { disabledTests = [ "test_api_http_response_error" ]; });
-      # TODO: 3.5.2 pyspark.pandas is not importable due to Python 3.12 distutils deprecation
-      pyspark = python-prev.pyspark.overridePythonAttrs (prevAttrs: rec {
-        pythonImportsCheck = prevAttrs.pythonImportsCheck
-          ++ [ "pyspark.pandas" ];
-        propagatedBuildInputs = prevAttrs.propagatedBuildInputs
-          ++ prevAttrs.passthru.optional-dependencies.sql;
-        version = "4.0.0.dev1";
-
-        src = prev.fetchPypi {
-          inherit (prevAttrs) pname;
-          inherit version;
-          hash = "sha256-yYtsbkZmNAYjTYFv3S2Nkt74tDP6sKIE74ytbqQWw0U=";
-        };
-
-      });
     })
   ];
 
