@@ -1,7 +1,7 @@
 { inputs, buildPythonPackage, lib, pytest, matplotlib, fractopo
 , pytest-regressions, hypothesis, poetry-core, sphinxHook, pandoc
-, sphinx-autodoc-typehints, sphinx-rtd-theme, sphinx-gallery-no-check, nbsphinx
-, notebook, ipython, coverage, pandera, json5
+, sphinx-autodoc-typehints, sphinx-rtd-theme, sphinx-gallery, nbsphinx, notebook
+, ipython, coverage, pandera, json5
 
 }:
 
@@ -20,7 +20,7 @@ buildPythonPackage {
     pandoc
     sphinx-autodoc-typehints
     sphinx-rtd-theme
-    sphinx-gallery-no-check
+    sphinx-gallery
     nbsphinx
     matplotlib
     notebook

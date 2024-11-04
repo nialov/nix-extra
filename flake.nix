@@ -22,8 +22,7 @@
       "github:nixos/nixpkgs/d680ded26da5cf104dd2735a51e88d2d8f487b4d";
     nixpkgs-dfnworks.url =
       "github:nixos/nixpkgs/5efc8ca954272c4376ac929f4c5ffefcc20551d5";
-    # TODO: pygeos was removed in nixos-24.05
-    nixpkgs-fractopo.url = "github:nixos/nixpkgs/nixos-23.11";
+    nixpkgs-stabler.url = "github:nixos/nixpkgs/nixos-23.11";
     # For use with pandox-xnos and friends
     nixpkgs-pandoc = { url = "github:nixos/nixpkgs/22.05"; };
     nixpkgs-parmetis = {
