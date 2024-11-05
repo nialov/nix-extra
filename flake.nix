@@ -261,6 +261,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-parts.follows = "flake-parts";
     };
+    magazine-nvim-src = {
+      url = "github:iguanacucumber/magazine.nvim";
+      flake = false;
+    };
   };
 
   outputs = { self, ... }@inputs:

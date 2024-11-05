@@ -741,6 +741,22 @@
         "type": "github"
       }
     },
+    "magazine-nvim-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1730739388,
+        "narHash": "sha256-vCHE6pSdavR7AfOxP/7/U1hvauGczVVpmkAQ7UBQTXo=",
+        "owner": "iguanacucumber",
+        "repo": "magazine.nvim",
+        "rev": "f76626a291433aceb7320f8b9d1c0909564a865f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "iguanacucumber",
+        "repo": "magazine.nvim",
+        "type": "github"
+      }
+    },
     "mosaic-src": {
       "flake": false,
       "locked": {
@@ -1383,6 +1399,7 @@
         "kibitzr-src": "kibitzr-src",
         "lagrit-src": "lagrit-src",
         "lmix-flake-src": "lmix-flake-src",
+        "magazine-nvim-src": "magazine-nvim-src",
         "mosaic-src": "mosaic-src",
         "mplstereonet-src": "mplstereonet-src",
         "neoai-nvim-src": "neoai-nvim-src",

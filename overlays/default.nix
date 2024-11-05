@@ -292,6 +292,7 @@ inputs: final: prev:
     in nixvim'.makeNixvimWithModule {
       module = ./packages/nvim-nixvim/nixvim-config.nix;
       pkgs = prev;
+      extraSpecialArgs = { inherit inputs; };
     };
 
   vimPlugins = prev.lib.recursiveUpdate prev.vimPlugins {

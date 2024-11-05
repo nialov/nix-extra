@@ -382,6 +382,15 @@ in {
     cmp = {
       enable = true;
       autoEnableSources = true;
+      # TODO: Switch to magazine-nvim-src? Works as drop-in replacement.
+      # package = pkgs.neovimUtils.buildNeovimPlugin {
+      #   pname = "nvim-cmp";
+      #   version = inputs.magazine-nvim-src.rev;
+      #   src = inputs.magazine-nvim-src;
+      #   postPatch = ''
+      #     cp ${pkgs.vimPlugins.nvim-cmp}/nvim-cmp-scm-1.rockspec ./nvim-cmp-scm-1.rockspec
+      #   '';
+      # };
       settings = {
         sources = [
           { name = "nvim_lsp"; }
