@@ -55,12 +55,11 @@
             tracerepo pandera;
           inherit (pkgsGptEngineer) gpt-engineer;
           inherit (pkgsKibitzr) kibitzr;
-          inherit (pkgsStable)
-            lagrit dfnworks fehm pflotran petsc hdf5-full syncall;
           inherit (pkgs.python3Packages) mplstereonet pyvtk pydfnworks;
           # TODO: How include this information of using the stable branch in an
           # overlay?
-          inherit (pkgsStabler) tasklite-core;
+          inherit (pkgsStabler)
+            tasklite-core lagrit dfnworks fehm pflotran petsc hdf5-full syncall;
           fractopo-documentation =
             pkgs.python3Packages.fractopo.passthru.documentation.doc;
           inherit (self'.devShells) poetry-devshell;
