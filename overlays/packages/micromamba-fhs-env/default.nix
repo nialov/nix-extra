@@ -6,7 +6,7 @@ buildFHSUserEnv {
   runScript = writeScript "entrypoint.sh" ''
     #!/usr/bin/env bash
 
-    exec /usr/bin/env fish $@
+    exec /usr/bin/env fish "$@"
   '';
 
   profile = ''
