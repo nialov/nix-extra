@@ -11,6 +11,7 @@
           };
         pkgsGptEngineer = mkNixpkgs inputs.nixpkgs-gpt-engineer;
         pkgsKibitzr = mkNixpkgs inputs.nixpkgs-kibitzr;
+        pkgsStable = mkNixpkgs inputs.nixpkgs-stable;
         pkgsStabler = mkNixpkgs inputs.nixpkgs-stabler;
 
       in {
@@ -57,9 +58,9 @@
           inherit (pkgs.python3Packages) mplstereonet pyvtk pydfnworks;
           # TODO: How include this information of using the stable branch in an
           # overlay?
+          inherit (pkgsStable) syncall;
           inherit (pkgsStabler)
-            tasklite-core lagrit dfnworks fehm pflotran petsc hdf5-full syncall
-            openmpi;
+            tasklite-core lagrit dfnworks fehm pflotran petsc hdf5-full openmpi;
           fractopo-documentation =
             pkgs.python3Packages.fractopo.passthru.documentation.doc;
           inherit (self'.devShells) poetry-devshell;
