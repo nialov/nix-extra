@@ -9,7 +9,6 @@
             overlays = [ self.overlays.default ];
             config = { allowUnfree = true; };
           };
-        pkgsStable = mkNixpkgs inputs.nixpkgs-stable;
         pkgsGptEngineer = mkNixpkgs inputs.nixpkgs-gpt-engineer;
         pkgsKibitzr = mkNixpkgs inputs.nixpkgs-kibitzr;
         pkgsStabler = mkNixpkgs inputs.nixpkgs-stabler;
