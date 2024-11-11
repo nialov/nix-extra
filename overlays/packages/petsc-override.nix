@@ -1,13 +1,20 @@
 { inputs, prev, final }:
-
 let
+
+  parmetis = let
+    parmetisPkgs = import inputs.nixpkgs {
+      inherit (prev) system;
+      config = { allowUnfree = true; };
+    };
+  in parmetisPkgs.parmetis;
+
   petscStableMpi =
     inputs.nixpkgs-petsc.legacyPackages."${prev.system}".petsc.override {
       inherit (final) mpi;
     };
 in petscStableMpi.overrideAttrs (_: prevAttrs: {
   buildInputs = prevAttrs.buildInputs
-    ++ [ prev.metis final.hdf5-full prev.zlib final.parmetis ];
+    ++ [ prev.metis final.hdf5-full prev.zlib parmetis ];
   # RUN ./configure --CFLAGS='-O3' --CXXFLAGS='-O3' --FFLAGS='-O3' --with-debugging=no --download-mpich=yes --download-hdf5=yes --download-hdf5-fortran-bindings=yes --download-fblaslapack=yes --download-metis=yes --download-parmetis=yes
   # make PETSC_DIR=/build/petsc-3.19.2 PETSC_ARCH=arch-linux-c-opt all
   # export FC="${prev.gfortran}/bin/gfortran" F77="${prev.gfortran}/bin/gfortran"
@@ -17,7 +24,7 @@ in petscStableMpi.overrideAttrs (_: prevAttrs: {
   configureFlags = [
     "F77=${prev.gfortran}/bin/gfortran"
     "AR=${prev.gfortran}/bin/ar"
-    "CC=${prev.openmpi.dev}/bin/mpicc"
+    "CC=${prev.openmpi}/bin/mpicc"
     "--with-hdf5=1"
     "--with-hdf5-fortran-bindings=1"
     "--CFLAGS='-O3'"
@@ -55,4 +62,6 @@ in petscStableMpi.overrideAttrs (_: prevAttrs: {
   # NIX_DEBUG = 1;
   # TODO: Only for debugging
   # nativeBuildInputs = prevAttrs.nativeBuildInputs ++ [ prev.breakpointHook ];
+  passthru = { inherit parmetis; };
+
 })

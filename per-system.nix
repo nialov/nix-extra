@@ -58,7 +58,8 @@
           # TODO: How include this information of using the stable branch in an
           # overlay?
           inherit (pkgsStabler)
-            tasklite-core lagrit dfnworks fehm pflotran petsc hdf5-full syncall;
+            tasklite-core lagrit dfnworks fehm pflotran petsc hdf5-full syncall
+            openmpi;
           fractopo-documentation =
             pkgs.python3Packages.fractopo.passthru.documentation.doc;
           inherit (self'.devShells) poetry-devshell;
