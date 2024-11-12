@@ -3,6 +3,6 @@ pull_request_rules:
     conditions:
       - check-success = fast-build
       - label = mergify-merge
-      - base = main
+      - base = master
     actions:
       merge:
