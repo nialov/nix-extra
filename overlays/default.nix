@@ -185,6 +185,25 @@ inputs: final: prev:
     buildInputs = prevAttrs.buildInputs
       ++ [ prev.mdbtools-unixodbc prev.unixODBC ];
   });
+  fix-power-mars = prev.writeScriptBin "fix-power" ''
+    #!/usr/bin/env bash
+    oldval="$(sudo ${prev.msr-tools}/bin/rdmsr 0x1FC)"
+    newval="$(( 0xFFFFFFFE & 0x$oldval ))"
+    echo "$oldval"
+    echo "$newval"
+    sudo ${prev.msr-tools}/bin/wrmsr -a 0x1FC "$newval"
+  '';
+
+  fix-cpu-frequency-mars = prev.writeShellApplication {
+    name = "fix-cpu-frequency-mars";
+    runtimeInputs = [ prev.fix-power-mars ];
+    text = let pythonEnv = prev.python3.withPackages (p: with p; [ psutil ]);
+
+    in ''
+      ${pythonEnv}/bin/python3 ${./packages/fix_cpu_frequency_mars.py} "$@"
+    '';
+
+  };
 
   pythonPackagesExtensions = prev.pythonPackagesExtensions ++ [
     (python-final: python-prev: {
