@@ -40,6 +40,7 @@
           };
 
         };
+        legacyPackages = pkgs;
       };
 
   })
