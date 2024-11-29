@@ -2,8 +2,45 @@
 # final: prev: {
 inputs: final: prev:
 
-# let inherit (prev) system; in 
-{
+let
+
+  mkNixpkgsBase = { nixpkgs, system }:
+    import nixpkgs {
+      inherit system;
+      overlays = [ inputs.self.overlays.default ];
+      config = { allowUnfree = true; };
+    };
+
+in {
+  stablePackages = mkNixpkgsBase {
+    inherit (prev) system;
+    nixpkgs = inputs.nixpkgs-stable;
+  };
+  stablerPackages = mkNixpkgsBase {
+    inherit (prev) system;
+    nixpkgs = inputs.nixpkgs-stabler;
+  };
+  pandocPackages = mkNixpkgsBase {
+    inherit (prev) system;
+    nixpkgs = inputs.nixpkgs-pandoc;
+  };
+  dfnworksPackages = mkNixpkgsBase {
+    inherit (prev) system;
+    nixpkgs = inputs.nixpkgs-dfnworks;
+  };
+  petscPackages = mkNixpkgsBase {
+    inherit (prev) system;
+    nixpkgs = inputs.nixpkgs-petsc;
+  };
+  kibitzrPackages = mkNixpkgsBase {
+    inherit (prev) system;
+    nixpkgs = inputs.nixpkgs-kibitzr;
+  };
+  gptEngineerPackages = mkNixpkgsBase {
+    inherit (prev) system;
+    nixpkgs = inputs.nixpkgs-gpt-engineer;
+  };
+
   # Added to nixpkgs
   # gitmux = prev.callPackage ././packages/gitmux { };
   homer = prev.callPackage ././packages/homer { inherit inputs; };

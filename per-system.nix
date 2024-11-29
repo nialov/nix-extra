@@ -9,10 +9,10 @@
             overlays = [ self.overlays.default ];
             config = { allowUnfree = true; };
           };
-        pkgsGptEngineer = mkNixpkgs inputs.nixpkgs-gpt-engineer;
-        pkgsKibitzr = mkNixpkgs inputs.nixpkgs-kibitzr;
-        pkgsStable = mkNixpkgs inputs.nixpkgs-stable;
-        pkgsStabler = mkNixpkgs inputs.nixpkgs-stabler;
+        # pkgsGptEngineer = mkNixpkgs inputs.nixpkgs-gpt-engineer;
+        # pkgsKibitzr = mkNixpkgs inputs.nixpkgs-kibitzr;
+        # pkgsStable = mkNixpkgs inputs.nixpkgs-stable;
+        # pkgsStabler = mkNixpkgs inputs.nixpkgs-stabler;
 
       in {
         _module.args.pkgs = mkNixpkgs inputs.nixpkgs;
@@ -53,45 +53,60 @@
             doit-ext sphinxcontrib-mermaid sphinx-gallery bubop
             item-synchronizer gkeepapi powerlaw frackit python-ternary fractopo
             tracerepo pandera;
-          inherit (pkgsGptEngineer) gpt-engineer;
-          inherit (pkgsKibitzr) kibitzr;
-          inherit (pkgs.python3Packages) mplstereonet pyvtk pydfnworks;
+          inherit (pkgs.gptEngineerPackages) gpt-engineer;
+          inherit (pkgs.kibitzrPackages) kibitzr;
+          inherit (pkgs.python3Packages) mplstereonet pyvtk;
           # TODO: How include this information of using the stable branch in an
           # overlay?
-          inherit (pkgsStable) syncall;
-          inherit (pkgsStabler)
+          inherit (pkgs.stablePackages) syncall;
+          inherit (pkgs.stablerPackages)
             tasklite-core lagrit dfnworks fehm pflotran petsc hdf5-full openmpi;
           fractopo-documentation =
             pkgs.python3Packages.fractopo.passthru.documentation.doc;
+          inherit (pkgs.stablerPackages.python3Packages) pydfnworks;
           inherit (self'.devShells) poetry-devshell;
         } //
 
           # Adds all pre-commit hooks from pre-commit-hooks.nix to checks
           # Should I exclude default ones and how?
-          (
+          (let
 
-            # TODO: Make exclude smarter. E.g. make perSystem option where I define my own hooks
-            # Or mark them in the definition for testing
-            lib.filterAttrs (n: _:
-              builtins.elem n
-              # List of pre-commit hook entries that I want to check
-              # I.e. it tests the package build
-              [
-                "nbstripout"
-                "black-nb"
-                "cogapp"
-                "rstcheck"
-                "check-added-large-files"
-                "trim-trailing-whitespace"
-                "detect-secrets"
-                "sqlfluff-lint"
-                "sqlfluff-fix"
-                "ruff"
-              ]) (lib.mapAttrs' (name: value:
-                lib.nameValuePair name
-                (pkgs.writeText "${name}-entry" value.entry))
+            excludeOption =
+              # TODO: Make exclude smarter. E.g. make perSystem option where I define my own hooks
+              # Or mark them in the definition for testing
+              lib.filterAttrs (n: _:
+                builtins.elem n
+                # List of pre-commit hook entries that I want to check
+                # I.e. it tests the package build
+                [
+                  "nbstripout"
+                  "black-nb"
+                  "cogapp"
+                  "rstcheck"
+                  "check-added-large-files"
+                  "trim-trailing-whitespace"
+                  "detect-secrets"
+                  "sqlfluff-lint"
+                  "sqlfluff-fix"
+                  "ruff"
+                ]) (lib.mapAttrs' (name: value:
+                  lib.nameValuePair name
+                  (pkgs.writeText "${name}-entry" value.entry))
 
-                config.pre-commit.settings.hooks))
+                  config.pre-commit.settings.hooks);
+
+            # Custom pre-commit are not enabled by default so
+            # they do not get added by this:
+            # enableCheckOption = lib.mapAttrs' (name: value:
+            #   lib.nameValuePair name
+            #   (pkgs.writeText "${name}-entry" value.entry))
+
+            #   builtins.filterAttrs (name: value: value.enable)
+            #   config.pre-commit.settings.hooks
+
+            # ;
+
+          in excludeOption)
 
         ;
         checks = let
