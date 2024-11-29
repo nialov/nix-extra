@@ -12,6 +12,10 @@ let
     };
 
 in {
+  previousPackages = mkNixpkgsBase {
+    inherit (prev) system;
+    nixpkgs = inputs.nixpkgs-previous;
+  };
   stablePackages = mkNixpkgsBase {
     inherit (prev) system;
     nixpkgs = inputs.nixpkgs-stable;
