@@ -53,6 +53,7 @@ inputs: final: prev:
   mosaic = prev.callPackage ./packages/mosaic { inherit inputs; };
   micromamba-fhs-env = prev.callPackage ./packages/micromamba-fhs-env { };
   geo-fhs-env = prev.callPackage ./packages/geo-fhs-env { };
+  fhs = prev.callPackage ./packages/fhs.nix { };
 
   # hdf5-full = prev.hdf5.override {
   #   fortranSupport = true;
