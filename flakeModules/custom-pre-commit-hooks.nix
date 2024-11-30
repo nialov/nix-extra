@@ -84,6 +84,7 @@
                 # stages = [ "push" "manual" ];
                 pass_filenames = false;
               };
+              # TODO: Added by upstream?
               trim-trailing-whitespace = {
                 enable = lib.mkDefault false;
 
