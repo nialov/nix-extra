@@ -667,6 +667,9 @@ in {
           height = 0.4;
           row = 0.99;
           width = 0.93;
+          # Default preview width is 60 % of fzf-lua popup window
+          # This hides file info in the search split
+          preview.horizontal = "right:45%";
         };
       };
 
@@ -890,7 +893,7 @@ in {
         };
         pylyzer = { enable = false; };
         ruff = { enable = true; };
-        lua-ls = {
+        lua_ls = {
           enable = true;
           settings = {
 
@@ -910,9 +913,9 @@ in {
           enable = true;
           settings = { keyOrdering = false; };
         };
-        nil-ls.enable = true;
+        nil_ls.enable = true;
         texlab.enable = true;
-        rust-analyzer = {
+        rust_analyzer = {
           enable = true;
           installCargo = true;
           installRustc = true;

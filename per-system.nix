@@ -22,7 +22,6 @@
               bash
               # task execution from dodo.py
               git
-              nixVersions.stable
               # Formatters & linters
               pre-commit
               watchexec
