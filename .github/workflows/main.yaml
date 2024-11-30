@@ -19,7 +19,7 @@ jobs:
           swap-size-mb: 1024
       - name: "Reown /nix to root"
         run: |
-          chown -R root /nix
+          sudo chown -R root /nix
       - uses: actions/checkout@v2.5.0
         with:
           submodules: "recursive"
