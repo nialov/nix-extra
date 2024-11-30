@@ -6,6 +6,15 @@ jobs:
   fast-build:
     runs-on: ubuntu-latest
     steps:
+      - uses: easimon/maximize-build-space@master
+        with:
+          remove-dotnet: "true"
+          remove-android: "true"
+          remove-haskell: "true"
+          remove-codeql: "true"
+          remove-docker-images: "true"
+          build-mount-path: "/nix"
+          temp-reserve-mb: "512"
       - uses: actions/checkout@v2.5.0
         with:
           submodules: "recursive"
