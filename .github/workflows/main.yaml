@@ -13,8 +13,10 @@ jobs:
           remove-haskell: "true"
           remove-codeql: "true"
           remove-docker-images: "true"
-          build-mount-path: "/nix"
-          temp-reserve-mb: "512"
+          # build-mount-path: "/nix"
+          temp-reserve-mb: 512
+          root-reserve-mb: 512
+          swap-size-mb: 1024
       - uses: actions/checkout@v2.5.0
         with:
           submodules: "recursive"
