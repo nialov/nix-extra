@@ -558,15 +558,15 @@ in {
       };
     };
     cmp-ai = {
-      enable = false;
+      enable = true;
       settings = {
         max_lines = 1000;
-        provider = "OpenAI";
-        provider_options.model = "gpt-3.5-turbo";
+        provider = "Ollama";
+        provider_options.model = "qwen2.5-coder:0.5b";
+        provider_options.base_url = "https://ollama.novaskai.xyz/api/generate";
         run_on_every_keystroke = false;
         ignored_file_types = { };
         notify = true;
-
       };
     };
     cmp-emoji = { enable = true; };
@@ -1062,6 +1062,16 @@ in {
     gitblame = { enable = true; };
     gitsigns = { enable = true; };
     web-devicons = { enable = true; };
+    # https://github.com/nomnivore/ollama.nvim/tree/main
+    # https://nix-community.github.io/nixvim/plugins/ollama/index.html
+    ollama = {
+      enable = true;
+      action = "display";
+      model = "llama3.2:latest";
+      url = "https://ollama.novaskai.xyz";
+
+    };
+
   };
 
   extraPlugins = let
