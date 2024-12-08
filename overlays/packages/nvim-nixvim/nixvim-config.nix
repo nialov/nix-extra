@@ -405,7 +405,10 @@ in {
             name = "buffer";
             option = { get_bufnrs.__raw = "vim.api.nvim_list_bufs"; };
           }
-          { name = "fuzzy_buffer"; }
+          # {
+          #   name = "fuzzy_buffer";
+          #   option = { min_match_length = 5; };
+          # }
           { name = "tmux"; }
           { name = "emoji"; }
         ];
@@ -432,7 +435,7 @@ in {
             )
           '';
 
-          # "<C-e>" = "cmp.mapping.close()";
+          "<C-e>" = "cmp.mapping.close()";
           # "<CR>" =
           #   "cmp.mapping.confirm({ select = true, behavior = cmp.ConfirmBehavior.Replace })";
           "<C-p>" = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
@@ -448,16 +451,16 @@ in {
               }), {"i"})
           '';
 
-          "<C-e>" = ''
-            cmp.mapping(
-                  cmp.mapping.complete({
-                    config = {
-                      sources = cmp.config.sources({
-                        { name = 'emoji' },
-                      }),
-                    },
-              }), {"i"})
-          '';
+          # "<C-e>" = ''
+          #   cmp.mapping(
+          #         cmp.mapping.complete({
+          #           config = {
+          #             sources = cmp.config.sources({
+          #               { name = 'emoji' },
+          #             }),
+          #           },
+          #     }), {"i"})
+          # '';
           # "<C-x><C-f>" = ''
           #     cmp.mapping(
           #         cmp.mapping.complete({
@@ -476,6 +479,7 @@ in {
             "function(args) require('luasnip').lsp_expand(args.body) end";
         };
         sorting.comparators = [
+          # "require('cmp_fuzzy_buffer.compare')"
           "require('cmp').config.compare.locality"
           "require('cmp').config.compare.recently_used"
           "require('cmp').config.compare.score"
@@ -493,11 +497,12 @@ in {
             function(entry, item)
                     -- Define menu shorthand for different completion sources.
                     local menu_icon = {
-                        nvim_lsp = "💻",
+                        nvim_lsp = "📖",
                         nvim_lua = "🌙",
                         luasnip  = "",
                         buffer   = "🔋",
                         path     = "💾",
+                        tmux     = "🖥️",
                     }
                     -- Set the menu "icon" to the shorthand for each completion source.
                     item.menu = menu_icon[entry.source.name] or entry.source_name
