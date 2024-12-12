@@ -14,9 +14,9 @@ jobs:
           remove-codeql: "true"
           remove-docker-images: "true"
           build-mount-path: "/nix"
-          temp-reserve-mb: 512
-          root-reserve-mb: 512
-          swap-size-mb: 1024
+          temp-reserve-mb: 1024
+          root-reserve-mb: 1024
+          swap-size-mb: 2048
       - name: "Reown /nix to root"
         run: |
           sudo chown -R root /nix
