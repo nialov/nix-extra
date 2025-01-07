@@ -12,7 +12,7 @@
     # Use unstable nixpkgs channel
     # nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-previous.url =
-      "github:nixos/nixpkgs/c31898adf5a8ed202ce5bea9f347b1c6871f32d1";
+      "github:nixos/nixpkgs/d0797a04b81caeae77bcff10a9dde78bc17f5661";
     nixpkgs-stable.url = "nixpkgs/nixos-24.05";
     nixpkgs-petsc.url =
       "github:nixos/nixpkgs/27bd67e55fe09f9d68c77ff151c3e44c4f81f7de";
