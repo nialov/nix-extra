@@ -50,16 +50,16 @@
           inherit (pkgs.vimPlugins) neoai-nvim;
           inherit (pkgs.python3Packages)
             doit-ext sphinxcontrib-mermaid sphinx-gallery item-synchronizer
-            gkeepapi powerlaw frackit python-ternary fractopo tracerepo pandera;
+            gkeepapi powerlaw frackit python-ternary pandera mplstereonet pyvtk;
           inherit (pkgs.gptEngineerPackages) gpt-engineer;
           inherit (pkgs.kibitzrPackages) kibitzr;
-          inherit (pkgs.python3Packages) mplstereonet pyvtk;
           # TODO: How include this information of using the stable branch in an
           # overlay?
           inherit (pkgs.stablerPackages)
             tasklite-core lagrit dfnworks fehm pflotran petsc hdf5-full openmpi;
-          fractopo-documentation =
-            pkgs.python3Packages.fractopo.passthru.documentation.doc;
+          inherit (pkgs.previousPackages.python3Packages) fractopo tracerepo;
+          # fractopo-documentation =
+          #   pkgs.python3Packages.fractopo.passthru.documentation.doc;
           inherit (pkgs.stablerPackages.python3Packages) pydfnworks;
           inherit (self'.devShells) poetry-devshell;
         } //
