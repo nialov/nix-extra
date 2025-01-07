@@ -57,7 +57,7 @@
           inherit (pkgs.python3Packages) mplstereonet pyvtk;
           # TODO: How include this information of using the stable branch in an
           # overlay?
-          inherit (pkgs.stablePackages) syncall homer;
+          inherit (pkgs.stablePackages) syncall;
           inherit (pkgs.stablerPackages)
             tasklite-core lagrit dfnworks fehm pflotran petsc hdf5-full openmpi;
           fractopo-documentation =
