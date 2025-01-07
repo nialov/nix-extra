@@ -59,7 +59,7 @@ in {
     prev.callPackage ././packages/nix-flake-metadata-inputs { };
   proton-ge-custom = prev.callPackage ././packages/proton-ge-custom { };
   inherit (final.python3Packages) synonym-cli kibitzr;
-  ytdl-sub = prev.callPackage ././packages/ytdl-sub { inherit inputs; };
+  # ytdl-sub = prev.callPackage ././packages/ytdl-sub { inherit inputs; };
   allas-cli-utils =
     prev.callPackage ././packages/allas-cli-utils { inherit inputs; };
   grokker = prev.callPackage ././packages/grokker { inherit inputs; };
@@ -82,7 +82,7 @@ in {
   gpt-engineer =
     final.callPackage ././packages/gpt-engineer { inherit inputs; };
   frackit = prev.callPackage ././packages/frackit { inherit inputs; };
-  syncall = prev.callPackage ././packages/syncall { inherit inputs; };
+  # syncall = prev.callPackage ././packages/syncall { inherit inputs; };
   lagrit = prev.callPackage ././packages/lagrit { inherit inputs; };
   dfnworks = prev.callPackage ././packages/dfnworks { inherit inputs; };
   fehm = prev.callPackage ././packages/fehm { inherit inputs; };
@@ -221,7 +221,7 @@ in {
     '';
 
   };
-  nix-fast-build = inputs.nix-fast-build.packages."${prev.system}".default;
+  # nix-fast-build = inputs.nix-fast-build.packages."${prev.system}".default;
 
   gdal-mdb = prev.gdal.overrideAttrs (_: prevAttrs: {
     buildInputs = prevAttrs.buildInputs
@@ -249,7 +249,7 @@ in {
       sphinx-gallery = python-final.callPackage ././packages/sphinx-gallery {
         inherit inputs;
       };
-      bubop = python-final.callPackage ././packages/bubop { inherit inputs; };
+      # bubop = python-final.callPackage ././packages/bubop { inherit inputs; };
 
       gkeepapi =
         python-final.callPackage ././packages/gkeepapi { inherit inputs; };
@@ -277,8 +277,8 @@ in {
         # TODO: Error in pytest of the package (24.6.2024):
         # ERROR . - TypeError: Can't instantiate abstract class CramItem with abstract ...
         python-prev.pytest-cram.overridePythonAttrs (_: { doCheck = false; });
-      notion-client = python-prev.notion-client.overridePythonAttrs
-        (_: { disabledTests = [ "test_api_http_response_error" ]; });
+      # notion-client = python-prev.notion-client.overridePythonAttrs
+      #   (_: { disabledTests = [ "test_api_http_response_error" ]; });
     })
   ];
 

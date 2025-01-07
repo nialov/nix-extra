@@ -40,7 +40,7 @@
         packages = {
           inherit (pkgs)
             taskfzf pathnames backupper wiki-builder wsl-open-dynamic
-            pretty-task ytdl-sub bootstrapSecretsScript rstcheck copier
+            pretty-task bootstrapSecretsScript rstcheck copier
             pre-commit-hook-ensure-sops deploy-rs clean-git-branches-script
             allas-cli-utils grokker poetry-with-c-tooling synonym-cli mosaic
             sync-git-tag-with-poetry resolve-version poetry-run
@@ -49,15 +49,13 @@
             git-history-grep micromamba-fhs-env geo-fhs-env gdal;
           inherit (pkgs.vimPlugins) neoai-nvim;
           inherit (pkgs.python3Packages)
-            doit-ext sphinxcontrib-mermaid sphinx-gallery bubop
-            item-synchronizer gkeepapi powerlaw frackit python-ternary fractopo
-            tracerepo pandera;
+            doit-ext sphinxcontrib-mermaid sphinx-gallery item-synchronizer
+            gkeepapi powerlaw frackit python-ternary fractopo tracerepo pandera;
           inherit (pkgs.gptEngineerPackages) gpt-engineer;
           inherit (pkgs.kibitzrPackages) kibitzr;
           inherit (pkgs.python3Packages) mplstereonet pyvtk;
           # TODO: How include this information of using the stable branch in an
           # overlay?
-          inherit (pkgs.stablePackages) syncall;
           inherit (pkgs.stablerPackages)
             tasklite-core lagrit dfnworks fehm pflotran petsc hdf5-full openmpi;
           fractopo-documentation =
