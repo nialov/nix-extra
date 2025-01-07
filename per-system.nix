@@ -39,7 +39,7 @@
         };
         packages = {
           inherit (pkgs)
-            homer taskfzf pathnames backupper wiki-builder wsl-open-dynamic
+            taskfzf pathnames backupper wiki-builder wsl-open-dynamic
             pretty-task ytdl-sub bootstrapSecretsScript rstcheck copier
             pre-commit-hook-ensure-sops deploy-rs clean-git-branches-script
             allas-cli-utils grokker poetry-with-c-tooling synonym-cli mosaic
@@ -57,7 +57,7 @@
           inherit (pkgs.python3Packages) mplstereonet pyvtk;
           # TODO: How include this information of using the stable branch in an
           # overlay?
-          inherit (pkgs.stablePackages) syncall;
+          inherit (pkgs.stablePackages) syncall homer;
           inherit (pkgs.stablerPackages)
             tasklite-core lagrit dfnworks fehm pflotran petsc hdf5-full openmpi;
           fractopo-documentation =
