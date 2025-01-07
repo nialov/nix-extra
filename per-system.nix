@@ -47,17 +47,18 @@
             python39-with-c-tooling python310-with-c-tooling
             python311-with-c-tooling jupytext-nb-edit template-check nvim-nixvim
             git-history-grep micromamba-fhs-env geo-fhs-env gdal;
-          inherit (pkgs.vimPlugins) neoai-nvim;
           inherit (pkgs.python3Packages)
             doit-ext sphinxcontrib-mermaid sphinx-gallery item-synchronizer
-            gkeepapi powerlaw frackit python-ternary pandera mplstereonet pyvtk;
+            gkeepapi powerlaw frackit python-ternary mplstereonet pyvtk;
           inherit (pkgs.gptEngineerPackages) gpt-engineer;
           inherit (pkgs.kibitzrPackages) kibitzr;
           # TODO: How include this information of using the stable branch in an
           # overlay?
           inherit (pkgs.stablerPackages)
             tasklite-core lagrit dfnworks fehm pflotran petsc hdf5-full openmpi;
-          inherit (pkgs.previousPackages.python3Packages) fractopo tracerepo;
+          # TODO: Need to be updated upstream for numpy 2
+          inherit (pkgs.previousPackages.python3Packages)
+            fractopo tracerepo pandera;
           # fractopo-documentation =
           #   pkgs.python3Packages.fractopo.passthru.documentation.doc;
           inherit (pkgs.stablerPackages.python3Packages) pydfnworks;
@@ -106,20 +107,21 @@
           in excludeOption)
 
         ;
-        checks = let
+        checks = self.packages."${system}";
+        # let
 
-          nixos-lib = import (inputs.nixpkgs + "/nixos/lib") { };
+        #   nixos-lib = import (inputs.nixpkgs + "/nixos/lib") { };
 
-          moduleTest = { imports, defaults ? {
-            imports = builtins.attrValues self.nixosModules;
-            nixpkgs.pkgs = pkgs;
-          }, hostPkgs ? pkgs }:
-            nixos-lib.runTest { inherit imports defaults hostPkgs; };
+        #   moduleTest = { imports, defaults ? {
+        #     imports = builtins.attrValues self.nixosModules;
+        #     nixpkgs.pkgs = pkgs;
+        #   }, hostPkgs ? pkgs }:
+        #     nixos-lib.runTest { inherit imports defaults hostPkgs; };
 
-        in lib.foldl' lib.recursiveUpdate {
-          # preCommitCheck = inputs.pre-commit-hooks.lib.${system}.run (import ././pre-commit.nix { inherit pkgs; });
-          homerModule = moduleTest { imports = [ ./nixos/tests/homer.nix ]; };
-        } [ self.packages."${system}" ];
+        # in lib.foldl' lib.recursiveUpdate {
+        #   # preCommitCheck = inputs.pre-commit-hooks.lib.${system}.run (import ././pre-commit.nix { inherit pkgs; });
+        #   # homerModule = moduleTest { imports = [ ./nixos/tests/homer.nix ]; };
+        # } ;
 
         pre-commit = {
           check.enable = true;

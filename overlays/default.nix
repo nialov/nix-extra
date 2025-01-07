@@ -339,10 +339,10 @@ in {
     #   name = "chatgpt-nvim";
     #   src = inputs.chatgpt-nvim-src;
     # };
-    neoai-nvim = prev.vimUtils.buildVimPlugin {
-      name = "neoai.nvim";
-      src = inputs.neoai-nvim-src;
-    };
+    # neoai-nvim = prev.vimUtils.buildVimPlugin {
+    #   name = "neoai.nvim";
+    #   src = inputs.neoai-nvim-src;
+    # };
     # cmp-ai = prev.vimUtils.buildVimPlugin {
     #   name = "cmp-ai";
     #   src = inputs.cmp-ai-src;
