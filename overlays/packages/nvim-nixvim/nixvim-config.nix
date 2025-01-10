@@ -107,32 +107,51 @@ in {
 
   };
   autoCmd = [
-    {
-      callback.__raw = ''
-        function ()
-          local disable_env_variable_name = "NEOVIM_DISABLE_AUTOFORMAT"
-          local disable_autoformat = vim.tbl_contains(vim.tbl_keys(vim.fn.environ()), disable_env_variable_name)
-          if disable_autoformat then
-              vim.cmd([[ FormatDisable ]])
-              vim.notify(
-                  string.format(
-                      "Would enable auto-formatting for buffer but environment variable %s exists.",
-                      disable_env_variable_name
-                  )
-              )
-          else
-              vim.cmd([[ FormatEnable ]])
-              vim.notify("Enabled auto-formatting for buffer.")
-          end
-        end
-      '';
-      event = [ "FileReadPost" ];
-      pattern = [ "*" ];
-    }
+    # {
+    #   callback.__raw = ''
+    #     function ()
+    #       local disable_env_variable_name = "NEOVIM_DISABLE_AUTOFORMAT"
+    #       local disable_autoformat = vim.tbl_contains(vim.tbl_keys(vim.fn.environ()), disable_env_variable_name)
+    #       if disable_autoformat then
+    #           vim.cmd([[ FormatDisable ]])
+    #           vim.notify(
+    #               string.format(
+    #                   "Would enable auto-formatting for buffer but environment variable %s exists.",
+    #                   disable_env_variable_name
+    #               )
+    #           )
+    #       else
+    #           vim.cmd([[ FormatEnable ]])
+    #           vim.notify("Enabled auto-formatting for buffer.")
+    #       end
+    #     end
+    #   '';
+    #   event = [ "FileReadPost" ];
+    #   pattern = [ "*" ];
+    # }
     {
       event = [ "VimResized" "WinEnter" "FocusGained" ];
       pattern = [ "*" ];
       command = "wincmd =";
+    }
+    {
+      event = "BufWritePre";
+      callback.__raw = ''
+        function()
+          local disable_env_variable_name = "NEOVIM_DISABLE_AUTOFORMAT"
+          local disable_autoformat = vim.tbl_contains(vim.tbl_keys(vim.fn.environ()), disable_env_variable_name)
+          if disable_autoformat then
+              vim.notify(
+                  string.format(
+                      "Not formatting as environment variable %s exists.",
+                      disable_env_variable_name
+                  )
+              )
+          else
+              vim.lsp.buf.format({ timeout_ms = 2000 })
+          end
+        end
+      '';
     }
     # {
     #   event = [ "FocusLost" ];
@@ -218,6 +237,19 @@ in {
       '';
     };
     # TODO: Are others from after/ftdetect/ (jinja, meta.yaml, tmpl) needed?
+    "after/ftplugin/python.lua" = {
+      # autoCmd = [{
+      #   event = "BufWritePre";
+      #   callback.__raw = ''
+      #     function()
+      #       vim.lsp.buf.code_action {
+      #         context = {only = {"source.fixAll.ruff"}},
+      #         apply = true
+      #       }
+      #     end
+      #   '';
+      # }];
+    };
 
   };
   extraFiles = { "lua/nialov_utils.lua".source = ./lua/nialov_utils.lua; };
@@ -229,8 +261,9 @@ in {
     end
 
     vim.api.nvim_create_autocmd({ "VimResized", "WinEnter" }, { pattern = "*", callback = resize })
-    vim.cmd [[cabbrev wq execute "Format sync" <bar> wq]]
+    vim.lsp.set_log_level('debug')
   '';
+  # vim.cmd [[cabbrev wq execute "Format sync" <bar> wq]]
   extraConfigVim = ''
     augroup enable_hl_search
         autocmd!
@@ -356,7 +389,7 @@ in {
     };
   };
   diagnostics = {
-    virtual_lines = { };
+    virtual_lines = { only_current_line = true; };
     virtual_text = true;
     update_in_insert = false;
   };
@@ -630,7 +663,7 @@ in {
     };
     fidget = {
       enable = true;
-      notification = { overrideVimNotify = true; };
+      settings.notification.override_vim_notify = true;
     };
     fzf-lua = {
       enable = true;
@@ -696,25 +729,25 @@ in {
           }];
 
           lualine_x = [
-            {
-              __unkeyed-1.__raw = ''
-                function ()
-                    local lsp_format = require("lsp-format")
-                    if lsp_format.disabled then
-                        return "Autoformat (off)"
-                    end
-                    return "Autoformat (on)"
-                end
-              '';
-              color.__raw = ''
-                function (section)
-                    if require("lsp-format").disabled then
-                        return { fg = "#aa3355" }
-                    end
-                    return { fg = "#33aa88" }
-                end
-              '';
-            }
+            # {
+            #   __unkeyed-1.__raw = ''
+            #     function ()
+            #         local lsp_format = require("lsp-format")
+            #         if lsp_format.disabled then
+            #             return "Autoformat (off)"
+            #         end
+            #         return "Autoformat (on)"
+            #     end
+            #   '';
+            #   color.__raw = ''
+            #     function (section)
+            #         if require("lsp-format").disabled then
+            #             return { fg = "#aa3355" }
+            #         end
+            #         return { fg = "#33aa88" }
+            #     end
+            #   '';
+            # }
             # Copied from nixvim examples:
             "diagnostics"
             {
@@ -758,7 +791,24 @@ in {
     lsp = {
       enable = true;
       inlayHints = true;
+
+      # Disable or enable capability for a server:
+      onAttach = ''
+        if client.name == "pylsp" then
+          client.server_capabilities.documentFormattingProvider = false
+          client.server_capabilities.documentRangeFormattingProvider = false
+        end
+        if client.name == "basedpyright" then
+          client.server_capabilities.documentFormattingProvider = false
+          client.server_capabilities.documentRangeFormattingProvider = false
+        end
+        if client.name == "ruff" then
+          client.server_capabilities.documentFormattingProvider = true
+        end
+      '';
+
       preConfig = ''
+        vim.lsp.set_log_level('debug')
         vim.diagnostic.config({
           severity_sort = true,
           float = {
@@ -879,7 +929,7 @@ in {
         # };
         basedpyright = {
           enable = true;
-          settings = {
+          extraOptions.settings = {
 
             basedpyright = {
               disableOrganizeImports = true;
@@ -891,13 +941,56 @@ in {
                 diagnosticMode = "openFilesOnly";
                 # -- typeCheckingMode = "off",
                 typeCheckingMode = "standard";
+                inlayHints.callArgumentNames = false;
               };
             };
           };
-          onAttach.function = "\n";
+          # onAttach.function = "\n";
         };
         pylyzer = { enable = false; };
-        ruff = { enable = true; };
+
+        pylsp = {
+          enable = false;
+          extraOptions.settings.pylsp.plugins = {
+            jedi_completion = {
+              enabled = true;
+              fuzzy = true;
+            };
+            # pylsp_mypy = {
+            #   enabled = true;
+            #   dmypy = true;
+            #   live_mode = false;
+            # };
+
+            # We don't need those as ruff is already providing such features.
+            flake8.enabled = false;
+            mccabe.enabled = false;
+            preload.enabled = false;
+            pycodestyle.enabled = false;
+            pydocstyle.enabled = false;
+            pyflakes.enabled = false;
+            pylint.enabled = false;
+            ruff.enabled = false;
+            yapf.enabled = false;
+            # plugins.pylsp_mypy.enabled = true;
+          };
+        };
+        ruff = {
+          enable = true;
+          extraOptions = {
+            init_options = {
+              settings = {
+                logLevel = "debug";
+                configurationPreference = "filesystemFirst";
+                lint = {
+                  enable = true;
+                  # select = [ "E" "F" "W" "B" "Q" "D" "I" "N" "PL" ];
+                };
+              };
+            };
+
+          };
+        };
         lua_ls = {
           enable = true;
           settings = {
@@ -941,13 +1034,18 @@ in {
     };
     none-ls = {
       enable = true;
-      enableLspFormat = true;
+      enableLspFormat = false;
       settings = { update_in_insert = false; };
       # TODO: I do not want to format every filetype automatically
       # onAttach = "";
       sources = {
         diagnostics = {
 
+          mypy = {
+            enable = true;
+            settings = { extra_args = [ "--check-untyped-defs" ]; };
+
+          };
           statix.enable = true;
           vint.enable = true;
           codespell.enable = true;
@@ -974,11 +1072,11 @@ in {
 
           nixfmt.enable = true;
           stylua.enable = true;
-          black.enable = true;
-          isort = {
-            enable = true;
-            settings = { extra_args = [ "--profile" "black" ]; };
-          };
+          # black.enable = true;
+          # isort = {
+          #   enable = true;
+          #   settings = { extra_args = [ "--profile" "black" ]; };
+          # };
           prettier = {
             enable = true;
             settings = { disabled_filetypes = [ "pandoc" "markdown" ]; };
@@ -997,7 +1095,10 @@ in {
         check_ts = true;
       };
     };
-    lsp-format.enable = true;
+    # lsp-format = {
+    #   enable = true;
+    #   settings = { sync = true; };
+    # };
     telescope = {
       enable = true;
       # enabledExtensions = [ ];
