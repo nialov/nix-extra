@@ -371,6 +371,31 @@ in {
       action = "<cmd>Git<CR>";
       options.desc = "Open vim-fugitive git menu";
     }
+    {
+      key = "<leader>qn";
+      action = "<cmd>cnext<CR>";
+      options.desc = "Go to next quickfix error";
+    }
+    {
+      key = "<leader>qp";
+      action = "<cmd>cprevious<CR>";
+      options.desc = "Go to previous quickfix error";
+    }
+    {
+      key = "<leader>ql";
+      # action = "<cmd>Dispatch pre-commit run --files %<CR>";
+      action.__raw = ''
+        function() 
+            vim.cmd [[ Dispatch pre-commit run --files % ]]
+        end
+      '';
+      options.desc = "Run pre-commit check on current file";
+    }
+    {
+      key = "<leader>qq";
+      action = "<cmd>cfile<CR>";
+      options.desc = "Open quickfix";
+    }
 
   ];
   extraPackages = lib.attrValues { inherit (pkgs) ripgrep pretty-task; };
@@ -511,18 +536,20 @@ in {
           expand =
             "function(args) require('luasnip').lsp_expand(args.body) end";
         };
-        sorting.comparators = [
-          # "require('cmp_fuzzy_buffer.compare')"
-          "require('cmp').config.compare.locality"
-          "require('cmp').config.compare.recently_used"
-          "require('cmp').config.compare.score"
-          "require('cmp').config.compare.offset"
-          "require('cmp').config.compare.order"
-        ];
+        # sorting.comparators = [
+        # "require('cmp_fuzzy_buffer.compare')"
+        # "require('cmp').config.compare.offset"
+        # "require('cmp').config.compare.exact"
+        # "require('cmp').config.compare.locality"
+        # "require('cmp').config.compare.recently_used"
+        # "require('cmp').config.compare.score"
+        # "require('cmp').config.compare.order"
+        # ];
         performance = {
           debounce = 240;
           fetching_timeout = 1000;
           throttle = 60;
+          max_view_entries = 7;
         };
         formatting = {
           fields = [ "abbr" "menu" "kind" ];
@@ -1152,6 +1179,10 @@ in {
         {
           __unkeyed-1 = "<leader>t";
           group = "telescope";
+        }
+        {
+          __unkeyed-1 = "<leader>q";
+          group = "quickfix";
         }
 
       ];
