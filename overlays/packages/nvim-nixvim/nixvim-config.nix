@@ -1010,10 +1010,7 @@ in {
               settings = {
                 logLevel = "debug";
                 configurationPreference = "filesystemFirst";
-                lint = {
-                  enable = true;
-                  # select = [ "E" "F" "W" "B" "Q" "D" "I" "N" "PL" ];
-                };
+                lint = { enable = true; };
               };
             };
 
