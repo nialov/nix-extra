@@ -799,6 +799,7 @@ in {
           client.server_capabilities.documentRangeFormattingProvider = false
         end
         if client.name == "basedpyright" then
+          client.flags = { debounce_text_changes = 300 }
           client.server_capabilities.documentFormattingProvider = false
           client.server_capabilities.documentRangeFormattingProvider = false
         end
