@@ -216,15 +216,27 @@ in {
         tabstop = 3;
         expandtab = true;
       };
-      keymaps = [{
-        mode = "n";
-        key = "gw";
-        action = "gq";
-        options = {
-          silent = true;
-          buffer = true;
-        };
-      }];
+      keymaps = [
+        # Rebind wrap to equalprg
+        {
+          mode = [ "n" ];
+          key = "gw";
+          action = "=";
+          options = {
+            silent = true;
+            buffer = true;
+          };
+        }
+        {
+          mode = [ "v" ];
+          key = "gw";
+          action = "=";
+          options = {
+            silent = true;
+            buffer = true;
+          };
+        }
+      ];
       extraConfigVim = ''
         setlocal suffixesadd+=.rst
         setlocal suffixes+=.rst
