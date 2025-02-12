@@ -288,7 +288,7 @@
       ];
 
       flakePart = inputs.flake-parts.lib.mkFlake { inherit inputs; }
-        ({ inputs, flake-parts-lib, ... }:
+        ({ config, inputs, flake-parts-lib, ... }:
           let
             inherit (flake-parts-lib) importApply;
             flakeModules = {
@@ -333,6 +333,7 @@
                 };
               };
               inherit flakeModules;
+              flakePartsConfig = config;
             };
 
             # perSystem = { self', pkgs, ... }:
