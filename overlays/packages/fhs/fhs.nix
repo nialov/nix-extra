@@ -1,4 +1,4 @@
-{ buildFHSUserEnv, lib, appimageTools, ... }:
+{ buildFHSEnv, lib, appimageTools, ... }:
 
 let
 
@@ -14,12 +14,12 @@ let
           python.withPackages (p: [ p.setuptools p.pip p.wheel p.virtualenv ]))
           (lib.attrValues { inherit (fhsPkgs) python310 python311 python312; });
         basePkgs = base.targetPkgs fhsPkgs;
-      in lib.attrValues {
-        inherit (fhsPkgs)
-          fish cacert gcc pkg-config wget cmake gnumake libffi poetry
-          micromamba;
-
-      } ++ pythons ++ basePkgs;
+        extraPkgs = lib.attrValues {
+          inherit (fhsPkgs)
+            fish cacert gcc pkg-config wget openmpi mpich cmake gnumake libffi
+            poetry uv micromamba;
+        };
+      in extraPkgs ++ pythons ++ basePkgs;
     extraOutputsToInstall = [ "dev" ];
     runScript = ''
       bash "$@"
@@ -27,16 +27,10 @@ let
     profile = ''
       export POETRY_VIRTUALENVS_IN_PROJECT=1
       export MAMBA_ROOT_PREFIX=./.mamba
+      export UV_LINK_MODE=copy
+      export UV_PYTHON_PREFERENCE=only-managed
     '';
 
   };
-  # Already has passthru with "args" attribute...
-  # passthruConfig = {
 
-  #   passthru.inputs = {
-  #     inherit (customConfig) targetPkgs extraOutputsToInstall runScript profile;
-
-  #   };
-  # };
-
-in buildFHSUserEnv (lib.foldl' lib.recursiveUpdate { } [ base customConfig ])
+in buildFHSEnv (lib.foldl' lib.recursiveUpdate { } [ base customConfig ])
