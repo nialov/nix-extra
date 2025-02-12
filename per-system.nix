@@ -128,8 +128,8 @@
           settings = {
             hooks = {
               nixfmt.enable = true;
-              black.enable = true;
-              isort = { enable = true; };
+              ruff.enable = true;
+              ruff-format = { enable = true; };
               shellcheck.enable = true;
               statix.enable = true;
               deadnix.enable = true;
