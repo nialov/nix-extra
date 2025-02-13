@@ -9,10 +9,6 @@
             overlays = [ self.overlays.default ];
             config = { allowUnfree = true; };
           };
-        # pkgsGptEngineer = mkNixpkgs inputs.nixpkgs-gpt-engineer;
-        # pkgsKibitzr = mkNixpkgs inputs.nixpkgs-kibitzr;
-        # pkgsStable = mkNixpkgs inputs.nixpkgs-stable;
-        # pkgsStabler = mkNixpkgs inputs.nixpkgs-stabler;
 
       in {
         _module.args.pkgs = mkNixpkgs inputs.nixpkgs;
@@ -62,6 +58,7 @@
           # fractopo-documentation =
           #   pkgs.python3Packages.fractopo.passthru.documentation.doc;
           inherit (pkgs.stablerPackages.python3Packages) pydfnworks;
+          inherit (pkgs.pandocPackages) pandoc-wrapped;
           inherit (self'.devShells) poetry-devshell;
         } //
 
