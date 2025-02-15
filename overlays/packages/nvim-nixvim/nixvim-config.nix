@@ -302,7 +302,7 @@ in {
             if strlen(l:spelllang) > 2
                 return
             endif
-            execute 'setlocal spelllang=' . l:spelllang
+            execute 'silent! setlocal spelllang=' . l:spelllang
         endif
     endfunction
     autocmd BufRead,BufNewFile * call SetSpellLang()
