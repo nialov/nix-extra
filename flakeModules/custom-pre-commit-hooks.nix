@@ -252,6 +252,20 @@
                       stages = [ "push" ];
                       pass_filenames = false;
                     };
+
+                    # If this runs as part of build of pre-commit check, can there be a
+                    # situation where the sandbox prevents downloading of inputs?
+                    nix-flake-check = {
+                      name = "nix-flake-check";
+                      description =
+                        "Evaluate nix flake with nix flake check without building";
+                      package = pkgs.nix;
+                      entry = ''
+                        ${hooks.nix-flake-check.package}/bin/nix -Lv flake check --no-build
+                      '';
+                      pass_filenames = false;
+                      always_run = true;
+                    };
                   };
               };
           };
