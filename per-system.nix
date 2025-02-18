@@ -136,7 +136,6 @@
               fish-lint = { enable = true; };
               fish-format = { enable = true; };
               shfmt = { enable = true; };
-              nix-flake-check = { enable = true; };
             };
           };
 
