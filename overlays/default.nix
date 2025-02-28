@@ -310,7 +310,7 @@ in {
       # a nixvim module. This gives access to the imports, options, config
       # variables, and using functions like {config, ...}: { ... }.
     in nixvim'.makeNixvimWithModule {
-      module = ./packages/nvim-nixvim/nixvim-config.nix;
+      module = ./packages/nvim-nixvim;
       pkgs = prev;
       extraSpecialArgs = { inherit inputs; };
     };

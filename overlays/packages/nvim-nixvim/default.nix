@@ -829,6 +829,7 @@ in {
     };
     lsp = {
       enable = true;
+      # See <leader>li keymap for toggle
       inlayHints = true;
 
       # Disable or enable capability for a server:
@@ -946,6 +947,16 @@ in {
             action.__raw = "vim.lsp.codelens.run";
             options.desc = "LSP CodeLens run";
           }
+          {
+            mode = "n";
+            key = "<leader>li";
+            action.__raw = ''
+              function ()
+                  vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+              end
+            '';
+            options.desc = "Toggle inlay hints";
+          }
         ];
       };
       servers = {
@@ -1049,7 +1060,19 @@ in {
           settings = { keyOrdering = false; };
         };
         nil_ls.enable = true;
-        texlab.enable = true;
+        texlab = {
+          enable = true;
+          extraOptions.settings = {
+
+            texlab = {
+              inlayHints = {
+                labelDefinitions = false;
+                labelReferences = false;
+                maxLength = 5;
+              };
+            };
+          };
+        };
         rust_analyzer = {
           enable = true;
           installCargo = true;
