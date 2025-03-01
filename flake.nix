@@ -76,6 +76,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-parts.follows = "flake-parts";
     };
+    actions-nix = {
+      url = "github:nialov/actions.nix";
+      inputs = {
+        pre-commit-hooks.follows = "pre-commit-hooks";
+        flake-parts.follows = "flake-parts";
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
     # Custom non-flake sources
     tmux-nvim-src = {
       url = "github:aserowy/tmux.nvim";
@@ -306,6 +314,8 @@
               flakeModules.custom-pre-commit-hooks
               flakeModules.poetryDevshell
               ./per-system.nix
+              inputs.actions-nix.flakeModules.default
+              ./nix/ci.nix
             ];
 
             flake = {

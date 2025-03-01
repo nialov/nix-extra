@@ -1,51 +1,38 @@
----
-on:
-  push: {}
-
 jobs:
-  fast-build:
+  nix-fast-build:
     runs-on: ubuntu-latest
     steps:
-      - uses: easimon/maximize-build-space@master
-        with:
-          remove-dotnet: "true"
-          remove-android: "true"
-          remove-haskell: "true"
-          remove-codeql: "true"
-          remove-docker-images: "true"
-          build-mount-path: "/nix"
-          temp-reserve-mb: 1024
-          root-reserve-mb: 1024
-          swap-size-mb: 2048
-      - name: "Reown /nix to root"
-        run: |
-          sudo chown -R root /nix
-      - uses: actions/checkout@v2.5.0
-        with:
-          submodules: "recursive"
-      - uses: DeterminateSystems/nix-installer-action@v9
-        with:
-          kvm: true
-      - uses: cachix/cachix-action@v14
-        with:
-          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
-          name: nialov
-      - name: "Evaluate and build checks faster"
-        run: |
-          nix run .#nix-fast-build -- --no-nom --skip-cached
-  flake-check:
+    - uses: easimon/maximize-build-space@master
+      with:
+        build-mount-path: /nix
+        remove-android: true
+        remove-codeql: true
+        remove-docker-images: true
+        remove-dotnet: true
+        remove-haskell: true
+        root-reserve-mb: 1024
+        swap-size-mb: 2048
+        temp-reserve-mb: 1024
+    - name: Reown /nix to root
+      run: sudo chown -R root /nix
+    - uses: actions/checkout@v4
+    - uses: DeterminateSystems/nix-installer-action@v9
+    - uses: cachix/cachix-action@v14
+      with:
+        authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
+        name: nialov
+    - uses: DeterminateSystems/nix-installer-action@v9
+    - name: Evaluate and build checks faster
+      run: nix run .#nix-fast-build -- --no-nom --skip-cached
+    timeout-minutes: 60
+  nix-flake-check:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2.5.0
-        with:
-          submodules: "recursive"
-      - uses: DeterminateSystems/nix-installer-action@v9
-        with:
-          kvm: true
-      - uses: cachix/cachix-action@v14
-        with:
-          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
-          name: nialov
-      - name: "Check (evaluate) flake"
-        run: |
-          nix -Lv flake check --no-build
+    - uses: actions/checkout@v4
+    - uses: DeterminateSystems/nix-installer-action@v9
+    - name: Check flake
+      run: nix -Lv flake check --no-build
+    timeout-minutes: 60
+'on':
+  push: {}
+  workflow_dispatch: {}
