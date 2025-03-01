@@ -1,5 +1,31 @@
 {
   "nodes": {
+    "actions-nix": {
+      "inputs": {
+        "flake-parts": [
+          "flake-parts"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "pre-commit-hooks": [
+          "pre-commit-hooks"
+        ]
+      },
+      "locked": {
+        "lastModified": 1740777944,
+        "narHash": "sha256-W4LGu/53vhzpwBIk1mpZty7smfk2cBgubq0o4s7AHI8=",
+        "owner": "nialov",
+        "repo": "actions.nix",
+        "rev": "4efa44f0db34d60541e2a3bea1786fcdc5d1d72a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nialov",
+        "repo": "actions.nix",
+        "type": "github"
+      }
+    },
     "allas-cli-utils-src": {
       "flake": false,
       "locked": {
@@ -1370,6 +1396,7 @@
     },
     "root": {
       "inputs": {
+        "actions-nix": "actions-nix",
         "allas-cli-utils-src": "allas-cli-utils-src",
         "bubop-src": "bubop-src",
         "chatgpt-nvim-src": "chatgpt-nvim-src",
