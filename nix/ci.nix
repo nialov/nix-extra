@@ -42,6 +42,7 @@
             authToken = "\${{ secrets.CACHIX_AUTH_TOKEN }}";
             name = "nialov";
           };
+          continue-on-error = true;
         };
         nixFastBuildStep = {
           name = "Evaluate and build checks faster";
