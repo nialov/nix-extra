@@ -1454,8 +1454,7 @@
         "tmux-nvim-src": "tmux-nvim-src",
         "tmux-open-src": "tmux-open-src",
         "tracerepo-src": "tracerepo-src",
-        "vim-nickel-src": "vim-nickel-src",
-        "ytdl-sub-src": "ytdl-sub-src"
+        "vim-nickel-src": "vim-nickel-src"
       }
     },
     "rust-overlay": {
@@ -1808,23 +1807,6 @@
       "original": {
         "owner": "nickel-lang",
         "repo": "vim-nickel",
-        "type": "github"
-      }
-    },
-    "ytdl-sub-src": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1721966415,
-        "narHash": "sha256-f/9jW/zl/I2NGTBlN+jVk4Td5Gf2qyy/OSIza/EJrqA=",
-        "owner": "jmbannon",
-        "repo": "ytdl-sub",
-        "rev": "e529674b859a28acffef2fc9a0d795e864bbd013",
-        "type": "github"
-      },
-      "original": {
-        "owner": "jmbannon",
-        "repo": "ytdl-sub",
-        "rev": "e529674b859a28acffef2fc9a0d795e864bbd013",
         "type": "github"
       }
     }
