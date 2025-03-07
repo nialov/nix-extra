@@ -105,15 +105,6 @@
       url = "github:nialov/ChatGPT.nvim";
       flake = false;
     };
-    ytdl-sub-src = {
-      # TODO: Not in use so not priority to fix for new src
-      # ytdl_sub.utils.exceptions.ValidationException: Validation error in
-      # config_options_unit_test.ffmpeg_path: Expects an ffmpeg executable at
-      # '/usr/bin/ffmpeg', but does not exist.
-      # Probably due to failing substitute
-      url = "github:jmbannon/ytdl-sub/e529674b859a28acffef2fc9a0d795e864bbd013";
-      flake = false;
-    };
     sphinxcontrib-mermaid-src = {
       url = "github:mgaitan/sphinxcontrib-mermaid";
       flake = false;
@@ -330,10 +321,7 @@
                 ];
 
               };
-              nixosModules = {
-                ytdl-sub = import ./nixos/modules/ytdl-sub;
-                homer = import ./nixos/modules/homer;
-              };
+              nixosModules = { homer = import ./nixos/modules/homer; };
               templates = {
                 default = {
                   path = ./templates/basic;

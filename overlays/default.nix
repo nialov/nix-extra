@@ -61,7 +61,6 @@ in {
     prev.callPackage ././packages/nix-flake-metadata-inputs { };
   proton-ge-custom = prev.callPackage ././packages/proton-ge-custom { };
   inherit (final.python3Packages) synonym-cli kibitzr;
-  # ytdl-sub = prev.callPackage ././packages/ytdl-sub { inherit inputs; };
   allas-cli-utils =
     prev.callPackage ././packages/allas-cli-utils { inherit inputs; };
   grokker = prev.callPackage ././packages/grokker { inherit inputs; };

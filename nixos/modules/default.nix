@@ -1,5 +1,5 @@
 _:
 
 {
-  imports = [ ./ytdl-sub ./homer ];
+  imports = [ ./homer ];
 }
