@@ -257,6 +257,11 @@
       url = "github:iguanacucumber/magazine.nvim";
       flake = false;
     };
+    dask-geopandas = {
+      url =
+        "github:geopandas/dask-geopandas/f6294629e53486cb500c22b44baf05a9bfa5ee05";
+      flake = false;
+    };
   };
 
   outputs = { self, ... }@inputs:
