@@ -25,12 +25,6 @@
             # Include pre-commit check shellHook so they can be ran with `pre-commit ...`
             shellHook = config.pre-commit.installationScript;
           };
-          python39-with-c-tooling-env = pkgs.mkShell {
-            buildInputs = with pkgs; [ python39-with-c-tooling ];
-          };
-          python310-with-c-tooling-env = pkgs.mkShell {
-            buildInputs = with pkgs; [ python310-with-c-tooling ];
-          };
 
         };
         packages = {
@@ -58,7 +52,7 @@
           # fractopo-documentation =
           #   pkgs.python3Packages.fractopo.passthru.documentation.doc;
           inherit (pkgs.stablerPackages.python3Packages) pydfnworks;
-          inherit (pkgs.pandocPackages) pandoc-wrapped;
+          # inherit (pkgs.pandocPackages) pandoc-wrapped;
           inherit (self'.devShells) poetry-devshell;
         } //
 
