@@ -264,6 +264,13 @@ in {
         python-prev.pytest-cram.overridePythonAttrs (_: { doCheck = false; });
       # notion-client = python-prev.notion-client.overridePythonAttrs
       #   (_: { disabledTests = [ "test_api_http_response_error" ]; });
+      dask-geopandas = python-final.callPackage ././packages/dask-geopandas {
+        inherit inputs;
+      };
+      branca =
+        # TODO: Error in pytest of the package (13.3.2025):
+        # > E   ModuleNotFoundError: No module named 'selenium.webdriver.common.fedcm'
+        python-prev.branca.overridePythonAttrs (_: { doCheck = false; });
     })
   ];
 

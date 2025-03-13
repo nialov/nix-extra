@@ -121,6 +121,23 @@
         "type": "github"
       }
     },
+    "dask-geopandas": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1731941314,
+        "narHash": "sha256-MULFS9gxLxuetN9iu7PqYLHxv2w3kwuQmdeLOT7W87Q=",
+        "owner": "geopandas",
+        "repo": "dask-geopandas",
+        "rev": "f6294629e53486cb500c22b44baf05a9bfa5ee05",
+        "type": "github"
+      },
+      "original": {
+        "owner": "geopandas",
+        "repo": "dask-geopandas",
+        "rev": "f6294629e53486cb500c22b44baf05a9bfa5ee05",
+        "type": "github"
+      }
+    },
     "deploy-rs-input": {
       "inputs": {
         "flake-compat": "flake-compat",
@@ -1402,6 +1419,7 @@
         "chatgpt-nvim-src": "chatgpt-nvim-src",
         "cmp-ai-src": "cmp-ai-src",
         "cmp-tmux": "cmp-tmux",
+        "dask-geopandas": "dask-geopandas",
         "deploy-rs-input": "deploy-rs-input",
         "dfnworks-src": "dfnworks-src",
         "doit-ext-src": "doit-ext-src",
