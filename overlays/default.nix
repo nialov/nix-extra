@@ -26,10 +26,6 @@ in {
     inherit (prev) system;
     nixpkgs = inputs.nixpkgs-stabler;
   };
-  pandocPackages = mkNixpkgsBase {
-    inherit (prev) system;
-    nixpkgs = inputs.nixpkgs-pandoc;
-  };
   dfnworksPackages = mkNixpkgsBase {
     inherit (prev) system;
     nixpkgs = inputs.nixpkgs-dfnworks;
@@ -143,17 +139,6 @@ in {
 
   # TODO: clog-cli-0.9.3 marked as broken as of at least 24.6.2024
   inherit (inputs.nixpkgs-fractopo.legacyPackages.x86_64-linux) clog-cli;
-
-  pandoc-wrapped = prev.symlinkJoin {
-    name = "pandoc-wrapped";
-    paths = lib.attrValues {
-      inherit (prev)
-        pandoc pandoc-fignos pandoc-tablenos pandoc-secnos pandoc-eqnos;
-      inherit (prev.texlive.combined) scheme-full;
-      inherit (prev.python3Packages) pandoc-xnos;
-    };
-  };
-  pandoc-with-xnos = final.pandoc-wrapped;
 
   # TODO: This needs to be upstreamed. After v1.2 release in main repo, pr in nixpkgs
   pre-commit-hook-ensure-sops =
