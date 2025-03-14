@@ -25,7 +25,7 @@ writeShellApplication {
     shift
     poetry env info
     poetry check --lock
-    poetry install
+    poetry install --all-extras
     poetry run "$@"
   '';
 
