@@ -89,7 +89,8 @@ in {
   petsc = import ./packages/petsc-override.nix { inherit inputs prev final; };
   # TODO: Uses nixpkgs of a merged pull request. Can be removed soon.
   mosaic = prev.callPackage ./packages/mosaic { inherit inputs; };
-  fhs = prev.callPackage ./packages/fhs/fhs.nix { };
+  fhs = prev.callPackage ./packages/fhs.nix { };
+  fhs-no-ld = final.fhs.override { ldLibraryEnv = false; };
 
   # hdf5-full = prev.hdf5.override {
   #   fortranSupport = true;
