@@ -36,7 +36,7 @@
             sync-git-tag-with-poetry resolve-version poetry-run
             python39-with-c-tooling python310-with-c-tooling
             python311-with-c-tooling jupytext-nb-edit template-check nvim-nixvim
-            git-history-grep gdal update-flake;
+            git-history-grep gdal update-flake fhs fhs-no-ld;
           inherit (pkgs.python3Packages)
             doit-ext sphinxcontrib-mermaid sphinx-gallery item-synchronizer
             gkeepapi powerlaw frackit python-ternary mplstereonet pyvtk;
