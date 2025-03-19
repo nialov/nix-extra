@@ -31,7 +31,7 @@
           inherit (pkgs)
             taskfzf pathnames backupper wiki-builder wsl-open-dynamic
             pretty-task bootstrapSecretsScript rstcheck copier
-            pre-commit-hook-ensure-sops deploy-rs clean-git-branches-script
+            pre-commit-hook-ensure-sops deploy-rs git-branch-clean
             allas-cli-utils grokker poetry-with-c-tooling synonym-cli mosaic
             sync-git-tag-with-poetry resolve-version poetry-run
             python39-with-c-tooling python310-with-c-tooling

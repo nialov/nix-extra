@@ -120,23 +120,21 @@ in {
   # Overlay structure from: https://discourse.nixos.org/t/add-python-package-via-overlay/19783/3
   bootstrapSecretsScript = prev.writers.writeFishBin "bootstrap-secrets"
     ./packages/bootstrap-secrets.fish;
-  clean-git-branches-script = prev.writers.writeFishBin "clean-git-branches"
-    (let b = lib.getExe;
-    in with prev; ''
-      ${b git} branch --merged | string trim | ${
-        b ripgrep
-      } --invert-match 'master' | ${lib.getExe' parallel "parallel"} '${
-        b git
-      } branch -d {}'
-    '');
-  relax-pyproject-dependencies = prev.writeShellApplication {
-    name = "relax-pyproject-dependencies";
-    runtimeInputs = [ (prev.python3.withPackages (p: with p; [ tomlkit ])) ];
-    text = ''
-      python3 ${./pyproject.py} "$@"
-    '';
+  git-branch-clean = prev.writers.writeFishBin "git-branch-clean" (let
+    b = lib.getExe;
+    gitExe = b prev.git;
+    ripgrepExe = b prev.ripgrep;
+    parallelExe = lib.getExe' prev.parallel "parallel";
+  in lib.concatStringsSep " | "
 
-  };
+  [
+    "${gitExe} branch --merged"
+    "string trim"
+    "${ripgrepExe} --invert-match 'master'"
+    "${parallelExe} '${gitExe} branch -d {}'"
+  ]
+
+  );
 
   # TODO: clog-cli-0.9.3 marked as broken as of at least 24.6.2024
   inherit (inputs.nixpkgs-fractopo.legacyPackages.x86_64-linux) clog-cli;
