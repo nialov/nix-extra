@@ -36,10 +36,14 @@
             sync-git-tag-with-poetry resolve-version poetry-run
             python39-with-c-tooling python310-with-c-tooling
             python311-with-c-tooling jupytext-nb-edit template-check nvim-nixvim
-            git-history-grep gdal update-flake fhs fhs-no-ld;
+            git-history-grep gdal update-flake fhs fhs-no-ld tracerepo;
           inherit (pkgs.python3Packages)
             doit-ext sphinxcontrib-mermaid sphinx-gallery item-synchronizer
-            gkeepapi powerlaw frackit python-ternary mplstereonet pyvtk;
+            gkeepapi powerlaw frackit python-ternary mplstereonet pyvtk fractopo
+
+            # TODO: Update pandera for numpy 2
+            # tracerepo pandera
+          ;
           inherit (pkgs.gptEngineerPackages) gpt-engineer;
           inherit (pkgs.kibitzrPackages) kibitzr;
           # TODO: How include this information of using the stable branch in an
@@ -47,8 +51,8 @@
           inherit (pkgs.stablerPackages)
             tasklite-core lagrit dfnworks fehm pflotran petsc hdf5-full openmpi;
           # TODO: Need to be updated upstream for numpy 2
-          inherit (pkgs.previousPackages.python3Packages)
-            fractopo tracerepo pandera;
+          # inherit (pkgs.previousPackages.python3Packages)
+          #   ;
           # fractopo-documentation =
           #   pkgs.python3Packages.fractopo.passthru.documentation.doc;
           inherit (pkgs.stablerPackages.python3Packages) pydfnworks;
