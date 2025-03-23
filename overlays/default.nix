@@ -44,8 +44,6 @@ in {
   };
 
   # Added to nixpkgs
-  # gitmux = prev.callPackage ././packages/gitmux { };
-  # homer = prev.callPackage ././packages/homer { inherit inputs; };
   taskfzf = prev.callPackage ././packages/taskfzf { inherit inputs; };
   pathnames = prev.callPackage ././packages/pathnames { };
   backupper = prev.callPackage ././packages/backupper { };

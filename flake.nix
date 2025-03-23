@@ -39,10 +39,6 @@
     };
     # nix-index-database = { url = "github:Mic92/nix-index-database"; };
     # TODO: Move nix build definition to nix-extra
-    gotta-scrape-em-all = {
-      url = "github:nialov/gotta-scrape-em-all";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     nickel-src = {
       url = "github:tweag/nickel";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -140,12 +136,6 @@
     };
     kibitzr-src = {
       url = "github:kibitzr/kibitzr";
-      flake = false;
-    };
-    homer-src = {
-      url =
-        # TODO: Build no longer contains yarn.lock in e6adfd7bb7958255b71320e200b6543f1ca5e036
-        "github:bastienwirtz/homer/63aa567c526a04c0d4cb17332a3e3d6d03c4f9f0";
       flake = false;
     };
     allas-cli-utils-src = {
@@ -276,8 +266,6 @@
         in {
 
           # Some custom packages or overrides to add/fix functionality
-          inherit (inputs.gotta-scrape-em-all.packages."${system}")
-            gotta-scrape-em-all;
 
           # Get deploy-rs form its repository flake
           inherit (inputs.deploy-rs-input.packages."${system}") deploy-rs;
@@ -328,7 +316,7 @@
                 ];
 
               };
-              nixosModules = { homer = import ./nixos/modules/homer; };
+              nixosModules = { };
               templates = {
                 default = {
                   path = ./templates/basic;

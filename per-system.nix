@@ -88,35 +88,10 @@
 
                   config.pre-commit.settings.hooks);
 
-            # Custom pre-commit are not enabled by default so
-            # they do not get added by this:
-            # enableCheckOption = lib.mapAttrs' (name: value:
-            #   lib.nameValuePair name
-            #   (pkgs.writeText "${name}-entry" value.entry))
-
-            #   builtins.filterAttrs (name: value: value.enable)
-            #   config.pre-commit.settings.hooks
-
-            # ;
-
           in excludeOption)
 
         ;
         checks = self.packages."${system}";
-        # let
-
-        #   nixos-lib = import (inputs.nixpkgs + "/nixos/lib") { };
-
-        #   moduleTest = { imports, defaults ? {
-        #     imports = builtins.attrValues self.nixosModules;
-        #     nixpkgs.pkgs = pkgs;
-        #   }, hostPkgs ? pkgs }:
-        #     nixos-lib.runTest { inherit imports defaults hostPkgs; };
-
-        # in lib.foldl' lib.recursiveUpdate {
-        #   # preCommitCheck = inputs.pre-commit-hooks.lib.${system}.run (import ././pre-commit.nix { inherit pkgs; });
-        #   # homerModule = moduleTest { imports = [ ./nixos/tests/homer.nix ]; };
-        # } ;
 
         pre-commit = {
           check.enable = true;
