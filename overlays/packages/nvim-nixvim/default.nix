@@ -696,9 +696,10 @@ in {
       # };
     };
     treesitter-textobjects = { enable = true; };
+
     notify = {
       enable = false;
-      backgroundColour = "#000000";
+      settings.background_colour = "#000000";
     };
     fidget = {
       enable = true;
