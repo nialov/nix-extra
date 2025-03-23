@@ -85,7 +85,6 @@ in {
   pkg-fblaslapack =
     prev.callPackage ././packages/pkg-fblaslapack { inherit inputs; };
   petsc = import ./packages/petsc-override.nix { inherit inputs prev final; };
-  # TODO: Uses nixpkgs of a merged pull request. Can be removed soon.
   mosaic = prev.callPackage ./packages/mosaic { inherit inputs; };
   fhs = prev.callPackage ./packages/fhs.nix { };
   fhs-no-ld = final.fhs.override { ldLibraryEnv = false; };
@@ -134,9 +133,6 @@ in {
 
   );
 
-  # TODO: clog-cli-0.9.3 marked as broken as of at least 24.6.2024
-  inherit (inputs.nixpkgs-fractopo.legacyPackages.x86_64-linux) clog-cli;
-
   # TODO: This needs to be upstreamed. After v1.2 release in main repo, pr in nixpkgs
   pre-commit-hook-ensure-sops =
     prev.pre-commit-hook-ensure-sops.overridePythonAttrs (prevAttrs: {
@@ -172,10 +168,6 @@ in {
     pythons = with prev; [ python39 python310 python311 python312 python313 ];
   };
   jupytext-nb-edit = prev.callPackage ./packages/jupytext-nb-edit { };
-
-  nbstripout =
-    # TODO: Error in pytest-cram propagates to nbstripout
-    prev.nbstripout.overridePythonAttrs (_: { doCheck = false; });
 
   template-check = prev.writeShellApplication {
     name = "template-check";
@@ -240,19 +232,17 @@ in {
         python-final.callPackage ././packages/dfnworks/pydfnworks.nix {
           inherit inputs;
         };
-      pytest-cram =
-        # TODO: Error in pytest of the package (24.6.2024):
-        # ERROR . - TypeError: Can't instantiate abstract class CramItem with abstract ...
-        python-prev.pytest-cram.overridePythonAttrs (_: { doCheck = false; });
+      # pytest-cram =
+      # TODO: Error in pytest of the package (24.6.2024):
+      # ERROR . - TypeError: Can't instantiate abstract class CramItem with abstract ...
+      #        error: pytest-cram-0.2.2 not supported for interpreter python3.12
+      # Used by current pandera version, 
+      # python-prev.pytest-cram.overridePythonAttrs (_: { doCheck = false; });
       # notion-client = python-prev.notion-client.overridePythonAttrs
       #   (_: { disabledTests = [ "test_api_http_response_error" ]; });
       dask-geopandas = python-final.callPackage ././packages/dask-geopandas {
         inherit inputs;
       };
-      branca =
-        # TODO: Error in pytest of the package (13.3.2025):
-        # > E   ModuleNotFoundError: No module named 'selenium.webdriver.common.fedcm'
-        python-prev.branca.overridePythonAttrs (_: { doCheck = false; });
     })
   ];
 
