@@ -43,7 +43,6 @@ in {
     nixpkgs = inputs.nixpkgs-gpt-engineer;
   };
 
-  # Added to nixpkgs
   taskfzf = prev.callPackage ././packages/taskfzf { inherit inputs; };
   pathnames = prev.callPackage ././packages/pathnames { };
   backupper = prev.callPackage ././packages/backupper { };
@@ -77,7 +76,6 @@ in {
   gpt-engineer =
     final.callPackage ././packages/gpt-engineer { inherit inputs; };
   frackit = prev.callPackage ././packages/frackit { inherit inputs; };
-  # syncall = prev.callPackage ././packages/syncall { inherit inputs; };
   lagrit = prev.callPackage ././packages/lagrit { inherit inputs; };
   dfnworks = prev.callPackage ././packages/dfnworks { inherit inputs; };
   fehm = prev.callPackage ././packages/fehm { inherit inputs; };
@@ -89,17 +87,6 @@ in {
   fhs = prev.callPackage ./packages/fhs.nix { };
   fhs-no-ld = final.fhs.override { ldLibraryEnv = false; };
 
-  # hdf5-full = prev.hdf5.override {
-  #   fortranSupport = true;
-  #   mpiSupport = true;
-  #   cppSupport = false;
-  #   mpi = prev.openmpi;
-  # };
-  # openmpi_4_1_4_gcc11 = prev.callPackage
-  #   "${inputs.lmix-flake-src.outPath}/pkgs/openmpi/default.nix" {
-  #     stdenv = prev.gcc11Stdenv;
-  #     gfortran = prev.gfortran11;
-  #   };
   # Build with cmake
   hdf5-full = (prev.callPackage "${inputs.lmix-flake-src.outPath}/pkgs/hdf5" {
     inherit (prev) stdenv;
@@ -108,13 +95,6 @@ in {
     fortranSupport = true;
     fortran = prev.gfortran;
   }).overrideAttrs (_: _: { src = inputs.hdf5-src; });
-  # hdf5-full =
-  #   inputs.lmix-flake-src.packages."${prev.system}".hdf5_gcc11_ompi_4_1_4;
-  # mpi = prev.openmpi;
-  # inherit (inputs.mosaic-src.packages."${prev.system}") mosaic;
-  # python3.pkgs.sphinx-design =
-  #sphinx-design = prev.callPackage ././packages/sphinx-design { };
-  # Overlay structure from: https://discourse.nixos.org/t/add-python-package-via-overlay/19783/3
   bootstrapSecretsScript = prev.writers.writeFishBin "bootstrap-secrets"
     ./packages/bootstrap-secrets.fish;
   git-branch-clean = prev.writers.writeFishBin "git-branch-clean" (let
@@ -171,7 +151,6 @@ in {
 
   template-check = prev.writeShellApplication {
     name = "template-check";
-    # runtimeInputs = [ (prev.python3.withPackages (p: with p; [ tomlkit ])) ];
     text = ''
       temp_dir="$(mktemp -d)"
       pushd "$temp_dir"
@@ -180,7 +159,6 @@ in {
     '';
 
   };
-  # nix-fast-build = inputs.nix-fast-build.packages."${prev.system}".default;
 
   gdal-mdb = prev.gdal.overrideAttrs (_: prevAttrs: {
     buildInputs = prevAttrs.buildInputs
@@ -238,8 +216,6 @@ in {
       #        error: pytest-cram-0.2.2 not supported for interpreter python3.12
       # Used by current pandera version, 
       # python-prev.pytest-cram.overridePythonAttrs (_: { doCheck = false; });
-      # notion-client = python-prev.notion-client.overridePythonAttrs
-      #   (_: { disabledTests = [ "test_api_http_response_error" ]; });
       dask-geopandas = python-final.callPackage ././packages/dask-geopandas {
         inherit inputs;
       };
@@ -299,18 +275,6 @@ in {
       src = inputs.tmux-nvim-src;
       patches = [ ./tmux-nvim-sync.patch ];
     };
-    # chatgpt-nvim = prev.vimUtils.buildVimPlugin {
-    #   name = "chatgpt-nvim";
-    #   src = inputs.chatgpt-nvim-src;
-    # };
-    # neoai-nvim = prev.vimUtils.buildVimPlugin {
-    #   name = "neoai.nvim";
-    #   src = inputs.neoai-nvim-src;
-    # };
-    # cmp-ai = prev.vimUtils.buildVimPlugin {
-    #   name = "cmp-ai";
-    #   src = inputs.cmp-ai-src;
-    # };
   };
 
   tracerepo = prev.python3Packages.toPythonApplication
