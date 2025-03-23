@@ -1,7 +1,6 @@
 #!/usr/bin/env fish
 # Requires ssh access to both the root and specific user (USER)
 
-
 if test ! (count $argv) -eq 2 || test $argv[1] = --help || test $argv[1] = -h
     echo "Usage:
     

@@ -228,10 +228,10 @@ in {
         (python-final.pkgs.frackit.override { pythonPackages = python-final; });
       powerlaw =
         python-final.callPackage ././packages/powerlaw { inherit inputs; };
-      fractopo =
-        python-final.callPackage ././packages/fractopo { inherit inputs; };
-      tracerepo =
-        python-final.callPackage ././packages/tracerepo { inherit inputs; };
+      # fractopo =
+      #   python-final.callPackage ././packages/fractopo { inherit inputs; };
+      # TODO: Update pandera for numpy 2
+      # python-final.callPackage ././packages/tracerepo { inherit inputs; };
       python-ternary = python-final.callPackage ././packages/python-ternary {
         inherit inputs;
       };
@@ -324,5 +324,8 @@ in {
     #   src = inputs.cmp-ai-src;
     # };
   };
+
+  tracerepo = prev.python3Packages.toPythonApplication
+    inputs.nix-extra-tracerepo.packages."${prev.system}".tracerepo;
 
 }

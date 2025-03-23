@@ -27,6 +27,10 @@
     nixpkgs-stabler.url = "github:nixos/nixpkgs/nixos-23.11";
     # For use with pandox-xnos and friends
     nixpkgs-pandoc = { url = "github:nixos/nixpkgs/22.05"; };
+    # TODO: Update pandera for numpy 2
+    nix-extra-tracerepo = {
+      url = "github:nialov/nix-extra/287c7e06a6674c166e2c20b0ece54c06c100958a";
+    };
     # Use flake-utils for utility functions
     flake-utils = { url = "github:numtide/flake-utils"; };
     pre-commit-hooks = {
@@ -240,10 +244,7 @@
         "github:jeffalstott/powerlaw/6732699d790edbe27c2790bf22c3ef7355d2b07e";
       flake = false;
     };
-    fractopo-src = {
-      url = "github:nialov/fractopo";
-      flake = false;
-    };
+    fractopo = { url = "github:nialov/fractopo"; };
     python-ternary-src = {
       url = "github:marcharper/python-ternary";
       flake = false;
@@ -289,6 +290,7 @@
         localOverlay
         inputOverlay
         self.overlays.utils
+        inputs.fractopo.overlays.packageOverlay
       ];
 
       flakePart = inputs.flake-parts.lib.mkFlake { inherit inputs; }
