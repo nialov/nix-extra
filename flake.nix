@@ -271,8 +271,6 @@
           inherit (inputs.deploy-rs-input.packages."${system}") deploy-rs;
 
           nickel = inputs.nickel-src.packages."${system}".build;
-          # numtide/nix-filter library used for filtering local packages sources
-          # filter = inputs.nix-filter.lib;
         };
       fullOverlay = lib.composeManyExtensions [
         localOverlay
@@ -329,7 +327,6 @@
               flakePartsConfig = config;
             };
 
-            # perSystem = { self', pkgs, ... }:
           });
 
     in lib.foldl' lib.recursiveUpdate { } [ flakePart ];
