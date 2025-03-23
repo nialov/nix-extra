@@ -46,8 +46,6 @@
           ;
           inherit (pkgs.gptEngineerPackages) gpt-engineer;
           inherit (pkgs.kibitzrPackages) kibitzr;
-          # TODO: How include this information of using the stable branch in an
-          # overlay?
           inherit (pkgs.stablerPackages)
             tasklite-core lagrit dfnworks fehm pflotran petsc hdf5-full openmpi;
           # TODO: Need to be updated upstream for numpy 2
@@ -82,6 +80,7 @@
                   "sqlfluff-lint"
                   "sqlfluff-fix"
                   "ruff"
+                  "no-pushes-to-branch"
                 ]) (lib.mapAttrs' (name: value:
                   lib.nameValuePair name
                   (pkgs.writeText "${name}-entry" value.entry))
