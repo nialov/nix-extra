@@ -141,7 +141,6 @@ in {
   sync-git-tag-with-poetry =
     prev.callPackage ./packages/sync-git-tag-with-poetry.nix { };
   resolve-version = prev.callPackage ./packages/resolve-version.nix { };
-  update-changelog = prev.callPackage ./packages/update-changelog.nix { };
   update-flake = prev.callPackage ./packages/update-flake { };
   pre-release = prev.callPackage ./packages/pre-release { };
   poetry-run = prev.callPackage ./packages/poetry-run.nix {
