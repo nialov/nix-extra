@@ -143,7 +143,7 @@ in {
   resolve-version = prev.callPackage ./packages/resolve-version.nix { };
   update-changelog = prev.callPackage ./packages/update-changelog.nix { };
   update-flake = prev.callPackage ./packages/update-flake { };
-  pre-release = prev.callPackage ./packages/pre-release.nix { };
+  pre-release = prev.callPackage ./packages/pre-release { };
   poetry-run = prev.callPackage ./packages/poetry-run.nix {
     pythons = with prev; [ python39 python310 python311 python312 python313 ];
   };
