@@ -299,7 +299,7 @@
               flakeModules.poetryDevshell
               ./per-system.nix
               inputs.actions-nix.flakeModules.default
-              ./nix/ci.nix
+              ./nix/actions-nix.nix
             ];
 
             flake = {
