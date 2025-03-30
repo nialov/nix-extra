@@ -27,10 +27,6 @@
     nixpkgs-stabler.url = "github:nixos/nixpkgs/nixos-23.11";
     # For use with pandox-xnos and friends
     nixpkgs-pandoc = { url = "github:nixos/nixpkgs/22.05"; };
-    # TODO: Update pandera for numpy 2
-    nix-extra-tracerepo = {
-      url = "github:nialov/nix-extra/287c7e06a6674c166e2c20b0ece54c06c100958a";
-    };
     # Use flake-utils for utility functions
     flake-utils = { url = "github:numtide/flake-utils"; };
     pre-commit-hooks = {
