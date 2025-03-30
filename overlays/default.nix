@@ -198,7 +198,6 @@ in {
       # fractopo =
       #   python-final.callPackage ././packages/fractopo { inherit inputs; };
       # TODO: Update pandera for numpy 2
-      # python-final.callPackage ././packages/tracerepo { inherit inputs; };
       python-ternary = python-final.callPackage ././packages/python-ternary {
         inherit inputs;
       };
@@ -275,8 +274,5 @@ in {
       patches = [ ./tmux-nvim-sync.patch ];
     };
   };
-
-  tracerepo = prev.python3Packages.toPythonApplication
-    inputs.nix-extra-tracerepo.packages."${prev.system}".tracerepo;
 
 }

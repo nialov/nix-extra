@@ -30,12 +30,7 @@ buildPythonPackage {
   sphinxRoot = "docs_src";
   outputs = [ "out" "doc" ];
 
-  propagatedBuildInputs = [
-    fractopo
-    # (pandera.overridePythonAttrs (_: { src = inputs.pandera-tracerepo-src; }))
-    pandera
-    json5
-  ];
+  propagatedBuildInputs = [ fractopo pandera json5 ];
 
   checkInputs = [ pytest pytest-regressions hypothesis coverage ];
 
