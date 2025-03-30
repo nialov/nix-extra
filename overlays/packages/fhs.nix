@@ -12,9 +12,7 @@ let
       let
         pythons = builtins.map (python:
           python.withPackages (p: [ p.setuptools p.pip p.wheel p.virtualenv ]))
-          (lib.attrValues {
-            inherit (fhsPkgs) python311 python312 python313 python314;
-          });
+          (lib.attrValues { inherit (fhsPkgs) python311 python312 python313; });
         basePkgs = base.targetPkgs fhsPkgs;
         extraPkgs = lib.attrValues {
           inherit (fhsPkgs)
