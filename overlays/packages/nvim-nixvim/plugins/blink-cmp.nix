@@ -35,7 +35,7 @@
 
         snippets.preset = "luasnip";
         sources = {
-          default = [ "lsp" "path" "snippets" "buffer" "ripgrep" ];
+          default = [ "lsp" "path" "snippets" "buffer" "tmux" "ripgrep" ];
           providers = {
             ripgrep = {
               async = true;
@@ -61,6 +61,19 @@
               module = "minuet.blink";
               score_offset = 8;
             };
+            tmux = {
+              module = "blink-cmp-tmux";
+              name = "tmux";
+              # -- default options
+              opts = {
+                all_panes = false;
+                capture_history = false;
+                # -- only suggest completions from `tmux` if the `trigger_chars` are
+                # -- used
+                triggered_only = false;
+                trigger_chars = [ "." ];
+              };
+            };
           };
         };
       };
@@ -68,49 +81,53 @@
     blink-ripgrep.enable = true;
   };
 
-  extraPlugins = [{
-    plugin = pkgs.vimPlugins.minuet-ai-nvim;
-    config = ''
-      lua << EOF
-      require("minuet").setup({
-          provider = 'codestral',
-          -- n_completions = 1, -- recommend for local model for resource saving
-          -- I recommend beginning with a small context window size and incrementally
-          -- expanding it, depending on your local computing power. A context window
-          -- of 512, serves as an good starting point to estimate your computing
-          -- power. Once you have a reliable estimate of your local computing power,
-          -- you should adjust the context window to a larger value.
-          -- context_window = 512,
-          provider_options = {
-              openai_fim_compatible = {
-                  api_key = 'TERM',
-                  name = 'Ollama',
-                  end_point = 'https://ollama.novaskai.xyz/v1/completions',
-                  model = 'deepseek-coder-v2:16b',
-                  optional = {
-                      max_tokens = 112,
-                      top_p = 0.9,
-                  },
-              },
-              codestral = {
-                  model = 'codestral-latest',
-                  end_point = 'https://codestral.mistral.ai/v1/fim/completions',
-                  api_key = 'CODESTRAL_API_KEY',
-                  stream = true,
-                  -- template = {
-                      -- prompt = "See [Prompt Section for default value]",
-                      -- suffix = "See [Prompt Section for default value]",
-                  -- },
-                  optional = {
-                      stop = nil, -- the identifier to stop the completion generation
-                      max_tokens = nil,
-                  },
-              },
-          },
-      })
-      EOF
+  extraPlugins = [
+    {
+      plugin = pkgs.vimPlugins.minuet-ai-nvim;
+      config = ''
+        lua << EOF
+        require("minuet").setup({
+            provider = 'codestral',
+            -- n_completions = 1, -- recommend for local model for resource saving
+            -- I recommend beginning with a small context window size and incrementally
+            -- expanding it, depending on your local computing power. A context window
+            -- of 512, serves as an good starting point to estimate your computing
+            -- power. Once you have a reliable estimate of your local computing power,
+            -- you should adjust the context window to a larger value.
+            -- context_window = 512,
+            provider_options = {
+                openai_fim_compatible = {
+                    api_key = 'TERM',
+                    name = 'Ollama',
+                    end_point = 'https://ollama.novaskai.xyz/v1/completions',
+                    model = 'deepseek-coder-v2:16b',
+                    optional = {
+                        max_tokens = 112,
+                        top_p = 0.9,
+                    },
+                },
+                codestral = {
+                    model = 'codestral-latest',
+                    end_point = 'https://codestral.mistral.ai/v1/fim/completions',
+                    api_key = 'CODESTRAL_API_KEY',
+                    stream = true,
+                    -- template = {
+                        -- prompt = "See [Prompt Section for default value]",
+                        -- suffix = "See [Prompt Section for default value]",
+                    -- },
+                    optional = {
+                        stop = nil, -- the identifier to stop the completion generation
+                        max_tokens = nil,
+                    },
+                },
+            },
+        })
+        EOF
 
-    '';
-  }];
+      '';
+    }
+    { plugin = pkgs.vimPlugins.blink-cmp-tmux; }
+
+  ];
 
 }

@@ -249,6 +249,10 @@
         "github:geopandas/dask-geopandas/f6294629e53486cb500c22b44baf05a9bfa5ee05";
       flake = false;
     };
+    blink-cmp-tmux-src = {
+      url = "github:mgalliou/blink-cmp-tmux";
+      flake = false;
+    };
   };
 
   outputs = { self, ... }@inputs:
