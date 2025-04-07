@@ -24,9 +24,9 @@ jobs:
         name: nialov
     - uses: DeterminateSystems/nix-installer-action@v9
     - name: Evaluate and build checks faster
-      run: nix run .#nix-fast-build -- --no-nom --skip-cached
+      run: nix run .#nix-fast-build-ci
     timeout-minutes: 60
-  nix-flake-check:
+  nix-flake-check-no-build:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4

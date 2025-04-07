@@ -164,6 +164,29 @@ in {
       ++ [ prev.mdbtools-unixodbc prev.unixODBC ];
   });
 
+  # Example from:
+  # https://github.com/danth/stylix/blob/fbd7a2cc8c5f0d84a4493c71932af05ab2a35528/flake.nix#L158
+  nix-fast-build-ci = prev.writeShellApplication {
+    name = "nix-fast-build-ci";
+    runtimeInputs = lib.attrValues { inherit (prev) nix nix-fast-build; };
+    text = let
+      buildCmd = lib.concatStringsSep " " [
+        "nix-fast-build"
+        "--eval-max-memory-size"
+        "512"
+        "--eval-workers"
+        ''"$cores"''
+        "--no-link"
+        "--no-nom"
+        "--skip-cached"
+        ''"$@"''
+      ];
+    in ''
+      cores="$(nproc)"
+      ${buildCmd}
+    '';
+  };
+
   pythonPackagesExtensions = prev.pythonPackagesExtensions ++ [
     (python-final: python-prev: {
       sphinxcontrib-mermaid =

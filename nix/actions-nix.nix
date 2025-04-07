@@ -48,14 +48,14 @@
         };
         nixFastBuildStep = {
           name = "Evaluate and build checks faster";
-          run = "nix run .#nix-fast-build -- --no-nom --skip-cached";
+          run = "nix run .#nix-fast-build-ci";
         };
 
       in {
         ".github/workflows/main.yaml" = {
 
           jobs = {
-            "nix-flake-check" = {
+            "nix-flake-check-no-build" = {
               steps = [ checkoutStep installNixStep nixFlakeCheckNoBuildStep ];
             };
             "nix-fast-build" = {
