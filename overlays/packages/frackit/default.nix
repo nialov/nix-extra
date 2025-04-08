@@ -1,4 +1,4 @@
-{ inputs, lib, stdenv, cmake, pythonPackages, opencascade-occt, doxygen
+{ inputs, lib, stdenv, cmake, python3Packages, opencascade-occt, doxygen
 , graphviz-nox, fontconfig, ... }:
 
 let
@@ -22,7 +22,7 @@ let
 
     nativeBuildInputs = [ cmake ];
     buildInputs = [
-      (pythonPackages.python.withPackages
+      (python3Packages.python.withPackages
         (p: with p; [ pybind11 wheel pip setuptools ]))
       opencascade-occt
       doxygen
