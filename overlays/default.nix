@@ -193,9 +193,6 @@ in {
         python-final.callPackage ././packages/sphinxcontrib-mermaid {
           inherit inputs;
         };
-      # ...
-      # pre-commit-hook-ensure-sops =
-      #   python-final.callPackage ././packages/pre-commit-hook-ensure-sops { };
       kr-cli = python-final.callPackage ././packages/kr-cli { };
       synonym-cli =
         python-final.callPackage ././packages/synonym-cli { inherit inputs; };

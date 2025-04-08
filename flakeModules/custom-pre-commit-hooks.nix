@@ -1,6 +1,6 @@
 { inputs, ... }: {
   systems = [ "x86_64-linux" ];
-  imports = [ inputs.pre-commit-hooks.flakeModule ];
+  imports = [ inputs.git-hooks.flakeModule ];
 
   flake = { };
 
@@ -86,31 +86,6 @@
                       '';
                       files = "^secrets/";
                     };
-                    # sync-git-tag-with-poetry = {
-                    #   name = "sync-git-tag-with-poetry";
-                    #   description = "Sync git tag with poetry";
-                    #   entry = ''
-                    #     ${pkgs.sync-git-tag-with-poetry}/bin/sync-git-tag-with-poetry
-                    #   '';
-                    #   # stages = [ "push" "manual" ];
-                    #   pass_filenames = false;
-                    # };
-                    # trim-trailing-whitespace = {
-                    #   enable = lib.mkDefault false;
-
-                    #   name = "trim-trailing-whitespace";
-                    #   description = "This hook trims trailing whitespace.";
-                    #   entry =
-                    #     "${pkgs.python3Packages.pre-commit-hooks}/bin/trailing-whitespace-fixer";
-                    #   types = [ "text" ];
-                    # };
-                    # check-added-large-files = {
-                    #   enable = lib.mkDefault false;
-                    #   name = "check-added-large-files";
-                    #   description = "This hook checks for large added files.";
-                    #   entry =
-                    #     "${pkgs.python3Packages.pre-commit-hooks}/bin/check-added-large-files --maxkb=5000";
-                    # };
                     rstcheck = {
                       name = "rstcheck";
                       description = "Check rst files with rstcheck";
@@ -253,25 +228,6 @@
                       pass_filenames = false;
                     };
 
-                    # If this runs as part of build of pre-commit check, can there be a
-                    # situation where the sandbox prevents downloading of inputs?
-                    # nix-flake-check = {
-                    #   name = "nix-flake-check";
-                    #   description =
-                    #     "Evaluate nix flake with nix flake check without building";
-                    #   package = pkgs.nix;
-                    #   entry = let
-                    #     cmdLine = lib.cli.toGNUCommandLineShell { } {
-                    #       no-build = true;
-                    #       extra-experimental-features =
-                    #         [ "nix-command" "flakes" ];
-                    #     };
-                    #   in lib.traceVal ''
-                    #     ${hooks.nix-flake-check.package}/bin/nix -Lv flake check ${cmdLine}
-                    #   '';
-                    #   pass_filenames = false;
-                    #   always_run = true;
-                    # };
                   };
               };
           };

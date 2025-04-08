@@ -9,7 +9,7 @@
           "nixpkgs"
         ],
         "pre-commit-hooks": [
-          "pre-commit-hooks"
+          "git-hooks"
         ]
       },
       "locked": {
@@ -1027,6 +1027,28 @@
         "type": "github"
       }
     },
+    "git-hooks_2": {
+      "inputs": {
+        "flake-compat": "flake-compat_7",
+        "gitignore": "gitignore_5",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1742649964,
+        "narHash": "sha256-DwOTp7nvfi8mRfuL1escHDXabVXFGT1VlPD1JHrtrco=",
+        "owner": "cachix",
+        "repo": "git-hooks.nix",
+        "rev": "dcf5072734cb576d2b0c59b2ac44f5050b5eac82",
+        "type": "github"
+      },
+      "original": {
+        "owner": "cachix",
+        "repo": "git-hooks.nix",
+        "type": "github"
+      }
+    },
     "gitignore": {
       "inputs": {
         "nixpkgs": [
@@ -1124,8 +1146,7 @@
     "gitignore_5": {
       "inputs": {
         "nixpkgs": [
-          "nickel-src",
-          "pre-commit-hooks",
+          "git-hooks",
           "nixpkgs"
         ]
       },
@@ -1146,6 +1167,7 @@
     "gitignore_6": {
       "inputs": {
         "nixpkgs": [
+          "nickel-src",
           "pre-commit-hooks",
           "nixpkgs"
         ]
@@ -2682,32 +2704,10 @@
     },
     "pre-commit-hooks_4": {
       "inputs": {
-        "flake-compat": "flake-compat_7",
-        "gitignore": "gitignore_5",
-        "nixpkgs": [
-          "nickel-src",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1742649964,
-        "narHash": "sha256-DwOTp7nvfi8mRfuL1escHDXabVXFGT1VlPD1JHrtrco=",
-        "owner": "cachix",
-        "repo": "pre-commit-hooks.nix",
-        "rev": "dcf5072734cb576d2b0c59b2ac44f5050b5eac82",
-        "type": "github"
-      },
-      "original": {
-        "owner": "cachix",
-        "repo": "pre-commit-hooks.nix",
-        "type": "github"
-      }
-    },
-    "pre-commit-hooks_5": {
-      "inputs": {
         "flake-compat": "flake-compat_8",
         "gitignore": "gitignore_6",
         "nixpkgs": [
+          "nickel-src",
           "nixpkgs"
         ]
       },
@@ -2809,6 +2809,7 @@
         "fractopo": "fractopo",
         "gazpacho-1-1-src": "gazpacho-1-1-src_2",
         "gazpacho-src": "gazpacho-src_2",
+        "git-hooks": "git-hooks_2",
         "gkeepapi-src": "gkeepapi-src_2",
         "gpt-engineer-src": "gpt-engineer-src_2",
         "grokker-src": "grokker-src_2",
@@ -2837,7 +2838,6 @@
         "pflotran-src": "pflotran-src_2",
         "pkg-fblaslapack-src": "pkg-fblaslapack-src_2",
         "powerlaw-src": "powerlaw-src_2",
-        "pre-commit-hooks": "pre-commit-hooks_5",
         "python-ternary-src": "python-ternary-src_2",
         "pyvtk-src": "pyvtk-src_2",
         "sphinx-gallery-src": "sphinx-gallery-src_2",

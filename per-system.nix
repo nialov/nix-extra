@@ -59,7 +59,7 @@
           inherit (self'.devShells) poetry-devshell;
         } //
 
-          # Adds all pre-commit hooks from pre-commit-hooks.nix to checks
+          # Adds all pre-commit hooks from git-hooks.nix to checks
           # Should I exclude default ones and how?
           (let
 
