@@ -413,7 +413,12 @@ in {
     }
 
   ];
-  extraPackages = lib.attrValues { inherit (pkgs) ripgrep pretty-task; };
+  extraPackages = lib.attrValues {
+    inherit (pkgs)
+      ripgrep pretty-task
+      # ctags-lsp
+    ;
+  };
 
   colorschemes.gruvbox = {
     enable = true;
@@ -798,6 +803,18 @@ in {
                 # -- typeCheckingMode = "off",
                 typeCheckingMode = "standard";
                 inlayHints.callArgumentNames = false;
+                # Exclude paths from analysis, most importantly, nix "result" paths
+                exclude = [
+                  "result*"
+                  ".cache"
+                  ".direnv"
+                  ".git"
+                  ".mypy_cache"
+                  ".pytest_cache"
+                  ".ruff_cache"
+                  ".venv"
+                  "dist"
+                ];
               };
             };
           };
@@ -864,7 +881,11 @@ in {
           enable = true;
           settings = { keyOrdering = false; };
         };
-        nil_ls.enable = true;
+        nil_ls = {
+          enable = true;
+          # https://github.com/oxalica/nil/blob/main/docs/configuration.md
+          extraOptions.settings = { nil.nix.flake.autoArchive = false; };
+        };
         texlab = {
           enable = true;
           extraOptions.settings = {
@@ -1117,6 +1138,14 @@ in {
         augroup END
       '';
     }
+    # {
+    #   plugin = pkgs.vimPlugins.ctags-lsp-nvim;
+    #   config = ''
+    #     lua << EOF
+    #     require("lspconfig").ctags_lsp.setup({ })
+    #     EOF
+    #   '';
+    # }
 
   ];
 
