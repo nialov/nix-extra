@@ -29,8 +29,8 @@
     nixpkgs-pandoc = { url = "github:nixos/nixpkgs/22.05"; };
     # Use flake-utils for utility functions
     flake-utils = { url = "github:numtide/flake-utils"; };
-    pre-commit-hooks = {
-      url = "github:cachix/pre-commit-hooks.nix";
+    git-hooks = {
+      url = "github:cachix/git-hooks.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # nix-index-database = { url = "github:Mic92/nix-index-database"; };
@@ -75,7 +75,7 @@
     actions-nix = {
       url = "github:nialov/actions.nix";
       inputs = {
-        pre-commit-hooks.follows = "pre-commit-hooks";
+        pre-commit-hooks.follows = "git-hooks";
         flake-parts.follows = "flake-parts";
         nixpkgs.follows = "nixpkgs";
       };
@@ -283,7 +283,7 @@
         ({ config, inputs, flake-parts-lib, ... }:
           let
             inherit (flake-parts-lib) importApply;
-            flakeModules = {
+            flakeModules = let
               custom-pre-commit-hooks =
                 importApply ./flakeModules/custom-pre-commit-hooks.nix {
                   inherit inputs;
@@ -291,11 +291,14 @@
               poetryDevshell = importApply ./flakeModules/poetry-devshell.nix {
                 inherit inputs;
               };
+              custom-git-hooks = custom-pre-commit-hooks;
+            in {
+              inherit custom-pre-commit-hooks poetryDevshell custom-git-hooks;
             };
           in {
             systems = [ "x86_64-linux" ];
             imports = [
-              flakeModules.custom-pre-commit-hooks
+              flakeModules.custom-git-hooks
               flakeModules.poetryDevshell
               ./per-system.nix
               inputs.actions-nix.flakeModules.default

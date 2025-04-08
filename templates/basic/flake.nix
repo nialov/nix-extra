@@ -12,10 +12,8 @@
       flakePart = inputs.flake-parts.lib.mkFlake { inherit inputs; }
         ({ inputs, ... }: {
           systems = [ "x86_64-linux" ];
-          imports = [
-            inputs.nix-extra.flakeModules.custom-pre-commit-hooks
-            ./per-system.nix
-          ];
+          imports =
+            [ inputs.nix-extra.flakeModules.custom-git-hooks ./per-system.nix ];
         });
 
     in flakePart;
