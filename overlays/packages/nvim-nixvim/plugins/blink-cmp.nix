@@ -3,9 +3,51 @@
     blink-cmp = {
       enable = true;
       settings = {
-        fuzzy.prebuilt_binaries.download = false;
+        fuzzy = {
+          prebuilt_binaries.download = false;
+          implementation = "prefer_rust_with_warning";
+          # https://cmp.saghen.dev/configuration/reference.html#fuzzy
+          sorts = [ "score" "kind" "sort_text" ];
+        };
         # Recommended by minuet-ai-nvim
-        completion.trigger.prefetch_on_insert = false;
+        completion = {
+          trigger.prefetch_on_insert = false;
+          menu.draw = {
+            # TODO: Snippets are labeled as "buffer" rather than snippets
+            # TODO: kind_icon does not work, symbols are question marks
+            columns.__raw =
+              "{ { 'source_name' },  { 'label', 'label_description', gap = 1 } }";
+            treesitter = [ "lsp" ];
+            components.kind_icon = {
+              text.__raw = ''
+                function(ctx)
+                  local lspkind = require("lspkind")
+                  local icon = ctx.kind_icon
+                  if vim.tbl_contains({ "Path" }, ctx.source_name) then
+                      local dev_icon, _ = require("nvim-web-devicons").get_icon(ctx.label)
+                      if dev_icon then
+                          icon = dev_icon
+                      end
+                  end
+
+                  return icon .. ctx.icon_gap
+                end
+              '';
+              highlight.__raw = ''
+                function(ctx)
+                  local hl = ctx.kind_hl
+                  if vim.tbl_contains({ "Path" }, ctx.source_name) then
+                    local dev_icon, dev_hl = require("nvim-web-devicons").get_icon(ctx.label)
+                    if dev_icon then
+                      hl = dev_hl
+                    end
+                  end
+                  return hl
+                end
+              '';
+            };
+          };
+        };
         keymap = {
           # preset = "super-tab";
           # -- set to 'none' to disable the 'default' preset
@@ -13,8 +55,21 @@
 
           "<C-p>" = [ "select_prev" "fallback" ];
           "<C-n>" = [ "select_next" "fallback" ];
-          "<C-k>" = [ "accept" "fallback" ];
+          # "<C-k>" = [ "accept" "snippet_forward" "fallback" ];
+          "<C-k>".__raw = ''
+            {
+             function(cmp)
+               if cmp.snippet_active() then return cmp.accept()
+               else return cmp.select_and_accept() end
+             end,
+             'snippet_backward',
+             'show_signature',
+             'fallback'
+            }
+          '';
+          "<C-j>" = [ "snippet_forward" "fallback" ];
           "<A-y>".__raw = "require('minuet').make_blink_map()";
+          "<A-d>" = [ "show_signature" "hide_signature" "fallback" ];
           # ['<Down>'] = { 'select_next', 'fallback' },
 
           # -- disable a keymap from the preset
@@ -37,11 +92,17 @@
         sources = {
           default = [ "lsp" "path" "snippets" "buffer" "tmux" "ripgrep" ];
           providers = {
+            lsp = {
+              async = true;
+              # Prioritize lsp
+              score_offset = 100;
+            };
             ripgrep = {
               async = true;
               module = "blink-ripgrep";
               name = "Ripgrep";
-              score_offset = 100;
+              # Deprioritize
+              score_offset = -10;
               opts = {
                 prefix_min_len = 3;
                 context_size = 5;
@@ -64,6 +125,7 @@
             tmux = {
               module = "blink-cmp-tmux";
               name = "tmux";
+              score_offset = -50;
               # -- default options
               opts = {
                 all_panes = false;
@@ -74,11 +136,50 @@
                 trigger_chars = [ "." ];
               };
             };
+            buffer = {
+              transform_items.__raw = ''
+                function(_, items)
+                  return vim
+                    .iter(items)
+                    :filter(function(item)
+                        -- Filter out Snippet words from completion
+                        return item.kind ~= require('blink.cmp.types').CompletionItemKind.Snippet
+                     end)
+                    :totable()
+                end
+              '';
+              opts = {
+                # https://cmp.saghen.dev/recipes#buffer-completion-from-all-open-buffers
+                # filter to only "normal" buffers
+                get_bufnrs.__raw = ''
+                  function()
+                    -- return vim.tbl_filter(function(bufnr)
+                      -- return vim.bo[bufnr].buftype == ""
+                    -- end, vim.api.nvim_list_bufs())
+                    return vim
+                      .iter(vim.api.nvim_list_bufs())
+                      :filter(function(bufnr) return vim.bo[bufnr].buftype == "" end)
+                      :totable()
+                  end
+                '';
+              };
+            };
+            path = {
+              score_offset = 20;
+              max_items = 3;
+            };
           };
         };
       };
     };
     blink-ripgrep.enable = true;
+    # TODO: Use latest when snippets work
+    # luasnip.package = pkgs.stablePackages.vimPlugins.luasnip;
+    luasnip = {
+      enable = true;
+      fromLua = [{ paths = ../snippets; }];
+    };
+    lspkind.enable = true;
   };
 
   extraPlugins = [
