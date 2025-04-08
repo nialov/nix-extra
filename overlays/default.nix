@@ -26,6 +26,18 @@ in {
     inherit (prev) system;
     nixpkgs = inputs.nixpkgs-stabler;
   };
+  release2411Packages = mkNixpkgsBase {
+    inherit (prev) system;
+    nixpkgs = inputs.nixpkgs-2405;
+  };
+  release2405Packages = mkNixpkgsBase {
+    inherit (prev) system;
+    nixpkgs = inputs.nixpkgs-2405;
+  };
+  release2311Packages = mkNixpkgsBase {
+    inherit (prev) system;
+    nixpkgs = inputs.nixpkgs-2311;
+  };
   dfnworksPackages = mkNixpkgsBase {
     inherit (prev) system;
     nixpkgs = inputs.nixpkgs-dfnworks;
