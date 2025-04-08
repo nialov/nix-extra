@@ -8,12 +8,17 @@
   nixConfig.extra-trusted-public-keys =
     [ "nialov.cachix.org-1:Z2oarwKpwXCZUZ6OfQx5/Ia2mEC+uizpb+c5lu/gNk4=" ];
   inputs = {
+    # Rolling updates
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    # Use unstable nixpkgs channel
-    # nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-previous.url =
       "github:nixos/nixpkgs/d0797a04b81caeae77bcff10a9dde78bc17f5661";
-    nixpkgs-stable.url = "nixpkgs/nixos-24.05";
+    # Update follows target when releases get made
+    nixpkgs-stable.follows = "nixpkgs-2411";
+    nixpkgs-stabler.follows = "nixpkgs-2405";
+    # Static
+    nixpkgs-2411.url = "github:nixos/nixpkgs/nixos-24.11";
+    nixpkgs-2405.url = "github:nixos/nixpkgs/nixos-24.05";
+    nixpkgs-2311.url = "github:nixos/nixpkgs/nixos-23.11";
     nixpkgs-petsc.url =
       "github:nixos/nixpkgs/27bd67e55fe09f9d68c77ff151c3e44c4f81f7de";
     nixpkgs-kibitzr.url =
@@ -24,7 +29,6 @@
       "github:nixos/nixpkgs/d680ded26da5cf104dd2735a51e88d2d8f487b4d";
     nixpkgs-dfnworks.url =
       "github:nixos/nixpkgs/5efc8ca954272c4376ac929f4c5ffefcc20551d5";
-    nixpkgs-stabler.url = "github:nixos/nixpkgs/nixos-23.11";
     # For use with pandox-xnos and friends
     nixpkgs-pandoc = { url = "github:nixos/nixpkgs/22.05"; };
     # Use flake-utils for utility functions
