@@ -39,23 +39,19 @@
             git-history-grep gdal update-flake fhs fhs-no-ld;
           inherit (pkgs.python3Packages)
             doit-ext sphinxcontrib-mermaid sphinx-gallery item-synchronizer
-            powerlaw frackit python-ternary mplstereonet pyvtk fractopo
+            powerlaw python-ternary mplstereonet pyvtk fractopo
 
             # TODO: Update pandera for numpy 2
             # tracerepo pandera
           ;
           inherit (pkgs.gptEngineerPackages) gpt-engineer;
           inherit (pkgs.kibitzrPackages) kibitzr;
-          inherit (pkgs.stablerPackages)
+          inherit (pkgs.release2411Packages) frackit;
+          inherit (pkgs.release2311Packages)
             tasklite-core lagrit dfnworks fehm pflotran petsc hdf5-full openmpi;
-          # TODO: Need to be updated upstream for numpy 2
-          # inherit (pkgs.previousPackages.python3Packages)
-          #   ;
-          # fractopo-documentation =
-          #   pkgs.python3Packages.fractopo.passthru.documentation.doc;
-          inherit (pkgs.stablerPackages.python3Packages) pydfnworks gkeepapi;
+          inherit (pkgs.release2311Packages.python3Packages)
+            pydfnworks gkeepapi;
           # inherit (pkgs.tracerepoPackages) tracerepo;
-          # inherit (pkgs.pandocPackages) pandoc-wrapped;
           inherit (self'.devShells) poetry-devshell;
         } //
 
