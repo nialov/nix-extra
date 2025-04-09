@@ -814,6 +814,9 @@ in {
                   ".ruff_cache"
                   ".venv"
                   "dist"
+                  ".mamba"
+                  ".conda"
+                  "__pycahe__"
                 ];
               };
             };
