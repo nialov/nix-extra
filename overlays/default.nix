@@ -199,6 +199,9 @@ in {
     '';
   };
 
+  nix-flake-remote-eval-and-build =
+    prev.callPackage ./packages/nix-flake-remote-eval-and-build.nix { };
+
   pythonPackagesExtensions = prev.pythonPackagesExtensions ++ [
     (python-final: python-prev: {
       sphinxcontrib-mermaid =
