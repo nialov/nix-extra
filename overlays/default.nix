@@ -72,10 +72,6 @@ in {
   poetry-with-c-tooling =
     prev.callPackage ././packages/poetry-with-c-tooling { };
   # TODO: Generate more succinctly
-  python39-with-c-tooling =
-    prev.callPackage ././packages/python-with-c-tooling {
-      python3ToWrap = prev.python39;
-    };
   python310-with-c-tooling =
     prev.callPackage ././packages/python-with-c-tooling {
       python3ToWrap = prev.python310;
@@ -156,7 +152,7 @@ in {
   update-flake = prev.callPackage ./packages/update-flake { };
   pre-release = prev.callPackage ./packages/pre-release { };
   poetry-run = prev.callPackage ./packages/poetry-run.nix {
-    pythons = with prev; [ python39 python310 python311 python312 python313 ];
+    pythons = with prev; [ python310 python311 python312 python313 ];
   };
   jupytext-nb-edit = prev.callPackage ./packages/jupytext-nb-edit { };
 
