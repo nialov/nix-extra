@@ -9,7 +9,7 @@
     [ "nialov.cachix.org-1:Z2oarwKpwXCZUZ6OfQx5/Ia2mEC+uizpb+c5lu/gNk4=" ];
   inputs = {
     # Rolling updates
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/3730d8a";
     nixpkgs-previous.url =
       "github:nixos/nixpkgs/d0797a04b81caeae77bcff10a9dde78bc17f5661";
     # Update follows target when releases get made
