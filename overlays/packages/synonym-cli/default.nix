@@ -19,7 +19,7 @@ in buildPythonPackage rec {
   #   sha256 = "sha256-KLk6OMuQFWv+zToqJeePW17fK+eols+3VB8B4w8Sy5Y=";
   # };
   nativeBuildInputs = [ poetry-core pythonRelaxDepsHook ];
-  pythonRelaxDeps = [ "importlib-metadata" ];
+  pythonRelaxDeps = [ "importlib-metadata" "rich" ];
 
   # buildInputs = [ sphinx ];
   propagatedBuildInputs =
