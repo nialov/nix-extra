@@ -1,4 +1,6 @@
-{ inputs, lib, python3, pflotran, runCommand }:
+{ inputs, lib, buildPythonPackage, setuptools, numpy, scipy, matplotlib
+, mplstereonet, fpdf, pyvtk, networkx, seaborn, mpmath, nose, pflotran
+, runCommand }:
 
 let
   # TODO: Make a patch instead of this mess of edits...
@@ -21,16 +23,16 @@ let
         --replace "error =" "raise; error ="
   '';
 
-  self = python3.pkgs.buildPythonPackage {
+  self = buildPythonPackage {
     pname = "pydfnworks";
     version = inputs.dfnworks-src.shortRev;
 
     src = patchedSrc;
     passthru.src = patchedSrc;
 
-    nativeBuildInputs = [ python3.pkgs.setuptools ];
+    nativeBuildInputs = [ setuptools ];
 
-    propagatedBuildInputs = with python3.pkgs; [
+    propagatedBuildInputs = [
       numpy
       scipy
       matplotlib
@@ -43,7 +45,7 @@ let
       mpmath
     ];
 
-    checkInputs = with python3.pkgs; [ nose ];
+    checkInputs = [ nose ];
 
     postPatch = ''
       substituteInPlace ./pydfnworks/pydfnworks/release.py \
