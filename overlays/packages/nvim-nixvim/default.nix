@@ -433,7 +433,7 @@ in {
       terminal_colors = true;
     };
   };
-  diagnostics = {
+  diagnostic.settings = {
     virtual_lines = { only_current_line = true; };
     virtual_text = false;
     update_in_insert = false;
