@@ -120,6 +120,9 @@ let
           lib.makeBinPath [ texlive.combined.scheme-full mpiWrapped openssh ]
         }"
       ];
+      # TODO: Add all executables to bin/ directory
+      # check docker image /bin and lib/petsc/arch-*/bin/
+      # e.g. ploftran, lagrit, ...
     in ''
       wrapProgram $out/bin/python3 ${builtins.concatStringsSep " " wraps}
       $out/bin/python3 --help > /dev/null
