@@ -961,7 +961,10 @@ in {
         };
         formatting = {
 
-          nixfmt.enable = true;
+          nixfmt = {
+            enable = true;
+            package = pkgs.nixfmt-rfc-style;
+          };
           stylua.enable = true;
           # black.enable = true;
           # isort = {
