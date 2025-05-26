@@ -90,7 +90,8 @@
 
         snippets.preset = "luasnip";
         sources = {
-          default = [ "lsp" "path" "snippets" "buffer" "tmux" "ripgrep" ];
+          default =
+            [ "lsp" "path" "snippets" "buffer" "tmux" "ripgrep" "emoji" ];
           providers = {
             lsp = {
               async = true;
@@ -125,7 +126,7 @@
             tmux = {
               module = "blink-cmp-tmux";
               name = "tmux";
-              score_offset = -50;
+              score_offset = -20;
               # -- default options
               opts = {
                 all_panes = false;
@@ -168,11 +169,19 @@
               score_offset = 20;
               max_items = 3;
             };
+            emoji = {
+              module = "blink-emoji";
+              name = "Emoji";
+              score_offset = 15;
+              # Optional configurations
+              opts = { insert = true; };
+            };
           };
         };
       };
     };
     blink-ripgrep.enable = true;
+    blink-emoji.enable = true;
     # TODO: Use latest when snippets work
     # luasnip.package = pkgs.stablePackages.vimPlugins.luasnip;
     luasnip = {
