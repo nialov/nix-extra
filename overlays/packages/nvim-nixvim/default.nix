@@ -4,7 +4,7 @@ let inherit (pkgs) lib;
 in {
   imports = [
     ./plugins/gp.nix
-    # ./plugins/cmp.nix 
+    # ./plugins/cmp.nix
     ./plugins/blink-cmp.nix
   ];
   luaLoader.enable = true;
@@ -436,7 +436,7 @@ in {
     };
   };
   diagnostic.settings = {
-    virtual_lines = { only_current_line = true; };
+    virtual_lines = { current_line = true; };
     virtual_text = false;
     update_in_insert = false;
   };
@@ -685,9 +685,9 @@ in {
             -- Enable underline, use default values
             underline = true,
             -- Enable virtual text, override spacing to 4
-            virtual_text = {
-              spacing = 4,
-            },
+            --  virtual_text = {
+              -- spacing = 4,
+            -- },
             -- Disable a feature
             update_in_insert = false,
           }
