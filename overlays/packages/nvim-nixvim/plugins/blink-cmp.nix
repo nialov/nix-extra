@@ -68,7 +68,11 @@
             }
           '';
           "<C-j>" = [ "snippet_forward" "fallback" ];
-          "<A-y>".__raw = "require('minuet').make_blink_map()";
+          # "<A-y>".__raw = "require('minuet').make_blink_map()";
+          "<A-y>".__raw =
+            "{ function(cmp) cmp.show({ providers = { 'copilot' } }) end }";
+          # ['<C-space>'] = { function(cmp) cmp.show({ providers = { 'snippets' } }) end },
+
           "<A-d>" = [ "show_signature" "hide_signature" "fallback" ];
           # ['<Down>'] = { 'select_next', 'fallback' },
 
@@ -79,7 +83,7 @@
           # ['<C-space>'] = { function(cmp) cmp.show({ providers = { 'snippets' } }) end },
 
           # -- control whether the next command will be run when using a function
-          # ['<C-n>'] = { 
+          # ['<C-n>'] = {
           # function(cmp)
           # if some_condition then return end -- runs the next command
           # return true -- doesn't run the next command
@@ -176,14 +180,60 @@
               # Optional configurations
               opts = { insert = true; };
             };
+            copilot = {
+              async = true;
+              module = "blink-copilot";
+              name = "copilot";
+              score_offset = 100;
+              # Optional configurations
+              opts = {
+                max_completions = 3;
+                max_attempts = 4;
+                kind = "Copilot";
+                debounce = 750;
+                auto_refresh = {
+                  backward = true;
+                  forward = true;
+                };
+              };
+            };
           };
         };
       };
     };
     blink-ripgrep.enable = true;
     blink-emoji.enable = true;
-    # TODO: Use latest when snippets work
-    # luasnip.package = pkgs.stablePackages.vimPlugins.luasnip;
+    blink-copilot.enable = true;
+    copilot-lua = {
+      enable = true;
+      settings = {
+        filetypes = {
+          # sh.__raw = ''
+          #   function()
+          #     if string.match(vim.fs.basename(vim.api.nvim_buf_get_name(0)), '^%.env.*') then
+          #       -- disable for .env files
+          #       return false
+          #     end
+          #     return true
+          #   end
+          # '';
+          python = true; # allow specific type
+          "*" =
+            false; # disable for all other filetypes and ignore default filetypes
+        };
+        should_attach.__raw = ''
+          function(_, bufname)
+              local use_copilot = vim.fn.environ()["USE_COPILOT"]
+              if not use_copilot then
+                  vim.notify(string.format("USE_COPILOT env variable not set. Not attaching copilot."))
+                  return false
+              end
+              return true
+            end
+        '';
+
+      };
+    };
     luasnip = {
       enable = true;
       fromLua = [{ paths = ../snippets; }];
