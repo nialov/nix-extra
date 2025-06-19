@@ -138,25 +138,25 @@ in {
       pattern = [ "*" ];
       command = "wincmd =";
     }
-    {
-      event = "BufWritePre";
-      callback.__raw = ''
-        function()
-          local disable_env_variable_name = "NEOVIM_DISABLE_AUTOFORMAT"
-          local disable_autoformat = vim.tbl_contains(vim.tbl_keys(vim.fn.environ()), disable_env_variable_name)
-          if disable_autoformat then
-              vim.notify(
-                  string.format(
-                      "Not formatting as environment variable %s exists.",
-                      disable_env_variable_name
-                  )
-              )
-          else
-              vim.lsp.buf.format({ timeout_ms = 2000 })
-          end
-        end
-      '';
-    }
+    # {
+    #   event = "BufWritePre";
+    #   callback.__raw = ''
+    #     function()
+    #       local disable_env_variable_name = "NEOVIM_DISABLE_AUTOFORMAT"
+    #       local disable_autoformat = vim.tbl_contains(vim.tbl_keys(vim.fn.environ()), disable_env_variable_name)
+    #       if disable_autoformat then
+    #           vim.notify(
+    #               string.format(
+    #                   "Not formatting as environment variable %s exists.",
+    #                   disable_env_variable_name
+    #               )
+    #           )
+    #       else
+    #           vim.lsp.buf.format({ timeout_ms = 2000 })
+    #       end
+    #     end
+    #   '';
+    # }
     # {
     #   event = [ "FocusLost" ];
     #   pattern = [ "*" ];
@@ -186,6 +186,44 @@ in {
       command.__raw = "require('nialov_utils').wikientry";
       desc = "Open personal wiki entry";
     };
+    "Format" = {
+      # command.__raw = "vim.lsp.buf.format";
+      nargs = "?";
+      command.__raw = ''
+        function (opts)
+          if not opts.args or opts.args == "" or opts.args == "lsp" then
+            vim.lsp.buf.format()
+          elseif opts.args == "pre-commit" then
+            if vim.bo.modified then
+              vim.cmd("write")
+            end
+            local result = vim.fn.system("pre-commit run --files " .. vim.fn.expand("%"))
+            vim.notify(result)
+            vim.cmd("edit")
+          else
+            vim.notify("Unknown format type: " .. opts.args, vim.log.levels.ERROR)
+          end
+        end
+      '';
+      complete.__raw = ''
+        function ()
+          return { "lsp", "pre-commit" }
+        end
+      '';
+      desc = "Format current buffer using lsp or pre-commit";
+    };
+    # "PreCommit" = {
+    #   command.__raw = ''
+    #     function ()
+    #         if vim.bo.modified
+    #             vim.cmd("write")
+    #         end
+    #         local result = vim.fn.system("pre-commit run --files " .. vim.fn.expand("%"))
+    #         vim.notify(result)
+    #     end
+    #   '';
+    #   desc = "Format current buffer using pre-commit";
+    # };
 
   };
   files = {
