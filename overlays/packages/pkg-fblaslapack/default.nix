@@ -1,4 +1,9 @@
-{ inputs, lib, stdenv, gfortran }:
+{
+  inputs,
+  lib,
+  stdenv,
+  gfortran,
+}:
 
 stdenv.mkDerivation rec {
   pname = "pkg-fblaslapack";

@@ -1,4 +1,11 @@
-{ lib, buildPythonPackage, fetchPypi, click, beautifulsoup4, requests, tabulate
+{
+  lib,
+  buildPythonPackage,
+  fetchPypi,
+  click,
+  beautifulsoup4,
+  requests,
+  tabulate,
 }:
 
 buildPythonPackage rec {
@@ -11,7 +18,12 @@ buildPythonPackage rec {
   };
 
   # buildInputs = [ sphinx ];
-  propagatedBuildInputs = [ click beautifulsoup4 requests tabulate ];
+  propagatedBuildInputs = [
+    click
+    beautifulsoup4
+    requests
+    tabulate
+  ];
 
   # Seems to look for files in the wrong dir
   doCheck = false;

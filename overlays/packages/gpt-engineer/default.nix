@@ -1,4 +1,8 @@
-{ inputs, lib, python3, }:
+{
+  inputs,
+  lib,
+  python3,
+}:
 
 python3.pkgs.buildPythonApplication {
   pname = "gpt-engineer";
@@ -54,7 +58,10 @@ python3.pkgs.buildPythonApplication {
     "gpt_engineer.cli.collect"
   ];
 
-  checkInputs = with python3.pkgs; [ pytestCheckHook pytest ];
+  checkInputs = with python3.pkgs; [
+    pytestCheckHook
+    pytest
+  ];
 
   disabledTestPaths = [
     # Telemetry test
@@ -68,8 +75,7 @@ python3.pkgs.buildPythonApplication {
   ];
 
   meta = with lib; {
-    description =
-      "Specify what you want it to build, the AI asks for clarification, and then builds it";
+    description = "Specify what you want it to build, the AI asks for clarification, and then builds it";
     homepage = "https://github.com/AntonOsika/gpt-engineer";
     license = licenses.mit;
     maintainers = with maintainers; [ nialov ];

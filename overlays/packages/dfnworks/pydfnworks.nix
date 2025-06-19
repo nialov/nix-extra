@@ -1,6 +1,21 @@
-{ inputs, lib, buildPythonPackage, setuptools, numpy, scipy, matplotlib
-, mplstereonet, fpdf, pyvtk, networkx, seaborn, mpmath, nose, pflotran
-, runCommand }:
+{
+  inputs,
+  lib,
+  buildPythonPackage,
+  setuptools,
+  numpy,
+  scipy,
+  matplotlib,
+  mplstereonet,
+  fpdf,
+  pyvtk,
+  networkx,
+  seaborn,
+  mpmath,
+  nose,
+  pflotran,
+  runCommand,
+}:
 
 let
   # TODO: Make a patch instead of this mess of edits...
@@ -61,4 +76,5 @@ let
     };
   };
 
-in self
+in
+self

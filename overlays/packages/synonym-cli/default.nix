@@ -1,12 +1,23 @@
-{ inputs, lib, buildPythonPackage, gazpacho, rich, poetry-core, aiohttp
-, requests, importlib-metadata, beautifulsoup4, pythonRelaxDepsHook }:
+{
+  inputs,
+  lib,
+  buildPythonPackage,
+  gazpacho,
+  rich,
+  poetry-core,
+  aiohttp,
+  requests,
+  importlib-metadata,
+  beautifulsoup4,
+  pythonRelaxDepsHook,
+}:
 
 let
 
-  gazpachoOlder =
-    gazpacho.overrideAttrs (_: _: { src = inputs.gazpacho-1-1-src; });
+  gazpachoOlder = gazpacho.overrideAttrs (_: _: { src = inputs.gazpacho-1-1-src; });
 
-in buildPythonPackage rec {
+in
+buildPythonPackage rec {
   pname = "synonym-cli";
   version = inputs.synonym-cli-src.shortRev;
   format = "pyproject";
@@ -18,19 +29,34 @@ in buildPythonPackage rec {
   #   rev = "v${version}";
   #   sha256 = "sha256-KLk6OMuQFWv+zToqJeePW17fK+eols+3VB8B4w8Sy5Y=";
   # };
-  nativeBuildInputs = [ poetry-core pythonRelaxDepsHook ];
-  pythonRelaxDeps = [ "importlib-metadata" "rich" ];
+  nativeBuildInputs = [
+    poetry-core
+    pythonRelaxDepsHook
+  ];
+  pythonRelaxDeps = [
+    "importlib-metadata"
+    "rich"
+  ];
 
   # buildInputs = [ sphinx ];
-  propagatedBuildInputs =
-    [ gazpachoOlder rich importlib-metadata aiohttp requests beautifulsoup4 ];
+  propagatedBuildInputs = [
+    gazpachoOlder
+    rich
+    importlib-metadata
+    aiohttp
+    requests
+    beautifulsoup4
+  ];
 
   # Only test of the package but also a network test
   # Consequently, disable tests
   # checkInputs = [ pytestCheckHook pytest ];
   # disabledTests = [ "test_req" ];
 
-  pythonImportsCheck = [ "synonym_cli" "synonym_cli.cli" ];
+  pythonImportsCheck = [
+    "synonym_cli"
+    "synonym_cli.cli"
+  ];
 
   meta = with lib; {
     description = "";

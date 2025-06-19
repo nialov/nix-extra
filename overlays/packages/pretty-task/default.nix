@@ -3,20 +3,32 @@
 # libraries = with python3Packages; [ typer ];
 # flakeIgnore = [ "E501" ];
 # } (builtins.readFile ././pathnames.py)
-{ stdenv, python3, installShellFiles, taskwarrior2, pandoc, lib, makeWrapper }:
+{
+  stdenv,
+  python3,
+  installShellFiles,
+  taskwarrior2,
+  pandoc,
+  lib,
+  makeWrapper,
+}:
 
 stdenv.mkDerivation {
   name = "pretty-task";
-  nativeBuildInputs = [ makeWrapper installShellFiles ];
+  nativeBuildInputs = [
+    makeWrapper
+    installShellFiles
+  ];
   buildInputs = [
-    (python3.withPackages (pythonPackages:
-      with pythonPackages; [
+    (python3.withPackages (
+      pythonPackages: with pythonPackages; [
         typer
         json5
         rich
         tabulate
         ipython
-      ]))
+      ]
+    ))
     # taskwarrior
     # pandoc
   ];
@@ -25,7 +37,10 @@ stdenv.mkDerivation {
     mkdir -p $out/bin
     cp ${././pretty_task.py} $out/bin/pretty-task
     wrapProgram $out/bin/pretty-task --prefix PATH : ${
-      lib.makeBinPath [ taskwarrior2 pandoc ]
+      lib.makeBinPath [
+        taskwarrior2
+        pandoc
+      ]
     }
     chmod +x $out/bin/pretty-task
   '';

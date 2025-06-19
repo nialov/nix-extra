@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   plugins = {
     blink-cmp = {
       enable = true;
@@ -7,7 +8,11 @@
           prebuilt_binaries.download = false;
           implementation = "prefer_rust_with_warning";
           # https://cmp.saghen.dev/configuration/reference.html#fuzzy
-          sorts = [ "score" "kind" "sort_text" ];
+          sorts = [
+            "score"
+            "kind"
+            "sort_text"
+          ];
         };
         # Recommended by minuet-ai-nvim
         completion = {
@@ -15,8 +20,7 @@
           menu.draw = {
             # TODO: Snippets are labeled as "buffer" rather than snippets
             # TODO: kind_icon does not work, symbols are question marks
-            columns.__raw =
-              "{ { 'source_name' },  { 'label', 'label_description', gap = 1 } }";
+            columns.__raw = "{ { 'source_name' },  { 'label', 'label_description', gap = 1 } }";
             treesitter = [ "lsp" ];
             components.kind_icon = {
               text.__raw = ''
@@ -53,8 +57,14 @@
           # -- set to 'none' to disable the 'default' preset
           # preset = 'default',
 
-          "<C-p>" = [ "select_prev" "fallback" ];
-          "<C-n>" = [ "select_next" "fallback" ];
+          "<C-p>" = [
+            "select_prev"
+            "fallback"
+          ];
+          "<C-n>" = [
+            "select_next"
+            "fallback"
+          ];
           # "<C-k>" = [ "accept" "snippet_forward" "fallback" ];
           "<C-k>".__raw = ''
             {
@@ -67,9 +77,16 @@
              'fallback'
             }
           '';
-          "<C-j>" = [ "snippet_forward" "fallback" ];
+          "<C-j>" = [
+            "snippet_forward"
+            "fallback"
+          ];
           "<A-y>".__raw = "require('minuet').make_blink_map()";
-          "<A-d>" = [ "show_signature" "hide_signature" "fallback" ];
+          "<A-d>" = [
+            "show_signature"
+            "hide_signature"
+            "fallback"
+          ];
           # ['<Down>'] = { 'select_next', 'fallback' },
 
           # -- disable a keymap from the preset
@@ -79,7 +96,7 @@
           # ['<C-space>'] = { function(cmp) cmp.show({ providers = { 'snippets' } }) end },
 
           # -- control whether the next command will be run when using a function
-          # ['<C-n>'] = { 
+          # ['<C-n>'] = {
           # function(cmp)
           # if some_condition then return end -- runs the next command
           # return true -- doesn't run the next command
@@ -90,8 +107,15 @@
 
         snippets.preset = "luasnip";
         sources = {
-          default =
-            [ "lsp" "path" "snippets" "buffer" "tmux" "ripgrep" "emoji" ];
+          default = [
+            "lsp"
+            "path"
+            "snippets"
+            "buffer"
+            "tmux"
+            "ripgrep"
+            "emoji"
+          ];
           providers = {
             lsp = {
               async = true;
@@ -174,7 +198,9 @@
               name = "Emoji";
               score_offset = 15;
               # Optional configurations
-              opts = { insert = true; };
+              opts = {
+                insert = true;
+              };
             };
           };
         };
@@ -186,7 +212,7 @@
     # luasnip.package = pkgs.stablePackages.vimPlugins.luasnip;
     luasnip = {
       enable = true;
-      fromLua = [{ paths = ../snippets; }];
+      fromLua = [ { paths = ../snippets; } ];
     };
     lspkind.enable = true;
   };

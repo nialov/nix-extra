@@ -1,7 +1,31 @@
-{ inputs, lib, buildPythonPackage, setuptools, multimethod, numpy, packaging
-, pandas, pydantic, typeguard, typing-inspect, wrapt, pytestCheckHook, pytest
-, pyspark, pyyaml, pytest-asyncio, hypothesis, sphinx, requests, geopandas, mypy
-, polars, pyarrow, joblib, dask }:
+{
+  inputs,
+  lib,
+  buildPythonPackage,
+  setuptools,
+  multimethod,
+  numpy,
+  packaging,
+  pandas,
+  pydantic,
+  typeguard,
+  typing-inspect,
+  wrapt,
+  pytestCheckHook,
+  pytest,
+  pyspark,
+  pyyaml,
+  pytest-asyncio,
+  hypothesis,
+  sphinx,
+  requests,
+  geopandas,
+  mypy,
+  polars,
+  pyarrow,
+  joblib,
+  dask,
+}:
 
 buildPythonPackage {
   pname = "pandera";
@@ -66,8 +90,7 @@ buildPythonPackage {
   pythonImportsCheck = [ "pandera" ];
 
   meta = with lib; {
-    description =
-      "A light-weight, flexible, and expressive statistical data testing library";
+    description = "A light-weight, flexible, and expressive statistical data testing library";
     homepage = "https://github.com/unionai-oss/pandera";
     license = licenses.mit;
     maintainers = with maintainers; [ nialov ];

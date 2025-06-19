@@ -5,13 +5,13 @@
   # warning: input 'nixos-hardware' has an override for a non-existent input 'nixpkgs'
   # warning: input 'nur' has an override for a non-existent input 'nixpkgs'
   nixConfig.extra-substituters = [ "https://nialov.cachix.org" ];
-  nixConfig.extra-trusted-public-keys =
-    [ "nialov.cachix.org-1:Z2oarwKpwXCZUZ6OfQx5/Ia2mEC+uizpb+c5lu/gNk4=" ];
+  nixConfig.extra-trusted-public-keys = [
+    "nialov.cachix.org-1:Z2oarwKpwXCZUZ6OfQx5/Ia2mEC+uizpb+c5lu/gNk4="
+  ];
   inputs = {
     # Rolling updates
     nixpkgs.url = "github:nixos/nixpkgs/3730d8a";
-    nixpkgs-previous.url =
-      "github:nixos/nixpkgs/d0797a04b81caeae77bcff10a9dde78bc17f5661";
+    nixpkgs-previous.url = "github:nixos/nixpkgs/d0797a04b81caeae77bcff10a9dde78bc17f5661";
     # Update follows target when releases get made
     nixpkgs-stable.follows = "nixpkgs-2411";
     nixpkgs-stabler.follows = "nixpkgs-2405";
@@ -19,20 +19,20 @@
     nixpkgs-2411.url = "github:nixos/nixpkgs/nixos-24.11";
     nixpkgs-2405.url = "github:nixos/nixpkgs/nixos-24.05";
     nixpkgs-2311.url = "github:nixos/nixpkgs/nixos-23.11";
-    nixpkgs-petsc.url =
-      "github:nixos/nixpkgs/27bd67e55fe09f9d68c77ff151c3e44c4f81f7de";
-    nixpkgs-kibitzr.url =
-      "github:nixos/nixpkgs/2f9fd351ec37f5d479556cd48be4ca340da59b8f";
+    nixpkgs-petsc.url = "github:nixos/nixpkgs/27bd67e55fe09f9d68c77ff151c3e44c4f81f7de";
+    nixpkgs-kibitzr.url = "github:nixos/nixpkgs/2f9fd351ec37f5d479556cd48be4ca340da59b8f";
     # TODO: Can be removed when tensorflow no longer broken
     #       https://github.com/NixOS/nixpkgs/blob/master/pkgs/development/python-modules/tensorflow/default.nix#L453
-    nixpkgs-gpt-engineer.url =
-      "github:nixos/nixpkgs/d680ded26da5cf104dd2735a51e88d2d8f487b4d";
-    nixpkgs-dfnworks.url =
-      "github:nixos/nixpkgs/5efc8ca954272c4376ac929f4c5ffefcc20551d5";
+    nixpkgs-gpt-engineer.url = "github:nixos/nixpkgs/d680ded26da5cf104dd2735a51e88d2d8f487b4d";
+    nixpkgs-dfnworks.url = "github:nixos/nixpkgs/5efc8ca954272c4376ac929f4c5ffefcc20551d5";
     # For use with pandox-xnos and friends
-    nixpkgs-pandoc = { url = "github:nixos/nixpkgs/22.05"; };
+    nixpkgs-pandoc = {
+      url = "github:nixos/nixpkgs/22.05";
+    };
     # Use flake-utils for utility functions
-    flake-utils = { url = "github:numtide/flake-utils"; };
+    flake-utils = {
+      url = "github:numtide/flake-utils";
+    };
     git-hooks = {
       url = "github:cachix/git-hooks.nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -157,13 +157,11 @@
     };
     # TODO: Check fix-attempt-gpt-engineer-fix branch for building newer versions
     gpt-engineer-src = {
-      url =
-        "github:AntonOsika/gpt-engineer/2a66dd57f6e32940b7e783ab3cd5fe6a19461d6b";
+      url = "github:AntonOsika/gpt-engineer/2a66dd57f6e32940b7e783ab3cd5fe6a19461d6b";
       flake = false;
     };
     frackit-src = {
-      url =
-        "git+https://git.iws.uni-stuttgart.de/tools/frackit?ref=feature/geodataframes-parser";
+      url = "git+https://git.iws.uni-stuttgart.de/tools/frackit?ref=feature/geodataframes-parser";
       flake = false;
     };
     dfnworks-src = {
@@ -208,15 +206,13 @@
     # };
     # TODO: Tracerepo build too old to support newer pandera src
     pandera-src = {
-      url =
-        "github:unionai-oss/pandera/850dcf8e59632d54bc9a6df47b9ca08afa089a27";
+      url = "github:unionai-oss/pandera/850dcf8e59632d54bc9a6df47b9ca08afa089a27";
       flake = false;
     };
     syncall-src = {
       # url = "github:bergercookier/syncall";
       # TODO: New versions use poetry_dynamic_versioning as build tool in pyproject.toml
-      url =
-        "git+https://github.com/bergercookie/syncall?rev=ccfeb306c5ceeee509b2aed4ae12da710e3f1b35&submodules=1";
+      url = "git+https://github.com/bergercookie/syncall?rev=ccfeb306c5ceeee509b2aed4ae12da710e3f1b35&submodules=1";
       flake = false;
     };
     bubop-src = {
@@ -230,11 +226,12 @@
     };
     powerlaw-src = {
       # TODO: Newer build with flit did not work. Take a look in 2024 if the package is added to nixpkgs
-      url =
-        "github:jeffalstott/powerlaw/6732699d790edbe27c2790bf22c3ef7355d2b07e";
+      url = "github:jeffalstott/powerlaw/6732699d790edbe27c2790bf22c3ef7355d2b07e";
       flake = false;
     };
-    fractopo = { url = "github:nialov/fractopo"; };
+    fractopo = {
+      url = "github:nialov/fractopo";
+    };
     python-ternary-src = {
       url = "github:marcharper/python-ternary";
       flake = false;
@@ -249,8 +246,7 @@
       flake = false;
     };
     dask-geopandas = {
-      url =
-        "github:geopandas/dask-geopandas/f6294629e53486cb500c22b44baf05a9bfa5ee05";
+      url = "github:geopandas/dask-geopandas/f6294629e53486cb500c22b44baf05a9bfa5ee05";
       flake = false;
     };
     blink-cmp-tmux-src = {
@@ -259,15 +255,19 @@
     };
   };
 
-  outputs = { self, ... }@inputs:
+  outputs =
+    { self, ... }@inputs:
 
     let
       inherit (inputs.nixpkgs) lib;
 
       localOverlay = import ./overlays inputs;
-      inputOverlay = _: prev:
-        let inherit (prev) system;
-        in {
+      inputOverlay =
+        _: prev:
+        let
+          inherit (prev) system;
+        in
+        {
 
           # Some custom packages or overrides to add/fix functionality
 
@@ -283,58 +283,67 @@
         inputs.fractopo.overlays.packageOverlay
       ];
 
-      flakePart = inputs.flake-parts.lib.mkFlake { inherit inputs; }
-        ({ config, inputs, flake-parts-lib, ... }:
-          let
-            inherit (flake-parts-lib) importApply;
-            flakeModules = let
-              custom-pre-commit-hooks =
-                importApply ./flakeModules/custom-pre-commit-hooks.nix {
-                  inherit inputs;
-                };
+      flakePart = inputs.flake-parts.lib.mkFlake { inherit inputs; } (
+        {
+          config,
+          inputs,
+          flake-parts-lib,
+          ...
+        }:
+        let
+          inherit (flake-parts-lib) importApply;
+          flakeModules =
+            let
+              custom-pre-commit-hooks = importApply ./flakeModules/custom-pre-commit-hooks.nix {
+                inherit inputs;
+              };
               poetryDevshell = importApply ./flakeModules/poetry-devshell.nix {
                 inherit inputs;
               };
               custom-git-hooks = custom-pre-commit-hooks;
-            in {
+            in
+            {
               inherit custom-pre-commit-hooks poetryDevshell custom-git-hooks;
             };
-          in {
-            systems = [ "x86_64-linux" ];
-            imports = [
-              flakeModules.custom-git-hooks
-              flakeModules.poetryDevshell
-              ./per-system.nix
-              inputs.actions-nix.flakeModules.default
-              ./nix/actions-nix.nix
-            ];
+        in
+        {
+          systems = [ "x86_64-linux" ];
+          imports = [
+            flakeModules.custom-git-hooks
+            flakeModules.poetryDevshell
+            ./per-system.nix
+            inputs.actions-nix.flakeModules.default
+            ./nix/actions-nix.nix
+          ];
 
-            flake = {
-              overlays = {
-                default = fullOverlay;
-                utils = lib.composeManyExtensions [
-                  (_: _: {
-                    # numtide/nix-filter library used for filtering local packages sources
-                    filter = inputs.nix-filter.lib;
-                  })
-                  localOverlay
-                ];
+          flake = {
+            overlays = {
+              default = fullOverlay;
+              utils = lib.composeManyExtensions [
+                (_: _: {
+                  # numtide/nix-filter library used for filtering local packages sources
+                  filter = inputs.nix-filter.lib;
+                })
+                localOverlay
+              ];
 
-              };
-              nixosModules = { };
-              templates = {
-                default = {
-                  path = ./templates/basic;
-                  description = ''
-                    A flake using nix-extra overlay with flake-parts.
-                  '';
-                };
-              };
-              inherit flakeModules;
-              flakePartsConfig = config;
             };
+            nixosModules = { };
+            templates = {
+              default = {
+                path = ./templates/basic;
+                description = ''
+                  A flake using nix-extra overlay with flake-parts.
+                '';
+              };
+            };
+            inherit flakeModules;
+            flakePartsConfig = config;
+          };
 
-          });
+        }
+      );
 
-    in lib.foldl' lib.recursiveUpdate { } [ flakePart ];
+    in
+    lib.foldl' lib.recursiveUpdate { } [ flakePart ];
 }

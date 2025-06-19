@@ -1,4 +1,9 @@
-{ inputs, lib, buildGoModule, jq }:
+{
+  inputs,
+  lib,
+  buildGoModule,
+  jq,
+}:
 
 buildGoModule {
   pname = "grok";
@@ -14,7 +19,10 @@ buildGoModule {
 
   vendorHash = "sha256-AEZzHNHSkAF1GG9PXh92oMQMtLUeAXbXxjGg0v7K/u8=";
 
-  ldflags = [ "-s" "-w" ];
+  ldflags = [
+    "-s"
+    "-w"
+  ];
 
   installCheckPhase = ''
     $out/bin/grok --help > /dev/null
@@ -23,8 +31,7 @@ buildGoModule {
   '';
 
   meta = with lib; {
-    description =
-      "A tool for interactive conversation with your own documents and code -- for design, research, and rapid learning.  Uses OpenAI API services for backend";
+    description = "A tool for interactive conversation with your own documents and code -- for design, research, and rapid learning.  Uses OpenAI API services for backend";
     homepage = "https://github.com/stevegt/grokker";
     license = licenses.gpl3Only;
     maintainers = with maintainers; [ nialov ];

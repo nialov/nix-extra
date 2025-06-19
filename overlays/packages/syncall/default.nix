@@ -1,4 +1,8 @@
-{ inputs, lib, python3 }:
+{
+  inputs,
+  lib,
+  python3,
+}:
 
 python3.pkgs.buildPythonApplication {
   pname = "syncall";
@@ -24,7 +28,12 @@ python3.pkgs.buildPythonApplication {
     python3.pkgs.setuptools
   ];
 
-  pythonRelaxDeps = [ "pyyaml" "bidict" "bubop" "loguru" ];
+  pythonRelaxDeps = [
+    "pyyaml"
+    "bidict"
+    "bubop"
+    "loguru"
+  ];
   propagatedBuildInputs = with python3.pkgs; [
     pyyaml
     bidict
@@ -50,14 +59,16 @@ python3.pkgs.buildPythonApplication {
   checkInputs = with python3.pkgs; [ pytestCheckHook ];
 
   # These do some weird file attribute/filesystem stuff
-  disabledTests =
-    [ "test_filesystem_file" "test_filesystem_side" "test_filesystem_gkeep" ];
+  disabledTests = [
+    "test_filesystem_file"
+    "test_filesystem_side"
+    "test_filesystem_gkeep"
+  ];
 
   pythonImportsCheck = [ "syncall" ];
 
   meta = with lib; {
-    description =
-      "Bi-directional synchronization between services such as Taskwarrior, Google Calendar, Notion, Asana, and more";
+    description = "Bi-directional synchronization between services such as Taskwarrior, Google Calendar, Notion, Asana, and more";
     homepage = "https://github.com/bergercookie/syncall";
     license = licenses.mit;
     maintainers = with maintainers; [ nialov ];

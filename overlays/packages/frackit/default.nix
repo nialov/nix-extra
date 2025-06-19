@@ -1,5 +1,15 @@
-{ inputs, lib, stdenv, cmake, python3Packages, opencascade-occt, doxygen
-, graphviz-nox, fontconfig, ... }:
+{
+  inputs,
+  lib,
+  stdenv,
+  cmake,
+  python3Packages,
+  opencascade-occt,
+  doxygen,
+  graphviz-nox,
+  fontconfig,
+  ...
+}:
 
 let
 
@@ -22,8 +32,14 @@ let
 
     nativeBuildInputs = [ cmake ];
     buildInputs = [
-      (python3Packages.python.withPackages
-        (p: with p; [ pybind11 wheel pip setuptools ]))
+      (python3Packages.python.withPackages (
+        p: with p; [
+          pybind11
+          wheel
+          pip
+          setuptools
+        ]
+      ))
       opencascade-occt
       doxygen
       graphviz-nox
@@ -57,7 +73,10 @@ let
       popd
     '';
 
-    outputs = [ "out" "doc" ];
+    outputs = [
+      "out"
+      "doc"
+    ];
 
     meta = with lib; {
       description = "";
@@ -67,4 +86,5 @@ let
     };
   };
 
-in self
+in
+self

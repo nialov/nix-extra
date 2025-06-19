@@ -1,4 +1,10 @@
-{ lib, buildPythonPackage, fetchPypi, python, sphinx }:
+{
+  lib,
+  buildPythonPackage,
+  fetchPypi,
+  python,
+  sphinx,
+}:
 
 buildPythonPackage rec {
   pname = "sphinx-design";
@@ -19,8 +25,7 @@ buildPythonPackage rec {
   '';
 
   meta = with lib; {
-    description =
-      "A sphinx extension for designing beautiful, view size responsive web components.";
+    description = "A sphinx extension for designing beautiful, view size responsive web components.";
     homepage = "https://github.com/executablebooks/sphinx-design";
     maintainers = with maintainers; [ nialov ];
     license = licenses.mit;

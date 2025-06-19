@@ -1,36 +1,45 @@
-{ inputs, ... }: {
+{ inputs, ... }:
+{
   systems = [ "x86_64-linux" ];
   imports = [ inputs.git-hooks.flakeModule ];
 
   flake = { };
 
-  perSystem = { config, pkgs, lib, ... }:
+  perSystem =
+    {
+      config,
+      pkgs,
+      lib,
+      ...
+    }:
 
     {
-      options = let
+      options =
+        let
 
-        inherit (lib) mkOption types;
-        inherit (config.pre-commit.settings) hookModule;
+          inherit (lib) mkOption types;
+          inherit (config.pre-commit.settings) hookModule;
 
-      in {
-        pre-commit.settings.hooks = {
-          detect-secrets = mkOption {
-            description = "detect-secrets hook";
-            type = types.submodule {
-              imports = [ hookModule ];
-              options.settings = {
-                baselinePath = mkOption {
-                  type = types.str;
-                  description = "Path to the baseline file.";
-                  default = ".secrets.baseline";
+        in
+        {
+          pre-commit.settings.hooks = {
+            detect-secrets = mkOption {
+              description = "detect-secrets hook";
+              type = types.submodule {
+                imports = [ hookModule ];
+                options.settings = {
+                  baselinePath = mkOption {
+                    type = types.str;
+                    description = "Path to the baseline file.";
+                    default = ".secrets.baseline";
+                  };
                 };
               };
             };
+
           };
 
         };
-
-      };
       config =
 
         {
@@ -44,10 +53,16 @@
                     inherit (config.pre-commit.settings) hooks;
                     # let pre-commit-fish-src = inputs.pre-commit-fish-src.outPath;
                     # in
-                  in {
+                  in
+                  {
                     isort = {
                       enable = lib.mkDefault false;
-                      raw = { args = lib.mkDefault [ "--profile" "black" ]; };
+                      raw = {
+                        args = lib.mkDefault [
+                          "--profile"
+                          "black"
+                        ];
+                      };
                     };
                     detect-secrets = {
                       name = "detect-secrets";
@@ -55,9 +70,11 @@
                       files = ".*";
                       package = pkgs.python3Packages.detect-secrets;
                       enable = lib.mkDefault false;
-                      entry = let
-                        inherit (hooks.detect-secrets.settings) baselinePath;
-                      in "${pkgs.python3Packages.detect-secrets}/bin/detect-secrets-hook --baseline ${baselinePath}";
+                      entry =
+                        let
+                          inherit (hooks.detect-secrets.settings) baselinePath;
+                        in
+                        "${pkgs.python3Packages.detect-secrets}/bin/detect-secrets-hook --baseline ${baselinePath}";
                     };
                     fish-lint = {
                       name = "fish-lint";
@@ -90,16 +107,14 @@
                       name = "rstcheck";
                       description = "Check rst files with rstcheck";
                       package = pkgs.rstcheck;
-                      entry =
-                        "${hooks.rstcheck.package}/bin/rstcheck --ignore-directives automodule";
+                      entry = "${hooks.rstcheck.package}/bin/rstcheck --ignore-directives automodule";
                       files = "\\.(rst)$";
                     };
                     cogapp = {
                       name = "cogapp";
                       description = "Execute Python snippets in text files";
                       package = pkgs.python3Packages.cogapp;
-                      entry =
-                        "${hooks.cogapp.package}/bin/cog -e -r --check -c";
+                      entry = "${hooks.cogapp.package}/bin/cog -e -r --check -c";
                       pass_filenames = false;
                       always_run = true;
                     };
@@ -112,43 +127,53 @@
                     };
                     ruff = {
                       types = lib.mkForce [ "text" ];
-                      types_or = [ "python" "jupyter" ];
+                      types_or = [
+                        "python"
+                        "jupyter"
+                      ];
                     };
                     ruff-format = {
                       types = lib.mkForce [ "text" ];
-                      types_or = [ "python" "jupyter" ];
+                      types_or = [
+                        "python"
+                        "jupyter"
+                      ];
                     };
                     sqlfluff-lint = {
                       description = "Lint sql files with `SQLFluff`";
                       types = [ "sql" ];
                       package = pkgs.sqlfluff;
-                      entry = let
+                      entry =
+                        let
 
-                        cmdLine = lib.cli.toGNUCommandLineShell { } {
-                          processes = 0;
-                          disable-progress-bar = true;
-                        };
+                          cmdLine = lib.cli.toGNUCommandLineShell { } {
+                            processes = 0;
+                            disable-progress-bar = true;
+                          };
 
-                      in ''
-                        ${hooks.sqlfluff-lint.package}/bin/sqlfluff lint ${cmdLine}
-                      '';
+                        in
+                        ''
+                          ${hooks.sqlfluff-lint.package}/bin/sqlfluff lint ${cmdLine}
+                        '';
                     };
                     sqlfluff-fix = {
                       description = "Fix sql lint errors with `SQLFluff`";
                       types = [ "sql" ];
                       package = pkgs.sqlfluff;
-                      entry = let
+                      entry =
+                        let
 
-                        cmdLine = lib.cli.toGNUCommandLineShell { } {
-                          show-lint-violations = true;
-                          processes = 0;
-                          disable-progress-bar = true;
-                          force = true;
-                        };
+                          cmdLine = lib.cli.toGNUCommandLineShell { } {
+                            show-lint-violations = true;
+                            processes = 0;
+                            disable-progress-bar = true;
+                            force = true;
+                          };
 
-                      in ''
-                        ${hooks.sqlfluff-fix.package}/bin/sqlfluff fix ${cmdLine}
-                      '';
+                        in
+                        ''
+                          ${hooks.sqlfluff-fix.package}/bin/sqlfluff fix ${cmdLine}
+                        '';
                       require_serial = true;
                     };
                     no-pushes-to-branch = {
@@ -156,9 +181,17 @@
                       description = "No pushes to branch (default)";
                       package = pkgs.writeShellApplication {
                         name = "no-pushes-to-branch";
-                        runtimeInputs = [ pkgs.git pkgs.gnused pkgs.procps ];
+                        runtimeInputs = [
+                          pkgs.git
+                          pkgs.gnused
+                          pkgs.procps
+                        ];
                         # TODO: Fix script using error messages
-                        excludeShellChecks = [ "SC2016" "SC2086" "SC2027" ];
+                        excludeShellChecks = [
+                          "SC2016"
+                          "SC2086"
+                          "SC2027"
+                        ];
                         text = ''
                           # @link https://gist.github.com/mattscilipoti/8424018
                           #

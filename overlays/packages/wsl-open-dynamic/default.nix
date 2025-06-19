@@ -1,6 +1,9 @@
-{ stdenv, python3,
-# installShellFiles,
-wsl-open }:
+{
+  stdenv,
+  python3,
+  # installShellFiles,
+  wsl-open,
+}:
 stdenv.mkDerivation {
   name = "wsl-open-dynamic";
   # nativeBuildInputs = [ installShellFiles ];

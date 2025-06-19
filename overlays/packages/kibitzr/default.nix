@@ -1,7 +1,34 @@
-{ inputs, buildPythonPackage, lib, pytestCheckHook, click, jinja2
-, beautifulsoup4, cachecontrol, defusedxml, entrypoints, lazy-object-proxy, lxml
-, python-telegram-bot, pytimeparse, pyyaml, requests, schedule, selenium, six
-, psutil, sh, pytest, pylint, mock, pytest-mock, freezegun, git, jq, twilio }:
+{
+  inputs,
+  buildPythonPackage,
+  lib,
+  pytestCheckHook,
+  click,
+  jinja2,
+  beautifulsoup4,
+  cachecontrol,
+  defusedxml,
+  entrypoints,
+  lazy-object-proxy,
+  lxml,
+  python-telegram-bot,
+  pytimeparse,
+  pyyaml,
+  requests,
+  schedule,
+  selenium,
+  six,
+  psutil,
+  sh,
+  pytest,
+  pylint,
+  mock,
+  pytest-mock,
+  freezegun,
+  git,
+  jq,
+  twilio,
+}:
 
 buildPythonPackage {
   pname = "kibitzr";
@@ -32,7 +59,10 @@ buildPythonPackage {
   # buildInputs = lib.optionals stdenv.hostPlatform.isLinux [ h3 ];
 
   # propagatedBuildInputs = [ click Jinja2 bs4 cachecontrol defusedxml entrypoints lazy-object-proxy lxml python-telegram-bot pytimeparse pyyaml requests schedule selenium six psutil ];
-  nativeBuildInputs = [ git jq ];
+  nativeBuildInputs = [
+    git
+    jq
+  ];
   propagatedBuildInputs = [
     click
     jinja2
@@ -54,9 +84,20 @@ buildPythonPackage {
     twilio
   ];
 
-  checkInputs = [ pytestCheckHook pytest pylint mock pytest-mock freezegun ];
+  checkInputs = [
+    pytestCheckHook
+    pytest
+    pylint
+    mock
+    pytest-mock
+    freezegun
+  ];
 
-  disabledTests = [ "test_scenario" "test_fill_form_sample" "test_jq_sample" ];
+  disabledTests = [
+    "test_scenario"
+    "test_fill_form_sample"
+    "test_jq_sample"
+  ];
   # The following prePatch replaces the h3lib compilation with using the h3 packaged in nixpkgs.
   #
   # - Remove the h3lib submodule.

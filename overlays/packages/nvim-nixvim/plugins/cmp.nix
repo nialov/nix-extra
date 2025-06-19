@@ -17,14 +17,18 @@
           { name = "nvim_lsp"; }
           {
             name = "luasnip";
-            option = { use_show_condition = true; };
+            option = {
+              use_show_condition = true;
+            };
           }
           { name = "cmp_pandoc"; }
           { name = "async_path"; }
           { name = "spell"; }
           {
             name = "buffer";
-            option = { get_bufnrs.__raw = "vim.api.nvim_list_bufs"; };
+            option = {
+              get_bufnrs.__raw = "vim.api.nvim_list_bufs";
+            };
           }
           # {
           #   name = "fuzzy_buffer";
@@ -96,8 +100,7 @@
           # '';
         };
         snippet = {
-          expand =
-            "function(args) require('luasnip').lsp_expand(args.body) end";
+          expand = "function(args) require('luasnip').lsp_expand(args.body) end";
         };
         # sorting.comparators = [
         # "require('cmp_fuzzy_buffer.compare')"
@@ -115,7 +118,11 @@
           max_view_entries = 7;
         };
         formatting = {
-          fields = [ "abbr" "menu" "kind" ];
+          fields = [
+            "abbr"
+            "menu"
+            "kind"
+          ];
           format.__raw = ''
             function(entry, item)
                     -- Define menu shorthand for different completion sources.
@@ -169,7 +176,7 @@
         "/" = {
           mapping.__raw = "cmp.mapping.preset.cmdline()";
           completion.keyword_length = 2;
-          sources = [{ name = "buffer"; }];
+          sources = [ { name = "buffer"; } ];
         };
         ":" = {
           mapping.__raw = "cmp.mapping.preset.cmdline()";
@@ -178,7 +185,12 @@
             { name = "path"; }
             {
               name = "cmdline";
-              option = { ignore_cmds = [ "Man" "!" ]; };
+              option = {
+                ignore_cmds = [
+                  "Man"
+                  "!"
+                ];
+              };
             }
           ];
         };
@@ -197,6 +209,8 @@
         notify = true;
       };
     };
-    cmp-emoji = { enable = true; };
+    cmp-emoji = {
+      enable = true;
+    };
   };
 }

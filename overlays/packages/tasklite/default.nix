@@ -1,10 +1,39 @@
-{ inputs, lib, writeText, mkDerivation, aeson, ansi-terminal, beam-core
-, beam-migrate, beam-sqlite, cassava, colour, file-embed, generic-random
-, githash, hourglass, hsemail, hspec, huzzy, iso8601-duration
-, optparse-applicative, portable-lines, pretty-simple, prettyprinter
-, prettyprinter-ansi-terminal, protolude, quickcheck-instances, read-editor
-, simple-sql-parser, sqlite-simple, temporary, ulid, unordered-containers
-, vector, yaml }:
+{
+  inputs,
+  lib,
+  writeText,
+  mkDerivation,
+  aeson,
+  ansi-terminal,
+  beam-core,
+  beam-migrate,
+  beam-sqlite,
+  cassava,
+  colour,
+  file-embed,
+  generic-random,
+  githash,
+  hourglass,
+  hsemail,
+  hspec,
+  huzzy,
+  iso8601-duration,
+  optparse-applicative,
+  portable-lines,
+  pretty-simple,
+  prettyprinter,
+  prettyprinter-ansi-terminal,
+  protolude,
+  quickcheck-instances,
+  read-editor,
+  simple-sql-parser,
+  sqlite-simple,
+  temporary,
+  ulid,
+  unordered-containers,
+  vector,
+  yaml,
+}:
 
 let
   versionSlugPatch = ''
@@ -39,7 +68,8 @@ let
   '';
   versionSlugPatchFile = writeText "versionSlugPatch.patch" versionSlugPatch;
 
-in mkDerivation {
+in
+mkDerivation {
   pname = "tasklite-core";
   version = inputs.tasklite-src.shortRev;
   isLibrary = false;

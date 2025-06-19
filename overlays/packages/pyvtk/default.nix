@@ -1,4 +1,12 @@
-{ inputs, lib, buildPythonPackage, six, numpy, pytestCheckHook, pytest }:
+{
+  inputs,
+  lib,
+  buildPythonPackage,
+  six,
+  numpy,
+  pytestCheckHook,
+  pytest,
+}:
 
 buildPythonPackage rec {
   pname = "pyvtk";
@@ -16,9 +24,15 @@ buildPythonPackage rec {
       --replace 'output_dir = "output"' 'output_dir = "test/output"'
   '';
 
-  propagatedBuildInputs = [ six numpy ];
+  propagatedBuildInputs = [
+    six
+    numpy
+  ];
 
-  checkInputs = [ pytestCheckHook pytest ];
+  checkInputs = [
+    pytestCheckHook
+    pytest
+  ];
   preCheck = ''
     mkdir -p test/output
   '';

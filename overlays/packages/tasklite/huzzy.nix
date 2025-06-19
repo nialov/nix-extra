@@ -1,5 +1,14 @@
-{ inputs, lib, mkDerivation, runCommand, base, protolude, easyplot
-, monoid-subclasses, HUnit }:
+{
+  inputs,
+  lib,
+  mkDerivation,
+  runCommand,
+  base,
+  protolude,
+  easyplot,
+  monoid-subclasses,
+  HUnit,
+}:
 
 mkDerivation {
   # pname = "tasklite-core";
@@ -10,7 +19,13 @@ mkDerivation {
   pname = "huzzy";
   version = inputs.tasklite-src.shortRev;
   # sha256 = "0i8h380nszd7hk7x6l7qx0ri6k12551li2m77gspzakcf47l6ldp";
-  libraryHaskellDepends = [ base easyplot monoid-subclasses protolude HUnit ];
+  libraryHaskellDepends = [
+    base
+    easyplot
+    monoid-subclasses
+    protolude
+    HUnit
+  ];
   # base
   # , monoid-subclasses
   # , protolude
@@ -19,11 +34,13 @@ mkDerivation {
   hydraPlatforms = lib.platforms.none;
   # executableHaskellDepends = [ ];
 
-  src = let
+  src =
+    let
 
-    fullSrc = inputs.tasklite-src;
-  in runCommand "huzzy" { } ''
-    cp -r ${fullSrc}/huzzy $out
-  '';
+      fullSrc = inputs.tasklite-src;
+    in
+    runCommand "huzzy" { } ''
+      cp -r ${fullSrc}/huzzy $out
+    '';
 
 }

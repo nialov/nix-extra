@@ -1,7 +1,9 @@
 { pkgs, ... }:
-let inherit (pkgs) lib;
+let
+  inherit (pkgs) lib;
 
-in {
+in
+{
   imports = [
     ./plugins/gp.nix
     # ./plugins/cmp.nix
@@ -134,7 +136,11 @@ in {
     #   pattern = [ "*" ];
     # }
     {
-      event = [ "VimResized" "WinEnter" "FocusGained" ];
+      event = [
+        "VimResized"
+        "WinEnter"
+        "FocusGained"
+      ];
       pattern = [ "*" ];
       command = "wincmd =";
     }
@@ -227,7 +233,9 @@ in {
 
   };
   files = {
-    "after/ftplugin/fish.lua" = { localOpts.commentstring = "#%s"; };
+    "after/ftplugin/fish.lua" = {
+      localOpts.commentstring = "#%s";
+    };
     "after/ftplugin/nix.lua" = { };
     "after/ftplugin/pandoc.lua" = {
       localOpts = {
@@ -306,7 +314,9 @@ in {
     };
 
   };
-  extraFiles = { "lua/nialov_utils.lua".source = ./lua/nialov_utils.lua; };
+  extraFiles = {
+    "lua/nialov_utils.lua".source = ./lua/nialov_utils.lua;
+  };
   extraConfigLua = ''
     vim.opt.diffopt:append("vertical")
     -- Resize window upon entering. VimResized does not seem to work?
@@ -395,7 +405,10 @@ in {
                     end
         		end
       '';
-      mode = [ "i" "s" ];
+      mode = [
+        "i"
+        "s"
+      ];
       options.desc = "Jump backwards in snippet";
     }
     {
@@ -453,9 +466,10 @@ in {
   ];
   extraPackages = lib.attrValues {
     inherit (pkgs)
-      ripgrep pretty-task
+      ripgrep
+      pretty-task
       # ctags-lsp
-    ;
+      ;
     # TODO: pandoc 3.6 includes rst regressions
     inherit (pkgs.release2411Packages) pandoc;
   };
@@ -474,7 +488,9 @@ in {
     };
   };
   diagnostic.settings = {
-    virtual_lines = { current_line = true; };
+    virtual_lines = {
+      current_line = true;
+    };
     virtual_text = false;
     update_in_insert = false;
   };
@@ -510,7 +526,11 @@ in {
       settings = {
         highlight = {
           enable = true;
-          disable = [ "fugitive" "qf" "help" ];
+          disable = [
+            "fugitive"
+            "qf"
+            "help"
+          ];
         };
         incremental_selection = {
           enable = true;
@@ -545,7 +565,9 @@ in {
 
       # };
     };
-    treesitter-textobjects = { enable = true; };
+    treesitter-textobjects = {
+      enable = true;
+    };
 
     notify = {
       enable = false;
@@ -569,7 +591,10 @@ in {
         "<C-b>" = "buffers";
         "<C-x><C-f>" = {
           action = "complete_path";
-          mode = [ "i" "s" ];
+          mode = [
+            "i"
+            "s"
+          ];
           options = {
             desc = "Fzf-Lua path completion";
             silent = true;
@@ -606,17 +631,28 @@ in {
       enable = true;
       settings = {
         globalstatus = false;
-        extensions = [ "fzf" "quickfix" "fugitive" "oil" ];
+        extensions = [
+          "fzf"
+          "quickfix"
+          "fugitive"
+          "oil"
+        ];
         sections = {
-          lualine_b = [ "branch" "diff" "diagnostics" ];
+          lualine_b = [
+            "branch"
+            "diff"
+            "diagnostics"
+          ];
           lualine_a = [ "mode" ];
-          lualine_c = [{
-            __unkeyed-1 = "filename";
-            file_status = true;
-            newfile_status = true;
-            path = 1;
-            shorting_target = 60;
-          }];
+          lualine_c = [
+            {
+              __unkeyed-1 = "filename";
+              file_status = true;
+              newfile_status = true;
+              path = 1;
+              shorting_target = 60;
+            }
+          ];
 
           lualine_x = [
             # {
@@ -669,11 +705,13 @@ in {
           lualine_z = [ "location" ];
         };
         inactive_sections = {
-          lualine_c = [{
-            __unkeyed-1 = "filename";
-            # Absolute path, with tilde as the home directory
-            path = 3;
-          }];
+          lualine_c = [
+            {
+              __unkeyed-1 = "filename";
+              # Absolute path, with tilde as the home directory
+              path = 3;
+            }
+          ];
           lualine_z = [ "location" ];
         };
       };
@@ -863,7 +901,9 @@ in {
           };
           # onAttach.function = "\n";
         };
-        pylyzer = { enable = false; };
+        pylyzer = {
+          enable = false;
+        };
 
         pylsp = {
           enable = false;
@@ -898,7 +938,9 @@ in {
               settings = {
                 logLevel = "debug";
                 configurationPreference = "filesystemFirst";
-                lint = { enable = true; };
+                lint = {
+                  enable = true;
+                };
               };
             };
 
@@ -912,9 +954,17 @@ in {
               autoRequire = false;
               callSnippet = "Replace";
             };
-            telemetry = { enable = false; };
+            telemetry = {
+              enable = false;
+            };
             diagnostics = {
-              globals = [ "vim" "describe" "before_each" "it" "assert" ];
+              globals = [
+                "vim"
+                "describe"
+                "before_each"
+                "it"
+                "assert"
+              ];
             };
           };
 
@@ -922,12 +972,16 @@ in {
         # TODO: vimls.enable = true;
         yamlls = {
           enable = true;
-          settings = { keyOrdering = false; };
+          settings = {
+            keyOrdering = false;
+          };
         };
         nil_ls = {
           enable = true;
           # https://github.com/oxalica/nil/blob/main/docs/configuration.md
-          extraOptions.settings = { nil.nix.flake.autoArchive = false; };
+          extraOptions.settings = {
+            nil.nix.flake.autoArchive = false;
+          };
         };
         texlab = {
           enable = true;
@@ -952,7 +1006,7 @@ in {
     };
     luasnip = {
       enable = true;
-      fromLua = [{ paths = ./snippets; }];
+      fromLua = [ { paths = ./snippets; } ];
     };
     oil = {
       enable = true;
@@ -964,7 +1018,9 @@ in {
     none-ls = {
       enable = true;
       enableLspFormat = false;
-      settings = { update_in_insert = false; };
+      settings = {
+        update_in_insert = false;
+      };
       # TODO: I do not want to format every filetype automatically
       # onAttach = "";
       sources = {
@@ -972,7 +1028,9 @@ in {
 
           mypy = {
             enable = true;
-            settings = { extra_args = [ "--check-untyped-defs" ]; };
+            settings = {
+              extra_args = [ "--check-untyped-defs" ];
+            };
 
           };
           statix.enable = true;
@@ -981,12 +1039,20 @@ in {
           selene.enable = true;
           rstcheck = {
             enable = true;
-            settings = { extra_args = [ "--ignore-directives" "mermaid" ]; };
+            settings = {
+              extra_args = [
+                "--ignore-directives"
+                "mermaid"
+              ];
+            };
           };
           proselint = {
             enable = true;
             settings = {
-              extra_filetypes = [ "rst" "pandoc" ];
+              extra_filetypes = [
+                "rst"
+                "pandoc"
+              ];
               timeout = 2000;
               # method.__raw = "require('null-ls').methods.DIAGNOSTICS_ON_SAVE";
             };
@@ -1011,13 +1077,20 @@ in {
           # };
           prettier = {
             enable = true;
-            settings = { disabled_filetypes = [ "pandoc" "markdown" ]; };
+            settings = {
+              disabled_filetypes = [
+                "pandoc"
+                "markdown"
+              ];
+            };
 
           };
           shfmt.enable = true;
 
         };
-        code_actions = { gitsigns.enable = true; };
+        code_actions = {
+          gitsigns.enable = true;
+        };
       };
     };
     nvim-autopairs = {
@@ -1037,7 +1110,9 @@ in {
       keymaps = {
         "<leader>ts" = {
           action = "symbols";
-          options = { desc = "Telescope emojis and symbols"; };
+          options = {
+            desc = "Telescope emojis and symbols";
+          };
         };
       };
     };
@@ -1093,7 +1168,11 @@ in {
     };
     chatgpt = {
       enable = false;
-      settings = { keymaps = { submit = "<C-s>"; }; };
+      settings = {
+        keymaps = {
+          submit = "<C-s>";
+        };
+      };
 
     };
     fugitive.enable = true;
@@ -1101,9 +1180,15 @@ in {
     rainbow-delimiters.enable = true;
     vim-surround.enable = true;
     commentary.enable = true;
-    gitblame = { enable = true; };
-    gitsigns = { enable = true; };
-    web-devicons = { enable = true; };
+    gitblame = {
+      enable = true;
+    };
+    gitsigns = {
+      enable = true;
+    };
+    web-devicons = {
+      enable = true;
+    };
     # https://github.com/nomnivore/ollama.nvim/tree/main
     # https://nix-community.github.io/nixvim/plugins/ollama/index.html
     ollama = {
@@ -1116,83 +1201,86 @@ in {
 
   };
 
-  extraPlugins = let
-    noConfigPlugins = with pkgs.vimPlugins; [
-      neodev-nvim
-      vim-rooter
-      vim-numbertoggle
-      vim-eunuch
-      vim-repeat
-      vim-abolish
-      nui-nvim
-      vim-pandoc-syntax
-      telescope-symbols-nvim
+  extraPlugins =
+    let
+      noConfigPlugins = with pkgs.vimPlugins; [
+        neodev-nvim
+        vim-rooter
+        vim-numbertoggle
+        vim-eunuch
+        vim-repeat
+        vim-abolish
+        nui-nvim
+        vim-pandoc-syntax
+        telescope-symbols-nvim
+      ];
+
+    in
+    noConfigPlugins
+    ++ [
+
+      {
+        plugin = pkgs.vimPlugins.vim-dispatch;
+        config = ''
+          let g:dispatch_no_tmux_make = 1
+          let g:dispatch_no_tmux_start = 1
+        '';
+      }
+      {
+        plugin = pkgs.vimPlugins.tmux-nvim;
+        config = ''
+          lua << EOF
+          require("tmux").setup({
+          	-- overwrite default configuration
+          	-- here, e.g. to enable default bindings
+          	copy_sync = {
+          		-- enables copy sync and overwrites all register actions to
+          		-- sync registers *, +, unnamed, and 0 till 9 from tmux in advance
+          		enable = true,
+          		redirect_to_clipboard = true,
+          		sync_clipboard = true,
+          		-- Stop SyncRegisters slowdown (maybe)
+          		sync_registers = true,
+          		register_offset = 9,
+          		sync_unnamed = true,
+          		sync_deletes = true,
+          	},
+          	navigation = {
+          		-- enables default keybindings (C-hjkl) for normal mode
+          		enable_default_keybindings = false,
+          	},
+          	resize = {
+          		-- enables default keybindings (A-hjkl) for normal mode
+          		enable_default_keybindings = false,
+          	},
+          })
+          EOF
+        '';
+      }
+      {
+        plugin = pkgs.vimPlugins.vim-pandoc;
+        config = ''
+          let g:pandoc#completion#bib#mode = 'fallback'
+          let g:pandoc#syntax#conceal#use = 0
+          let g:pandoc#folding#level = 4
+          let g:pandoc#hypertext#use_default_mappings = 0
+          let g:pandoc#keyboard#use_default_mappings = 0
+          let g:pandoc#keyboard#display_motions = 0
+          augroup PandocAugroup
+              autocmd!
+              autocmd BufEnter *.md setlocal omnifunc=pandoc#completion#Complete
+          augroup END
+        '';
+      }
+      # {
+      #   plugin = pkgs.vimPlugins.ctags-lsp-nvim;
+      #   config = ''
+      #     lua << EOF
+      #     require("lspconfig").ctags_lsp.setup({ })
+      #     EOF
+      #   '';
+      # }
+
     ];
-
-  in noConfigPlugins ++ [
-
-    {
-      plugin = pkgs.vimPlugins.vim-dispatch;
-      config = ''
-        let g:dispatch_no_tmux_make = 1
-        let g:dispatch_no_tmux_start = 1
-      '';
-    }
-    {
-      plugin = pkgs.vimPlugins.tmux-nvim;
-      config = ''
-        lua << EOF
-        require("tmux").setup({
-        	-- overwrite default configuration
-        	-- here, e.g. to enable default bindings
-        	copy_sync = {
-        		-- enables copy sync and overwrites all register actions to
-        		-- sync registers *, +, unnamed, and 0 till 9 from tmux in advance
-        		enable = true,
-        		redirect_to_clipboard = true,
-        		sync_clipboard = true,
-        		-- Stop SyncRegisters slowdown (maybe)
-        		sync_registers = true,
-        		register_offset = 9,
-        		sync_unnamed = true,
-        		sync_deletes = true,
-        	},
-        	navigation = {
-        		-- enables default keybindings (C-hjkl) for normal mode
-        		enable_default_keybindings = false,
-        	},
-        	resize = {
-        		-- enables default keybindings (A-hjkl) for normal mode
-        		enable_default_keybindings = false,
-        	},
-        })
-        EOF
-      '';
-    }
-    {
-      plugin = pkgs.vimPlugins.vim-pandoc;
-      config = ''
-        let g:pandoc#completion#bib#mode = 'fallback'
-        let g:pandoc#syntax#conceal#use = 0
-        let g:pandoc#folding#level = 4
-        let g:pandoc#hypertext#use_default_mappings = 0
-        let g:pandoc#keyboard#use_default_mappings = 0
-        let g:pandoc#keyboard#display_motions = 0
-        augroup PandocAugroup
-            autocmd!
-            autocmd BufEnter *.md setlocal omnifunc=pandoc#completion#Complete
-        augroup END
-      '';
-    }
-    # {
-    #   plugin = pkgs.vimPlugins.ctags-lsp-nvim;
-    #   config = ''
-    #     lua << EOF
-    #     require("lspconfig").ctags_lsp.setup({ })
-    #     EOF
-    #   '';
-    # }
-
-  ];
 
 }

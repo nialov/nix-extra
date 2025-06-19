@@ -11,7 +11,9 @@
     workflows =
 
       let
-        checkoutStep = { uses = "actions/checkout@v4"; };
+        checkoutStep = {
+          uses = "actions/checkout@v4";
+        };
         installNixStep = {
           uses = "DeterminateSystems/nix-installer-action@v9";
         };
@@ -51,12 +53,17 @@
           run = "nix run .#nix-fast-build-ci";
         };
 
-      in {
+      in
+      {
         ".github/workflows/main.yaml" = {
 
           jobs = {
             "nix-flake-check-no-build" = {
-              steps = [ checkoutStep installNixStep nixFlakeCheckNoBuildStep ];
+              steps = [
+                checkoutStep
+                installNixStep
+                nixFlakeCheckNoBuildStep
+              ];
             };
             "nix-fast-build" = {
               steps = [

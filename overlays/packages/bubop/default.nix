@@ -1,5 +1,16 @@
-{ inputs, lib, buildPythonPackage, poetry-core, loguru, python-dateutil, pyyaml
-, tqdm, click, pytestCheckHook, pyfakefs }:
+{
+  inputs,
+  lib,
+  buildPythonPackage,
+  poetry-core,
+  loguru,
+  python-dateutil,
+  pyyaml,
+  tqdm,
+  click,
+  pytestCheckHook,
+  pyfakefs,
+}:
 
 buildPythonPackage rec {
   pname = "bubop";
@@ -17,17 +28,25 @@ buildPythonPackage rec {
 
   nativeBuildInputs = [ poetry-core ];
 
-  propagatedBuildInputs = [ loguru python-dateutil pyyaml tqdm click ];
+  propagatedBuildInputs = [
+    loguru
+    python-dateutil
+    pyyaml
+    tqdm
+    click
+  ];
 
-  checkInputs = [ pytestCheckHook pyfakefs ];
+  checkInputs = [
+    pytestCheckHook
+    pyfakefs
+  ];
 
   pythonImportsCheck = [ "bubop" ];
 
   meta = with lib; {
     description = "Bergercookie's Useful Bits Of Python";
     homepage = "https://github.com/bergercookie/bubop";
-    changelog =
-      "https://github.com/bergercookie/bubop/blob/${src.rev}/CHANGELOG.md";
+    changelog = "https://github.com/bergercookie/bubop/blob/${src.rev}/CHANGELOG.md";
     license = licenses.mit;
     maintainers = with maintainers; [ nialov ];
   };

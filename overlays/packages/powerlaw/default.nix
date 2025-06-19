@@ -1,5 +1,14 @@
-{ inputs, lib, buildPythonPackage, scipy, matplotlib, numpy, mpmath
-, pytestCheckHook, pytest }:
+{
+  inputs,
+  lib,
+  buildPythonPackage,
+  scipy,
+  matplotlib,
+  numpy,
+  mpmath,
+  pytestCheckHook,
+  pytest,
+}:
 
 buildPythonPackage {
   pname = "powerlaw";
@@ -15,22 +24,29 @@ buildPythonPackage {
   #   sha256 = "sha256-x3jXk+xOQpIeEGlzYqNwuZNPpkesF0IOX8gUhhwHk5Q=";
   # };
 
-  propagatedBuildInputs = [ scipy numpy matplotlib mpmath ];
+  propagatedBuildInputs = [
+    scipy
+    numpy
+    matplotlib
+    mpmath
+  ];
 
   postPatch = ''
     substituteInPlace testing/test_powerlaw.py \
         --replace "reference_data/" "testing/reference_data/"
   '';
 
-  checkInputs = [ pytest pytestCheckHook ];
+  checkInputs = [
+    pytest
+    pytestCheckHook
+  ];
 
   pytestFlagsArray = [ "testing" ];
 
   pythonImportsCheck = [ "powerlaw" ];
 
   meta = with lib; {
-    description =
-      "Toolbox for testing if a probability distribution fits a power law";
+    description = "Toolbox for testing if a probability distribution fits a power law";
     homepage = "http://www.github.com/jeffalstott/powerlaw";
     license = licenses.mit;
     maintainers = with maintainers; [ nialov ];
