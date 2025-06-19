@@ -94,7 +94,7 @@
           check.enable = true;
           settings = {
             hooks = {
-              nixfmt.enable = true;
+              nixfmt-rfc-style.enable = true;
               ruff.enable = true;
               ruff-format = { enable = true; };
               shellcheck.enable = true;
