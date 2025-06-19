@@ -1,5 +1,12 @@
-{ inputs, lib, buildPythonPackage, pytestCheckHook, doit, poetry-core
-, pytest-regressions }:
+{
+  inputs,
+  lib,
+  buildPythonPackage,
+  pytestCheckHook,
+  doit,
+  poetry-core,
+  pytest-regressions,
+}:
 
 buildPythonPackage {
   pname = "doit-ext";
@@ -18,7 +25,10 @@ buildPythonPackage {
   nativeBuildInputs = [ poetry-core ];
   propagatedBuildInputs = [ doit ];
 
-  checkInputs = [ pytestCheckHook pytest-regressions ];
+  checkInputs = [
+    pytestCheckHook
+    pytest-regressions
+  ];
 
   pythonImportsCheck = [ "doit_ext" ];
 

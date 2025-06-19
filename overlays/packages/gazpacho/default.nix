@@ -1,4 +1,10 @@
-{ inputs, lib, buildPythonPackage, pytestCheckHook, pytest }:
+{
+  inputs,
+  lib,
+  buildPythonPackage,
+  pytestCheckHook,
+  pytest,
+}:
 
 buildPythonPackage {
   pname = "gazpacho";
@@ -12,9 +18,15 @@ buildPythonPackage {
   #   sha256 = "sha256-UXOpTTiny5drJoD9cICcYD0SggEFfnyXWymiinS+IWE=";
   # };
 
-  checkInputs = [ pytestCheckHook pytest ];
+  checkInputs = [
+    pytestCheckHook
+    pytest
+  ];
 
-  disabledTests = [ "test_get" "test_soup" ];
+  disabledTests = [
+    "test_get"
+    "test_soup"
+  ];
 
   # buildInputs = [ sphinx ];
   # propagatedBuildInputs = [ gazpacho rich ];

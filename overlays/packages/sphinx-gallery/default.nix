@@ -1,6 +1,22 @@
-{ inputs, lib, buildPythonPackage, sphinx, pytestCheckHook, pytest, numpy
-, matplotlib, joblib, pillow, seaborn, statsmodels, plotly, graphviz, absl-py
-, lxml, setuptools-scm }:
+{
+  inputs,
+  lib,
+  buildPythonPackage,
+  sphinx,
+  pytestCheckHook,
+  pytest,
+  numpy,
+  matplotlib,
+  joblib,
+  pillow,
+  seaborn,
+  statsmodels,
+  plotly,
+  graphviz,
+  absl-py,
+  lxml,
+  setuptools-scm,
+}:
 
 buildPythonPackage rec {
   pname = "sphinx-gallery";
@@ -10,7 +26,10 @@ buildPythonPackage rec {
 
   nativeBuildInputs = [ setuptools-scm ];
 
-  propagatedBuildInputs = [ sphinx pillow ];
+  propagatedBuildInputs = [
+    sphinx
+    pillow
+  ];
 
   # Move tests outside of package and remove use of pytest-coverage
   postPatch = ''
@@ -55,11 +74,9 @@ buildPythonPackage rec {
   pythonImportsCheck = [ "sphinx_gallery" ];
 
   meta = with lib; {
-    description =
-      "Sphinx extension for automatic generation of an example gallery";
+    description = "Sphinx extension for automatic generation of an example gallery";
     homepage = "https://github.com/sphinx-gallery/sphinx-gallery";
-    changelog =
-      "https://github.com/sphinx-gallery/sphinx-gallery/blob/${src.rev}/CHANGES.rst";
+    changelog = "https://github.com/sphinx-gallery/sphinx-gallery/blob/${src.rev}/CHANGES.rst";
     license = licenses.bsd3;
     maintainers = with maintainers; [ nialov ];
   };

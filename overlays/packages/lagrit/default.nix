@@ -1,4 +1,13 @@
-{ inputs, lib, stdenv, gfortran, cmake, python3, runCommand, lndir }:
+{
+  inputs,
+  lib,
+  stdenv,
+  gfortran,
+  cmake,
+  python3,
+  runCommand,
+  lndir,
+}:
 
 let
 
@@ -21,7 +30,10 @@ let
 
       # TODO: To include Exodus, use -DLAGRIT_BUILD_EXODUS=ON
       # Exodus is from https://github.com/sandialabs/seacas but it is not packaged with nix
-      nativeBuildInputs = [ gfortran cmake ];
+      nativeBuildInputs = [
+        gfortran
+        cmake
+      ];
       cmakeFlags = [ "-DCMAKE_BUILD_TYPE=Debug" ];
 
       # TODO: Move to installCheckPhase
@@ -46,11 +58,11 @@ let
       '';
 
       meta = with lib; {
-        description =
-          "Los Alamos Grid Toolbox (LaGriT) is a library of user callable tools that provide mesh generation, mesh optimization and dynamic mesh maintenance in two and three dimensions";
+        description = "Los Alamos Grid Toolbox (LaGriT) is a library of user callable tools that provide mesh generation, mesh optimization and dynamic mesh maintenance in two and three dimensions";
         homepage = "https://github.com/lanl/lagrit";
         license = with licenses; [ bsd3 ];
         maintainers = with maintainers; [ nialov ];
       };
     };
-in self
+in
+self

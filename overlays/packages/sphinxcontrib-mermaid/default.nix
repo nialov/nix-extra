@@ -1,5 +1,13 @@
-{ inputs, lib, buildPythonPackage, sphinx, pytestCheckHook
-, sphinxcontrib-serializinghtml, myst-parser, sphinxcontrib-htmlhelp }:
+{
+  inputs,
+  lib,
+  buildPythonPackage,
+  sphinx,
+  pytestCheckHook,
+  sphinxcontrib-serializinghtml,
+  myst-parser,
+  sphinxcontrib-htmlhelp,
+}:
 
 buildPythonPackage {
   pname = "sphinxcontrib-mermaid";
@@ -14,8 +22,12 @@ buildPythonPackage {
   # };
 
   # buildInputs = [ sphinx ];
-  propagatedBuildInputs =
-    [ sphinx sphinxcontrib-serializinghtml myst-parser sphinxcontrib-htmlhelp ];
+  propagatedBuildInputs = [
+    sphinx
+    sphinxcontrib-serializinghtml
+    myst-parser
+    sphinxcontrib-htmlhelp
+  ];
   doCheck = false;
   checkInputs = [ pytestCheckHook ];
   pythonImportsCheck = [ "sphinxcontrib.mermaid" ];

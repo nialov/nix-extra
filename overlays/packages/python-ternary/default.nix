@@ -1,4 +1,11 @@
-{ inputs, lib, buildPythonPackage, matplotlib, pytestCheckHook, pytest }:
+{
+  inputs,
+  lib,
+  buildPythonPackage,
+  matplotlib,
+  pytestCheckHook,
+  pytest,
+}:
 
 let
   python-ternary = buildPythonPackage {
@@ -9,7 +16,10 @@ let
 
     propagatedBuildInputs = [ matplotlib ];
 
-    checkInputs = [ pytestCheckHook pytest ];
+    checkInputs = [
+      pytestCheckHook
+      pytest
+    ];
 
     pythonImportsCheck = [ "ternary" ];
 
@@ -20,4 +30,5 @@ let
       maintainers = with maintainers; [ nialov ];
     };
   };
-in python-ternary
+in
+python-ternary

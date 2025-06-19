@@ -1,4 +1,12 @@
-{ stdenv, inputs, lib, rclone, openstackclient, makeWrapper, s3cmd }:
+{
+  stdenv,
+  inputs,
+  lib,
+  rclone,
+  openstackclient,
+  makeWrapper,
+  s3cmd,
+}:
 
 let
 
@@ -43,34 +51,37 @@ let
     patchShebangs $out/bin/${tool}
     chmod +x $out/bin/${tool}
     wrapProgram $out/bin/${tool} --prefix PATH : ${
-      lib.makeBinPath [ rclone s3cmd ]
+      lib.makeBinPath [
+        rclone
+        s3cmd
+      ]
     }:${openstackclient}/bin/openstack
   '';
-  wrapToolsConcat = tools:
-    lib.concatStringsSep "\n" (builtins.map wrapToolsString tools);
+  wrapToolsConcat = tools: lib.concatStringsSep "\n" (builtins.map wrapToolsString tools);
 
-in stdenv.mkDerivation
+in
+stdenv.mkDerivation
 
-{
-  name = "allas-cli-utils";
-  src = inputs.allas-cli-utils-src;
-  # nativeBuildInputs = [ installShellFiles ];
-  nativeBuildInputs = [ makeWrapper ];
-  # unpackPhase = "true";
-  installPhase = ''
-    cp -r ${inputs.allas-cli-utils-src} $out
-    chmod +w $out
-    mkdir -p $out/bin
-    ${wrapToolsConcat cliTools}
-  '';
-  # postFixup = ''
-  # '';
-  # doInstallCheck = true;
-  # installCheckPhase = ''
-  #   $out/bin/pathnames --help
+  {
+    name = "allas-cli-utils";
+    src = inputs.allas-cli-utils-src;
+    # nativeBuildInputs = [ installShellFiles ];
+    nativeBuildInputs = [ makeWrapper ];
+    # unpackPhase = "true";
+    installPhase = ''
+      cp -r ${inputs.allas-cli-utils-src} $out
+      chmod +w $out
+      mkdir -p $out/bin
+      ${wrapToolsConcat cliTools}
+    '';
+    # postFixup = ''
+    # '';
+    # doInstallCheck = true;
+    # installCheckPhase = ''
+    #   $out/bin/pathnames --help
 
-  #   STEM=$($out/bin/pathnames stem /path/to/file.txt)
-  #   [ "$STEM" == "file" ]
-  # '';
+    #   STEM=$($out/bin/pathnames stem /path/to/file.txt)
+    #   [ "$STEM" == "file" ]
+    # '';
 
-}
+  }

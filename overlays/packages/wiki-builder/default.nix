@@ -1,9 +1,14 @@
 # { python3, symlinkJoin, writeScriptBin }:
-{ stdenv, python3, installShellFiles, makeWrapper }:
+{
+  stdenv,
+  python3,
+  installShellFiles,
+  makeWrapper,
+}:
 let
   name = "wiki-builder";
-  pythonSphinx = python3.withPackages (pythonPackages:
-    with pythonPackages; [
+  pythonSphinx = python3.withPackages (
+    pythonPackages: with pythonPackages; [
       typer
       rich
       sphinx
@@ -12,11 +17,16 @@ let
       recommonmark
       sphinx-design
       sphinxcontrib-mermaid
-    ]);
+    ]
+  );
 
-in stdenv.mkDerivation {
+in
+stdenv.mkDerivation {
   inherit name;
-  nativeBuildInputs = [ installShellFiles makeWrapper ];
+  nativeBuildInputs = [
+    installShellFiles
+    makeWrapper
+  ];
   buildInputs = [ pythonSphinx ];
   unpackPhase = "true";
   installPhase = ''

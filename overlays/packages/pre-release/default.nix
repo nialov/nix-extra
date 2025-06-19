@@ -1,5 +1,13 @@
-{ update-changelog, sync-git-tag-with-poetry, pandoc, writeShellApplication, gum
-, resolve-version, git-cliff, ... }:
+{
+  update-changelog,
+  sync-git-tag-with-poetry,
+  pandoc,
+  writeShellApplication,
+  gum,
+  resolve-version,
+  git-cliff,
+  ...
+}:
 writeShellApplication {
   name = "pre-release";
   runtimeInputs = [

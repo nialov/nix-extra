@@ -1,4 +1,9 @@
-{ inputs, lib, python3, ... }:
+{
+  inputs,
+  lib,
+  python3,
+  ...
+}:
 
 let
 
@@ -7,8 +12,14 @@ let
     version = "unstable-2023-07-13-${inputs.mosaic-src.rev}";
     format = "pyproject";
     src = inputs.mosaic-src.outPath;
-    propagatedBuildInputs = [ python3.pkgs.typer python3.pkgs.pillow ];
-    nativeBuildInputs = with python3.pkgs; [ setuptools wheel ];
+    propagatedBuildInputs = [
+      python3.pkgs.typer
+      python3.pkgs.pillow
+    ];
+    nativeBuildInputs = with python3.pkgs; [
+      setuptools
+      wheel
+    ];
     checkInputs = with python3.pkgs; [
       pytestCheckHook
       pytest
@@ -25,4 +36,5 @@ let
     };
   };
 
-in self
+in
+self

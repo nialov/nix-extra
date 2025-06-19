@@ -1,5 +1,6 @@
 # From: https://github.com/tcpkump/nixvim/blob/main/config/chatgpt.nix
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   extraPlugins = [
     (pkgs.vimUtils.buildVimPlugin {
       name = "gp";
@@ -28,44 +29,58 @@
     {
       key = "<leader>ac";
       action = "<cmd>GpChatToggle vsplit<cr>";
-      options = { desc = "ChatGPT"; };
+      options = {
+        desc = "ChatGPT";
+      };
     }
 
     {
       key = "<leader>au";
       action = "<cmd>GpChatStop<cr>";
-      options = { desc = "ChatGPT Stop"; };
+      options = {
+        desc = "ChatGPT Stop";
+      };
     }
 
     {
       key = "<leader>an";
       action = "<cmd>GpChatNew<cr>";
-      options = { desc = "ChatGPT New Chat"; };
+      options = {
+        desc = "ChatGPT New Chat";
+      };
     }
 
     {
       key = "<leader>ad";
       action = "<cmd>GpChatDelete<cr>";
-      options = { desc = "ChatGPT Delete Chat"; };
+      options = {
+        desc = "ChatGPT Delete Chat";
+      };
     }
 
     {
       key = "<leader>aa";
       action = "<cmd>GpChatRespond<cr>";
-      options = { desc = "ChatGPT Send Message"; };
+      options = {
+        desc = "ChatGPT Send Message";
+      };
     }
 
     {
       key = "<leader>af";
       action = "<cmd>GpChatFinder<cr>";
-      options = { desc = "ChatGPT Find Chat"; };
+      options = {
+        desc = "ChatGPT Find Chat";
+      };
     }
 
     {
       mode = "v";
       key = "<leader>ap";
       action = "<cmd>'<,'>GpChatPaste<cr>";
-      options = { desc = "ChatGPT Paste Selection to Chat"; };
+      options = {
+        desc = "ChatGPT Paste Selection to Chat";
+      };
     }
   ];
 }

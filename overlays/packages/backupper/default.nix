@@ -3,12 +3,27 @@
 # libraries = with python3Packages; [ typer ];
 # flakeIgnore = [ "E501" ];
 # } (builtins.readFile ././pathnames.py)
-{ stdenv, python3, installShellFiles, p7zip, lib, makeWrapper }:
+{
+  stdenv,
+  python3,
+  installShellFiles,
+  p7zip,
+  lib,
+  makeWrapper,
+}:
 stdenv.mkDerivation rec {
   name = "backupper";
-  nativeBuildInputs = [ installShellFiles makeWrapper ];
+  nativeBuildInputs = [
+    installShellFiles
+    makeWrapper
+  ];
   buildInputs = [
-    (python3.withPackages (pythonPackages: with pythonPackages; [ typer rich ]))
+    (python3.withPackages (
+      pythonPackages: with pythonPackages; [
+        typer
+        rich
+      ]
+    ))
   ];
   unpackPhase = "true";
   installPhase = ''

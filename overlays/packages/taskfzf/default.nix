@@ -1,4 +1,8 @@
-{ inputs, lib, stdenv }:
+{
+  inputs,
+  lib,
+  stdenv,
+}:
 
 stdenv.mkDerivation {
   pname = "taskfzf";

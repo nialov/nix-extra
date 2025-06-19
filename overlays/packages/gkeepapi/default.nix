@@ -1,5 +1,16 @@
-{ inputs, lib, buildPythonPackage, enum34, future, gpsoauth, mock
-, pytestCheckHook, six, setuptools, cython }:
+{
+  inputs,
+  lib,
+  buildPythonPackage,
+  enum34,
+  future,
+  gpsoauth,
+  mock,
+  pytestCheckHook,
+  six,
+  setuptools,
+  cython,
+}:
 
 buildPythonPackage {
   pname = "gkeepapi";
@@ -16,10 +27,21 @@ buildPythonPackage {
       --replace "cython ~= 0.29.0" "cython"
   '';
 
-  nativeBuildInputs = [ setuptools cython ];
-  propagatedBuildInputs = [ enum34 future gpsoauth mock ];
+  nativeBuildInputs = [
+    setuptools
+    cython
+  ];
+  propagatedBuildInputs = [
+    enum34
+    future
+    gpsoauth
+    mock
+  ];
 
-  checkInputs = [ pytestCheckHook six ];
+  checkInputs = [
+    pytestCheckHook
+    six
+  ];
 
   pythonImportsCheck = [ "gkeepapi" ];
 

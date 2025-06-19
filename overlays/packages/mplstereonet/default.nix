@@ -1,5 +1,13 @@
-{ inputs, lib, buildPythonPackage, numpy, matplotlib, shapely, pytestCheckHook
-, pytest }:
+{
+  inputs,
+  lib,
+  buildPythonPackage,
+  numpy,
+  matplotlib,
+  shapely,
+  pytestCheckHook,
+  pytest,
+}:
 
 buildPythonPackage {
   pname = "mplstereonet";
@@ -8,9 +16,16 @@ buildPythonPackage {
 
   src = inputs.mplstereonet-src;
 
-  propagatedBuildInputs = [ numpy matplotlib shapely ];
+  propagatedBuildInputs = [
+    numpy
+    matplotlib
+    shapely
+  ];
 
-  checkInputs = [ pytestCheckHook pytest ];
+  checkInputs = [
+    pytestCheckHook
+    pytest
+  ];
 
   # TODO: Probably fails due to shapely version stuff
   #        > FAILED tests/test_examples.py::test_all_examples - TypeError:

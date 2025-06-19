@@ -1,5 +1,17 @@
-{ inputs, lib, stdenv, gfortran, petsc, mpi, hdf5-full, metis, python3, busybox
-, openssh, runCommand }:
+{
+  inputs,
+  lib,
+  stdenv,
+  gfortran,
+  petsc,
+  mpi,
+  hdf5-full,
+  metis,
+  python3,
+  busybox,
+  openssh,
+  runCommand,
+}:
 
 # TODO: mpi must be the same used for compiling petsc
 # petsc should therefore have passthru attribute of the mpi used
@@ -10,28 +22,34 @@ stdenv.mkDerivation (finalAttrs: {
 
   src = inputs.pflotran-src;
 
-  postPatch = let
-    # TODO: Probably only part of the flags are required
-    # could try using NIX_LD path or similar method to give them
-    flags =
-      "-L${hdf5-full}/lib -I${hdf5-full}/include -lhdf5_hl -lhdf5_hl_fortran -lhdf5 -lz -ldl -lm";
-  in ''
-    substituteInPlace src/pflotran/makefile \
-      --replace 'MYFLAGS = -I.' \
-      'MYFLAGS = -I. ${flags}'  
-    substituteInPlace src/pflotran/makefile \
-      --replace '# the petsc configured in $PETSC_DIR/$PETSC_ARCH' \
-      'LIBS =  ${flags}'
-    substituteInPlace src/clm-pflotran/makefile \
-      --replace 'TEST_OPTIONS += --mpiexec $(MPIEXEC)' \
-      'TEST_OPTIONS += --mpiexec ${mpi}/bin/mpiexec'
-  '';
+  postPatch =
+    let
+      # TODO: Probably only part of the flags are required
+      # could try using NIX_LD path or similar method to give them
+      flags = "-L${hdf5-full}/lib -I${hdf5-full}/include -lhdf5_hl -lhdf5_hl_fortran -lhdf5 -lz -ldl -lm";
+    in
+    ''
+      substituteInPlace src/pflotran/makefile \
+        --replace 'MYFLAGS = -I.' \
+        'MYFLAGS = -I. ${flags}'  
+      substituteInPlace src/pflotran/makefile \
+        --replace '# the petsc configured in $PETSC_DIR/$PETSC_ARCH' \
+        'LIBS =  ${flags}'
+      substituteInPlace src/clm-pflotran/makefile \
+        --replace 'TEST_OPTIONS += --mpiexec $(MPIEXEC)' \
+        'TEST_OPTIONS += --mpiexec ${mpi}/bin/mpiexec'
+    '';
 
   # TODO: What inputs should be given in what way? (nativeBuildInputs, propagatedBuildInputs?)
   nativeBuildInputs = [ gfortran ];
   propagatedBuildInputs = [ mpi ];
   # TODO: Is metis used?
-  buildInputs = [ petsc hdf5-full metis petsc.passthru.parmetis ];
+  buildInputs = [
+    petsc
+    hdf5-full
+    metis
+    petsc.passthru.parmetis
+  ];
   enableParallelBuilding = true;
 
   configureFlags = [
@@ -57,34 +75,36 @@ stdenv.mkDerivation (finalAttrs: {
   passthru = {
     h5py = python3.pkgs.h5py.override { hdf5 = hdf5-full; };
     tests = {
-      main = let
-        pythonWithH5py = python3.withPackages (_: [ finalAttrs.passthru.h5py ]);
-        # TODO: Should clean the environment variables set inside the script. Not sure what is necessary.
-        # TODO: Some tests fail because petsc is not compiled with hypre which is not packaged in nixpkgs
-      in runCommand "pflotran-main-test" { } ''
-        tmpdir=$(mktemp -d -u)
-        cp -r -L ${finalAttrs.src} $tmpdir
-        chmod -R 777 $tmpdir
-        cd $tmpdir/regression_tests
+      main =
+        let
+          pythonWithH5py = python3.withPackages (_: [ finalAttrs.passthru.h5py ]);
+          # TODO: Should clean the environment variables set inside the script. Not sure what is necessary.
+          # TODO: Some tests fail because petsc is not compiled with hypre which is not packaged in nixpkgs
+        in
+        runCommand "pflotran-main-test" { } ''
+          tmpdir=$(mktemp -d -u)
+          cp -r -L ${finalAttrs.src} $tmpdir
+          chmod -R 777 $tmpdir
+          cd $tmpdir/regression_tests
 
-        export PATH=$PATH:${openssh}/bin
-        # Fix to make mpich run in a sandbox
-        export OMP_NUM_THREADS=1
-        export HYDRA_IFACE=lo
-        export OMPI_MCA_rmaps_base_oversubscribe=1
-        export OMPI_MCA_btl="vader,self"
+          export PATH=$PATH:${openssh}/bin
+          # Fix to make mpich run in a sandbox
+          export OMP_NUM_THREADS=1
+          export HYDRA_IFACE=lo
+          export OMPI_MCA_rmaps_base_oversubscribe=1
+          export OMPI_MCA_btl="vader,self"
 
-        ${pythonWithH5py}/bin/python regression_tests.py -e ${finalAttrs.finalPackage}/bin/pflotran \
-            --suites standard standard_parallel \
-            --mpiexec ${mpi}/bin/mpiexec \
-            --recursive-search ./default ./general \
-            --backtrace --debug ||
-        echo "Test logs:" && \
-        echo "" && \
-        ${busybox}/bin/find . -name '*.testlog' -exec ${busybox}/bin/cat {} \; && \
-        exit 1
-        cp -L $tmpdir $out
-      '';
+          ${pythonWithH5py}/bin/python regression_tests.py -e ${finalAttrs.finalPackage}/bin/pflotran \
+              --suites standard standard_parallel \
+              --mpiexec ${mpi}/bin/mpiexec \
+              --recursive-search ./default ./general \
+              --backtrace --debug ||
+          echo "Test logs:" && \
+          echo "" && \
+          ${busybox}/bin/find . -name '*.testlog' -exec ${busybox}/bin/cat {} \; && \
+          exit 1
+          cp -L $tmpdir $out
+        '';
     };
   };
 

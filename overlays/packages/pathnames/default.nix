@@ -3,12 +3,15 @@
 # libraries = with python3Packages; [ typer ];
 # flakeIgnore = [ "E501" ];
 # } (builtins.readFile ././pathnames.py)
-{ stdenv, python3, installShellFiles }:
+{
+  stdenv,
+  python3,
+  installShellFiles,
+}:
 stdenv.mkDerivation {
   name = "pathnames";
   nativeBuildInputs = [ installShellFiles ];
-  buildInputs =
-    [ (python3.withPackages (pythonPackages: with pythonPackages; [ typer ])) ];
+  buildInputs = [ (python3.withPackages (pythonPackages: with pythonPackages; [ typer ])) ];
   unpackPhase = "true";
   installPhase = ''
     mkdir -p $out/bin

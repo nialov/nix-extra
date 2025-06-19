@@ -1,5 +1,15 @@
-{ inputs, lib, buildPythonPackage, setuptools, pytestCheckHook, pytest
-, geopandas, dask, shapely, pyarrow }:
+{
+  inputs,
+  lib,
+  buildPythonPackage,
+  setuptools,
+  pytestCheckHook,
+  pytest,
+  geopandas,
+  dask,
+  shapely,
+  pyarrow,
+}:
 
 buildPythonPackage {
   pname = "dask-geopandas";
@@ -10,9 +20,17 @@ buildPythonPackage {
 
   nativeBuildInputs = [ setuptools ];
 
-  propagatedBuildInputs = [ geopandas shapely dask pyarrow ];
+  propagatedBuildInputs = [
+    geopandas
+    shapely
+    dask
+    pyarrow
+  ];
 
-  checkInputs = [ pytestCheckHook pytest ];
+  checkInputs = [
+    pytestCheckHook
+    pytest
+  ];
 
   disabledTests = [ "test_repr" ];
 
