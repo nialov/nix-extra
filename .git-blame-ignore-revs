@@ -1,0 +1,3 @@
+# .git-blame-ignore-revs
+# Reformatted *.nix with nixfmt-rfc-style
+c946fe16d607df25124b68d56dfa56c2a3f6bede
