@@ -468,6 +468,7 @@ in
     inherit (pkgs)
       ripgrep
       pretty-task
+      inotify-tools
       # ctags-lsp
       ;
     # TODO: pandoc 3.6 includes rst regressions
@@ -936,7 +937,7 @@ in
           extraOptions = {
             init_options = {
               settings = {
-                logLevel = "debug";
+                # logLevel = "debug";
                 configurationPreference = "filesystemFirst";
                 lint = {
                   enable = true;
@@ -1002,6 +1003,25 @@ in
           installRustc = true;
         };
         bashls.enable = true;
+        harper_ls = {
+          enable = true;
+          settings."harper-ls" = {
+            linters = {
+              boring_words = true;
+              BoringWords = true;
+              linking_verbs = true;
+              LinkingVerbs = true;
+              RepeatedWords = true;
+              # Rarely useful with coding
+              sentence_capitalization = false;
+              SentenceCapitalization = false;
+              spell_check = false;
+              SpellCheck = false;
+            };
+            codeActions.forceStable = true;
+            diagnosticSeverity = "warning";
+          };
+        };
       };
     };
     luasnip = {
