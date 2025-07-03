@@ -85,7 +85,8 @@
               python-ternary
               mplstereonet
               pyvtk
-              fractopo
+              # TODO: fractopo needs update upstream
+              # fractopo
 
               # TODO: Update pandera for numpy 2
               # tracerepo pandera
