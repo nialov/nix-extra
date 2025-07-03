@@ -2026,6 +2026,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-2505": {
+      "locked": {
+        "lastModified": 1751211869,
+        "narHash": "sha256-1Cu92i1KSPbhPCKxoiVG5qnoRiKTgR5CcGSRyLpOd7Y=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "b43c397f6c213918d6cfe6e3550abfe79b5d1c51",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-25.05",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs-dfnworks": {
       "locked": {
         "lastModified": 1643381941,
@@ -2187,6 +2203,22 @@
       }
     },
     "nixpkgs-previous": {
+      "locked": {
+        "lastModified": 1733392399,
+        "narHash": "sha256-kEsTJTUQfQFIJOcLYFt/RvNxIK653ZkTBIs4DG+cBns=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "d0797a04b81caeae77bcff10a9dde78bc17f5661",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "d0797a04b81caeae77bcff10a9dde78bc17f5661",
+        "type": "github"
+      }
+    },
+    "nixpkgs-previous-previous": {
       "locked": {
         "lastModified": 1733392399,
         "narHash": "sha256-kEsTJTUQfQFIJOcLYFt/RvNxIK653ZkTBIs4DG+cBns=",
@@ -2835,16 +2867,21 @@
         "nixpkgs-2311": "nixpkgs-2311",
         "nixpkgs-2405": "nixpkgs-2405",
         "nixpkgs-2411": "nixpkgs-2411",
+        "nixpkgs-2505": "nixpkgs-2505",
         "nixpkgs-dfnworks": "nixpkgs-dfnworks_2",
         "nixpkgs-gpt-engineer": "nixpkgs-gpt-engineer_2",
         "nixpkgs-kibitzr": "nixpkgs-kibitzr_2",
         "nixpkgs-pandoc": "nixpkgs-pandoc_2",
         "nixpkgs-petsc": "nixpkgs-petsc_2",
         "nixpkgs-previous": "nixpkgs-previous_2",
+        "nixpkgs-previous-previous": "nixpkgs-previous-previous",
         "nixpkgs-stable": [
-          "nixpkgs-2411"
+          "nixpkgs-2505"
         ],
         "nixpkgs-stabler": [
+          "nixpkgs-2411"
+        ],
+        "nixpkgs-stablest": [
           "nixpkgs-2405"
         ],
         "nixvim": "nixvim_2",

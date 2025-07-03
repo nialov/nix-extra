@@ -12,10 +12,13 @@
     # Rolling updates
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-previous.url = "github:nixos/nixpkgs/3730d8a";
+    nixpkgs-previous-previous.url = "github:nixos/nixpkgs/d0797a04b81caeae77bcff10a9dde78bc17f5661";
     # Update follows target when releases get made
-    nixpkgs-stable.follows = "nixpkgs-2411";
-    nixpkgs-stabler.follows = "nixpkgs-2405";
+    nixpkgs-stable.follows = "nixpkgs-2505";
+    nixpkgs-stabler.follows = "nixpkgs-2411";
+    nixpkgs-stablest.follows = "nixpkgs-2405";
     # Static
+    nixpkgs-2505.url = "github:nixos/nixpkgs/nixos-25.05";
     nixpkgs-2411.url = "github:nixos/nixpkgs/nixos-24.11";
     nixpkgs-2405.url = "github:nixos/nixpkgs/nixos-24.05";
     nixpkgs-2311.url = "github:nixos/nixpkgs/nixos-23.11";
