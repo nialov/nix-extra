@@ -5,7 +5,7 @@ let
 in
 {
   imports = [
-    ./plugins/gp.nix
+    # ./plugins/gp.nix
     # ./plugins/cmp.nix
     ./plugins/blink-cmp.nix
   ];
