@@ -10,8 +10,8 @@
   ];
   inputs = {
     # Rolling updates
-    nixpkgs.url = "github:nixos/nixpkgs/3730d8a";
-    nixpkgs-previous.url = "github:nixos/nixpkgs/d0797a04b81caeae77bcff10a9dde78bc17f5661";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-previous.url = "github:nixos/nixpkgs/3730d8a";
     # Update follows target when releases get made
     nixpkgs-stable.follows = "nixpkgs-2411";
     nixpkgs-stabler.follows = "nixpkgs-2405";
