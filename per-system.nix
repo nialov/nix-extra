@@ -93,7 +93,7 @@
               ;
             inherit (pkgs.gptEngineerPackages) gpt-engineer;
             inherit (pkgs.kibitzrPackages) kibitzr;
-            inherit (pkgs.release2411Packages) frackit;
+            inherit (pkgs.release2405Packages) frackit;
             inherit (pkgs.release2311Packages)
               tasklite-core
               lagrit
