@@ -2369,6 +2369,22 @@
         "type": "github"
       }
     },
+    "nixpkgs_6": {
+      "locked": {
+        "lastModified": 1751498133,
+        "narHash": "sha256-QWJ+NQbMU+NcU2xiyo7SNox1fAuwksGlQhpzBl76g1I=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "d55716bb59b91ae9d1ced4b1ccdea7a442ecbfdb",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixpkgs-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixvim": {
       "inputs": {
         "devshell": "devshell",
@@ -2408,9 +2424,7 @@
         "flake-parts": [
           "flake-parts"
         ],
-        "nixpkgs": [
-          "nixpkgs"
-        ],
+        "nixpkgs": "nixpkgs_6",
         "nuschtosSearch": "nuschtosSearch_2",
         "systems": "systems_11"
       },
