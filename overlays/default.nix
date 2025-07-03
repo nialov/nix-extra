@@ -16,6 +16,8 @@ let
 
   inherit (prev) lib;
 
+  # TODO: Make releasePackageSet function
+
 in
 {
   previousPackages = mkNixpkgsBase {
