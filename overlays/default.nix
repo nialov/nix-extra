@@ -82,7 +82,10 @@ in
   git-history-grep = prev.callPackage ././packages/git-history-grep { };
   nix-flake-metadata-inputs = prev.callPackage ././packages/nix-flake-metadata-inputs { };
   proton-ge-custom = prev.callPackage ././packages/proton-ge-custom { };
-  inherit (final.python3Packages) synonym-cli kibitzr;
+  inherit (final.python3Packages)
+    # synonym-cli
+    kibitzr
+    ;
   allas-cli-utils = prev.callPackage ././packages/allas-cli-utils { inherit inputs; };
   grokker = prev.callPackage ././packages/grokker { inherit inputs; };
   poetry-with-c-tooling = prev.callPackage ././packages/poetry-with-c-tooling { };
@@ -229,8 +232,8 @@ in
         inherit inputs;
       };
       kr-cli = python-final.callPackage ././packages/kr-cli { };
-      synonym-cli = python-final.callPackage ././packages/synonym-cli { inherit inputs; };
-      gazpacho = python-final.callPackage ././packages/gazpacho { inherit inputs; };
+      # synonym-cli = python-final.callPackage ././packages/synonym-cli { inherit inputs; };
+      # gazpacho = python-final.callPackage ././packages/gazpacho { inherit inputs; };
       kibitzr = python-final.callPackage ././packages/kibitzr { inherit inputs; };
       pandera = python-final.callPackage ././packages/pandera { inherit inputs; };
       sphinx-gallery = python-final.callPackage ././packages/sphinx-gallery {
