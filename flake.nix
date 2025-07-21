@@ -82,7 +82,7 @@
     actions-nix = {
       url = "github:nialov/actions.nix";
       inputs = {
-        pre-commit-hooks.follows = "git-hooks";
+        git-hooks.follows = "git-hooks";
         flake-parts.follows = "flake-parts";
         nixpkgs.follows = "nixpkgs";
       };
