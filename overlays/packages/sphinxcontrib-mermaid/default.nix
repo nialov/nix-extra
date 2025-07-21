@@ -7,6 +7,7 @@
   sphinxcontrib-serializinghtml,
   myst-parser,
   sphinxcontrib-htmlhelp,
+  setuptools,
 }:
 
 buildPythonPackage {
@@ -22,6 +23,8 @@ buildPythonPackage {
   # };
 
   # buildInputs = [ sphinx ];
+  pyproject = true;
+  build-system = [ setuptools ];
   propagatedBuildInputs = [
     sphinx
     sphinxcontrib-serializinghtml
