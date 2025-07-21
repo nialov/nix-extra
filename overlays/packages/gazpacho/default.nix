@@ -4,6 +4,7 @@
   buildPythonPackage,
   pytestCheckHook,
   pytest,
+  setuptools,
 }:
 
 buildPythonPackage {
@@ -18,6 +19,8 @@ buildPythonPackage {
   #   sha256 = "sha256-UXOpTTiny5drJoD9cICcYD0SggEFfnyXWymiinS+IWE=";
   # };
 
+  pyproject = true;
+  build-system = [ setuptools ];
   checkInputs = [
     pytestCheckHook
     pytest
