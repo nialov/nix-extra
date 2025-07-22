@@ -39,15 +39,13 @@
         devShells = {
           default = pkgs.mkShell {
             buildInputs = lib.attrValues { inherit (pkgs) python-env; };
-            shellHook =
-              config.pre-commit.installationScript
-              + ''
-                export PROJECT_DIR="$PWD"
-                # Prefix PATH with defined Python environment binaries
-                export PATH="${pkgs.python-env}/bin/:$PATH"
-                # Prefix PYTHONPATH with ./ and potential ./src/
-                export PYTHONPATH="$PWD:$PWD/src:$PYTHONPATH"
-              '';
+            shellHook = config.pre-commit.installationScript + ''
+              export PROJECT_DIR="$PWD"
+              # Prefix PATH with defined Python environment binaries
+              export PATH="${pkgs.python-env}/bin/:$PATH"
+              # Prefix PYTHONPATH with ./ and potential ./src/
+              export PYTHONPATH="$PWD:$PWD/src:$PYTHONPATH"
+            '';
           };
 
         };

@@ -26,7 +26,7 @@
     nixpkgs-kibitzr.url = "github:nixos/nixpkgs/2f9fd351ec37f5d479556cd48be4ca340da59b8f";
     # TODO: Can be removed when tensorflow no longer broken
     #       https://github.com/NixOS/nixpkgs/blob/master/pkgs/development/python-modules/tensorflow/default.nix#L453
-    nixpkgs-gpt-engineer.url = "github:nixos/nixpkgs/d680ded26da5cf104dd2735a51e88d2d8f487b4d";
+    # nixpkgs-gpt-engineer.url = "github:nixos/nixpkgs/d680ded26da5cf104dd2735a51e88d2d8f487b4d";
     nixpkgs-dfnworks.url = "github:nixos/nixpkgs/5efc8ca954272c4376ac929f4c5ffefcc20551d5";
     # For use with pandox-xnos and friends
     nixpkgs-pandoc = {
