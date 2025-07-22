@@ -8,6 +8,7 @@
   mpmath,
   pytestCheckHook,
   pytest,
+  setuptools,
 }:
 
 buildPythonPackage {
@@ -24,6 +25,8 @@ buildPythonPackage {
   #   sha256 = "sha256-x3jXk+xOQpIeEGlzYqNwuZNPpkesF0IOX8gUhhwHk5Q=";
   # };
 
+  pyproject = true;
+  build-system = [ setuptools ];
   propagatedBuildInputs = [
     scipy
     numpy

@@ -5,6 +5,7 @@
   matplotlib,
   pytestCheckHook,
   pytest,
+  setuptools,
 }:
 
 let
@@ -14,6 +15,8 @@ let
 
     src = inputs.python-ternary-src;
 
+    pyproject = true;
+    build-system = [ setuptools ];
     propagatedBuildInputs = [ matplotlib ];
 
     checkInputs = [
