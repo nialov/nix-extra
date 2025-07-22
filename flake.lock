@@ -2090,22 +2090,6 @@
         "type": "github"
       }
     },
-    "nixpkgs-gpt-engineer_2": {
-      "locked": {
-        "lastModified": 1692447944,
-        "narHash": "sha256-fkJGNjEmTPvqBs215EQU4r9ivecV5Qge5cF/QDLVn3U=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "d680ded26da5cf104dd2735a51e88d2d8f487b4d",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "d680ded26da5cf104dd2735a51e88d2d8f487b4d",
-        "type": "github"
-      }
-    },
     "nixpkgs-kibitzr": {
       "locked": {
         "lastModified": 1673800717,
@@ -2869,7 +2853,6 @@
         "nixpkgs-2411": "nixpkgs-2411",
         "nixpkgs-2505": "nixpkgs-2505",
         "nixpkgs-dfnworks": "nixpkgs-dfnworks_2",
-        "nixpkgs-gpt-engineer": "nixpkgs-gpt-engineer_2",
         "nixpkgs-kibitzr": "nixpkgs-kibitzr_2",
         "nixpkgs-pandoc": "nixpkgs-pandoc_2",
         "nixpkgs-petsc": "nixpkgs-petsc_2",

@@ -90,7 +90,7 @@
             # TODO: Update pandera for numpy 2
             # tracerepo pandera
             ;
-          inherit (pkgs.gptEngineerPackages) gpt-engineer;
+          # inherit (pkgs.gptEngineerPackages) gpt-engineer;
           inherit (pkgs.kibitzrPackages) kibitzr;
           inherit (pkgs.release2405Packages) frackit;
           inherit (pkgs.release2311Packages)

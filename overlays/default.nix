@@ -65,10 +65,10 @@ in
     inherit (prev) system;
     nixpkgs = inputs.nixpkgs-kibitzr;
   };
-  gptEngineerPackages = mkNixpkgsBase {
-    inherit (prev) system;
-    nixpkgs = inputs.nixpkgs-gpt-engineer;
-  };
+  # gptEngineerPackages = mkNixpkgsBase {
+  #   inherit (prev) system;
+  #   nixpkgs = inputs.nixpkgs-gpt-engineer;
+  # };
 
   taskfzf = prev.callPackage ././packages/taskfzf { inherit inputs; };
   pathnames = prev.callPackage ././packages/pathnames { };
@@ -97,7 +97,7 @@ in
     python3ToWrap = prev.python311;
   };
 
-  gpt-engineer = final.callPackage ././packages/gpt-engineer { inherit inputs; };
+  # gpt-engineer = final.callPackage ././packages/gpt-engineer { inherit inputs; };
   frackit = prev.callPackage ././packages/frackit { inherit inputs; };
   lagrit = prev.callPackage ././packages/lagrit { inherit inputs; };
   dfnworks = prev.callPackage ././packages/dfnworks { inherit inputs; };

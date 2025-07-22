@@ -51,18 +51,17 @@ let
     runScript = ''
       bash "$@"
     '';
-    profile =
-      ''
-        export POETRY_VIRTUALENVS_IN_PROJECT=1
-        export MAMBA_ROOT_PREFIX=./.mamba
-        export UV_LINK_MODE=copy
-        export UV_PYTHON_PREFERENCE=only-managed
-      ''
-      +
+    profile = ''
+      export POETRY_VIRTUALENVS_IN_PROJECT=1
+      export MAMBA_ROOT_PREFIX=./.mamba
+      export UV_LINK_MODE=copy
+      export UV_PYTHON_PREFERENCE=only-managed
+    ''
+    +
 
-        lib.optionalString ldLibraryEnv ''
-          export LD_LIBRARY_PATH=${stdenv.cc.cc.lib}/lib/
-        ''
+      lib.optionalString ldLibraryEnv ''
+        export LD_LIBRARY_PATH=${stdenv.cc.cc.lib}/lib/
+      ''
 
     ;
 
