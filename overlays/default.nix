@@ -75,10 +75,7 @@ in
   backupper = prev.callPackage ././packages/backupper { };
   wiki-builder = prev.callPackage ././packages/wiki-builder { };
   wsl-open-dynamic = prev.callPackage ././packages/wsl-open-dynamic { };
-  pretty-task = prev.callPackage ././packages/pretty-task {
-    # TODO: pandoc 3.6 includes rst regressions
-    inherit (prev.release2411Packages) pandoc;
-  };
+  pretty-task = prev.callPackage ././packages/pretty-task { };
   git-history-grep = prev.callPackage ././packages/git-history-grep { };
   nix-flake-metadata-inputs = prev.callPackage ././packages/nix-flake-metadata-inputs { };
   proton-ge-custom = prev.callPackage ././packages/proton-ge-custom { };
