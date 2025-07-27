@@ -49,5 +49,6 @@ buildPythonPackage rec {
     changelog = "https://github.com/bergercookie/bubop/blob/${src.rev}/CHANGELOG.md";
     license = licenses.mit;
     maintainers = with maintainers; [ nialov ];
+    broken = true;
   };
 }

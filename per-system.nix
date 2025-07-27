@@ -79,7 +79,7 @@
             doit-ext
             sphinxcontrib-mermaid
             sphinx-gallery
-            item-synchronizer
+            # item-synchronizer
             powerlaw
             python-ternary
             mplstereonet
