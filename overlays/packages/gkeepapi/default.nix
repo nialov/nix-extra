@@ -50,5 +50,6 @@ buildPythonPackage {
     homepage = "https://github.com/kiwiz/gkeepapi";
     license = licenses.mit;
     maintainers = with maintainers; [ nialov ];
+    broken = true;
   };
 }

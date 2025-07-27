@@ -83,6 +83,7 @@ let
       homepage = "https://git.iws.uni-stuttgart.de/tools/frackit";
       license = licenses.gpl3Only;
       maintainers = with maintainers; [ nialov ];
+      broken = true;
     };
   };
 
