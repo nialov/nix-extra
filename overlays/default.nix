@@ -255,7 +255,6 @@ in
         # powerlaw = python-final.callPackage ././packages/powerlaw { inherit inputs; };
         # fractopo =
         #   python-final.callPackage ././packages/fractopo { inherit inputs; };
-        # TODO: Update pandera for numpy 2
         # python-ternary = python-final.callPackage ././packages/python-ternary {
         #   inherit inputs;
         # };

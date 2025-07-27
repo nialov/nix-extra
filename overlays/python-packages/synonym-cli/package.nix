@@ -62,9 +62,9 @@ buildPythonPackage rec {
     description = "";
     homepage = "https://github.com/${src.owner}/${pname}";
     maintainers = with maintainers; [ nialov ];
-    # TODO: No license for project
+    # No license for project
     license = licenses.bsd3;
-    # TODO: Does not seem to work and the only test is a network test
+    # Does not seem to work and the only test is a network test
     broken = true;
   };
 

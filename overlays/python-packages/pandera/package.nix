@@ -4,6 +4,7 @@
   buildPythonPackage,
   setuptools,
   multimethod,
+  # TODO: Update pandera for numpy 2
   numpy,
   packaging,
   pandas,
