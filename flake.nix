@@ -22,10 +22,6 @@
     nixpkgs-2405.url = "github:nixos/nixpkgs/nixos-24.05";
     nixpkgs-2311.url = "github:nixos/nixpkgs/nixos-23.11";
     nixpkgs-petsc.url = "github:nixos/nixpkgs/27bd67e55fe09f9d68c77ff151c3e44c4f81f7de";
-    # nixpkgs-kibitzr.url = "github:nixos/nixpkgs/2f9fd351ec37f5d479556cd48be4ca340da59b8f";
-    # TODO: Can be removed when tensorflow no longer broken
-    #       https://github.com/NixOS/nixpkgs/blob/master/pkgs/development/python-modules/tensorflow/default.nix#L453
-    # nixpkgs-gpt-engineer.url = "github:nixos/nixpkgs/d680ded26da5cf104dd2735a51e88d2d8f487b4d";
     nixpkgs-dfnworks.url = "github:nixos/nixpkgs/5efc8ca954272c4376ac929f4c5ffefcc20551d5";
     # For use with pandox-xnos and friends
     # nixpkgs-pandoc = {
@@ -128,7 +124,7 @@
       flake = false;
     };
     tasklite-src = {
-      # TODO: Try to fix later
+      # 2024-03-24: Try to fix later
       url = "github:ad-si/tasklite/1cdded1e915de8d9c2fbd7770f948f33c507d0ce";
       flake = false;
     };
@@ -200,20 +196,13 @@
       url = "github:pearu/pyvtk";
       flake = false;
     };
-    # pandera-src = {
-    #   # TODO: modin is not part of python3Packages as of 19.6.2024
-    #   # Also: spark-submit binary is not found for some reason
-    #   url = "github:unionai-oss/pandera";
-    #   flake = false;
-    # };
     # TODO: Tracerepo build too old to support newer pandera src
     pandera-src = {
       url = "github:unionai-oss/pandera/850dcf8e59632d54bc9a6df47b9ca08afa089a27";
       flake = false;
     };
     syncall-src = {
-      # url = "github:bergercookier/syncall";
-      # TODO: New versions use poetry_dynamic_versioning as build tool in pyproject.toml
+      # 2024-10-05: New versions use poetry_dynamic_versioning as build tool in pyproject.toml
       url = "git+https://github.com/bergercookie/syncall?rev=ccfeb306c5ceeee509b2aed4ae12da710e3f1b35&submodules=1";
       flake = false;
     };
@@ -222,12 +211,12 @@
       flake = false;
     };
     gkeepapi-src = {
-      # TODO: Newer build with flit did not work. Take a look in 2024 if the package is added to nixpkgs
+      # Newer build with flit did not work. Take a look in 2024 if the package is added to nixpkgs
       url = "github:kiwiz/gkeepapi/3d91b57e44e38f964309113974cf01a190b26c39";
       flake = false;
     };
     powerlaw-src = {
-      # TODO: Newer build with flit did not work. Take a look in 2024 if the package is added to nixpkgs
+      # Newer build with flit did not work. Take a look in 2024 if the package is added to nixpkgs
       url = "github:jeffalstott/powerlaw/6732699d790edbe27c2790bf22c3ef7355d2b07e";
       flake = false;
     };

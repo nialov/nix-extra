@@ -24,10 +24,6 @@ local entry_date_string = function(prefix)
 	)
 end
 
--- TODO: Use json -> rst transformation for clean tables
--- local report_completed_tasks_tbl = function()
--- 	return vim.fn.split(require("nialov_utils").report_completed_tasks_tbl(), "\n")
--- end
 local report_completed_tasks_tbl_pretty_task = function()
 	local task_table = require("nialov_utils").report_completed_tasks_tbl_pretty_task()
 	if type(task_table) ~= "table" then
@@ -39,31 +35,6 @@ local report_completed_tasks_tbl_pretty_task = function()
 	end
 	return task_table
 end
-
--- local entry_snip = s({ trig = "entry", name = "entry", desc = "Diary entry" }, {
--- 	p(entry_date_string, "📘 Entry "),
--- 	t({ "----------------------------------", "", "Completed tasks in the past 24 hours:", "", "" }),
--- 	p(report_completed_tasks_tbl),
--- })
-
--- TODO: Deprecate after using entry-pretty for a while
--- local entry_snip = s(
--- 	"entry",
--- 	fmt(
--- 		[[
-
---         {}
---         {}
---         {}
---         ]],
--- 		{
--- 			p(entry_date_string, "📘 Entry "),
--- 			t({ "----------------------------------", "", "Completed tasks in the past 24 hours:", "" }),
--- 			p(report_completed_tasks_tbl, nil),
--- 		}
--- 	)
--- )
---
 
 local entry_snip_pretty_task = s(
 	"entry",

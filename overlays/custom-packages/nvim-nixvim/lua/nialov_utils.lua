@@ -255,7 +255,7 @@ M.open_wiki_url = function()
 	-- local html_file = M.resolve_matching_html_file()
 	local html_url = M.resolve_matching_ip_url(M.resolve_matching_html_file())
 	vim.notify(string.format("Opening html url at %s", html_url))
-	-- TODO: xdg-open should just be overwritten by wsl-open-dynamic
+	-- xdg-open should just be overwritten by wsl-open-dynamic?
 	vim.cmd("Dispatch xdg-open " .. html_url)
 end
 

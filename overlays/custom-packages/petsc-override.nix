@@ -72,9 +72,6 @@ petscStableMpi.overrideAttrs (
     doCheck = false;
     mpiSupport = true;
     makeFlags = [ "PETSC_ARCH=arch-linux-c-opt" ];
-    # NIX_DEBUG = 1;
-    # TODO: Only for debugging
-    # nativeBuildInputs = prevAttrs.nativeBuildInputs ++ [ prev.breakpointHook ];
     passthru = { inherit parmetis; };
 
   }

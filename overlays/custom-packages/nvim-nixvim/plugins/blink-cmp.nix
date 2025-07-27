@@ -18,8 +18,6 @@
         completion = {
           trigger.prefetch_on_insert = false;
           menu.draw = {
-            # TODO: Snippets are labeled as "buffer" rather than snippets
-            # TODO: kind_icon does not work, symbols are question marks
             columns.__raw = "{ { 'source_name' },  { 'label', 'label_description', gap = 1 } }";
             treesitter = [ "lsp" ];
             components.kind_icon = {
@@ -208,8 +206,6 @@
     };
     blink-ripgrep.enable = true;
     blink-emoji.enable = true;
-    # TODO: Use latest when snippets work
-    # luasnip.package = pkgs.stablePackages.vimPlugins.luasnip;
     luasnip = {
       enable = true;
       fromLua = [ { paths = ../snippets; } ];

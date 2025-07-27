@@ -241,13 +241,6 @@ in
       localOpts = {
         equalprg = "pandoc -f markdown -t markdown";
         formatprg = "pandoc -f markdown -t markdown";
-        # TODO: Check if works or if PandocAugroup is needed:
-        # " Must be overwritten with autocmd due to whatever plugin not respecting
-        # " simple setlocal done above
-        # augroup PandocAugroup
-        #     autocmd!
-        #     autocmd BufNewFile,BufRead *.md setlocal conceallevel=0
-        # augroup END
         conceallevel = 0;
         shiftwidth = 4;
         tabstop = 4;
@@ -298,7 +291,7 @@ in
         autocmd BufNewFile,BufRead .envrc setfiletype direnv
       '';
     };
-    # TODO: Are others from after/ftdetect/ (jinja, meta.yaml, tmpl) needed?
+    # Are others from after/ftdetect/ (jinja, meta.yaml, tmpl) needed?
     "after/ftplugin/python.lua" = {
       # autoCmd = [{
       #   event = "BufWritePre";
@@ -543,27 +536,6 @@ in
           indent = true;
         };
       };
-      # incrementalSelection = {
-      #   enable = true;
-      #   keymaps = {
-      #     initSelection = "gnn";
-      #     nodeDecremental = "grm";
-      #     nodeIncremental = "grn";
-      #     scopeIncremental = "grc";
-      #   };
-      # };
-      # TODO:
-      # textobjects = {
-      #   select = {
-      #     enable = true;
-      #     keymaps = {
-      #       # -- You can use the capture groups defined in textobjects.scm
-      #       "af" = "@function.outer";
-      #       "if" = "@function.inner";
-      #     };
-      #   };
-
-      # };
     };
     treesitter-textobjects = {
       enable = true;
@@ -969,7 +941,6 @@ in
           };
 
         };
-        # TODO: vimls.enable = true;
         yamlls = {
           enable = true;
           settings = {
@@ -1021,8 +992,6 @@ in
       settings = {
         update_in_insert = false;
       };
-      # TODO: I do not want to format every filetype automatically
-      # onAttach = "";
       sources = {
         diagnostics = {
 
