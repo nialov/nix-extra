@@ -79,5 +79,6 @@ python3.pkgs.buildPythonApplication {
     homepage = "https://github.com/AntonOsika/gpt-engineer";
     license = licenses.mit;
     maintainers = with maintainers; [ nialov ];
+    broken = true;
   };
 }
