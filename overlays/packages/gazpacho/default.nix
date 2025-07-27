@@ -39,6 +39,7 @@ buildPythonPackage {
     homepage = "https://github.com/maxhumber/gazpacho";
     maintainers = with maintainers; [ nialov ];
     license = licenses.mit;
+    broken = true;
   };
 
 }
