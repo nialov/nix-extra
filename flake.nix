@@ -1,7 +1,6 @@
 {
   description = "My extra nixpkgs and nixos config";
 
-  # warning: input 'flake-utils' has an override for a non-existent input 'nixpkgs'
   # warning: input 'nixos-hardware' has an override for a non-existent input 'nixpkgs'
   # warning: input 'nur' has an override for a non-existent input 'nixpkgs'
   nixConfig.extra-substituters = [ "https://nialov.cachix.org" ];
@@ -23,29 +22,28 @@
     nixpkgs-2405.url = "github:nixos/nixpkgs/nixos-24.05";
     nixpkgs-2311.url = "github:nixos/nixpkgs/nixos-23.11";
     nixpkgs-petsc.url = "github:nixos/nixpkgs/27bd67e55fe09f9d68c77ff151c3e44c4f81f7de";
-    nixpkgs-kibitzr.url = "github:nixos/nixpkgs/2f9fd351ec37f5d479556cd48be4ca340da59b8f";
+    # nixpkgs-kibitzr.url = "github:nixos/nixpkgs/2f9fd351ec37f5d479556cd48be4ca340da59b8f";
     # TODO: Can be removed when tensorflow no longer broken
     #       https://github.com/NixOS/nixpkgs/blob/master/pkgs/development/python-modules/tensorflow/default.nix#L453
     # nixpkgs-gpt-engineer.url = "github:nixos/nixpkgs/d680ded26da5cf104dd2735a51e88d2d8f487b4d";
     nixpkgs-dfnworks.url = "github:nixos/nixpkgs/5efc8ca954272c4376ac929f4c5ffefcc20551d5";
     # For use with pandox-xnos and friends
-    nixpkgs-pandoc = {
-      url = "github:nixos/nixpkgs/22.05";
-    };
+    # nixpkgs-pandoc = {
+    #   url = "github:nixos/nixpkgs/22.05";
+    # };
     # Use flake-utils for utility functions
-    flake-utils = {
-      url = "github:numtide/flake-utils";
-    };
+    # flake-utils = {
+    #   url = "github:numtide/flake-utils";
+    # };
     git-hooks = {
       url = "github:cachix/git-hooks.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # nix-index-database = { url = "github:Mic92/nix-index-database"; };
-    # TODO: Move nix build definition to nix-extra
-    nickel-src = {
-      url = "github:tweag/nickel";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # nickel-src = {
+    #   url = "github:tweag/nickel";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
     doit-ext-src = {
       url = "github:nialov/doit-ext";
       flake = false;
@@ -60,7 +58,7 @@
       flake = false;
       # inputs.nixpkgs.follows = "nixpkgs";
     };
-    nix-filter.url = "github:numtide/nix-filter";
+    # nix-filter.url = "github:numtide/nix-filter";
     tracerepo-src = {
       url = "github:nialov/tracerepo";
       flake = false;
@@ -88,26 +86,26 @@
       };
     };
     # Custom non-flake sources
-    tmux-nvim-src = {
-      url = "github:aserowy/tmux.nvim";
-      flake = false;
-    };
-    cmp-tmux = {
-      url = "github:andersevenrud/cmp-tmux";
-      flake = false;
-    };
-    vim-nickel-src = {
-      url = "github:nickel-lang/vim-nickel";
-      flake = false;
-    };
-    tmux-open-src = {
-      url = "github:tmux-plugins/tmux-open";
-      flake = false;
-    };
-    chatgpt-nvim-src = {
-      url = "github:nialov/ChatGPT.nvim";
-      flake = false;
-    };
+    # tmux-nvim-src = {
+    #   url = "github:aserowy/tmux.nvim";
+    #   flake = false;
+    # };
+    # cmp-tmux = {
+    #   url = "github:andersevenrud/cmp-tmux";
+    #   flake = false;
+    # };
+    # vim-nickel-src = {
+    #   url = "github:nickel-lang/vim-nickel";
+    #   flake = false;
+    # };
+    # tmux-open-src = {
+    #   url = "github:tmux-plugins/tmux-open";
+    #   flake = false;
+    # };
+    # chatgpt-nvim-src = {
+    #   url = "github:nialov/ChatGPT.nvim";
+    #   flake = false;
+    # };
     sphinxcontrib-mermaid-src = {
       url = "github:mgaitan/sphinxcontrib-mermaid";
       flake = false;
@@ -117,15 +115,16 @@
       flake = false;
     };
     synonym-cli-src = {
-      url = "github:agmmnn/synonym-cli";
+      url = "github:agmmnn/synonym-cli/722b209eb6b313fa1f0ffabf54fc6c515da1d81a";
       flake = false;
     };
     gazpacho-src = {
-      url = "github:maxhumber/gazpacho";
+      url = "github:maxhumber/gazpacho/7cc94880d3c967c7fb4321eee22f3cfb83615484";
       flake = false;
     };
     gazpacho-1-1-src = {
-      url = "github:maxhumber/gazpacho/v1.1";
+      # v1.1
+      url = "github:maxhumber/gazpacho/fddedfde9a9d5345de12cc349c5c194517965c91";
       flake = false;
     };
     tasklite-src = {
@@ -138,7 +137,7 @@
       flake = false;
     };
     kibitzr-src = {
-      url = "github:kibitzr/kibitzr";
+      url = "github:kibitzr/kibitzr/22ee1df54c790dab8a59f356d269713c26ca0545";
       flake = false;
     };
     allas-cli-utils-src = {
@@ -272,7 +271,7 @@
           # Get deploy-rs form its repository flake
           inherit (inputs.deploy-rs-input.packages."${system}") deploy-rs;
 
-          nickel = inputs.nickel-src.packages."${system}".build;
+          # nickel = inputs.nickel-src.packages."${system}".build;
         };
       fullOverlay = lib.composeManyExtensions [
         localOverlay
@@ -318,10 +317,10 @@
             overlays = {
               default = fullOverlay;
               utils = lib.composeManyExtensions [
-                (_: _: {
-                  # numtide/nix-filter library used for filtering local packages sources
-                  filter = inputs.nix-filter.lib;
-                })
+                # (_: _: {
+                # numtide/nix-filter library used for filtering local packages sources
+                # filter = inputs.nix-filter.lib;
+                # })
                 localOverlay
               ];
 

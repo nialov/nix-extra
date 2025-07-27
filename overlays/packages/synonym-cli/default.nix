@@ -65,7 +65,7 @@ buildPythonPackage rec {
     # TODO: No license for project
     license = licenses.bsd3;
     # TODO: Does not seem to work and the only test is a network test
-    # broken = true;
+    broken = true;
   };
 
 }

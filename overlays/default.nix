@@ -318,11 +318,11 @@ in
     };
 
   vimPlugins = prev.lib.recursiveUpdate prev.vimPlugins {
-    tmux-nvim = prev.vimUtils.buildVimPlugin {
-      name = "tmux-nvim";
-      src = inputs.tmux-nvim-src;
-      patches = [ ./tmux-nvim-sync.patch ];
-    };
+    # tmux-nvim = prev.vimUtils.buildVimPlugin {
+    #   name = "tmux-nvim";
+    #   src = inputs.tmux-nvim-src;
+    #   patches = [ ./tmux-nvim-sync.patch ];
+    # };
     blink-cmp-tmux = prev.vimUtils.buildVimPlugin {
       name = "blink-cmp-tmux";
       src = inputs.blink-cmp-tmux-src;
