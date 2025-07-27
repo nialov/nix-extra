@@ -73,7 +73,7 @@ def completed(
         headers=[col.capitalize() for col in exported_tasks_parsed_filtered],
         tablefmt="rst",
         showindex=False,
-        maxcolwidths=80,
+        # maxcolwidths=80,
     )
 
     process_result = subprocess.run(
