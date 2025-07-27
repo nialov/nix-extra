@@ -160,9 +160,10 @@ mkDerivation {
     cd ./tasklite-core/
   '';
 
-  # meta = with lib; {
-  #   description = "The CLI task manager for power users";
-  #   homepage = "https://github.com/ad-si/tasklite";
-  #   maintainers = with maintainers; [ nialov ];
-  # };
+  meta = with lib; {
+    description = "The CLI task manager for power users";
+    homepage = "https://github.com/ad-si/tasklite";
+    maintainers = with maintainers; [ nialov ];
+    broken = true;
+  };
 }

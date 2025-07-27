@@ -91,10 +91,10 @@
             # tracerepo pandera
             ;
           # inherit (pkgs.gptEngineerPackages) gpt-engineer;
-          inherit (pkgs.kibitzrPackages) kibitzr;
-          inherit (pkgs.release2405Packages) frackit;
+          # inherit (pkgs.kibitzrPackages) kibitzr;
+          # inherit (pkgs.release2405Packages) frackit;
           inherit (pkgs.release2311Packages)
-            tasklite-core
+            # tasklite-core
             lagrit
             dfnworks
             fehm
@@ -105,7 +105,7 @@
             ;
           inherit (pkgs.release2311Packages.python3Packages)
             pydfnworks
-            gkeepapi
+            # gkeepapi
             ;
           # inherit (pkgs.tracerepoPackages) tracerepo;
           inherit (self'.devShells) poetry-devshell;

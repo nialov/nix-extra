@@ -131,5 +131,6 @@ buildPythonPackage {
     description = "Personal Web Assistant";
     license = licenses.mit;
     maintainers = [ maintainers.nialov ];
+    broken = true;
   };
 }
