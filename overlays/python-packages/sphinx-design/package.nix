@@ -4,17 +4,24 @@
   fetchPypi,
   python,
   sphinx,
+  flit-core,
 }:
 
 buildPythonPackage rec {
   pname = "sphinx-design";
-  version = "0.2.0";
+  version = "0.6.1";
 
   src = fetchPypi {
-    inherit pname version;
-    sha256 = "aa49bf924516f5de8a479794c7be81e077df5599c9da2a082003d5b388e1d450";
+    pname = "sphinx_design";
+    inherit
+      # pname
+      version
+      ;
+    sha256 = "sha256-tE7qNxk4bQTXZcGoJXysorPm+EIdezpedCwP1F+E5jI=";
   };
 
+  pyproject = true;
+  build-system = [ flit-core ];
   # buildInputs = [ sphinx ];
   propagatedBuildInputs = [ sphinx ];
 

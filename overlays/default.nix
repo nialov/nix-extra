@@ -70,40 +70,40 @@ in
   #   nixpkgs = inputs.nixpkgs-gpt-engineer;
   # };
 
-  taskfzf = prev.callPackage ././packages/taskfzf { inherit inputs; };
-  pathnames = prev.callPackage ././packages/pathnames { };
-  backupper = prev.callPackage ././packages/backupper { };
-  wiki-builder = prev.callPackage ././packages/wiki-builder { };
-  wsl-open-dynamic = prev.callPackage ././packages/wsl-open-dynamic { };
-  pretty-task = prev.callPackage ././packages/pretty-task { };
-  git-history-grep = prev.callPackage ././packages/git-history-grep { };
-  nix-flake-metadata-inputs = prev.callPackage ././packages/nix-flake-metadata-inputs { };
-  proton-ge-custom = prev.callPackage ././packages/proton-ge-custom { };
-  inherit (final.python3Packages)
-    # synonym-cli
-    kibitzr
-    ;
-  allas-cli-utils = prev.callPackage ././packages/allas-cli-utils { inherit inputs; };
-  grokker = prev.callPackage ././packages/grokker { inherit inputs; };
-  poetry-with-c-tooling = prev.callPackage ././packages/poetry-with-c-tooling { };
+  # taskfzf = prev.callPackage ././packages/taskfzf { inherit inputs; };
+  # pathnames = prev.callPackage ././packages/pathnames { };
+  # backupper = prev.callPackage ././packages/backupper { };
+  # wiki-builder = prev.callPackage ././packages/wiki-builder { };
+  # wsl-open-dynamic = prev.callPackage ././packages/wsl-open-dynamic { };
+  # pretty-task = prev.callPackage ././packages/pretty-task { };
+  # git-history-grep = prev.callPackage ././packages/git-history-grep { };
+  # nix-flake-metadata-inputs = prev.callPackage ././packages/nix-flake-metadata-inputs { };
+  # proton-ge-custom = prev.callPackage ././packages/proton-ge-custom { };
+  # inherit (final.python3Packages)
+  # synonym-cli
+  # kibitzr
+  # ;
+  # allas-cli-utils = prev.callPackage ././packages/allas-cli-utils { inherit inputs; };
+  # grokker = prev.callPackage ././packages/grokker { inherit inputs; };
+  # poetry-with-c-tooling = prev.callPackage ././packages/poetry-with-c-tooling { };
   # TODO: Generate more succinctly
-  python310-with-c-tooling = prev.callPackage ././packages/python-with-c-tooling {
+  python310-with-c-tooling = prev.callPackage ././custom-packages/python-with-c-tooling {
     python3ToWrap = prev.python310;
   };
-  python311-with-c-tooling = prev.callPackage ././packages/python-with-c-tooling {
+  python311-with-c-tooling = prev.callPackage ././custom-packages/python-with-c-tooling {
     python3ToWrap = prev.python311;
   };
 
-  gpt-engineer = final.callPackage ././packages/gpt-engineer { inherit inputs; };
-  frackit = prev.callPackage ././packages/frackit { inherit inputs; };
-  lagrit = prev.callPackage ././packages/lagrit { inherit inputs; };
-  dfnworks = prev.callPackage ././packages/dfnworks { inherit inputs; };
-  fehm = prev.callPackage ././packages/fehm { inherit inputs; };
-  pflotran = final.callPackage ././packages/pflotran { inherit inputs; };
-  pkg-fblaslapack = prev.callPackage ././packages/pkg-fblaslapack { inherit inputs; };
-  petsc = import ./packages/petsc-override.nix { inherit inputs prev final; };
-  mosaic = prev.callPackage ./packages/mosaic { inherit inputs; };
-  fhs = prev.callPackage ./packages/fhs.nix { };
+  # gpt-engineer = final.callPackage ././packages/gpt-engineer { inherit inputs; };
+  # frackit = prev.callPackage ././packages/frackit { inherit inputs; };
+  # lagrit = prev.callPackage ././packages/lagrit { inherit inputs; };
+  # dfnworks = prev.callPackage ././packages/dfnworks { inherit inputs; };
+  # fehm = prev.callPackage ././packages/fehm { inherit inputs; };
+  # pflotran = final.callPackage ././packages/pflotran { inherit inputs; };
+  # pkg-fblaslapack = prev.callPackage ././packages/pkg-fblaslapack { inherit inputs; };
+  petsc = import ./custom-packages/petsc-override.nix { inherit inputs prev final; };
+  # mosaic = prev.callPackage ./packages/mosaic { inherit inputs; };
+  # fhs = prev.callPackage ./packages/fhs.nix { };
   fhs-no-ld = final.fhs.override { ldLibraryEnv = false; };
 
   # Build with cmake
@@ -116,7 +116,7 @@ in
       fortran = prev.gfortran;
     }).overrideAttrs
       (_: _: { src = inputs.hdf5-src; });
-  bootstrapSecretsScript = prev.writers.writeFishBin "bootstrap-secrets" ./packages/bootstrap-secrets.fish;
+  bootstrapSecretsScript = prev.writers.writeFishBin "bootstrap-secrets" ./custom-packages/bootstrap-secrets.fish;
   git-branch-clean = prev.writers.writeFishBin "git-branch-clean" (
     let
       b = lib.getExe;
@@ -160,11 +160,11 @@ in
     }
   );
 
-  sync-git-tag-with-poetry = prev.callPackage ./packages/sync-git-tag-with-poetry.nix { };
-  resolve-version = prev.callPackage ./packages/resolve-version.nix { };
-  update-flake = prev.callPackage ./packages/update-flake { };
-  pre-release = prev.callPackage ./packages/pre-release { };
-  poetry-run = prev.callPackage ./packages/poetry-run.nix {
+  # sync-git-tag-with-poetry = prev.callPackage ./packages/sync-git-tag-with-poetry.nix { };
+  # resolve-version = prev.callPackage ./packages/resolve-version.nix { };
+  # update-flake = prev.callPackage ./packages/update-flake { };
+  # pre-release = prev.callPackage ./packages/pre-release { };
+  poetry-run = prev.callPackage ./custom-packages/poetry-run.nix {
     pythons = with prev; [
       python310
       python311
@@ -172,7 +172,7 @@ in
       python313
     ];
   };
-  jupytext-nb-edit = prev.callPackage ./packages/jupytext-nb-edit { };
+  # jupytext-nb-edit = prev.callPackage ./packages/jupytext-nb-edit { };
 
   template-check = prev.writeShellApplication {
     name = "template-check";
@@ -219,52 +219,68 @@ in
       '';
   };
 
-  nix-flake-remote-eval-and-build =
-    prev.callPackage ./packages/nix-flake-remote-eval-and-build.nix
-      { };
+  # nix-flake-remote-eval-and-build =
+  #   prev.callPackage ./packages/nix-flake-remote-eval-and-build.nix
+  #     { };
 
   pythonPackagesExtensions = prev.pythonPackagesExtensions ++ [
-    (python-final: python-prev: {
-      sphinxcontrib-mermaid = python-final.callPackage ././packages/sphinxcontrib-mermaid {
-        inherit inputs;
-      };
-      kr-cli = python-final.callPackage ././packages/kr-cli { };
-      # synonym-cli = python-final.callPackage ././packages/synonym-cli { inherit inputs; };
-      # gazpacho = python-final.callPackage ././packages/gazpacho { inherit inputs; };
-      kibitzr = python-final.callPackage ././packages/kibitzr { inherit inputs; };
-      pandera = python-final.callPackage ././packages/pandera { inherit inputs; };
-      sphinx-gallery = python-final.callPackage ././packages/sphinx-gallery {
-        inherit inputs;
-      };
-      # bubop = python-final.callPackage ././packages/bubop { inherit inputs; };
+    (
+      python-final: python-prev:
+      let
 
-      gkeepapi = python-final.callPackage ././packages/gkeepapi { inherit inputs; };
-      doit-ext = python-final.callPackage ././packages/doit-ext { inherit inputs; };
-      frackit = python-prev.toPythonModule (
-        python-final.pkgs.frackit.override { pythonPackages = python-final; }
-      );
-      powerlaw = python-final.callPackage ././packages/powerlaw { inherit inputs; };
-      # fractopo =
-      #   python-final.callPackage ././packages/fractopo { inherit inputs; };
-      # TODO: Update pandera for numpy 2
-      python-ternary = python-final.callPackage ././packages/python-ternary {
-        inherit inputs;
-      };
-      mplstereonet = python-final.callPackage ././packages/mplstereonet { inherit inputs; };
-      pyvtk = python-final.callPackage ././packages/pyvtk { inherit inputs; };
-      pydfnworks = python-final.callPackage ././packages/dfnworks/pydfnworks.nix {
-        inherit inputs;
-      };
-      # pytest-cram =
-      # TODO: Error in pytest of the package (24.6.2024):
-      # ERROR . - TypeError: Can't instantiate abstract class CramItem with abstract ...
-      #        error: pytest-cram-0.2.2 not supported for interpreter python3.12
-      # Used by current pandera version,
-      # python-prev.pytest-cram.overridePythonAttrs (_: { doCheck = false; });
-      dask-geopandas = python-final.callPackage ././packages/dask-geopandas {
-        inherit inputs;
-      };
-    })
+        callPackagePython = python-final.callPackage;
+
+      in
+
+      {
+
+        # sphinxcontrib-mermaid = python-final.callPackage ././packages/sphinxcontrib-mermaid {
+        #   inherit inputs;
+        # };
+        # kr-cli = python-final.callPackage ././packages/kr-cli { };
+        # synonym-cli = python-final.callPackage ././packages/synonym-cli { inherit inputs; };
+        # gazpacho = python-final.callPackage ././packages/gazpacho { inherit inputs; };
+        # kibitzr = python-final.callPackage ././packages/kibitzr { inherit inputs; };
+        # pandera = python-final.callPackage ././packages/pandera { inherit inputs; };
+        # sphinx-gallery = python-final.callPackage ././packages/sphinx-gallery {
+        #   inherit inputs;
+        # };
+        # bubop = python-final.callPackage ././packages/bubop { inherit inputs; };
+
+        # gkeepapi = python-final.callPackage ././packages/gkeepapi { inherit inputs; };
+        # doit-ext = python-final.callPackage ././packages/doit-ext { inherit inputs; };
+        # frackit = python-prev.toPythonModule (
+        #   python-final.pkgs.frackit.override { pythonPackages = python-final; }
+        # );
+        # powerlaw = python-final.callPackage ././packages/powerlaw { inherit inputs; };
+        # fractopo =
+        #   python-final.callPackage ././packages/fractopo { inherit inputs; };
+        # TODO: Update pandera for numpy 2
+        # python-ternary = python-final.callPackage ././packages/python-ternary {
+        #   inherit inputs;
+        # };
+        # mplstereonet = python-final.callPackage ././packages/mplstereonet { inherit inputs; };
+        # pyvtk = python-final.callPackage ././packages/pyvtk { inherit inputs; };
+        pydfnworks = python-final.callPackage ././packages/dfnworks/pydfnworks.nix {
+          inherit inputs;
+        };
+        pytest-cram =
+          # TODO: Error in pytest of the package (24.6.2024):
+          # ERROR . - TypeError: Can't instantiate abstract class CramItem with abstract ...
+          #        error: pytest-cram-0.2.2 not supported for interpreter python3.12
+          # Used by current pandera version,
+          python-prev.pytest-cram.overridePythonAttrs (_: {
+            doCheck = false;
+          });
+        # dask-geopandas = python-final.callPackage ././packages/dask-geopandas {
+        #   inherit inputs;
+        # };
+      }
+      // inputs.nixpkgs.lib.packagesFromDirectoryRecursive {
+        callPackage = callPackagePython;
+        directory = ./python-packages;
+      }
+    )
   ];
 
   haskellPackages = prev.haskellPackages.override {
@@ -312,7 +328,7 @@ in
       # variables, and using functions like {config, ...}: { ... }.
     in
     nixvim'.makeNixvimWithModule {
-      module = ./packages/nvim-nixvim;
+      module = ./custom-packages/nvim-nixvim;
       pkgs = prev;
       extraSpecialArgs = { inherit inputs; };
     };
@@ -328,5 +344,10 @@ in
       src = inputs.blink-cmp-tmux-src;
     };
   };
+  inherit inputs lib;
 
 }
+// (inputs.nixpkgs.lib.packagesFromDirectoryRecursive {
+  inherit (prev) callPackage;
+  directory = ./packages;
+})
