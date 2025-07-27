@@ -36,3 +36,4 @@ activations/*
 *.img
 __pycache__
 pkgs
+.aider*
