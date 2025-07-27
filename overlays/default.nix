@@ -261,9 +261,9 @@ in
         # };
         # mplstereonet = python-final.callPackage ././packages/mplstereonet { inherit inputs; };
         # pyvtk = python-final.callPackage ././packages/pyvtk { inherit inputs; };
-        pydfnworks = python-final.callPackage ././packages/dfnworks/pydfnworks.nix {
-          inherit inputs;
-        };
+        # pydfnworks = python-final.callPackage ././packages/dfnworks/pydfnworks.nix {
+        #   inherit inputs;
+        # };
         pytest-cram =
           # TODO: Error in pytest of the package (24.6.2024):
           # ERROR . - TypeError: Can't instantiate abstract class CramItem with abstract ...

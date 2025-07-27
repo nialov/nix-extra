@@ -45,6 +45,8 @@ let
     src = patchedSrc;
     passthru.src = patchedSrc;
 
+    pyproject = true;
+    build-system = [ setuptools ];
     nativeBuildInputs = [ setuptools ];
 
     propagatedBuildInputs = [
