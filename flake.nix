@@ -3,10 +3,6 @@
 
   # warning: input 'nixos-hardware' has an override for a non-existent input 'nixpkgs'
   # warning: input 'nur' has an override for a non-existent input 'nixpkgs'
-  nixConfig.extra-substituters = [ "https://nialov.cachix.org" ];
-  nixConfig.extra-trusted-public-keys = [
-    "nialov.cachix.org-1:Z2oarwKpwXCZUZ6OfQx5/Ia2mEC+uizpb+c5lu/gNk4="
-  ];
   inputs = {
     # Rolling updates
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
