@@ -74,6 +74,7 @@
             fhs
             fhs-no-ld
             nix-flake-remote-eval-and-build
+            flowmark
             ;
           inherit (pkgs.python3Packages)
             doit-ext
