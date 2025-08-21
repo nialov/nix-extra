@@ -89,10 +89,30 @@
               ];
             };
             "update-flake-inputs" = {
-              schedule = [
-                { cron = "0 2 * * 0"; }
+              permissions = {
+                contents = "write";
+                pull-requests = "write";
+              };
+              steps = [
+                generateAppTokenStep
+                checkoutStep
+                installNixStep
+                updateFlakeInputsStep
               ];
-              workflow_dispatch = { };
+            };
+          };
+
+        };
+        ".github/workflows/update-flake-inputs.yaml" = {
+          on = {
+            schedule = [
+              { cron = "0 2 * * 0"; }
+            ];
+            workflow_dispatch = { };
+          };
+
+          jobs = {
+            "update-flake-inputs" = {
               permissions = {
                 contents = "write";
                 pull-requests = "write";
