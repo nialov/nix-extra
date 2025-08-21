@@ -88,18 +88,6 @@
                 nixFastBuildStep
               ];
             };
-            "update-flake-inputs" = {
-              permissions = {
-                contents = "write";
-                pull-requests = "write";
-              };
-              steps = [
-                generateAppTokenStep
-                checkoutStep
-                installNixStep
-                updateFlakeInputsStep
-              ];
-            };
           };
 
         };
