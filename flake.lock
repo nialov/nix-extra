@@ -1570,11 +1570,11 @@
     "neoai-nvim-src_2": {
       "flake": false,
       "locked": {
-        "lastModified": 1689122987,
-        "narHash": "sha256-haO7Qi2szWfTxWcknI7aJSKamQ/n6qIhIOxaO544IDY=",
+        "lastModified": 1753424825,
+        "narHash": "sha256-72njaioZ1vegP+k6Lv+PaVgPcE8aPwjvpQv4Az1m/HQ=",
         "owner": "Bryley",
         "repo": "neoai.nvim",
-        "rev": "248c2001d0b24e58049eeb6884a79860923cfe13",
+        "rev": "d502953da17ba67a1dcb703c31194533fc664092",
         "type": "github"
       },
       "original": {
