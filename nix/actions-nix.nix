@@ -62,7 +62,10 @@
         };
         updateFlakeInputsStep = {
           uses = "mic92/update-flake-inputs@main";
-          "with".github-token = "\${{ steps.app-token.outputs.token }}";
+          "with" = {
+            github-token = "\${{ steps.app-token.outputs.token }}";
+            auto-merge = true;
+          };
         };
 
       in
