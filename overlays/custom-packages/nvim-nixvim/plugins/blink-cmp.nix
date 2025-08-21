@@ -210,7 +210,10 @@
       enable = true;
       fromLua = [ { paths = ../snippets; } ];
     };
-    lspkind.enable = true;
+    lspkind = {
+      enable = true;
+      cmp.enable = false;
+    };
   };
 
   extraPlugins = [
