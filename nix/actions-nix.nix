@@ -52,6 +52,18 @@
           name = "Evaluate and build checks faster";
           run = "nix run .#nix-fast-build-ci";
         };
+        generateAppTokenStep = {
+          id = "app-token";
+          uses = "actions/create-github-app-token@v1";
+          "with" = {
+            app-id = "\${{ secrets.APP_ID }}";
+            private-key = "\${{ secrets.APP_PRIVATE_KEY }}";
+          };
+        };
+        updateFlakeInputsStep = {
+          uses = "mic92/update-flake-inputs@main";
+          "with".github-token = "\${{ steps.app-token.outputs.token }}";
+        };
 
       in
       {
@@ -74,6 +86,22 @@
                 cachixStep
                 installNixStep
                 nixFastBuildStep
+              ];
+            };
+            "update-flake-inputs" = {
+              schedule = [
+                { cron = "0 2 * * 0"; }
+              ];
+              workflow_dispatch = { };
+              permissions = {
+                contents = "write";
+                pull-requests = "write";
+              };
+              steps = [
+                generateAppTokenStep
+                checkoutStep
+                installNixStep
+                updateFlakeInputsStep
               ];
             };
           };

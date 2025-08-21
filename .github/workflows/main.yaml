@@ -34,6 +34,26 @@ jobs:
     - name: Check flake
       run: nix -Lv flake check --no-build
     timeout-minutes: 60
+  update-flake-inputs:
+    permissions:
+      contents: write
+      pull-requests: write
+    runs-on: ubuntu-latest
+    schedule:
+    - cron: 0 2 * * 0
+    steps:
+    - id: app-token
+      uses: actions/create-github-app-token@v1
+      with:
+        app-id: ${{ secrets.APP_ID }}
+        private-key: ${{ secrets.APP_PRIVATE_KEY }}
+    - uses: actions/checkout@v4
+    - uses: DeterminateSystems/nix-installer-action@v9
+    - uses: mic92/update-flake-inputs@main
+      with:
+        github-token: ${{ steps.app-token.outputs.token }}
+    timeout-minutes: 60
+    workflow_dispatch: {}
 'on':
   push: {}
   workflow_dispatch: {}
