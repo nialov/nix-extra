@@ -4,6 +4,7 @@ Pretty printing completed tasks from taskwarrior.
 """
 
 import subprocess
+import os
 from typing import Any, Dict, List
 
 import json5
@@ -18,7 +19,10 @@ APP = typer.Typer()
 
 
 @APP.command()
-def completed(
+def main(
+    task_executable: str = typer.Option(
+        os.environ.get("PRETTY_TASK_TASKWARRIOR_EXECUTABLE", "task")
+    ),
     end_interval: str = typer.Option("48h"),
     # column_config: str = typer.Option(
     #     "rc.report.completed.columns=project,description"
@@ -35,7 +39,7 @@ def completed(
 
     exported_tasks_json = subprocess.check_output(
         [
-            "task",
+            task_executable,
             # column_config, column_label_config,
             today_config,
             "rc.verbose=no",
@@ -84,17 +88,6 @@ def completed(
     )
     formatted_result = process_result.stdout
     print(formatted_result)
-
-
-@APP.command()
-def pending(
-    suffix: str = typer.Option("list"),
-):
-    """
-    Export pending tasks in a pretty table.
-    """
-    print(dict(suffix=suffix))
-    print("Deprecated")
 
 
 if __name__ == "__main__":
