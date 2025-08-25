@@ -268,13 +268,12 @@ function M.report_completed_tasks_tbl_pretty_task(end_interval)
 	end
 
 	local pretty_task_executable = "pretty-task"
-	local pretty_task_subcommand = "completed"
+	-- local pretty_task_subcommand = "completed"
 	if vim.fn.executable(pretty_task_executable) ~= 1 then
 		error(string.format("Expected %s to be executable.", pretty_task_executable))
 	end
-	local cmd_result_tbl = vim.fn.systemlist(
-		string.format("%s %s --end-interval=%s", pretty_task_executable, pretty_task_subcommand, end_interval)
-	)
+	local cmd_result_tbl =
+		vim.fn.systemlist(string.format("%s --end-interval=%s", pretty_task_executable, end_interval))
 
 	-- Check if system command errored
 	if vim.v.shell_error ~= 0 or #cmd_result_tbl == 0 then
