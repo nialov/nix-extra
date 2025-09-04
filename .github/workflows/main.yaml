@@ -15,7 +15,7 @@ jobs:
         temp-reserve-mb: 1024
     - name: Reown /nix to root
       run: sudo chown -R root /nix
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
     - uses: DeterminateSystems/nix-installer-action@v9
     - continue-on-error: true
       uses: cachix/cachix-action@v14
@@ -29,7 +29,7 @@ jobs:
   nix-flake-check-no-build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
     - uses: DeterminateSystems/nix-installer-action@v9
     - name: Check flake
       run: nix -Lv flake check --no-build

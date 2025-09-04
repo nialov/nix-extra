@@ -12,7 +12,7 @@
 
       let
         checkoutStep = {
-          uses = "actions/checkout@v4";
+          uses = "actions/checkout@v5";
         };
         installNixStep = {
           uses = "DeterminateSystems/nix-installer-action@v9";
