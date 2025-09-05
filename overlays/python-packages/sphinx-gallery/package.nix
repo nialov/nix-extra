@@ -20,7 +20,7 @@
 
 buildPythonPackage rec {
   pname = "sphinx-gallery";
-  version = inputs.sphinx-gallery-src.shortRev;
+  version = "0.19.0.dev+${inputs.sphinx-gallery-src.shortRev}";
   format = "pyproject";
   src = inputs.sphinx-gallery-src;
 
