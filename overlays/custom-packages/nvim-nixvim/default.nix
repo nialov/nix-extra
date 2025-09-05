@@ -218,6 +218,10 @@ in
       '';
       desc = "Format current buffer using lsp or pre-commit";
     };
+    "Messages" = {
+      command = "Fidget history";
+      desc = "Show Fidget notification history";
+    };
     # "PreCommit" = {
     #   command.__raw = ''
     #     function ()
