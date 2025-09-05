@@ -7,7 +7,7 @@
   stdenv,
   python3,
   installShellFiles,
-  taskwarrior2,
+  # taskwarrior2,
   pandoc,
   lib,
   makeWrapper,
@@ -38,7 +38,7 @@ stdenv.mkDerivation {
     cp ${././pretty_task.py} $out/bin/pretty-task
     wrapProgram $out/bin/pretty-task --prefix PATH : ${
       lib.makeBinPath [
-        taskwarrior2
+        # taskwarrior2
         pandoc
       ]
     }
