@@ -2678,11 +2678,11 @@
     "sphinxcontrib-mermaid-src_2": {
       "flake": false,
       "locked": {
-        "lastModified": 1755186970,
-        "narHash": "sha256-SKEmd8bgtaMjnDvssfEva2JSi4lkqRpvZsQJ1mJ9FEQ=",
+        "lastModified": 1757368239,
+        "narHash": "sha256-6r76jZlHyZNEpcRKNmFoZ83oawZdW4PEOaq5wt9zzCc=",
         "owner": "mgaitan",
         "repo": "sphinxcontrib-mermaid",
-        "rev": "8a8c0df6eb0f11547e088d9b0965048d88094cf5",
+        "rev": "cb0c64e4ae4c85bfa4e74017fcb042f91e2e919f",
         "type": "github"
       },
       "original": {
