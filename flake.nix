@@ -235,6 +235,10 @@
       url = "github:mgalliou/blink-cmp-tmux";
       flake = false;
     };
+    drillcore-transformations-src = {
+      url = "github:nialov/drillcore-transformations";
+      flake = false;
+    };
   };
 
   outputs =

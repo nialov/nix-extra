@@ -85,6 +85,7 @@
             python-ternary
             mplstereonet
             pyvtk
+            drillcore-transformations
             # TODO: fractopo needs update upstream
             # fractopo
 
