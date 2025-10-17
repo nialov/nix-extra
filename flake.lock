@@ -410,6 +410,22 @@
         "type": "github"
       }
     },
+    "drillcore-transformations-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1760707192,
+        "narHash": "sha256-br5icbKs0bGO3uDBkr0D2REGKBz+kqcrWQjSTqDoRVU=",
+        "owner": "nialov",
+        "repo": "drillcore-transformations",
+        "rev": "7b2c37cabb926311cfbb3d1653678bebdfa0488b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nialov",
+        "repo": "drillcore-transformations",
+        "type": "github"
+      }
+    },
     "fehm-src": {
       "flake": false,
       "locked": {
@@ -2552,6 +2568,7 @@
         "deploy-rs-input": "deploy-rs-input",
         "dfnworks-src": "dfnworks-src",
         "doit-ext-src": "doit-ext-src",
+        "drillcore-transformations-src": "drillcore-transformations-src",
         "fehm-src": "fehm-src",
         "flake-parts": "flake-parts",
         "frackit-src": "frackit-src",
