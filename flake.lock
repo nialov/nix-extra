@@ -2212,11 +2212,11 @@
         "systems": "systems_9"
       },
       "locked": {
-        "lastModified": 1760215554,
-        "narHash": "sha256-6o8epYMUwpsNdr3XxDxazxC7mHyKieFju+uVjHWX0/s=",
+        "lastModified": 1760833893,
+        "narHash": "sha256-8icptPodvFklgYyuRIPgx0uHvK8AssJUFXOcRcatgqE=",
         "owner": "nix-community",
         "repo": "nixvim",
-        "rev": "92793f84ca0fd1d4b414b4cbef611a71da789d16",
+        "rev": "c89994b0ac1b6a322f1db9fd356beec2dac60313",
         "type": "github"
       },
       "original": {
