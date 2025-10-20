@@ -236,6 +236,7 @@
       flake = false;
     };
     drillcore-transformations-src = {
+      # TODO: Lock to tag
       url = "github:nialov/drillcore-transformations";
       flake = false;
     };
