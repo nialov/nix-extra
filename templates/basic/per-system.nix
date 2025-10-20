@@ -53,11 +53,8 @@
         pre-commit = {
           check.enable = true;
           settings.hooks = {
-            nixfmt.enable = true;
+            nixfmt-rfc-style.enable = true;
             nbstripout.enable = true;
-            isort = {
-              enable = true;
-            };
             shellcheck.enable = true;
             statix.enable = true;
             deadnix.enable = true;
