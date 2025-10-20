@@ -7,7 +7,7 @@ let
 
   parmetis =
     let
-      parmetisPkgs = import inputs.nixpkgs {
+      parmetisPkgs = import inputs.nixpkgs-2505 {
         inherit (prev) system;
         config = {
           allowUnfree = true;
