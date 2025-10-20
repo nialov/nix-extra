@@ -345,6 +345,9 @@ in
   };
   inherit inputs lib;
 
+  # TODO: Unstable did not work 20.10.2025
+  inherit (inputs.nixpkgs-stable.legacyPackages."${prev.system}") micromamba;
+
 }
 // (inputs.nixpkgs.lib.packagesFromDirectoryRecursive {
   inherit (prev) callPackage;
