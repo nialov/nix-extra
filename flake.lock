@@ -413,11 +413,11 @@
     "drillcore-transformations-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1760707192,
-        "narHash": "sha256-br5icbKs0bGO3uDBkr0D2REGKBz+kqcrWQjSTqDoRVU=",
+        "lastModified": 1760966698,
+        "narHash": "sha256-jRXMyaOQdqNfjeu/dqay1hqkB020oL6ZeJ0bqaIgdPo=",
         "owner": "nialov",
         "repo": "drillcore-transformations",
-        "rev": "7b2c37cabb926311cfbb3d1653678bebdfa0488b",
+        "rev": "3c08802a3cbf975495e7fcf9e49e29b77c9f3787",
         "type": "github"
       },
       "original": {
