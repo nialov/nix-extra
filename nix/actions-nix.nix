@@ -118,6 +118,28 @@
           };
 
         };
+        ".github/workflows/nix-build.yaml" = {
+          on = {
+            workflow_dispatch.inputs.package = {
+              description = "Nix package name to build (e.g., hello)";
+              required = true;
+            };
+          };
+
+          jobs = {
+            "nix-build" = {
+              steps = [
+                checkoutStep
+                installNixStep
+                {
+                  name = "Build Nix package";
+                  run = "nix -Lv build .#\${{ github.event.inputs.package }}";
+                }
+              ];
+            };
+          };
+
+        };
 
       };
   };

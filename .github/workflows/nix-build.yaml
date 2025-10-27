@@ -1,0 +1,15 @@
+jobs:
+  nix-build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v5
+    - uses: DeterminateSystems/nix-installer-action@v9
+    - name: Build Nix package
+      run: nix -Lv build .#${{ github.event.inputs.package }}
+    timeout-minutes: 60
+'on':
+  workflow_dispatch:
+    inputs:
+      package:
+        description: Nix package name to build (e.g., hello)
+        required: true
