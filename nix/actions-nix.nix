@@ -111,6 +111,7 @@
               steps = [
                 generateAppTokenStep
                 checkoutStep
+                cachixStep
                 installNixStep
                 updateFlakeInputsStep
               ];
@@ -130,6 +131,7 @@
             "nix-build" = {
               steps = [
                 checkoutStep
+                cachixStep
                 installNixStep
                 {
                   name = "Build Nix package";
