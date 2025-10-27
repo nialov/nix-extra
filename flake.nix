@@ -70,7 +70,7 @@
       inputs.flake-parts.follows = "flake-parts";
     };
     actions-nix = {
-      url = "github:nialov/actions.nix";
+      url = "github:Calamu-Technologies/actions.nix";
       inputs = {
         git-hooks.follows = "git-hooks";
         flake-parts.follows = "flake-parts";

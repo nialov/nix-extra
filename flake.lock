@@ -13,15 +13,15 @@
         ]
       },
       "locked": {
-        "lastModified": 1756972308,
-        "narHash": "sha256-jshzOqI+lXOj7vcUOqEHdYqEJq6JbAkAGdiDfdqdFAU=",
-        "owner": "nialov",
+        "lastModified": 1759946820,
+        "narHash": "sha256-jYWo3ob90r+AXT++SkxPuUTBOEzuFkjsz32WTF+rMh0=",
+        "owner": "Calamu-Technologies",
         "repo": "actions.nix",
-        "rev": "6d915413f99f10d6bf02f733670c1b8b9f671b3e",
+        "rev": "4dfd3eb49f9373f6fdf84b1361a1769c6187ce00",
         "type": "github"
       },
       "original": {
-        "owner": "nialov",
+        "owner": "Calamu-Technologies",
         "repo": "actions.nix",
         "type": "github"
       }
