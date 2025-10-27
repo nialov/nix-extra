@@ -134,8 +134,8 @@
                 cachixStep
                 installNixStep
                 {
-                  name = "Build Nix package";
-                  run = "nix -Lv build .#\${{ github.event.inputs.package }}";
+                  name = "Build \${{ github.event.inputs.package }}";
+                  run = "nix build .#\${{ github.event.inputs.package }}";
                 }
               ];
             };
