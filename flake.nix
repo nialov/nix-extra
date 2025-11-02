@@ -149,11 +149,6 @@
       url = "github:stevegt/grokker/7e4259c3c21951e70dd7f12d6bf7ceda09af7a81";
       flake = false;
     };
-    # TODO: Check fix-attempt-gpt-engineer-fix branch for building newer versions
-    gpt-engineer-src = {
-      url = "github:AntonOsika/gpt-engineer/2a66dd57f6e32940b7e783ab3cd5fe6a19461d6b";
-      flake = false;
-    };
     frackit-src = {
       url = "git+https://git.iws.uni-stuttgart.de/tools/frackit?ref=feature/geodataframes-parser";
       flake = false;

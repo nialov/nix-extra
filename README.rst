@@ -21,9 +21,6 @@ I have packaged e.g.
    using ``YAML`` configuration.
 -  `tasklite <https://github.com/ad-si/tasklite>`__ which is a
    replacement to ``taskwarrior`` command-line task management
--  `gpt-engineer <https://github.com/AntonOsika/gpt-engineer>`__ can be
-   used to template/render a project of any language using large
-   language models (*OpenAI GPT-3/4*)
 -  `mosaic <https://github.com/codebox/mosaic>`__ can be used to
    recreate a target image using preset tiles which can be any images.
 

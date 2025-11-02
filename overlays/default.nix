@@ -94,16 +94,7 @@ in
     python3ToWrap = prev.python311;
   };
 
-  # gpt-engineer = final.callPackage ././packages/gpt-engineer { inherit inputs; };
-  # frackit = prev.callPackage ././packages/frackit { inherit inputs; };
-  # lagrit = prev.callPackage ././packages/lagrit { inherit inputs; };
-  # dfnworks = prev.callPackage ././packages/dfnworks { inherit inputs; };
-  # fehm = prev.callPackage ././packages/fehm { inherit inputs; };
-  # pflotran = final.callPackage ././packages/pflotran { inherit inputs; };
-  # pkg-fblaslapack = prev.callPackage ././packages/pkg-fblaslapack { inherit inputs; };
   petsc = import ./custom-packages/petsc-override.nix { inherit inputs prev final; };
-  # mosaic = prev.callPackage ./packages/mosaic { inherit inputs; };
-  # fhs = prev.callPackage ./packages/fhs.nix { };
   fhs-no-ld = final.fhs.override { ldLibraryEnv = false; };
 
   # Build with cmake
