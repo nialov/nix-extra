@@ -12,7 +12,7 @@ let
       typer
       rich
       sphinx
-      sphinx_rtd_theme
+      sphinx-rtd-theme
       sphinxcontrib-blockdiag
       recommonmark
       sphinx-design
