@@ -54,7 +54,7 @@
         };
         generateAppTokenStep = {
           id = "app-token";
-          uses = "actions/create-github-app-token@v1";
+          uses = "actions/create-github-app-token@v2";
           "with" = {
             app-id = "\${{ secrets.APP_ID }}";
             private-key = "\${{ secrets.APP_PRIVATE_KEY }}";
@@ -110,7 +110,7 @@
               };
               steps = [
                 generateAppTokenStep
-                checkoutStep
+                (checkoutStep // { "with".token = "\${{ steps.app-token.outputs.token }}"; })
                 cachixStep
                 installNixStep
                 updateFlakeInputsStep
