@@ -29,7 +29,7 @@
 }:
 
 buildPythonPackage {
-  pname = "pandera";
+  pname = "pandera-tracerepo";
   version = inputs.pandera-src.rev;
   format = "pyproject";
 
