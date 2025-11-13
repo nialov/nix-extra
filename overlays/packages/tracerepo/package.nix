@@ -17,7 +17,7 @@
   notebook,
   ipython,
   coverage,
-  pandera,
+  pandera-tracerepo,
   json5,
 
 }:
@@ -52,7 +52,7 @@ buildPythonPackage {
 
   propagatedBuildInputs = [
     fractopo
-    pandera
+    pandera-tracerepo
     json5
   ];
 
