@@ -35,6 +35,9 @@
               # Formatters & linters
               pre-commit
               watchexec
+              ruff
+              shellcheck
+              nixfmt-rfc-style
             ];
             # Include pre-commit check shellHook so they can be ran with `pre-commit ...`
             shellHook = config.pre-commit.installationScript;
