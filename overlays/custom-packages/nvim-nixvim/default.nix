@@ -1164,13 +1164,12 @@ in
     };
     # https://github.com/nomnivore/ollama.nvim/tree/main
     # https://nix-community.github.io/nixvim/plugins/ollama/index.html
-    ollama = {
-      enable = true;
-      action = "display";
-      model = "llama3.2:latest";
-      url = "https://ollama.novaskai.xyz";
-
-    };
+    # ollama = {
+    #   enable = true;
+    #   action = "display";
+    #   model = "llama3.2:latest";
+    #   url = "https://ollama.novaskai.xyz";
+    # };
 
   };
 
