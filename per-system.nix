@@ -98,20 +98,20 @@
           # inherit (pkgs.gptEngineerPackages) gpt-engineer;
           # inherit (pkgs.kibitzrPackages) kibitzr;
           # inherit (pkgs.release2405Packages) frackit;
-          inherit (pkgs.release2311Packages)
-            # tasklite-core
-            lagrit
-            dfnworks
-            fehm
-            pflotran
-            petsc
-            hdf5-full
-            openmpi
-            ;
-          inherit (pkgs.release2311Packages.python3Packages)
-            pydfnworks
-            # gkeepapi
-            ;
+          # inherit (pkgs.release2311Packages)
+          #   # tasklite-core
+          #   lagrit
+          #   dfnworks
+          #   fehm
+          #   pflotran
+          #   petsc
+          #   hdf5-full
+          #   openmpi
+          #   ;
+          # inherit (pkgs.release2311Packages.python3Packages)
+          #   pydfnworks
+          #   # gkeepapi
+          #   ;
           # inherit (pkgs.tracerepoPackages) tracerepo;
           inherit (self'.devShells) poetry-devshell;
         }
