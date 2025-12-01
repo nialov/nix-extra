@@ -236,6 +236,10 @@
       url = "github:nialov/drillcore-transformations";
       flake = false;
     };
+    filesender-src = {
+      url = "github:filesender/filesender/filesender-2.57";
+      flake = false;
+    };
   };
 
   outputs =
