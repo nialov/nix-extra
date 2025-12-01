@@ -460,6 +460,23 @@
         "type": "github"
       }
     },
+    "filesender-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1754365329,
+        "narHash": "sha256-I/9Y64jWm7QdQ1yhjCHkLfkKrzV6y0Rp+wkZbDP86fw=",
+        "owner": "filesender",
+        "repo": "filesender",
+        "rev": "34954fbb098df4f05afd6d8950982f250cc13791",
+        "type": "github"
+      },
+      "original": {
+        "owner": "filesender",
+        "ref": "filesender-2.57",
+        "repo": "filesender",
+        "type": "github"
+      }
+    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -2569,6 +2586,7 @@
         "doit-ext-src": "doit-ext-src",
         "drillcore-transformations-src": "drillcore-transformations-src",
         "fehm-src": "fehm-src",
+        "filesender-src": "filesender-src",
         "flake-parts": "flake-parts",
         "frackit-src": "frackit-src",
         "fractopo": "fractopo",
