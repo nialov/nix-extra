@@ -5,9 +5,10 @@
   # warning: input 'nur' has an override for a non-existent input 'nixpkgs'
   inputs = {
     # Rolling updates
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-previous.url = "github:nixos/nixpkgs/3730d8a";
-    nixpkgs-previous-previous.url = "github:nixos/nixpkgs/d0797a04b81caeae77bcff10a9dde78bc17f5661";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-previous.url = "github:nixos/nixpkgs/050e09e091117c3d7328c7b2b7b577492c43c134";
+    nixpkgs-previous-previous.url = "github:nixos/nixpkgs/3730d8a";
     # Update follows target when releases get made
     nixpkgs-stable.follows = "nixpkgs-2505";
     nixpkgs-stabler.follows = "nixpkgs-2411";
