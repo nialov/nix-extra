@@ -161,6 +161,8 @@ in
       python311
       python312
       python313
+      python314
+      python315
     ];
   };
   # jupytext-nb-edit = prev.callPackage ./packages/jupytext-nb-edit { };
