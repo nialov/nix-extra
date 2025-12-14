@@ -37,11 +37,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1764576623,
-        "narHash": "sha256-XBE+zteYGaqRv47AH+kLIBdrp6uQcE1bM8gagrft4q4=",
+        "lastModified": 1765181248,
+        "narHash": "sha256-AnaOPPIH0u8RFVGFCi97Yn7VBfgAe0KaBdPz1FE8g4E=",
         "owner": "nialov",
         "repo": "actions.nix",
-        "rev": "e21c6db769c24f1caf026102669106281cd7b57f",
+        "rev": "2acc871e961fbd70d217037707bfc04a43be9dd7",
         "type": "github"
       },
       "original": {
@@ -763,11 +763,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1764578648,
-        "narHash": "sha256-oJcbswTGHfDY0s+VnBlIXSJUu16ilYhErYJYSevmtEU=",
+        "lastModified": 1765183373,
+        "narHash": "sha256-Sya1rsRg4CRq/5SN9Fh8dgNmL/i2MzgzLtbzwnN5b84=",
         "owner": "nialov",
         "repo": "fractopo",
-        "rev": "db3caa31e1613ec6c1782d24591bc985df84da3a",
+        "rev": "d04b2bc4b8bb0ee1fb063e0172c5a1d265310c02",
         "type": "github"
       },
       "original": {
