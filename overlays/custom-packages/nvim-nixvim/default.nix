@@ -485,10 +485,13 @@ in
     };
   };
   diagnostic.settings = {
-    virtual_lines = {
+    virtual_lines = false;
+    # {
+    #   current_line = true;
+    # };
+    virtual_text = {
       current_line = true;
     };
-    virtual_text = false;
     update_in_insert = false;
   };
   plugins = {
