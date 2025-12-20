@@ -2,6 +2,15 @@
 /.doit.db
 /__pycache__/
 None
+.direnv
+.nvim.log
+activations/*
+.pre-commit-config.yaml
+*.img
+__pycache__
+pkgs
+.aider*
+/.beads/
 
 # Created by https://www.toptal.com/developers/gitignore/api/vim
 # Edit at https://www.toptal.com/developers/gitignore?templates=vim
@@ -28,12 +37,3 @@ tags
 [._]*.un~
 
 # End of https://www.toptal.com/developers/gitignore/api/vim
-.direnv
-.nvim.log
-
-activations/*
-.pre-commit-config.yaml
-*.img
-__pycache__
-pkgs
-.aider*
