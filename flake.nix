@@ -32,6 +32,10 @@
       url = "github:cachix/git-hooks.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    llm-agents-nix = {
+      url = "github:numtide/llm-agents.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # nix-index-database = { url = "github:Mic92/nix-index-database"; };
     # nickel-src = {
     #   url = "github:tweag/nickel";
