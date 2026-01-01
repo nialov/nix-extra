@@ -15,7 +15,8 @@
           uses = "actions/checkout@v5";
         };
         installNixStep = {
-          uses = "DeterminateSystems/nix-installer-action@v9";
+          # uses = "DeterminateSystems/nix-installer-action@v9";
+          uses = "cachix/install-nix-action@v31";
         };
         maximizeBuildSpaceStep = {
           uses = "easimon/maximize-build-space@master";
