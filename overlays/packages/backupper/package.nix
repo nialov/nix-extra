@@ -12,6 +12,7 @@
   makeWrapper,
 }:
 stdenv.mkDerivation rec {
+  description = "Simple backup utility supporting shell completion and compression";
   name = "backupper";
   nativeBuildInputs = [
     installShellFiles

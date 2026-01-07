@@ -13,6 +13,8 @@ let
   ]);
   app = writeShellApplication {
     name = "equation-solver-playground";
+    description = "Interactive command-line playground for solving equations with Python and Jupyter tools";
+    name = "equation-solver-playground";
     runtimeInputs = [
       coreutils
       python3WithJupytext

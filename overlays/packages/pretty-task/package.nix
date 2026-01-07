@@ -13,7 +13,8 @@
   makeWrapper,
 }:
 
-stdenv.mkDerivation {
+stdenv.mkDerivation rec {
+  description = "Command-line tool for pretty printing and managing tasks";
   name = "pretty-task";
   nativeBuildInputs = [
     makeWrapper

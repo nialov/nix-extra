@@ -8,7 +8,8 @@
   git-cliff,
   ...
 }:
-writeShellApplication {
+writeShellApplication rec {
+  description = "Tool for automating pre-release tasks such as changelog updates and Git tagging";
   name = "pre-release";
   runtimeInputs = [
     update-changelog

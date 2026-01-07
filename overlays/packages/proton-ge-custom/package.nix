@@ -2,6 +2,7 @@
 
 # From: https://github.com/NixOS/nixpkgs/issues/73323
 stdenv.mkDerivation rec {
+  description = "Custom version of Proton GE compatibility layer for running Windows games on Linux";
   pname = "proton-ge-custom";
   version = "GE-Proton7-49";
 
