@@ -24,7 +24,6 @@ in
     inherit (prev) system;
     nixpkgs = inputs.nixpkgs-previous;
   };
-  # TODO: For nvidia driver stability on hera
   previousPreviousPackages = mkNixpkgsBase {
     inherit (prev) system;
     nixpkgs = inputs.nixpkgs-previous-previous;
