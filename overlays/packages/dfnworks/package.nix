@@ -74,7 +74,7 @@ let
     '';
 
     meta = with lib; {
-      description = "";
+      description = "Framework for discrete fracture network (DFN) modeling and simulation";
       homepage = "https://dfnworks.lanl.gov/";
       license = licenses.gpl3Only;
       maintainers = with maintainers; [ nialov ];

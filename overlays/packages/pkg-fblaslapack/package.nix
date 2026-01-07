@@ -14,7 +14,7 @@ stdenv.mkDerivation rec {
   nativeBuildInputs = [ gfortran ];
 
   meta = with lib; {
-    description = "";
+    description = "Package providing Fortran BLAS/LAPACK libraries from PETSc distribution";
     homepage = "https://bitbucket.org/petsc/pkg-fblaslapack";
     license = with licenses; [ ];
     maintainers = with maintainers; [ nialov ];

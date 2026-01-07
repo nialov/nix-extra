@@ -70,7 +70,7 @@
             jupytext-nb-edit
             template-check
             nvim-nixvim
-            git-history-grep
+
             gdal
             fhs
             fhs-no-ld

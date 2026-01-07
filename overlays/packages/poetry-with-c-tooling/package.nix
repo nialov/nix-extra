@@ -1,5 +1,6 @@
 { pkgs, ... }:
-pkgs.symlinkJoin {
+pkgs.symlinkJoin rec {
+  description = "Poetry package manager wrapped with common C library tooling for Python development";
   name = "poetry-with-c-tooling";
   nativeBuildInputs = [ pkgs.makeWrapper ];
   paths = with pkgs; [ poetry ];

@@ -21,7 +21,8 @@ let
   );
 
 in
-stdenv.mkDerivation {
+stdenv.mkDerivation rec {
+  description = "Command-line tool to build documentation wikis using Sphinx and Python";
   inherit name;
   nativeBuildInputs = [
     installShellFiles

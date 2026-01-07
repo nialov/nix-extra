@@ -7,7 +7,8 @@
   makeWrapper,
 }:
 
-stdenv.mkDerivation {
+stdenv.mkDerivation rec {
+  description = "Utility for displaying and processing Nix flake input metadata";
   name = "nix-flake-metadata-inputs";
   nativeBuildInputs = [
     installShellFiles

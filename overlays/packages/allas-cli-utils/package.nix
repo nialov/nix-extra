@@ -60,28 +60,27 @@ let
   wrapToolsConcat = tools: lib.concatStringsSep "\n" (builtins.map wrapToolsString tools);
 
 in
-stdenv.mkDerivation
+stdenv.mkDerivation rec {
+  description = "CLI utilities for managing Allas (CSC) object storage, backup, and S3 operations";
+  name = "allas-cli-utils";
+  src = inputs.allas-cli-utils-src;
+  # nativeBuildInputs = [ installShellFiles ];
+  nativeBuildInputs = [ makeWrapper ];
+  # unpackPhase = "true";
+  installPhase = ''
+    cp -r ${inputs.allas-cli-utils-src} $out
+    chmod +w $out
+    mkdir -p $out/bin
+    ${wrapToolsConcat cliTools}
+  '';
+  # postFixup = ''
+  # '';
+  # doInstallCheck = true;
+  # installCheckPhase = ''
+  #   $out/bin/pathnames --help
 
-  {
-    name = "allas-cli-utils";
-    src = inputs.allas-cli-utils-src;
-    # nativeBuildInputs = [ installShellFiles ];
-    nativeBuildInputs = [ makeWrapper ];
-    # unpackPhase = "true";
-    installPhase = ''
-      cp -r ${inputs.allas-cli-utils-src} $out
-      chmod +w $out
-      mkdir -p $out/bin
-      ${wrapToolsConcat cliTools}
-    '';
-    # postFixup = ''
-    # '';
-    # doInstallCheck = true;
-    # installCheckPhase = ''
-    #   $out/bin/pathnames --help
+  #   STEM=$($out/bin/pathnames stem /path/to/file.txt)
+  #   [ "$STEM" == "file" ]
+  # '';
 
-    #   STEM=$($out/bin/pathnames stem /path/to/file.txt)
-    #   [ "$STEM" == "file" ]
-    # '';
-
-  }
+}

@@ -23,7 +23,7 @@ I have packaged e.g.
 -  `filesender-client`: Python client for FileSender uploads.
 -  `flowmark`: Better Markdown auto-formatting tool.
 -  `gazpacho`: Simple, fast web scraping library for Python.
--  `git-history-grep`: Search through git history with grep-like power.
+
 -  `gkeepapi`: Unofficial Google Keep API Python client.
 -  `grokker`: Interact with your documents/code powered by OpenAI.
 -  `jupytext-nb-edit`: CLI to open/edit Jupytext notebooks.

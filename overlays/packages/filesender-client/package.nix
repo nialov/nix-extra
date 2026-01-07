@@ -8,6 +8,7 @@
   inputs,
 }:
 stdenv.mkDerivation rec {
+  description = "Client script for FileSender file transfer service";
   name = "filesender-client";
   version = "2.57";
   nativeBuildInputs = [

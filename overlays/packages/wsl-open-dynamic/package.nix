@@ -4,7 +4,8 @@
   # installShellFiles,
   wsl-open,
 }:
-stdenv.mkDerivation {
+stdenv.mkDerivation rec {
+  description = "Utility for opening files or URLs from WSL using Windows apps dynamically";
   name = "wsl-open-dynamic";
   # nativeBuildInputs = [ installShellFiles ];
   buildInputs = [
