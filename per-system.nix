@@ -47,7 +47,6 @@
         packages = {
           inherit (pkgs)
             taskfzf
-            pathnames
             backupper
             wiki-builder
             wsl-open-dynamic
@@ -73,7 +72,6 @@
             nvim-nixvim
             git-history-grep
             gdal
-            update-flake
             fhs
             fhs-no-ld
             nix-flake-remote-eval-and-build
