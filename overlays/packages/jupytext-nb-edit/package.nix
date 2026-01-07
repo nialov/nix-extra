@@ -9,8 +9,6 @@ let
   python3WithJupytext = python3.withPackages (p: [ p.jupytext ]);
   app = writeShellApplication {
     name = "jupytext-nb-edit";
-    description = "Edit Jupyter notebooks using text editors with Jupytext synchronization";
-    name = "jupytext-nb-edit";
     runtimeInputs = [
       fish
       coreutils
