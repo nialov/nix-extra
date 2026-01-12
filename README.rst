@@ -28,7 +28,6 @@ I have packaged e.g.
 - ``grokker``: Interact with your documents/code powered by OpenAI.
 - ``jupytext-nb-edit``: CLI to open/edit Jupytext notebooks.
 - ``kibitzr``: Personal web assistant and change-detection tool.
-- ``kr-cli``: CLI tool to download ROMs from https://roms-download.com/.
 - ``nix-flake-metadata-inputs``: Extract/show flake input metadata.
 - ``pkg-fblaslapack``: Fortran BLAS/LAPACK builds for scientific codes.
 - ``poetry-with-c-tooling``: Poetry with C toolchain integration.

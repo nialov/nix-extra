@@ -68,27 +68,6 @@ in
     inherit (prev) system;
     nixpkgs = inputs.nixpkgs-kibitzr;
   };
-  # gptEngineerPackages = mkNixpkgsBase {
-  #   inherit (prev) system;
-  #   nixpkgs = inputs.nixpkgs-gpt-engineer;
-  # };
-
-  # taskfzf = prev.callPackage ././packages/taskfzf { inherit inputs; };
-  # pathnames = prev.callPackage ././packages/pathnames { };
-  # backupper = prev.callPackage ././packages/backupper { };
-  # wiki-builder = prev.callPackage ././packages/wiki-builder { };
-  # wsl-open-dynamic = prev.callPackage ././packages/wsl-open-dynamic { };
-  # pretty-task = prev.callPackage ././packages/pretty-task { };
-
-  # nix-flake-metadata-inputs = prev.callPackage ././packages/nix-flake-metadata-inputs { };
-  # proton-ge-custom = prev.callPackage ././packages/proton-ge-custom { };
-  # inherit (final.python3Packages)
-  # synonym-cli
-  # kibitzr
-  # ;
-  # allas-cli-utils = prev.callPackage ././packages/allas-cli-utils { inherit inputs; };
-  # grokker = prev.callPackage ././packages/grokker { inherit inputs; };
-  # poetry-with-c-tooling = prev.callPackage ././packages/poetry-with-c-tooling { };
   # TODO: Generate more succinctly
   python310-with-c-tooling = prev.callPackage ././custom-packages/python-with-c-tooling {
     python3ToWrap = prev.python310;
@@ -154,10 +133,6 @@ in
     }
   );
 
-  # sync-git-tag-with-poetry = prev.callPackage ./packages/sync-git-tag-with-poetry.nix { };
-  # resolve-version = prev.callPackage ./packages/resolve-version.nix { };
-  # update-flake = prev.callPackage ./packages/update-flake { };
-  # pre-release = prev.callPackage ./packages/pre-release { };
   poetry-run = prev.callPackage ./custom-packages/poetry-run.nix {
     pythons = with prev; [
       python310
@@ -168,7 +143,6 @@ in
       python315
     ];
   };
-  # jupytext-nb-edit = prev.callPackage ./packages/jupytext-nb-edit { };
 
   template-check = prev.writeShellApplication {
     name = "template-check";
@@ -215,10 +189,6 @@ in
       '';
   };
 
-  # nix-flake-remote-eval-and-build =
-  #   prev.callPackage ./packages/nix-flake-remote-eval-and-build.nix
-  #     { };
-
   pythonPackagesExtensions = prev.pythonPackagesExtensions ++ [
     (
       python-final: python-prev:
@@ -230,35 +200,6 @@ in
 
       {
 
-        # sphinxcontrib-mermaid = python-final.callPackage ././packages/sphinxcontrib-mermaid {
-        #   inherit inputs;
-        # };
-        # kr-cli = python-final.callPackage ././packages/kr-cli { };
-        # synonym-cli = python-final.callPackage ././packages/synonym-cli { inherit inputs; };
-        # gazpacho = python-final.callPackage ././packages/gazpacho { inherit inputs; };
-        # kibitzr = python-final.callPackage ././packages/kibitzr { inherit inputs; };
-        # pandera = python-final.callPackage ././packages/pandera { inherit inputs; };
-        # sphinx-gallery = python-final.callPackage ././packages/sphinx-gallery {
-        #   inherit inputs;
-        # };
-        # bubop = python-final.callPackage ././packages/bubop { inherit inputs; };
-
-        # gkeepapi = python-final.callPackage ././packages/gkeepapi { inherit inputs; };
-        # doit-ext = python-final.callPackage ././packages/doit-ext { inherit inputs; };
-        # frackit = python-prev.toPythonModule (
-        #   python-final.pkgs.frackit.override { pythonPackages = python-final; }
-        # );
-        # powerlaw = python-final.callPackage ././packages/powerlaw { inherit inputs; };
-        # fractopo =
-        #   python-final.callPackage ././packages/fractopo { inherit inputs; };
-        # python-ternary = python-final.callPackage ././packages/python-ternary {
-        #   inherit inputs;
-        # };
-        # mplstereonet = python-final.callPackage ././packages/mplstereonet { inherit inputs; };
-        # pyvtk = python-final.callPackage ././packages/pyvtk { inherit inputs; };
-        # pydfnworks = python-final.callPackage ././packages/dfnworks/pydfnworks.nix {
-        #   inherit inputs;
-        # };
         pytest-cram =
           # TODO: Error in pytest of the package (24.6.2024):
           # ERROR . - TypeError: Can't instantiate abstract class CramItem with abstract ...
@@ -267,9 +208,6 @@ in
           python-prev.pytest-cram.overridePythonAttrs (_: {
             doCheck = false;
           });
-        # dask-geopandas = python-final.callPackage ././packages/dask-geopandas {
-        #   inherit inputs;
-        # };
       }
       // inputs.nixpkgs.lib.packagesFromDirectoryRecursive {
         callPackage = callPackagePython;
@@ -329,11 +267,6 @@ in
     };
 
   vimPlugins = prev.lib.recursiveUpdate prev.vimPlugins {
-    # tmux-nvim = prev.vimUtils.buildVimPlugin {
-    #   name = "tmux-nvim";
-    #   src = inputs.tmux-nvim-src;
-    #   patches = [ ./tmux-nvim-sync.patch ];
-    # };
     blink-cmp-tmux = prev.vimUtils.buildVimPlugin {
       name = "blink-cmp-tmux";
       src = inputs.blink-cmp-tmux-src;
