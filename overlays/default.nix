@@ -28,6 +28,10 @@ in
     inherit (prev) system;
     nixpkgs = inputs.nixpkgs-previous-previous;
   };
+  unstablePackages = mkNixpkgsBase {
+    inherit (prev) system;
+    nixpkgs = inputs.nixpkgs-unstable;
+  };
   stablePackages = mkNixpkgsBase {
     inherit (prev) system;
     nixpkgs = inputs.nixpkgs-stable;
