@@ -1,0 +1,38 @@
+              # nixos-rebuild-latest-from-gitea = prev.writeShellApplication {
+              #   name = "nixos-rebuild-latest-from-gitea";
+              #   runtimeInputs = [
+              #     prev.curl
+              #     prev.jq
+              #     prev.sops
+              #     prev.bkt
+              #     prev.gum
+              #   ];
+              #   text = ''
+              #     TOKEN="$(sops -d --extract '["gitea"]["nialov-admin-token"]' secrets/nialov.yaml)"
+              #     HOST="$1"
+              #     BRANCH="testing"
+              #     SERVER="example.com"
+              #     BKT_TTL="10m"
+              #     export BKT_TTL
+              #     echo "Getting latest closure of NixOS host $HOST"
+              #     GITEA_RUNS_JSON="$(mktemp)"
+              #     GITEA_LATEST_ID="$(mktemp)"
+              #     GITEA_LATEST_JOBS="$(mktemp)"
+              #     GITEA_LATEST_JOB_ID="$(mktemp)"
+              #     GITEA_LATEST_JOB_LOGS="$(mktemp)"
+              #     bkt -- curl -s -H "Authorization: token $TOKEN" "https://gitea.example.com/api/v1/repos/nialov/example-repository/actions/runs/" > "$GITEA_RUNS_JSON"
+              #     cat "$GITEA_RUNS_JSON" | jq -r --arg b "$BRANCH" '.workflow_runs | map(select(.path == "main.yaml@refs/heads/" + $b and .conclusion == "success")) | max_by(.id) | .id' > "$GITEA_LATEST_ID"
+              #     bkt -- curl -s -H "Authorization: token $TOKEN" "https://gitea.example.com/api/v1/repos/nialov/example-repository/actions/runs/$(cat "$GITEA_LATEST_ID" )/jobs/" > "$GITEA_LATEST_JOBS"
+              #     cat "$GITEA_LATEST_JOBS" | jq --arg h "$HOST" -r '.jobs | map(select(.name == "build-nixos-" + $h)) | max_by(.id) | .id' > "$GITEA_LATEST_JOB_ID"
+              #     echo "Latest job ID: $GITEA_LATEST_JOB_ID"
+              #     bkt -- curl -s -H "Authorization: token $TOKEN" "https://gitea.example.com/api/v1/repos/nialov/example-repository/actions/jobs/$(cat "$GITEA_LATEST_JOB_ID" )/logs" > "$GITEA_LATEST_JOB_LOGS"
+              #     echo "Latest job logs: $GITEA_LATEST_JOB_LOGS"
+              #     latest_built="$(cat "$GITEA_LATEST_JOB_LOGS" | rg nixos-system | tail -n 1 | awk '{print $2}')"
+              #     echo "Latest closure of NixOS host $HOST: $latest_built"
+              #     nix copy --no-check-sigs --from ssh-ng://"$SERVER" "$latest_built"
+              #     echo "Copied latest closure"
+              #     action="$(gum choose boot switch build test --selected boot)"
+              #     nh os "$action" "$latest_built"
+              #   '';
+              # };
+
