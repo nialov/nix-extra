@@ -18,25 +18,6 @@
           # uses = "DeterminateSystems/nix-installer-action@v9";
           uses = "cachix/install-nix-action@v31";
         };
-        maximizeBuildSpaceStep = {
-          uses = "easimon/maximize-build-space@master";
-          "with" = {
-            "remove-dotnet" = true;
-            "remove-android" = true;
-            "remove-haskell" = true;
-            "remove-codeql" = true;
-            "remove-docker-images" = true;
-            "build-mount-path" = "/nix";
-            "temp-reserve-mb" = 1024;
-            "root-reserve-mb" = 1024;
-            "swap-size-mb" = 2048;
-          };
-        };
-        reOwnNixStep = {
-          name = "Reown /nix to root";
-          run = "sudo chown -R root /nix";
-
-        };
         nixFlakeCheckNoBuildStep = {
           name = "Check flake";
           run = "nix -Lv flake check --no-build";
@@ -83,8 +64,6 @@
             };
             "nix-fast-build" = {
               steps = [
-                maximizeBuildSpaceStep
-                reOwnNixStep
                 checkoutStep
                 installNixStep
                 cachixStep
