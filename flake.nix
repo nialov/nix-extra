@@ -330,6 +330,7 @@
             };
             inherit flakeModules;
             flakePartsConfig = config;
+            inherit self;
           };
 
         }
