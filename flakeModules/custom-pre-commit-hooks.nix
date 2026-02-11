@@ -94,15 +94,6 @@
                       '';
                       files = "\\.(fish)$";
                     };
-                    pre-commit-hook-ensure-sops = {
-                      name = "pre-commit-hook-ensure-sops";
-                      description = "Check for committed sops secrets.";
-                      package = pkgs.pre-commit-hook-ensure-sops;
-                      entry = ''
-                        ${hooks.pre-commit-hook-ensure-sops.package}/bin/pre-commit-hook-ensure-sops
-                      '';
-                      files = "^secrets/";
-                    };
                     rstcheck = {
                       name = "rstcheck";
                       description = "Check rst files with rstcheck";
@@ -117,13 +108,6 @@
                       entry = "${hooks.cogapp.package}/bin/cog -e -r --check -c";
                       pass_filenames = false;
                       always_run = true;
-                    };
-                    nbstripout = {
-                      name = "nbstripout";
-                      description = "Strip output from Jupyter notebooks";
-                      package = pkgs.nbstripout;
-                      entry = "${hooks.nbstripout.package}/bin/nbstripout";
-                      files = "\\.(ipynb)$";
                     };
                     ruff = {
                       types = lib.mkForce [ "text" ];
