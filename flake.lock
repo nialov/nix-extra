@@ -343,11 +343,11 @@
     "cmp-ai-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1745221532,
-        "narHash": "sha256-xwteVJMRSFFO4Eh7zQFLzKypUThYgZy8ZxKJDGgV3zo=",
+        "lastModified": 1770544487,
+        "narHash": "sha256-XcXAtZYrWXoSp2wOPI3WJd2OqhoPpYT6CwrIEMYHGxU=",
         "owner": "tzachar",
         "repo": "cmp-ai",
-        "rev": "5fcc7cf57c7e643c0221ac7f80234a0ff32eb803",
+        "rev": "996c76519fa92abab8071e3a732f4c07265eb554",
         "type": "github"
       },
       "original": {
