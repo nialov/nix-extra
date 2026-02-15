@@ -201,11 +201,11 @@
     "blink-cmp-tmux-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1747960683,
-        "narHash": "sha256-99wmBgU7Yt6eIAXppJUOYQVuiFcX8q8pmk6rKv/d87Q=",
+        "lastModified": 1770796722,
+        "narHash": "sha256-enoPsYF8llGShf+sx6rLYYnLLzrd+jdCdZ4gy9A2lKU=",
         "owner": "mgalliou",
         "repo": "blink-cmp-tmux",
-        "rev": "4586c705b6f80b536c34a61ed0d3cd4d7f08322d",
+        "rev": "1ef35d8e388475ab8eaeecfc12e196c78bd5de04",
         "type": "github"
       },
       "original": {
