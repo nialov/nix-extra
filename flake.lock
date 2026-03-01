@@ -13,11 +13,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1771315428,
-        "narHash": "sha256-SQJhAFxS1XUiAClNMu5JfrDB7Rk67FBr0Y3w2aKgWHU=",
+        "lastModified": 1772177034,
+        "narHash": "sha256-kF/2e/5t8hDpxoJL5ynMlkATd/7oGiXf7B60U4HGdkQ=",
         "owner": "nialov",
         "repo": "actions.nix",
-        "rev": "7ed8d74df34ddf5e51e3f14750698e9232163864",
+        "rev": "cbc9174d25469ac9cac47ff74d3a1e8682499301",
         "type": "github"
       },
       "original": {
