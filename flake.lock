@@ -2297,11 +2297,11 @@
     "mplstereonet-src_3": {
       "flake": false,
       "locked": {
-        "lastModified": 1700869816,
-        "narHash": "sha256-HquC81VGAMMHPGNU8sgfruQ1jCr6WAv8BW6lGEBKNyc=",
+        "lastModified": 1772643345,
+        "narHash": "sha256-LEOUDVRZPiq/CFWNRI1hw/FzNZZ+AVEB/CjOHRZAVxc=",
         "owner": "joferkington",
         "repo": "mplstereonet",
-        "rev": "b7a5255fefaa45987581fe5a4321b2ab5737820f",
+        "rev": "b34d83edc34a690744115f4f2cf5a2412900c074",
         "type": "github"
       },
       "original": {
