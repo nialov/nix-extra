@@ -1799,6 +1799,23 @@
         "type": "github"
       }
     },
+    "harper-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1773953775,
+        "narHash": "sha256-PIUrOwKiLZyeHceOUK7gSylhO815gyj7/XERGGGYAsA=",
+        "owner": "automattic",
+        "repo": "harper",
+        "rev": "70f0312e70ce20415209c14fe88b91428304147d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "automattic",
+        "ref": "v1.12.0",
+        "repo": "harper",
+        "type": "github"
+      }
+    },
     "hdf5-src": {
       "flake": false,
       "locked": {
@@ -3949,6 +3966,7 @@
         "git-hooks": "git-hooks_3",
         "gkeepapi-src": "gkeepapi-src_3",
         "grokker-src": "grokker-src_3",
+        "harper-src": "harper-src",
         "hdf5-src": "hdf5-src_3",
         "kibitzr-src": "kibitzr-src_3",
         "lagrit-src": "lagrit-src_3",
