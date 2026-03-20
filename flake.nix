@@ -244,6 +244,10 @@
       url = "github:filesender/filesender/filesender-2.57";
       flake = false;
     };
+    harper-src = {
+      url = "github:automattic/harper/v1.12.0";
+      flake = false;
+    };
   };
 
   outputs =
