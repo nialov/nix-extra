@@ -1240,11 +1240,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1773406304,
-        "narHash": "sha256-2K9HnmaiPnw6bMLvnoCKPeNRblfvaVeT5STWWDNkfug=",
+        "lastModified": 1774348782,
+        "narHash": "sha256-+lnM/fnIBkSxosHzMEQZxw8LaYSO9SbYxntfkfERo9Y=",
         "owner": "nialov",
         "repo": "fractopo",
-        "rev": "ca38026a89f21bcd1e6e9218a01435d32bc849ac",
+        "rev": "1a0febac57800ea7cc0a2592c2545dea850924fd",
         "type": "github"
       },
       "original": {
