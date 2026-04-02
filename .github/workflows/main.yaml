@@ -7,19 +7,6 @@ jobs:
   nix-fast-build:
     runs-on: ubuntu-latest
     steps:
-    - uses: easimon/maximize-build-space@master
-      with:
-        build-mount-path: /nix
-        remove-android: true
-        remove-codeql: true
-        remove-docker-images: true
-        remove-dotnet: true
-        remove-haskell: true
-        root-reserve-mb: 1024
-        swap-size-mb: 2048
-        temp-reserve-mb: 1024
-    - name: Reown /nix to root
-      run: sudo chown -R root /nix
     - uses: actions/checkout@v5
     - uses: cachix/install-nix-action@v31
     - continue-on-error: true
