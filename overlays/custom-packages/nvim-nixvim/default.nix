@@ -1014,7 +1014,8 @@ in
           codespell.enable = true;
           selene.enable = true;
           rstcheck = {
-            enable = true;
+            # TODO: Configuration seems flaky, too many false positives
+            enable = false;
             settings = {
               extra_args = [
                 "--ignore-directives"
