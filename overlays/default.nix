@@ -277,8 +277,6 @@ in
   # TODO: Unstable did not work 20.10.2025
   inherit (inputs.nixpkgs-stable.legacyPackages."${prev.system}") micromamba;
 
-  llmAgentPackages = inputs.llm-agents-nix.packages."${prev.system}";
-
 }
 // (inputs.nixpkgs.lib.packagesFromDirectoryRecursive {
   inherit (prev) callPackage;
