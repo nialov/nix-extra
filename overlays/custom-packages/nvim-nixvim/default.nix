@@ -1242,6 +1242,7 @@ in
           let g:pandoc#hypertext#use_default_mappings = 0
           let g:pandoc#keyboard#use_default_mappings = 0
           let g:pandoc#keyboard#display_motions = 0
+          let g:pandoc#toc#close_after_navigating = 0
           augroup PandocAugroup
               autocmd!
               autocmd BufEnter *.md setlocal omnifunc=pandoc#completion#Complete
