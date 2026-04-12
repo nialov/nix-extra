@@ -22,6 +22,20 @@
 
         in
         {
+          pre-commit.enabledHookPackages = mkOption {
+            type = types.listOf types.package;
+            description = "List of packages from enabled pre-commit hooks.";
+            default =
+              let
+                hookIsEnabled = _: value: value.enable;
+                enabledHooks = lib.attrsets.filterAttrs hookIsEnabled config.pre-commit.settings.hooks;
+                hooksWithValidPackages = lib.attrsets.filterAttrs (
+                  _: value: lib.attrsets.hasAttr "package" value && value.package != null
+                ) enabledHooks;
+              in
+              lib.attrsets.mapAttrsToList (_: value: value.package) hooksWithValidPackages;
+          };
+
           pre-commit.settings.hooks = {
             detect-secrets = mkOption {
               description = "detect-secrets hook";
