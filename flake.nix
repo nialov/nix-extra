@@ -285,7 +285,7 @@
           inherit (flake-parts-lib) importApply;
           flakeModules =
             let
-              custom-pre-commit-hooks = importApply ./flakeModules/custom-pre-commit-hooks.nix {
+              custom-pre-commit-hooks = importApply ./flakeModules/pre-commit-custom.nix {
                 inherit inputs;
               };
               poetryDevshell = importApply ./flakeModules/poetry-devshell.nix {
