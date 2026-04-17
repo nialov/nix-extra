@@ -288,13 +288,10 @@
               custom-pre-commit-hooks = importApply ./flakeModules/pre-commit-custom.nix {
                 inherit inputs;
               };
-              poetryDevshell = importApply ./flakeModules/poetry-devshell.nix {
-                inherit inputs;
-              };
               custom-git-hooks = custom-pre-commit-hooks;
             in
             {
-              inherit custom-pre-commit-hooks poetryDevshell custom-git-hooks;
+              inherit custom-pre-commit-hooks custom-git-hooks;
             };
         in
         {
