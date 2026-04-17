@@ -301,7 +301,6 @@
           systems = [ "x86_64-linux" ];
           imports = [
             flakeModules.custom-git-hooks
-            flakeModules.poetryDevshell
             ./per-system.nix
             inputs.actions-nix.flakeModules.default
             ./nix/actions-nix.nix
