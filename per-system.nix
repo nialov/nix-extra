@@ -9,7 +9,6 @@
         system,
         pkgs,
         lib,
-        self',
         ...
       }:
       let
@@ -114,7 +113,6 @@
           #   # gkeepapi
           #   ;
           # inherit (pkgs.tracerepoPackages) tracerepo;
-          inherit (self'.devShells) poetry-devshell;
         }
         //
 
