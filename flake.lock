@@ -3950,11 +3950,11 @@
     "sphinx-gallery-src_3": {
       "flake": false,
       "locked": {
-        "lastModified": 1777000261,
-        "narHash": "sha256-6vTmsr6DKuLPMfZbREA8BpscGj9zhG8EUmViVJmliJQ=",
+        "lastModified": 1777322272,
+        "narHash": "sha256-lUt+zfBX/bV8nXCHDaGBQxpRUxJlMUnCqpPLQJit1M8=",
         "owner": "sphinx-gallery",
         "repo": "sphinx-gallery",
-        "rev": "b55ec1506ce89fb120a4a1bc6341a134560e8914",
+        "rev": "b30b52edb5c4606ae5da7df363f04a4a6d5387f0",
         "type": "github"
       },
       "original": {
