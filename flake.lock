@@ -3998,11 +3998,11 @@
     "sphinxcontrib-mermaid-src_3": {
       "flake": false,
       "locked": {
-        "lastModified": 1773322930,
-        "narHash": "sha256-HY1Q9oezwOT/VjfxmJBx43hgNbZSgYPA6jvE0MatgT8=",
+        "lastModified": 1777501821,
+        "narHash": "sha256-LMNp7aMzOjoudSy8ahno3kEz+c7COhEOVTrqvtAl0wg=",
         "owner": "mgaitan",
         "repo": "sphinxcontrib-mermaid",
-        "rev": "d6d874c4fbded7b7b7d86c26f0d39c7e70a55a1e",
+        "rev": "19be46820247ed7b9ac333d4bde2e1e3445ca431",
         "type": "github"
       },
       "original": {
