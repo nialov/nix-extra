@@ -77,7 +77,7 @@
         ".github/workflows/update-flake-inputs.yaml" = {
           on = {
             schedule = [
-              { cron = "0 2 * * 0"; }
+              { cron = "0 2 1,15 * *"; }
             ];
             workflow_dispatch = { };
           };
