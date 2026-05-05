@@ -31,5 +31,5 @@ jobs:
     timeout-minutes: 60
 'on':
   schedule:
-  - cron: 0 2 * * 0
+  - cron: 0 2 1,15 * *
   workflow_dispatch: {}
