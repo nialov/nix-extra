@@ -94,7 +94,6 @@
       url = "github:tzachar/cmp-ai";
       flake = false;
     };
-    # TODO: Failing as of 14.1.2024
     grokker-src = {
       url = "github:stevegt/grokker/7e4259c3c21951e70dd7f12d6bf7ceda09af7a81";
       flake = false;
