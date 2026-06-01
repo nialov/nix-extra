@@ -144,7 +144,7 @@
                       entry =
                         let
 
-                          cmdLine = lib.cli.toGNUCommandLineShell { } {
+                          cmdLine = lib.cli.toCommandLineShellGNU { } {
                             processes = 0;
                             disable-progress-bar = true;
                           };
@@ -161,7 +161,7 @@
                       entry =
                         let
 
-                          cmdLine = lib.cli.toGNUCommandLineShell { } {
+                          cmdLine = lib.cli.toCommandLineShellGNU { } {
                             show-lint-violations = true;
                             processes = 0;
                             disable-progress-bar = true;

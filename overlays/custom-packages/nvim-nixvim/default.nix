@@ -513,7 +513,7 @@ in
     };
     treesitter = {
       enable = true;
-      folding = true;
+      folding.enable = true;
       nixvimInjections = true;
       # disabledLanguages = [
       #   "fugitive"
@@ -521,15 +521,15 @@ in
       #   "help"
 
       # ];
+      highlight = {
+        enable = true;
+        disable = [
+          "fugitive"
+          "qf"
+          "help"
+        ];
+      };
       settings = {
-        highlight = {
-          enable = true;
-          disable = [
-            "fugitive"
-            "qf"
-            "help"
-          ];
-        };
         incremental_selection = {
           enable = true;
           keymaps = {
@@ -1040,10 +1040,7 @@ in
         };
         formatting = {
 
-          nixfmt = {
-            enable = true;
-            package = pkgs.nixfmt-rfc-style;
-          };
+          nixfmt.enable = true;
           stylua.enable = true;
           # black.enable = true;
           # isort = {
