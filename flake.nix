@@ -5,38 +5,12 @@
   # warning: input 'nur' has an override for a non-existent input 'nixpkgs'
   inputs = {
     # Rolling updates
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-previous.url = "github:nixos/nixpkgs/050e09e091117c3d7328c7b2b7b577492c43c134";
-    nixpkgs-previous-previous.url = "github:nixos/nixpkgs/3730d8a";
-    # Update follows target when releases get made
-    nixpkgs-stable.follows = "nixpkgs-2505";
-    nixpkgs-stabler.follows = "nixpkgs-2411";
-    nixpkgs-stablest.follows = "nixpkgs-2405";
-    # Static
-    nixpkgs-2505.url = "github:nixos/nixpkgs/nixos-25.05";
-    nixpkgs-2411.url = "github:nixos/nixpkgs/nixos-24.11";
-    nixpkgs-2405.url = "github:nixos/nixpkgs/nixos-24.05";
-    nixpkgs-2311.url = "github:nixos/nixpkgs/nixos-23.11";
-    nixpkgs-petsc.url = "github:nixos/nixpkgs/27bd67e55fe09f9d68c77ff151c3e44c4f81f7de";
-    nixpkgs-dfnworks.url = "github:nixos/nixpkgs/5efc8ca954272c4376ac929f4c5ffefcc20551d5";
-    # For use with pandox-xnos and friends
-    # nixpkgs-pandoc = {
-    #   url = "github:nixos/nixpkgs/22.05";
-    # };
-    # Use flake-utils for utility functions
-    # flake-utils = {
-    #   url = "github:numtide/flake-utils";
-    # };
     git-hooks = {
       url = "github:cachix/git-hooks.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # nix-index-database = { url = "github:Mic92/nix-index-database"; };
-    # nickel-src = {
-    #   url = "github:tweag/nickel";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
     doit-ext-src = {
       url = "github:nialov/doit-ext";
       flake = false;
@@ -49,13 +23,10 @@
     mosaic-src = {
       url = "github:nialov/mosaic";
       flake = false;
-      # inputs.nixpkgs.follows = "nixpkgs";
     };
-    # nix-filter.url = "github:numtide/nix-filter";
     tracerepo-src = {
       url = "github:nialov/tracerepo";
       flake = false;
-      # inputs.nixpkgs.follows = "nixpkgs";
     };
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
@@ -66,8 +37,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixvim = {
-      url = "github:nix-community/nixvim/nixos-25.11";
-      # inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:nix-community/nixvim/nixos-26.05";
       inputs.flake-parts.follows = "flake-parts";
     };
     actions-nix = {
@@ -78,27 +48,6 @@
         nixpkgs.follows = "nixpkgs";
       };
     };
-    # Custom non-flake sources
-    # tmux-nvim-src = {
-    #   url = "github:aserowy/tmux.nvim";
-    #   flake = false;
-    # };
-    # cmp-tmux = {
-    #   url = "github:andersevenrud/cmp-tmux";
-    #   flake = false;
-    # };
-    # vim-nickel-src = {
-    #   url = "github:nickel-lang/vim-nickel";
-    #   flake = false;
-    # };
-    # tmux-open-src = {
-    #   url = "github:tmux-plugins/tmux-open";
-    #   flake = false;
-    # };
-    # chatgpt-nvim-src = {
-    #   url = "github:nialov/ChatGPT.nvim";
-    #   flake = false;
-    # };
     sphinxcontrib-mermaid-src = {
       url = "github:mgaitan/sphinxcontrib-mermaid";
       flake = false;
@@ -193,11 +142,6 @@
       url = "github:unionai-oss/pandera/850dcf8e59632d54bc9a6df47b9ca08afa089a27";
       flake = false;
     };
-    syncall-src = {
-      # 2024-10-05: New versions use poetry_dynamic_versioning as build tool in pyproject.toml
-      url = "git+https://github.com/bergercookie/syncall?rev=ccfeb306c5ceeee509b2aed4ae12da710e3f1b35&submodules=1";
-      flake = false;
-    };
     bubop-src = {
       url = "github:bergercookie/bubop";
       flake = false;
@@ -256,7 +200,7 @@
       inputOverlay =
         _: prev:
         let
-          inherit (prev) system;
+          inherit (prev.stdenv.hostPlatform) system;
         in
         {
 

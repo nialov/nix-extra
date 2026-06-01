@@ -467,8 +467,6 @@ in
       pretty-task
       # ctags-lsp
       ;
-    # TODO: pandoc 3.6 includes rst regressions
-    inherit (pkgs.release2411Packages) pandoc;
   };
 
   colorschemes.gruvbox = {

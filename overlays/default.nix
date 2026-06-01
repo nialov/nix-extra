@@ -20,53 +20,9 @@ let
 
 in
 {
-  previousPackages = mkNixpkgsBase {
-    inherit (prev) system;
-    nixpkgs = inputs.nixpkgs-previous;
-  };
-  previousPreviousPackages = mkNixpkgsBase {
-    inherit (prev) system;
-    nixpkgs = inputs.nixpkgs-previous-previous;
-  };
   unstablePackages = mkNixpkgsBase {
     inherit (prev) system;
     nixpkgs = inputs.nixpkgs-unstable;
-  };
-  stablePackages = mkNixpkgsBase {
-    inherit (prev) system;
-    nixpkgs = inputs.nixpkgs-stable;
-  };
-  stablerPackages = mkNixpkgsBase {
-    inherit (prev) system;
-    nixpkgs = inputs.nixpkgs-stabler;
-  };
-  release2505Packages = mkNixpkgsBase {
-    inherit (prev) system;
-    nixpkgs = inputs.nixpkgs-2505;
-  };
-  release2411Packages = mkNixpkgsBase {
-    inherit (prev) system;
-    nixpkgs = inputs.nixpkgs-2411;
-  };
-  release2405Packages = mkNixpkgsBase {
-    inherit (prev) system;
-    nixpkgs = inputs.nixpkgs-2405;
-  };
-  release2311Packages = mkNixpkgsBase {
-    inherit (prev) system;
-    nixpkgs = inputs.nixpkgs-2311;
-  };
-  dfnworksPackages = mkNixpkgsBase {
-    inherit (prev) system;
-    nixpkgs = inputs.nixpkgs-dfnworks;
-  };
-  petscPackages = mkNixpkgsBase {
-    inherit (prev) system;
-    nixpkgs = inputs.nixpkgs-petsc;
-  };
-  kibitzrPackages = mkNixpkgsBase {
-    inherit (prev) system;
-    nixpkgs = inputs.nixpkgs-kibitzr;
   };
   # TODO: Generate more succinctly
   python310-with-c-tooling = prev.callPackage ././custom-packages/python-with-c-tooling {
