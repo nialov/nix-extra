@@ -26,7 +26,7 @@ let
             p.wheel
             p.virtualenv
           ])
-        ) (lib.attrValues { inherit (fhsPkgs) python311 python312 python313; });
+        ) (lib.attrValues { inherit (fhsPkgs) python312 python313; });
         basePkgs = base.targetPkgs fhsPkgs;
         extraPkgs = lib.attrValues {
           inherit (fhsPkgs)

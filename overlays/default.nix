@@ -21,15 +21,18 @@ let
 in
 {
   unstablePackages = mkNixpkgsBase {
-    inherit (prev) system;
+    inherit (prev.stdenv.hostPlatform) system;
     nixpkgs = inputs.nixpkgs-unstable;
   };
   # TODO: Generate more succinctly
-  python310-with-c-tooling = prev.callPackage ././custom-packages/python-with-c-tooling {
-    python3ToWrap = prev.python310;
-  };
   python311-with-c-tooling = prev.callPackage ././custom-packages/python-with-c-tooling {
     python3ToWrap = prev.python311;
+  };
+  python312-with-c-tooling = prev.callPackage ././custom-packages/python-with-c-tooling {
+    python3ToWrap = prev.python312;
+  };
+  python313-with-c-tooling = prev.callPackage ././custom-packages/python-with-c-tooling {
+    python3ToWrap = prev.python313;
   };
 
   petsc = import ./custom-packages/petsc-override.nix { inherit inputs prev final; };
@@ -90,13 +93,13 @@ in
   );
 
   poetry-run = prev.callPackage ./custom-packages/poetry-run.nix {
-    pythons = with prev; [
-      python310
-      python311
-      python312
-      python313
-      python314
-      python315
+    pythons = lib.filter builtins.isAttrs [
+      (prev.python310 or null)
+      (prev.python311 or null)
+      (prev.python312 or null)
+      (prev.python313 or null)
+      (prev.python314 or null)
+      (prev.python315 or null)
     ];
   };
 
@@ -230,8 +233,7 @@ in
   };
   inherit inputs lib;
 
-  # TODO: Unstable did not work 20.10.2025
-  inherit (inputs.nixpkgs-stable.legacyPackages."${prev.system}") micromamba;
+  inherit (prev) micromamba;
 
 }
 // (inputs.nixpkgs.lib.packagesFromDirectoryRecursive {
