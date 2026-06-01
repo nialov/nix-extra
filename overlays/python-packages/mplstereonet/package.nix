@@ -27,13 +27,11 @@ buildPythonPackage {
     pytest
   ];
 
-  # TODO: Probably fails due to shapely version stuff
-  #        > FAILED tests/test_examples.py::test_all_examples - TypeError:
-  #        object of type 'GeometryCollection' has no len()
-
   disabledTests = [
+    # > FAILED tests/test_examples.py::test_all_examples - TypeError:
+    # object of type 'GeometryCollection' has no len()
     "test_all_examples"
-    # TODO: pytest.PytestRemovedIn8Warning: Support for nose tests is deprecated
+    # pytest.PytestRemovedIn8Warning: Support for nose tests is deprecated
     "test_stereonet_math"
   ];
 
