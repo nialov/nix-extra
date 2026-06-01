@@ -8,7 +8,7 @@ let
   parmetis =
     let
       parmetisPkgs = import inputs.nixpkgs-2505 {
-        inherit (prev) system;
+        inherit (prev.stdenv.hostPlatform) system;
         config = {
           allowUnfree = true;
         };

@@ -38,7 +38,7 @@
                 watchexec
                 ruff
                 shellcheck
-                nixfmt-rfc-style
+                nixfmt
               ]
               ++ config.pre-commit.enabledHookPackages;
             # Include pre-commit check shellHook so they can be ran with `pre-commit ...`
@@ -67,8 +67,9 @@
             sync-git-tag-with-poetry
             resolve-version
             poetry-run
-            python310-with-c-tooling
             python311-with-c-tooling
+            python312-with-c-tooling
+            python313-with-c-tooling
             jupytext-nb-edit
             template-check
             nvim-nixvim
@@ -161,7 +162,7 @@
           check.enable = true;
           settings = {
             hooks = {
-              nixfmt-rfc-style.enable = true;
+              nixfmt.enable = true;
               ruff.enable = true;
               ruff-format = {
                 enable = true;
