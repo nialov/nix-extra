@@ -18,15 +18,25 @@ let
       fhsPkgs:
 
       let
-        pythons = builtins.map (
-          python:
-          python.withPackages (p: [
-            p.setuptools
-            p.pip
-            p.wheel
-            p.virtualenv
-          ])
-        ) (lib.attrValues { inherit (fhsPkgs) python312 python313; });
+        pythons =
+          builtins.map
+            (
+              python:
+              python.withPackages (p: [
+                p.setuptools
+                p.pip
+                p.wheel
+                p.virtualenv
+              ])
+            )
+            (
+              lib.filter builtins.isAttrs [
+                (fhsPkgs.python312 or null)
+                (fhsPkgs.python313 or null)
+                (fhsPkgs.python314 or null)
+                (fhsPkgs.python315 or null)
+              ]
+            );
         basePkgs = base.targetPkgs fhsPkgs;
         extraPkgs = lib.attrValues {
           inherit (fhsPkgs)

@@ -233,8 +233,6 @@ in
   };
   inherit inputs lib;
 
-  inherit (prev) micromamba;
-
 }
 // (inputs.nixpkgs.lib.packagesFromDirectoryRecursive {
   inherit (prev) callPackage;
