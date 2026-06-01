@@ -44,7 +44,7 @@ buildPythonPackage {
     pytestCheckHook
   ];
 
-  pytestFlagsArray = [ "testing" ];
+  pytestFlags = [ "testing" ];
 
   pythonImportsCheck = [ "powerlaw" ];
 
