@@ -37,8 +37,6 @@
 
         in
         {
-          # TODO: pandoc 3.6 introduced regression
-          pandoc-rst-check-2411 = mkPandocRstCheck pkgs.release2411Packages.pandoc false;
           pandoc-rst-check-latest = mkPandocRstCheck pkgs.pandoc true;
         };
 

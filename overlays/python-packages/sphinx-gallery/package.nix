@@ -62,7 +62,7 @@ buildPythonPackage rec {
   ];
 
   # We do not want tests from tests/tinybuild
-  pytestFlagsArray = [ "tests/*.py" ];
+  disabledTestPaths = [ "tests/tinybuild" ];
   disabledTests = [
     # Requires jupyterlite
     "test_full_noexec"
