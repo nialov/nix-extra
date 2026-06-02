@@ -34,7 +34,6 @@ let
                 (fhsPkgs.python312 or null)
                 (fhsPkgs.python313 or null)
                 (fhsPkgs.python314 or null)
-                (fhsPkgs.python315 or null)
               ]
             );
         basePkgs = base.targetPkgs fhsPkgs;
