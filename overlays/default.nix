@@ -99,7 +99,6 @@ in
       (prev.python312 or null)
       (prev.python313 or null)
       (prev.python314 or null)
-      (prev.python315 or null)
     ];
   };
 
