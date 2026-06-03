@@ -26,8 +26,8 @@
   sqlite-vec,
   ast-grep-cli,
   ast-grep-py,
-  onnxruntime,
   rtk,
+  pkgs,
 }:
 let
   version = "0.22.4";
@@ -45,7 +45,7 @@ buildPythonPackage rec {
   };
 
   env = {
-    ORT_LIB_LOCATION = "${onnxruntime}/lib";
+    ORT_LIB_LOCATION = "${pkgs.onnxruntime.dev}/lib";
     ORT_PREFER_DYNAMIC_LINK = "1";
   };
 
@@ -56,7 +56,7 @@ buildPythonPackage rec {
     pythonRelaxDepsHook
   ];
 
-  buildInputs = [ onnxruntime ];
+  buildInputs = [ pkgs.onnxruntime.dev ];
 
   cargoDeps = rustPlatform.fetchCargoVendor {
     inherit pname version src;
@@ -85,12 +85,12 @@ buildPythonPackage rec {
     transformers
     watchdog
     sqlite-vec
-    onnxruntime
     rtk
   ]
   ++ lib.optionals (python.pythonOlder "3.11") [
     tomli
-  ];
+  ]
+  ++ httpx.optional-dependencies.http2;
 
   postPatch = ''
     substituteInPlace headroom/install/runtime.py \
