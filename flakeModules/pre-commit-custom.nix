@@ -33,7 +33,8 @@
                   _: value: lib.attrsets.hasAttr "package" value && value.package != null
                 ) enabledHooks;
               in
-              lib.attrsets.mapAttrsToList (_: value: value.package) hooksWithValidPackages;
+              (lib.attrsets.mapAttrsToList (_: value: value.package) hooksWithValidPackages)
+              ++ [ config.pre-commit.settings.package ];
           };
 
           pre-commit.settings.hooks = {
@@ -61,6 +62,7 @@
             settings =
 
               {
+                package = lib.mkOverride 999 pkgs.prek;
                 hooks =
 
                   let
