@@ -5060,11 +5060,11 @@
     "sphinxcontrib-mermaid-src_4": {
       "flake": false,
       "locked": {
-        "lastModified": 1777501821,
-        "narHash": "sha256-LMNp7aMzOjoudSy8ahno3kEz+c7COhEOVTrqvtAl0wg=",
+        "lastModified": 1782841036,
+        "narHash": "sha256-i3ctkrs8irFW9TtDt1Empx+ZAa+urG+u13JkcsYLuV0=",
         "owner": "mgaitan",
         "repo": "sphinxcontrib-mermaid",
-        "rev": "19be46820247ed7b9ac333d4bde2e1e3445ca431",
+        "rev": "ef96517fdea34d9acf008ac8602f2cbcf0643136",
         "type": "github"
       },
       "original": {
