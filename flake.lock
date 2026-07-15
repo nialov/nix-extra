@@ -231,11 +231,11 @@
     "allas-cli-utils-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1781249011,
-        "narHash": "sha256-J150gOCJ6tgssmsFeUVIMe7f6J21eF11ndukWVq5hgQ=",
+        "lastModified": 1783579529,
+        "narHash": "sha256-pWeKF8PT8XzT+NNseKNieEk3cqdXOB9+u1JxF0sL/s0=",
         "owner": "CSCfi",
         "repo": "allas-cli-utils",
-        "rev": "72d9498440a13d80a17de66f561004425ecc62cd",
+        "rev": "fa1a6bb83205c1201d2de38235be77b4d7ad0761",
         "type": "github"
       },
       "original": {
