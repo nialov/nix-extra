@@ -871,11 +871,11 @@
     "drillcore-transformations-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1779437026,
-        "narHash": "sha256-9H828f6XrATZrhMmfxvKKMLrTrlIIC+cAcjAvgOJ3Cg=",
+        "lastModified": 1781764235,
+        "narHash": "sha256-wHoXufVnY33vQK6/iHwNDYrz7lSRd/vooX7LbcLcCXM=",
         "owner": "nialov",
         "repo": "drillcore-transformations",
-        "rev": "376b5e6173017b33f36c73fa8b071bc4a43908bf",
+        "rev": "54102e1309dbca3fca24ad5d6cb147f1cd742dce",
         "type": "github"
       },
       "original": {
