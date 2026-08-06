@@ -3898,22 +3898,6 @@
         "type": "github"
       }
     },
-    "nixpkgs-unstable_3": {
-      "locked": {
-        "lastModified": 1785454630,
-        "narHash": "sha256-LQy14TZp77TwbQf40gg1V3jo8FwJG0jGDkAH+zRHqg8=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "1559d3daa3ecc813a650b79375ea61b6741b8746",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "ref": "nixos-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "nixpkgs_10": {
       "locked": {
         "lastModified": 1778430510,
@@ -4880,7 +4864,6 @@
         "mplstereonet-src": "mplstereonet-src_4",
         "neoai-nvim-src": "neoai-nvim-src_4",
         "nixpkgs": "nixpkgs_13",
-        "nixpkgs-unstable": "nixpkgs-unstable_3",
         "nixvim": "nixvim_4",
         "pandera-src": "pandera-src_4",
         "pflotran-src": "pflotran-src_4",
