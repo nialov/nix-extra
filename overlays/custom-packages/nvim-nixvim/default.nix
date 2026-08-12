@@ -108,6 +108,8 @@ in
     # -- Set gx handler
     netrw_browsex_viewer = "wsl-open-dynamic";
     gitblame_enabled = 0;
+    # Do not prompt for/download missing spell files.
+    loaded_spellfile_plugin = 1;
     # Set default sql syntax
     sql_type_default = "postgresql";
 
