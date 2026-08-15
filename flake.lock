@@ -4957,11 +4957,11 @@
     "sphinx-gallery-src_4": {
       "flake": false,
       "locked": {
-        "lastModified": 1785180663,
-        "narHash": "sha256-Td74w41ZVGWrDOpChkR8ZiBne3Hp1fXC9ef4WuN7up4=",
+        "lastModified": 1786758683,
+        "narHash": "sha256-22lFPcFoiGOCqkckSI4yyU9oADmP6njRIBDR8zKaPjs=",
         "owner": "sphinx-gallery",
         "repo": "sphinx-gallery",
-        "rev": "511ea776c42808bfab6fe01a3974254aec207fe0",
+        "rev": "dbd67d246bab3bbae4d96e671ddb2d9b7fb77e1a",
         "type": "github"
       },
       "original": {
