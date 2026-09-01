@@ -1513,11 +1513,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1785147280,
-        "narHash": "sha256-+MsoueHonpIOz4ek1IDTnjFFG8KjUP7Pq+ofqxo8on0=",
+        "lastModified": 1787306949,
+        "narHash": "sha256-wZotKemwUdvPw6qDIYhYMlilNgX+5a6W3LWQRup+Nss=",
         "owner": "nialov",
         "repo": "fractopo",
-        "rev": "af155dfcffd72ff1293b7e68394c4f3dc39c44f8",
+        "rev": "d85ff9bedba51901f1cc06c7eb1dd536f7bd8664",
         "type": "github"
       },
       "original": {
