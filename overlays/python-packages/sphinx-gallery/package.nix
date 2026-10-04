@@ -5,6 +5,7 @@
   sphinx,
   pytestCheckHook,
   pytest,
+  pytest-xdist,
   numpy,
   matplotlib,
   joblib,
@@ -49,6 +50,7 @@ buildPythonPackage rec {
   checkInputs = [
     pytestCheckHook
     pytest
+    pytest-xdist
     numpy
     matplotlib
     joblib
