@@ -231,11 +231,11 @@
     "allas-cli-utils-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1791463840,
-        "narHash": "sha256-IykD/ONJpR4Steuih9RlSOe04oUNjN830MlqAMbz8po=",
+        "lastModified": 1792574229,
+        "narHash": "sha256-eOBT7IoYYyCWzlx6rOmhfrXxvws9MB0WpUngrwTsxnM=",
         "owner": "CSCfi",
         "repo": "allas-cli-utils",
-        "rev": "af21508bddb825b7b8b697200beb20e15ce5ce54",
+        "rev": "99483ee23ec8b0c7f396758db59f32d40946d0de",
         "type": "github"
       },
       "original": {
@@ -618,11 +618,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1791381442,
-        "narHash": "sha256-TQiEqCAQ4bWppfeRGX4O3lwopsgsd2OvcOHTEQRRwEQ=",
+        "lastModified": 1792446739,
+        "narHash": "sha256-eINUtQW48bf9G3EYprthHMll8VDKxaXQP52TZFuwMmE=",
         "owner": "serokell",
         "repo": "deploy-rs",
-        "rev": "45ba3f8c5cb28396fff71671806e2550b464ac86",
+        "rev": "1cec0527bd09074bbee6d4461900ce5d58267217",
         "type": "github"
       },
       "original": {
@@ -3948,11 +3948,11 @@
     },
     "nixpkgs_13": {
       "locked": {
-        "lastModified": 1791883866,
-        "narHash": "sha256-yvkDdToRZ4IgPc9tSBzzCYJvTLf8n5eE3rgUkpCuD5A=",
+        "lastModified": 1792503283,
+        "narHash": "sha256-vhe2jyvRCgufWPqDuDq1S3t3ypE+ka46IFutV02xKso=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "a033e66ab94a6bedf2c3d58d93a36319d3cbbbaf",
+        "rev": "cd4ea8d57de16f4810bc5f14207bac45fbf19f67",
         "type": "github"
       },
       "original": {
