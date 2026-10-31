@@ -166,6 +166,12 @@ in
           python-prev.pytest-cram.overridePythonAttrs (_: {
             doCheck = false;
           });
+        imageio =
+          # TODO: 2 failing tests in imageio 2.37.2 check phase (2026-03-14):
+          # Python 3.13 check failure; re-enable when nixpkgs updates or upstream fixes
+          python-prev.imageio.overridePythonAttrs (_: {
+            doCheck = false;
+          });
       }
       // inputs.nixpkgs.lib.packagesFromDirectoryRecursive {
         callPackage = callPackagePython;
