@@ -10,6 +10,10 @@
       url = "github:cachix/git-hooks.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    treefmt-nix = {
+      url = "github:numtide/treefmt-nix/e96d59dff5c0d7fddb9d113ba108f03c3ef99eca";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     doit-ext-src = {
       url = "github:nialov/doit-ext";
       flake = false;
@@ -240,6 +244,7 @@
           systems = [ "x86_64-linux" ];
           imports = [
             flakeModules.custom-git-hooks
+            inputs.treefmt-nix.flakeModule
             ./per-system.nix
             inputs.actions-nix.flakeModules.default
             ./nix/actions-nix.nix
