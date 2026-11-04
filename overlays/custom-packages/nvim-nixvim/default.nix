@@ -195,30 +195,8 @@ in
       desc = "Open personal wiki entry";
     };
     "Format" = {
-      # command.__raw = "vim.lsp.buf.format";
-      nargs = "?";
-      command.__raw = ''
-        function (opts)
-          if not opts.args or opts.args == "" or opts.args == "lsp" then
-            vim.lsp.buf.format()
-          elseif opts.args == "pre-commit" then
-            if vim.bo.modified then
-              vim.cmd("write")
-            end
-            local result = vim.fn.system("pre-commit run --files " .. vim.fn.expand("%"))
-            vim.notify(result)
-            vim.cmd("edit")
-          else
-            vim.notify("Unknown format type: " .. opts.args, vim.log.levels.ERROR)
-          end
-        end
-      '';
-      complete.__raw = ''
-        function ()
-          return { "lsp", "pre-commit" }
-        end
-      '';
-      desc = "Format current buffer using lsp or pre-commit";
+      command.__raw = "vim.lsp.buf.format";
+      desc = "Format current buffer using LSP";
     };
     "Messages" = {
       command = "Fidget history";
@@ -659,8 +637,8 @@ in
               __unkeyed-1.__raw = ''
                 function()
                     local msg = ""
-                    local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')
-                    local clients = vim.lsp.vim.lsp.get_clients()
+                    local buf_ft = vim.bo.filetype
+                    local clients = vim.lsp.get_clients({ bufnr = 0 })
                     if next(clients) == nil then
                         return msg
                     end
@@ -818,7 +796,10 @@ in
           vtslsIntegration = true;
         };
         tailwindcss.enable = true;
-        eslint.enable = true;
+        eslint = {
+          enable = true;
+          settings.format = false;
+        };
         html.enable = true;
         cssls.enable = true;
         basedpyright = {
@@ -962,13 +943,6 @@ in
       sources = {
         diagnostics = {
 
-          mypy = {
-            enable = true;
-            settings = {
-              extra_args = [ "--check-untyped-defs" ];
-            };
-
-          };
           statix.enable = true;
           vint.enable = true;
           codespell.enable = true;
