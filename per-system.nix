@@ -158,30 +158,35 @@
         ;
         checks = self.packages."${system}";
 
+        treefmt = {
+          projectRoot = self;
+          programs.nixfmt.enable = true;
+          programs.ruff-format.enable = true;
+          programs.stylua.enable = true;
+          programs.shfmt = {
+            enable = true;
+            indent_size = 2;
+          };
+          programs.fish_indent.enable = true;
+        };
+
         pre-commit = {
           check.enable = true;
           settings = {
             hooks = {
-              nixfmt.enable = true;
               ruff.enable = true;
-              ruff-format = {
-                enable = true;
-              };
+              treefmt.enable = true;
+              treefmt.settings.formatters = [
+                config.treefmt.build.wrapper
+              ];
               shellcheck.enable = true;
-              statix.enable = true;
+              statix.enable = false;
               deadnix.enable = true;
               luacheck.enable = true;
-              stylua.enable = true;
               yamllint = {
                 enable = true;
               };
               fish-lint = {
-                enable = true;
-              };
-              fish-format = {
-                enable = true;
-              };
-              shfmt = {
                 enable = true;
               };
             };
