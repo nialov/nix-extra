@@ -811,24 +811,16 @@ in
         ];
       };
       servers = {
-        # pyright = {
-        #   enable = true;
-        #   settings = {
-
-        #     pyright = { disableOrganizeImports = true; };
-        #     python = {
-
-        #       analysis = {
-        #         autoImportCompletions = false;
-        #         autoSearchPaths = true;
-        #         useLibraryCodeForTypes = true;
-        #         # -- openFilesOnly fixes very high cpu usage of pyright
-        #         diagnosticMode = "openFilesOnly";
-        #         # -- typeCheckingMode = "off",
-        #       };
-        #     };
-        #   };
-        # };
+        vtsls.enable = true;
+        vue_ls = {
+          enable = true;
+          tslsIntegration = false;
+          vtslsIntegration = true;
+        };
+        tailwindcss.enable = true;
+        eslint.enable = true;
+        html.enable = true;
+        cssls.enable = true;
         basedpyright = {
           enable = true;
           extraOptions.settings = {
@@ -875,23 +867,7 @@ in
               enabled = true;
               fuzzy = true;
             };
-            # pylsp_mypy = {
-            #   enabled = true;
-            #   dmypy = true;
-            #   live_mode = false;
-            # };
 
-            # We don't need those as ruff is already providing such features.
-            flake8.enabled = false;
-            mccabe.enabled = false;
-            preload.enabled = false;
-            pycodestyle.enabled = false;
-            pydocstyle.enabled = false;
-            pyflakes.enabled = false;
-            pylint.enabled = false;
-            ruff.enabled = false;
-            yapf.enabled = false;
-            # plugins.pylsp_mypy.enabled = true;
           };
         };
         ruff = {
@@ -1124,15 +1100,6 @@ in
 
       ];
     };
-    chatgpt = {
-      enable = false;
-      settings = {
-        keymaps = {
-          submit = "<C-s>";
-        };
-      };
-
-    };
     fugitive.enable = true;
     friendly-snippets.enable = true;
     rainbow-delimiters.enable = true;
@@ -1147,14 +1114,6 @@ in
     web-devicons = {
       enable = true;
     };
-    # https://github.com/nomnivore/ollama.nvim/tree/main
-    # https://nix-community.github.io/nixvim/plugins/ollama/index.html
-    # ollama = {
-    #   enable = true;
-    #   action = "display";
-    #   model = "llama3.2:latest";
-    #   url = "https://ollama.novaskai.xyz";
-    # };
 
   };
 
