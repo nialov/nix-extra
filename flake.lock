@@ -5022,11 +5022,11 @@
     "sphinxcontrib-mermaid-src_4": {
       "flake": false,
       "locked": {
-        "lastModified": 1793054727,
-        "narHash": "sha256-0m4uL6x9xw3ka7KRT0gFVZW7U6L5Zo7LDb1MPdPRoB0=",
+        "lastModified": 1794715700,
+        "narHash": "sha256-3DE6RtZG840ygXRXhur7/xUOLpN9a9khGLZoNWytoZ0=",
         "owner": "mgaitan",
         "repo": "sphinxcontrib-mermaid",
-        "rev": "2e2abba0a3077941399c5ad1e52cad5080f6fd61",
+        "rev": "3b75f713687468ddaed4234809622435aecc082c",
         "type": "github"
       },
       "original": {
