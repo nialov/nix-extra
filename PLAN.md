@@ -205,10 +205,15 @@ At completion:
 
 ## Implementation notes
 
-Completed in commit `d3d170a`:
+Completed in commit `d3d170a`, then split the per-system configuration into
+focused modules in a follow-up:
 
 - Added the pinned import-tree input and reduced root `flake.nix` to input
   declarations plus import-tree wiring.
+- Split the former `modules/per-system.nix` responsibilities across
+  `modules/nixpkgs.nix`, `modules/shell.nix`, `modules/packages.nix`,
+  `modules/pre-commit.nix`, and `modules/treefmt.nix`; retained the Pandoc test
+  in `modules/tests/default.nix`.
 - Moved flake-parts modules to `modules/`; moved overlay/package source trees
   beneath excluded `modules/_overlays/` helpers, preserving their relative asset
   layout and the existing recursive package discovery and overlay behavior.
@@ -221,7 +226,8 @@ Completed in commit `d3d170a`:
 
 Validation completed:
 
-- Baseline and final `nix flake check --no-build` passed.
+- Baseline and final `nix flake check --no-build` passed, including after the
+  per-system split.
 - Final full `nix flake check` built and passed all 48 checks, including
   `treefmt`, pre-commit, and the Pandoc check.
 - Built the dev shell, template-check derivation, backupper/doit-ext, and Nixvim
@@ -231,6 +237,10 @@ Validation completed:
 - A minimal downstream flake importing `custom-git-hooks` evaluated its
   pre-commit derivation successfully.
 - Formatting and commit hooks passed; working tree was clean after commit.
+
+The per-system split was prompted by a follow-up request. The package check
+filter remains explicit in `modules/packages.nix` to keep hook-entry checks
+separate from exported package checks.
 
 Deferred from the more ambitious per-package dendritic conversion in Phase 3:
 package functions remain explicitly imported helpers under `modules/_overlays/`
