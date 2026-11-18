@@ -195,7 +195,7 @@ in
       desc = "Open personal wiki entry";
     };
     "Format" = {
-      command.__raw = "vim.lsp.buf.format";
+      command.__raw = "function() vim.lsp.buf.format() end";
       desc = "Format current buffer using LSP";
     };
     "Messages" = {
