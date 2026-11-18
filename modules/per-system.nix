@@ -2,7 +2,6 @@
   { self, inputs, ... }:
 
   {
-    imports = [ ./nix/tests ];
     perSystem =
       {
         config,

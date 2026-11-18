@@ -7,6 +7,7 @@
     };
     nixpkgs.follows = "nix-extra/nixpkgs";
     flake-parts.follows = "nix-extra/flake-parts";
+    import-tree.follows = "nix-extra/import-tree";
   };
 
   outputs =
@@ -18,7 +19,7 @@
           systems = [ "x86_64-linux" ];
           imports = [
             inputs.nix-extra.flakeModules.custom-git-hooks
-            ./per-system.nix
+            (inputs.import-tree ./modules)
           ];
         }
       );
