@@ -2,16 +2,17 @@
 
 let
   inherit (inputs.nixpkgs) lib;
-  localOverlay = import ./_overlays inputs;
+  # localOverlay = import ./_overlays inputs;
   fullOverlay = lib.composeManyExtensions [
-    localOverlay
-    self.overlays.utils
+    self.overlays.localOverlay
     inputs.fractopo.overlays.packageOverlay
   ];
 in
-{
-  flake.overlays = {
-    default = fullOverlay;
-    utils = lib.composeManyExtensions [ localOverlay ];
-  };
-}
+lib.mkMerge [
+  {
+    flake.overlays = {
+      default = fullOverlay;
+    };
+  }
+
+]
