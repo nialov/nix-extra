@@ -16,10 +16,6 @@
       url = "github:nialov/doit-ext";
       flake = false;
     };
-    deploy-rs-input = {
-      url = "github:serokell/deploy-rs";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     mosaic-src = {
       url = "github:nialov/mosaic";
       flake = false;
@@ -48,10 +44,6 @@
         flake-parts.follows = "flake-parts";
         nixpkgs.follows = "nixpkgs";
       };
-    };
-    sphinxcontrib-mermaid-src = {
-      url = "github:mgaitan/sphinxcontrib-mermaid";
-      flake = false;
     };
     sphinx-gallery-src = {
       url = "github:sphinx-gallery/sphinx-gallery";
@@ -85,14 +77,6 @@
       url = "github:CSCfi/allas-cli-utils";
       flake = false;
     };
-    neoai-nvim-src = {
-      url = "github:Bryley/neoai.nvim";
-      flake = false;
-    };
-    cmp-ai-src = {
-      url = "github:tzachar/cmp-ai";
-      flake = false;
-    };
     grokker-src = {
       url = "github:stevegt/grokker/7e4259c3c21951e70dd7f12d6bf7ceda09af7a81";
       flake = false;
@@ -111,10 +95,6 @@
     };
     fehm-src = {
       url = "github:lanl/fehm/5d8d8811bf283fcca0a8a2a1479f442d95371968";
-      flake = false;
-    };
-    pflotran-src = {
-      url = "git+https://bitbucket.org/pflotran/pflotran.git?rev=bf18794418f7646c6143ce47ed678b9c19a0246d";
       flake = false;
     };
     pkg-fblaslapack-src = {
@@ -137,10 +117,6 @@
       url = "github:unionai-oss/pandera/850dcf8e59632d54bc9a6df47b9ca08afa089a27";
       flake = false;
     };
-    bubop-src = {
-      url = "github:bergercookie/bubop";
-      flake = false;
-    };
     gkeepapi-src = {
       url = "github:kiwiz/gkeepapi/3d91b57e44e38f964309113974cf01a190b26c39";
       flake = false;
@@ -152,10 +128,6 @@
     fractopo.url = "github:nialov/fractopo";
     python-ternary-src = {
       url = "github:marcharper/python-ternary";
-      flake = false;
-    };
-    magazine-nvim-src = {
-      url = "github:iguanacucumber/magazine.nvim";
       flake = false;
     };
     dask-geopandas = {

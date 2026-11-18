@@ -19,7 +19,6 @@
           copier
           rstcheck
           pre-commit-hook-ensure-sops
-          deploy-rs
           git-branch-clean
           allas-cli-utils
           grokker
