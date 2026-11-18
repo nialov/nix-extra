@@ -107,7 +107,7 @@ in
     text = ''
       temp_dir="$(mktemp -d)"
       pushd "$temp_dir"
-      nix flake new -t ${./..} . --refresh
+      nix flake new -t ${../..} . --refresh
       nix build .#devShells.x86_64-linux.default
     '';
 

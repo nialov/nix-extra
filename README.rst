@@ -11,6 +11,12 @@ Use
 
 to show the packages and provided ``nixosModules``.
 
+Flake-parts configuration is organized under ``modules/`` and auto-imported
+with ``import-tree``. Add a flake-parts module there to extend the flake. Shared
+package functions and other helpers belong in ``modules/_...`` paths, which
+``import-tree`` excludes and modules can import explicitly. The standalone
+``templates/basic`` flake has its own ``modules/`` directory and import-tree.
+
 packages
 --------
 

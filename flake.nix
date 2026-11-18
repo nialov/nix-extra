@@ -1,8 +1,6 @@
 {
   description = "My extra nixpkgs and nixos config";
 
-  # warning: input 'nixos-hardware' has an override for a non-existent input 'nixpkgs'
-  # warning: input 'nur' has an override for a non-existent input 'nixpkgs'
   inputs = {
     # Rolling updates
     nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
@@ -17,7 +15,6 @@
     doit-ext-src = {
       url = "github:nialov/doit-ext";
       flake = false;
-      # inputs.nixpkgs.follows = "nixpkgs";
     };
     deploy-rs-input = {
       url = "github:serokell/deploy-rs";
@@ -35,6 +32,7 @@
       url = "github:hercules-ci/flake-parts";
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
+    import-tree.url = "github:vic/import-tree";
     lmix-flake-src = {
       url = "github:kilzm/lmix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -68,12 +66,10 @@
       flake = false;
     };
     gazpacho-1-1-src = {
-      # v1.1
       url = "github:maxhumber/gazpacho/fddedfde9a9d5345de12cc349c5c194517965c91";
       flake = false;
     };
     tasklite-src = {
-      # 2024-03-24: Try to fix later
       url = "github:ad-si/tasklite/1cdded1e915de8d9c2fbd7770f948f33c507d0ce";
       flake = false;
     };
@@ -118,9 +114,7 @@
       flake = false;
     };
     pflotran-src = {
-      url =
-        # TODO: Requires higher petsc version than came from nixpkgs 9.4.2024
-        "git+https://bitbucket.org/pflotran/pflotran.git?rev=bf18794418f7646c6143ce47ed678b9c19a0246d";
+      url = "git+https://bitbucket.org/pflotran/pflotran.git?rev=bf18794418f7646c6143ce47ed678b9c19a0246d";
       flake = false;
     };
     pkg-fblaslapack-src = {
@@ -139,7 +133,6 @@
       url = "github:pearu/pyvtk";
       flake = false;
     };
-    # TODO: Tracerepo build too old to support newer pandera src
     pandera-src = {
       url = "github:unionai-oss/pandera/850dcf8e59632d54bc9a6df47b9ca08afa089a27";
       flake = false;
@@ -149,18 +142,14 @@
       flake = false;
     };
     gkeepapi-src = {
-      # Newer build with flit did not work. Take a look in 2024 if the package is added to nixpkgs
       url = "github:kiwiz/gkeepapi/3d91b57e44e38f964309113974cf01a190b26c39";
       flake = false;
     };
     powerlaw-src = {
-      # Newer build with flit did not work. Take a look in 2024 if the package is added to nixpkgs
       url = "github:jeffalstott/powerlaw/6732699d790edbe27c2790bf22c3ef7355d2b07e";
       flake = false;
     };
-    fractopo = {
-      url = "github:nialov/fractopo";
-    };
+    fractopo.url = "github:nialov/fractopo";
     python-ternary-src = {
       url = "github:marcharper/python-ternary";
       flake = false;
@@ -178,7 +167,6 @@
       flake = false;
     };
     drillcore-transformations-src = {
-      # TODO: Lock to tag
       url = "github:nialov/drillcore-transformations";
       flake = false;
     };
@@ -193,92 +181,8 @@
   };
 
   outputs =
-    { self, ... }@inputs:
-
-    let
-      inherit (inputs.nixpkgs) lib;
-
-      localOverlay = import ./overlays inputs;
-      inputOverlay =
-        _: prev:
-        let
-          inherit (prev.stdenv.hostPlatform) system;
-        in
-        {
-
-          # Some custom packages or overrides to add/fix functionality
-
-          # Get deploy-rs form its repository flake
-          inherit (inputs.deploy-rs-input.packages."${system}") deploy-rs;
-
-          # nickel = inputs.nickel-src.packages."${system}".build;
-        };
-      fullOverlay = lib.composeManyExtensions [
-        localOverlay
-        inputOverlay
-        self.overlays.utils
-        inputs.fractopo.overlays.packageOverlay
-      ];
-
-      flakePart = inputs.flake-parts.lib.mkFlake { inherit inputs; } (
-        {
-          config,
-          inputs,
-          flake-parts-lib,
-          ...
-        }:
-        let
-          inherit (flake-parts-lib) importApply;
-          flakeModules =
-            let
-              custom-pre-commit-hooks = importApply ./flakeModules/pre-commit-custom.nix {
-                inherit inputs;
-              };
-              custom-git-hooks = custom-pre-commit-hooks;
-            in
-            {
-              inherit custom-pre-commit-hooks custom-git-hooks;
-            };
-        in
-        {
-          systems = [ "x86_64-linux" ];
-          imports = [
-            flakeModules.custom-git-hooks
-            inputs.treefmt-nix.flakeModule
-            ./per-system.nix
-            inputs.actions-nix.flakeModules.default
-            ./nix/actions-nix.nix
-          ];
-
-          flake = {
-            overlays = {
-              default = fullOverlay;
-              utils = lib.composeManyExtensions [
-                # (_: _: {
-                # numtide/nix-filter library used for filtering local packages sources
-                # filter = inputs.nix-filter.lib;
-                # })
-                localOverlay
-              ];
-
-            };
-            nixosModules = { };
-            templates = {
-              default = {
-                path = ./templates/basic;
-                description = ''
-                  A flake using nix-extra overlay with flake-parts.
-                '';
-              };
-            };
-            inherit flakeModules;
-            flakePartsConfig = config;
-            inherit self;
-          };
-
-        }
-      );
-
-    in
-    lib.foldl' lib.recursiveUpdate { } [ flakePart ];
+    inputs:
+    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
+      imports = [ (inputs.import-tree ./modules) ];
+    };
 }
