@@ -23,6 +23,7 @@ buildPythonPackage (finalAttrs: {
   src = inputs.gempy-src;
 
   postPatch = ''
+    rm -r examples
     substituteInPlace setup.cfg \
       --replace "description-file" "description_file"
   '';

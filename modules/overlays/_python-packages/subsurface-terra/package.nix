@@ -29,6 +29,10 @@ buildPythonPackage (finalAttrs: {
 
   src = inputs.subsurface-src;
 
+  postPatch = ''
+    rm -r examples
+  '';
+
   build-system = [
     setuptools
     setuptools-scm
