@@ -150,6 +150,22 @@
       url = "github:automattic/harper/v1.12.0";
       flake = false;
     };
+    gempy-src = {
+      url = "github:gempy-project/gempy/v2026.2.0a4";
+      flake = false;
+    };
+    gempy-engine-src = {
+      url = "github:gempy-project/gempy_engine/v2026.2.0a4";
+      flake = false;
+    };
+    gempy-viewer-src = {
+      url = "github:gempy-project/gempy_viewer/v2026.0.5";
+      flake = false;
+    };
+    subsurface-src = {
+      url = "github:terranigma-solutions/subsurface/v2026.2.6post1";
+      flake = false;
+    };
   };
 
   outputs =
