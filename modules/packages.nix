@@ -51,6 +51,7 @@
           mplstereonet
           pyvtk
           drillcore-transformations
+          gempy
           # TODO: fractopo needs update upstream
           # fractopo
 
