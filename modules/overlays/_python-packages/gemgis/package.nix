@@ -164,7 +164,7 @@ buildPythonPackage (finalAttrs: {
     description = "Spatial data processing for geomodeling";
     homepage = "https://github.com/cgre-aachen/gemgis";
     changelog = "https://github.com/cgre-aachen/gemgis/releases/tag/${finalAttrs.src.tag}";
-    license = lib.licenses.unfree; # FIXME: nix-init did not find a license
+    license = lib.licenses.lgpl3;
     maintainers = with lib.maintainers; [ nialov ];
   };
 })
