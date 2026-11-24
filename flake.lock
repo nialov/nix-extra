@@ -1677,6 +1677,23 @@
         "type": "github"
       }
     },
+    "gemgis-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1770207764,
+        "narHash": "sha256-Bd83PUaj+v5s3QQAOkViHliiBsoSHtClRSn4TP/iPcE=",
+        "owner": "cgre-aachen",
+        "repo": "gemgis",
+        "rev": "f29fc3aea1aed48482cfba6501954f33434b15a7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "cgre-aachen",
+        "ref": "v1.1.9",
+        "repo": "gemgis",
+        "type": "github"
+      }
+    },
     "gempy-engine-src": {
       "flake": false,
       "locked": {
@@ -4795,6 +4812,7 @@
         "fractopo": "fractopo",
         "gazpacho-1-1-src": "gazpacho-1-1-src_4",
         "gazpacho-src": "gazpacho-src_4",
+        "gemgis-src": "gemgis-src",
         "gempy-engine-src": "gempy-engine-src",
         "gempy-src": "gempy-src",
         "gempy-viewer-src": "gempy-viewer-src",
