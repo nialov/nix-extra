@@ -170,6 +170,10 @@
       url = "github:cgre-aachen/gemgis/v1.1.9";
       flake = false;
     };
+    gempy-plugins-src = {
+      url = "github:gempy-project/gempy_plugins";
+      flake = false;
+    };
   };
 
   outputs =
