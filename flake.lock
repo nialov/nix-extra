@@ -1711,6 +1711,22 @@
         "type": "github"
       }
     },
+    "gempy-plugins-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1792837766,
+        "narHash": "sha256-wpXgjHWFwb9zLBKXL4sx7Qj0FGlbpYliSwRM7ZAejms=",
+        "owner": "gempy-project",
+        "repo": "gempy_plugins",
+        "rev": "e6cd119b42d8d5897fbca00efb4437ea2ee98655",
+        "type": "github"
+      },
+      "original": {
+        "owner": "gempy-project",
+        "repo": "gempy_plugins",
+        "type": "github"
+      }
+    },
     "gempy-src": {
       "flake": false,
       "locked": {
@@ -4814,6 +4830,7 @@
         "gazpacho-src": "gazpacho-src_4",
         "gemgis-src": "gemgis-src",
         "gempy-engine-src": "gempy-engine-src",
+        "gempy-plugins-src": "gempy-plugins-src",
         "gempy-src": "gempy-src",
         "gempy-viewer-src": "gempy-viewer-src",
         "git-hooks": "git-hooks_4",
