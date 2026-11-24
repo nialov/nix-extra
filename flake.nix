@@ -166,6 +166,10 @@
       url = "github:terranigma-solutions/subsurface/v2026.2.6post1";
       flake = false;
     };
+    gemgis-src = {
+      url = "github:cgre-aachen/gemgis/v1.1.9";
+      flake = false;
+    };
   };
 
   outputs =
