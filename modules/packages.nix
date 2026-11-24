@@ -52,6 +52,7 @@
           pyvtk
           drillcore-transformations
           gempy
+          gemgis
           # TODO: fractopo needs update upstream
           # fractopo
 
